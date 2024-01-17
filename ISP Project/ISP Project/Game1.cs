@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Diagnostics;
+using System.Xml;
 
 namespace ISP_Project
 {
@@ -19,6 +22,13 @@ namespace ISP_Project
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            IsMouseVisible = true;
+            Window.AllowUserResizing = true;
+            Window.AllowAltF4 = true;
+
+            // set and update window size
+            WindowManager.getWindow().setWindowSize(1600, 900);
+            WindowManager.getWindow().updateWindowSize(_graphics);
 
             base.Initialize();
         }
@@ -36,7 +46,7 @@ namespace ISP_Project
                 Exit();
 
             // TODO: Add your update logic here
-
+            
             base.Update(gameTime);
         }
 
