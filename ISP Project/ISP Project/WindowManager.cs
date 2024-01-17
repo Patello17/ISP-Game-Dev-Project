@@ -33,7 +33,7 @@ namespace ISP_Project
         }
 
         // declare WindowManager variables
-        public static Window window;
+        private static Window window;
 
         // unused constructor
         private WindowManager() { }
