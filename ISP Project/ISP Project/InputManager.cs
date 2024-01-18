@@ -11,47 +11,47 @@ namespace ISP_Project
     internal class InputManager
     {
         // create button detection variables
-        private static KeyboardState currentPress;
-        private static KeyboardState previousPress;
+        private static KeyboardState currentKeyState;
+        private static KeyboardState previousKeyState;
 
         // create click detection variables
-        private static MouseState currentClick;
-        private static MouseState previousClick;
+        private static MouseState currentMouseState;
+        private static MouseState previousMouseState;
 
         // declare key actions
         public enum Inputs
         {
-            Up, Down, Left, Right
+            UP, DOWN, LEFT, RIGHT
         }
         // declare click actions
         public enum ClickInputs
         {
-            Interact
+            INTERACT
         }
 
         // assign button inputs to specific keys
         private static Dictionary<Inputs, Keys> playerKeys = new Dictionary<Inputs, Keys>()
         {
-            { Inputs.Up, Keys.W},
-            { Inputs.Left, Keys.A },
-            { Inputs.Down, Keys.S },
-            { Inputs.Right, Keys.D }
+            { Inputs.UP, Keys.W},
+            { Inputs.LEFT, Keys.A },
+            { Inputs.DOWN, Keys.S },
+            { Inputs.RIGHT, Keys.D }
         };
         // assign click inputs to specific clicks
         private static Dictionary<ClickInputs, ButtonState> playerClicks = new Dictionary<ClickInputs, ButtonState>()
         {
-            { ClickInputs.Interact, currentClick.LeftButton}
+            { ClickInputs.INTERACT, currentMouseState.LeftButton}
         };
 
         public static void Update()
         {
             // update key press logic variables
-            previousPress = currentPress;
-            currentPress = Keyboard.GetState();
+            previousKeyState = currentKeyState;
+            currentKeyState = Keyboard.GetState();
 
             // update click logic variables
-            previousClick = currentClick;
-            currentClick = Mouse.GetState();
+            previousMouseState = currentMouseState;
+            currentMouseState = Mouse.GetState();
         }
 
         // get different information from key inputs
@@ -67,7 +67,7 @@ namespace ISP_Project
         // specify key to get input information from
         public static bool isKey(Inputs input, Func<bool, bool, bool> checkState)
         {
-            return checkState(currentPress.IsKeyDown(playerKeys[input]), previousPress.IsKeyDown(playerKeys[input]));
+            return checkState(currentKeyState.IsKeyDown(playerKeys[input]), previousKeyState.IsKeyDown(playerKeys[input]));
         }
     }
 }
