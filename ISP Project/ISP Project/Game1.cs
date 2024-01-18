@@ -46,13 +46,19 @@ namespace ISP_Project
                 Exit();
 
             // TODO: Add your update logic here
-            
+            InputManager.Update();
+
+            if (InputManager.isKey(InputManager.Inputs.Up, InputManager.isTriggered))
+                Debug.WriteLine("UP");
+            if (InputManager.isKey(InputManager.Inputs.Down, InputManager.isTriggered))
+                Debug.WriteLine("DOWN");
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
 
