@@ -13,8 +13,9 @@ namespace ISP_Project.Gameplay
     {
         public Texture2D Sprite;
         public Vector2 Position;
+        public int DrawLayer;
 
-        public void Update() { }
-        public void Draw(SpriteBatch spriteBatch) { }
+        public void Update(GameTime gameTime) { }
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch) { }
     }
 }

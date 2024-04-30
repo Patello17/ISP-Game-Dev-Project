@@ -1,4 +1,5 @@
-﻿using ISP_Project.Managers;
+﻿using ISP_Project.Game_States;
+using ISP_Project.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,6 +13,8 @@ namespace ISP_Project
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        private State currentState;
 
         public Game1()
         {
@@ -37,9 +40,11 @@ namespace ISP_Project
 
         protected override void LoadContent()
         {
+            // TODO: use this.Content to load your game content here
+            
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            currentState = new MenuState(this.Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -51,15 +56,19 @@ namespace ISP_Project
             InputManager.Update();
             WindowManager.getWindow().updateWindowSize(_graphics);
 
-            if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
-                Debug.WriteLine("UP");
+            /*if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
+                Debug.WriteLine("UP");*/
 
-            if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isTriggered))
+            currentState.Update(gameTime);
+
+            /*if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isTriggered))
                 Debug.WriteLine("TRIGGERED");
             if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isPressed))
                 Debug.WriteLine("PRESSED");
             if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isReleased))
-                Debug.WriteLine("RELEASED");
+                Debug.WriteLine("RELEASED");*/
+
+
 
             base.Update(gameTime);
         }
@@ -69,6 +78,13 @@ namespace ISP_Project
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
+
+            // I don't know why I should be using SpriteSortMode.Immediate. If I don't, the button text gets all funky
+            _spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, null, null, null); // final null should be replaced with camera transformation matrix i think
+
+            currentState.Draw(gameTime, _spriteBatch);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -14,7 +14,7 @@ namespace ISP_Project.Gameplay
     {
 
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             
         }

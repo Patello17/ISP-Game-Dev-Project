@@ -1,1 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Fonts/Button Font.spritefont","C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/bin/DesktopGL/Content/Fonts/Button Font.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0.4482932
+"C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Button.png","C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/bin/DesktopGL/Content/UI Elements/Button.xnb","TextureProcessor","Texture2DContent",159,4181,0.3875382
