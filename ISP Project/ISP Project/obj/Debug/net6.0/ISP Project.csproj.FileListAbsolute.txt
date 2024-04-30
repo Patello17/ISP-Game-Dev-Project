@@ -24,3 +24,5 @@ C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\obj\Debug\net6.0\refint\
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\obj\Debug\net6.0\ISP Project.pdb
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\obj\Debug\net6.0\ISP Project.genruntimeconfig.cache
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\obj\Debug\net6.0\ref\ISP Project.dll
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net6.0\MonoGame.Extended.dll
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net6.0\Newtonsoft.Json.dll

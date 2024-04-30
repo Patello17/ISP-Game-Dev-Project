@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ISP_Project.Managers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -25,6 +26,7 @@ namespace ISP_Project
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
             Window.AllowAltF4 = true;
+            Window.Title = "Snail Mail";
 
             // set and update window size
             WindowManager.getWindow().setWindowSize(1600, 900);
@@ -47,11 +49,17 @@ namespace ISP_Project
 
             // TODO: Add your update logic here
             InputManager.Update();
+            WindowManager.getWindow().updateWindowSize(_graphics);
 
-            if (InputManager.isKey(InputManager.Inputs.Up, InputManager.isTriggered))
+            if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
                 Debug.WriteLine("UP");
-            if (InputManager.isKey(InputManager.Inputs.Down, InputManager.isTriggered))
-                Debug.WriteLine("DOWN");
+
+            if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isTriggered))
+                Debug.WriteLine("TRIGGERED");
+            if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isPressed))
+                Debug.WriteLine("PRESSED");
+            if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isReleased))
+                Debug.WriteLine("RELEASED");
 
             base.Update(gameTime);
         }
