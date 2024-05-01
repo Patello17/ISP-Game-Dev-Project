@@ -23,14 +23,14 @@ namespace ISP_Project.Managers
         private static bool previousRightButtonState;
 
         // create rectangle that tracks the mouse position
-        // (if this rectangle intersects with another rectangle, we know the mouse is hovering over something)
-        public static Rectangle cursorRect;
+        public static Rectangle cursorRectangle;
 
         // declare key actions
         public enum Inputs
         {
             UP, DOWN, LEFT, RIGHT,
-            INTERACT, PAUSE
+            INTERACT, PAUSE,
+            MAXIMIZESCREEN
         }
         // declare click actions
         public enum ClickInputs
@@ -46,10 +46,12 @@ namespace ISP_Project.Managers
             { Inputs.DOWN, Keys.S },
             { Inputs.RIGHT, Keys.D },
             { Inputs.INTERACT, Keys.Z},
-            { Inputs.PAUSE, Keys.Escape}
+            { Inputs.PAUSE, Keys.Escape},
+            { Inputs.MAXIMIZESCREEN, Keys.F11}
 
         };
 
+        // create click dictionaries
         private static Dictionary<ClickInputs, ButtonState> currentPlayerClicks;
         private static Dictionary<ClickInputs, bool> previousPlayerClicks;
 
@@ -67,16 +69,15 @@ namespace ISP_Project.Managers
                 { ClickInputs.INTERACT, previousLeftButtonState}
             };
 
-            mouseState = Mouse.GetState();
-
             // update click dictionary with mouseState (there's has to be a better way to do this...)
+            mouseState = Mouse.GetState();
             currentPlayerClicks = new Dictionary<ClickInputs, ButtonState>()
             {
                 { ClickInputs.INTERACT, mouseState.LeftButton}
             };
 
             // update cursor rectangle
-            cursorRect = new Rectangle(mouseState.Position.X, mouseState.Position.Y, 1, 1);
+            cursorRectangle = new Rectangle(mouseState.Position.X, mouseState.Position.Y, 1, 1);
         }
 
         // get different information from key inputs

@@ -26,24 +26,26 @@ namespace ISP_Project.UI.Buttons
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, texture.Width * ButtonScale, texture.Height * ButtonScale);
+                return new Rectangle((int)Position.X - (texture.Width * ButtonScale / 2), 
+                    (int)Position.Y - (texture.Height * ButtonScale / 2), 
+                    texture.Width * ButtonScale, texture.Height * ButtonScale);
             }
         }
         private bool isHovering;
 
-        public Button(Texture2D texture, SpriteFont font)
+        public Button(Texture2D texture, SpriteFont font, int buttonScale, int fontScale)
         {
             this.texture = texture;
             this.font = font;
 
             TextColor = Color.Black;
-            ButtonScale = 6;
-            FontScale = 3;
+            ButtonScale = buttonScale;
+            FontScale = fontScale;
         }
 
         public void Update(GameTime gameTime)
         {
-            if (InputManager.cursorRect.Intersects(Rectangle))
+            if (InputManager.cursorRectangle.Intersects(Rectangle))
             {
                 isHovering = true;
 
@@ -66,7 +68,7 @@ namespace ISP_Project.UI.Buttons
             if (isHovering)
                 color = Color.Gray;
 
-            spriteBatch.Draw(texture, Rectangle, color);
+            spriteBatch.Draw(texture,Rectangle, color);
 
             // draw text
             if (!string.IsNullOrEmpty(Text))

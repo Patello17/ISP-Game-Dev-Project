@@ -1,5 +1,6 @@
 ﻿using ISP_Project.Game_States;
 using ISP_Project.Managers;
+using ISP_Project.Screen_Management;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,6 +18,7 @@ namespace ISP_Project
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            // Globals.GraphicsDeviceManager = _graphics;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -30,8 +32,7 @@ namespace ISP_Project
             Window.Title = "Snail Mail";
 
             // set and update window size
-            WindowManager.getWindow().setWindowSize(1600, 900);
-            WindowManager.getWindow().updateWindowSize(_graphics);
+            WindowManager.InitializeWindow(_graphics);
 
             base.Initialize();
         }
@@ -43,6 +44,7 @@ namespace ISP_Project
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Globals.ContentManager = this.Content;
 
+            WindowManager.LoadSampleTexture();
             StateManager.ChangeState(new MenuState(this.Content));
         }
 
@@ -53,23 +55,22 @@ namespace ISP_Project
 
             // TODO: Add your update logic here
             Globals.Update(gameTime);
-            WindowManager.getWindow().updateWindowSize(_graphics);
+            WindowManager.Update(gameTime);
             InputManager.Update(gameTime);
             StateManager.Update(gameTime);
 
-            /*if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
-                Debug.WriteLine("UP");*/
-
-
-
+            if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered))
+                WindowManager.SetMainWindowResolution(1600, 900);
+            if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
+                WindowManager.SetMainWindowResolution(800, 900);
+            if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered))
+                WindowManager.SetMainWindowResolution(1600, 450);
             /*if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isTriggered))
                 Debug.WriteLine("TRIGGERED");
             if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isPressed))
                 Debug.WriteLine("PRESSED");
             if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isReleased))
                 Debug.WriteLine("RELEASED");*/
-
-
 
             base.Update(gameTime);
         }
@@ -81,11 +82,8 @@ namespace ISP_Project
             // TODO: Add your drawing code here
 
             // I don't know why I should be using SpriteSortMode.Immediate. If I don't, the button text gets all funky
-            _spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, null, null, null); // final null should be replaced with camera transformation matrix i think
-
-            StateManager.Draw(gameTime, _spriteBatch);
-
-            _spriteBatch.End();
+            
+            WindowManager.DrawMainWindow(gameTime, _spriteBatch);
 
             base.Draw(gameTime);
         }

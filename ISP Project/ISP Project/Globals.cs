@@ -15,6 +15,7 @@ namespace ISP_Project
         // this class holds references to frequently accessed global variables
         public static float Time { get; set; }
         public static ContentManager ContentManager { get; set; }
+        public static GraphicsDeviceManager GraphicsDeviceManager { get; set; }
         public static SpriteBatch SpriteBatch { get; set; }
 
         public static void Update(GameTime gameTime)

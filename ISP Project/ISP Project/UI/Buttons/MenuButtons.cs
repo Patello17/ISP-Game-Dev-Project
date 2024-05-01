@@ -16,11 +16,15 @@ namespace ISP_Project.UI.Buttons
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
+        private int buttonScale;
+        private int fontScale;
 
-        public ResumeButton(Texture2D texture, SpriteFont font) : base(texture, font)
+        public ResumeButton(Texture2D texture, SpriteFont font, int buttonScale, int fontScale) : base(texture, font, buttonScale, fontScale)
         {
-            this.buttonTexture = texture;
-            this.buttonFont = font;
+            buttonTexture = texture;
+            buttonFont = font;
+            this.buttonScale = buttonScale;
+            this.fontScale = buttonScale;
         }
 
         public override void TriggerEvent()
@@ -34,11 +38,15 @@ namespace ISP_Project.UI.Buttons
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
+        private int buttonScale;
+        private int fontScale;
 
-        public SettingsButton(Texture2D texture, SpriteFont font) : base(texture, font)
+        public SettingsButton(Texture2D texture, SpriteFont font, int buttonScale, int fontScale) : base(texture, font, buttonScale, fontScale)
         {
             buttonTexture = texture;
             buttonFont = font;
+            this.buttonScale = buttonScale;
+            this.fontScale = buttonScale;
         }
 
         public override void TriggerEvent()
@@ -51,11 +59,15 @@ namespace ISP_Project.UI.Buttons
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
+        private int buttonScale;
+        private int fontScale;
 
-        public QuitButton(Texture2D texture, SpriteFont font) : base(texture, font)
+        public QuitButton(Texture2D texture, SpriteFont font, int buttonScale, int fontScale) : base(texture, font, buttonScale, fontScale)
         {
-            this.buttonTexture = texture;
-            this.buttonFont = font;
+            buttonTexture = texture;
+            buttonFont = font;
+            this.buttonScale = buttonScale;
+            this.fontScale = buttonScale;
         }
 
         public override void TriggerEvent()
