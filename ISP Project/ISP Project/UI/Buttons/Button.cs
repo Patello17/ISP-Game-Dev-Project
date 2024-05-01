@@ -14,18 +14,19 @@ namespace ISP_Project.UI.Buttons
     public abstract class Button
     {
         public Texture2D texture;
-        public string texturePath = "UI Elements/Button"; // should be in the constructor
+        public string texturePath;
         public SpriteFont font;
-        public string fontPath = "Fonts/Button Font"; // every button will have this font
+        public string fontPath; // every button will have this font
         public string Text { get; set; }
         public Color TextColor { get; set; }
         public Vector2 Position { get; set; }
-        public int Scale { get; set; }
+        public int ButtonScale { get; set; }
+        public int FontScale { get; set; }
         public Rectangle Rectangle
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, texture.Width * Scale, texture.Height * Scale);
+                return new Rectangle((int)Position.X, (int)Position.Y, texture.Width * ButtonScale, texture.Height * ButtonScale);
             }
         }
         private bool isHovering;
@@ -36,7 +37,8 @@ namespace ISP_Project.UI.Buttons
             this.font = font;
 
             TextColor = Color.Black;
-            Scale = 4;
+            ButtonScale = 6;
+            FontScale = 3;
         }
 
         public void Update(GameTime gameTime)
@@ -45,18 +47,13 @@ namespace ISP_Project.UI.Buttons
             {
                 isHovering = true;
 
-                if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isTriggered))
+                if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isTriggered) ||
+                    InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
                 {
                     TriggerEvent();
                 }
             }
             else { isHovering = false; }
-
-            if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
-                Scale += 1;
-            if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
-                Scale -= 1;
-
         }
 
         public abstract void TriggerEvent();
@@ -76,10 +73,10 @@ namespace ISP_Project.UI.Buttons
             if (!string.IsNullOrEmpty(Text))
             {
                 // find the center of the button and fit text
-                var x = (Rectangle.X + Rectangle.Width / 2) - (font.MeasureString(Text).X / 2);
-                var y = (Rectangle.Y + Rectangle.Height / 2) - (font.MeasureString(Text).Y / 2);
+                var x = (Rectangle.X + Rectangle.Width / 2) - (font.MeasureString(Text).X * FontScale / 2);
+                var y = (Rectangle.Y + Rectangle.Height / 2) - (font.MeasureString(Text).Y * FontScale / 2);
 
-                spriteBatch.DrawString(font, Text, new Vector2(x, y), TextColor);
+                spriteBatch.DrawString(font, Text, new Vector2(x, y), TextColor, 0.0f, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
             }
 
         }

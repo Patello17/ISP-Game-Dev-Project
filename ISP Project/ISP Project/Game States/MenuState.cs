@@ -14,6 +14,10 @@ namespace ISP_Project.Game_States
     public class MenuState : State
     {
         private List<Button> buttons;
+        // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
+        private Texture2D buttonTexture;
+        private SpriteFont buttonFont;
+
         // private Texture2D buttonTexture; // expandable?: can add multiple button textures here and reference in dictionary
         // private SpriteFont buttonFont;
 
@@ -28,8 +32,7 @@ namespace ISP_Project.Game_States
 
         public MenuState(ContentManager content) 
         {
-            var buttonTexture = content.Load<Texture2D>("UI Elements/Button");
-            var buttonFont = content.Load<SpriteFont>("Fonts/Button Font");
+            Load(content);
 
             var resumeButton = new ResumeButton(buttonTexture, buttonFont)
             {
@@ -39,12 +42,14 @@ namespace ISP_Project.Game_States
 
             var settingsButton = new SettingsButton(buttonTexture, buttonFont)
             {
+                texture = buttonTexture,
                 Position = new Vector2(200, 400),
                 Text = "Settings"
             };
 
             var quitButton = new QuitButton(buttonTexture, buttonFont)
             {
+                texture = buttonTexture,
                 Position = new Vector2(200, 600),
                 Text = "Quit"
             };
@@ -54,15 +59,12 @@ namespace ISP_Project.Game_States
                 resumeButton, settingsButton, quitButton
             };
 
-            Load(content);
         }
         public override void Load(ContentManager content)
         {
-            foreach (Button button in buttons)
-            {
-                button.texture = content.Load<Texture2D>(button.texturePath);
-                button.font = content.Load<SpriteFont>(button.fontPath);
-            }
+            // load everything in this state
+            buttonTexture = content.Load<Texture2D>("UI Elements/Button");
+            buttonFont = content.Load<SpriteFont>("Fonts/Button Font");
         }
         public override void Update(GameTime gameTime)
         {

@@ -19,8 +19,8 @@ namespace ISP_Project.Managers
 
         // create click detection variables
         private static MouseState mouseState;
-        private static ButtonState previousLeftButton;
-        private static ButtonState previousRightButton;
+        private static bool previousLeftButtonState;
+        private static bool previousRightButtonState;
 
         // create rectangle that tracks the mouse position
         // (if this rectangle intersects with another rectangle, we know the mouse is hovering over something)
@@ -49,11 +49,9 @@ namespace ISP_Project.Managers
             { Inputs.PAUSE, Keys.Escape}
 
         };
-        // assign click inputs to specific clicks
-        private static Dictionary<ClickInputs, ButtonState> playerClicks = new Dictionary<ClickInputs, ButtonState>()
-        {
-            { ClickInputs.INTERACT, Mouse.GetState().LeftButton }
-        };
+
+        private static Dictionary<ClickInputs, ButtonState> currentPlayerClicks;
+        private static Dictionary<ClickInputs, bool> previousPlayerClicks;
 
         public static void Update()
         {
@@ -62,9 +60,20 @@ namespace ISP_Project.Managers
             currentKeyState = Keyboard.GetState();
 
             // update click logic variables
-            previousLeftButton = mouseState.LeftButton;
-            previousRightButton = mouseState.RightButton;
+            previousLeftButtonState = mouseState.LeftButton == ButtonState.Pressed ? true: false;
+            previousRightButtonState = mouseState.RightButton == ButtonState.Pressed ? true : false;
+            previousPlayerClicks = new Dictionary<ClickInputs, bool>()
+            {
+                { ClickInputs.INTERACT, previousLeftButtonState}
+            };
+
             mouseState = Mouse.GetState();
+
+            // update click dictionary with mouseState (there's has to be a better way to do this...)
+            currentPlayerClicks = new Dictionary<ClickInputs, ButtonState>()
+            {
+                { ClickInputs.INTERACT, mouseState.LeftButton}
+            };
 
             // update cursor rectangle
             cursorRect = new Rectangle(mouseState.Position.X, mouseState.Position.Y, 1, 1);
@@ -75,12 +84,6 @@ namespace ISP_Project.Managers
         public static Func<bool, bool, bool> isTriggered = (currentState, previousState) => currentState && !previousState;
         public static Func<bool, bool, bool> isReleased = (currentState, previousState) => !currentState && previousState;
 
-        // get different information from click inputs
-        /*public static Func<bool, bool, bool> isMousePressed = (mouseState, oldMouseState) => mouseState;
-        public static Func<bool, bool, bool> isMouseTriggered = (mouseState, oldMouseState) => mouseState && !oldMouseState;
-        public static Func<bool, bool, bool> isMouseReleased = (mouseState, oldMouseState) => !mouseState && oldMouseState;
-        */
-
         // specify key to get input information from
         public static bool isKey(Inputs input, Func<bool, bool, bool> checkState)
         {
@@ -89,31 +92,13 @@ namespace ISP_Project.Managers
 
         public static bool isClick(ClickInputs input, Func<bool, bool, bool> checkState)
         {
+            var currentClickState = false;
+            var previousClickState = previousPlayerClicks[input];
 
-            ButtonState currentClickState =
-                playerClicks[input].Equals(Mouse.GetState().LeftButton) ? mouseState.LeftButton :
-                playerClicks[input].Equals(Mouse.GetState().RightButton) ? mouseState.RightButton :
-                ButtonState.Released;
+            if (currentPlayerClicks[input] == ButtonState.Pressed)
+                currentClickState = true;
 
-            ButtonState previousClickState =
-                playerClicks[input].Equals(Mouse.GetState().LeftButton) ? previousLeftButton :
-                playerClicks[input].Equals(Mouse.GetState().RightButton) ? previousRightButton :
-                ButtonState.Released;
-
-            bool currentClick = currentClickState == ButtonState.Pressed;
-            bool previousClick = previousClickState == ButtonState.Pressed;
-
-            return checkState(currentClick, previousClick);
+            return checkState(currentClickState, previousClickState);
         }
-
-        /*private ButtonState getClickState(MouseState mouseState, ButtonState button)
-        {
-            if (button.Equals(Mouse.GetState().LeftButton))
-                return mouseState.LeftButton;
-            if (button.Equals(Mouse.GetState().RightButton))
-                return mouseState.RightButton;
-            return ButtonState.Released;
-        }*/
-
     }
 }
