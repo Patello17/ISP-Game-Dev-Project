@@ -53,7 +53,7 @@ namespace ISP_Project.Managers
         private static Dictionary<ClickInputs, ButtonState> currentPlayerClicks;
         private static Dictionary<ClickInputs, bool> previousPlayerClicks;
 
-        public static void Update()
+        public static void Update(GameTime gameTime)
         {
             // update key press logic variables
             previousKeyState = currentKeyState;

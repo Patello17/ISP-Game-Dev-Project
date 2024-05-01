@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace ISP_Project.UI.Buttons
 {
-    // create Resume Button
-    public class ResumeButton : Button
+    // create Audio Button
+    public class AudioButton : Button
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
 
-        public ResumeButton(Texture2D texture, SpriteFont font) : base(texture, font)
+        public AudioButton(Texture2D texture, SpriteFont font) : base(texture, font)
         {
             this.buttonTexture = texture;
             this.buttonFont = font;
@@ -26,16 +26,16 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             // change Game State here!
-            Debug.WriteLine("Resuming...");
+            Debug.WriteLine("Entering Audio Settings...");
         }
     }
-    // create Settings Button
-    public class SettingsButton : Button
+    // create Controls Button
+    public class ControlsButton : Button
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
 
-        public SettingsButton(Texture2D texture, SpriteFont font) : base(texture, font)
+        public ControlsButton(Texture2D texture, SpriteFont font) : base(texture, font)
         {
             buttonTexture = texture;
             buttonFont = font;
@@ -43,16 +43,16 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
-            StateManager.ChangeState(new SettingsState(Globals.ContentManager));
+            Debug.WriteLine("Entering Controls Settings...");
         }
     }
-    // create Quit Button
-    public class QuitButton : Button
+    // create Settings Return Button
+    public class SettingsReturnButton : Button
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
 
-        public QuitButton(Texture2D texture, SpriteFont font) : base(texture, font)
+        public SettingsReturnButton(Texture2D texture, SpriteFont font) : base(texture, font)
         {
             this.buttonTexture = texture;
             this.buttonFont = font;
@@ -60,7 +60,7 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
-            Debug.WriteLine("Quitting...");
+            StateManager.ChangeState(new MenuState(Globals.ContentManager));
         }
     }
 }

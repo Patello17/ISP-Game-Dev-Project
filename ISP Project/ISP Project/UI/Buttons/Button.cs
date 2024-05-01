@@ -60,7 +60,6 @@ namespace ISP_Project.UI.Buttons
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-
             // draw button and change color on cursor hover
             var color = Color.White;
 
@@ -78,7 +77,6 @@ namespace ISP_Project.UI.Buttons
 
                 spriteBatch.DrawString(font, Text, new Vector2(x, y), TextColor, 0.0f, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
             }
-
         }
     }
 }

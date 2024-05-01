@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ISP_Project.Game_States
 {
-    public class MenuState : State
+    public class SettingsState : State
     {
         private List<Button> buttons;
         // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
@@ -30,32 +30,32 @@ namespace ISP_Project.Game_States
             
         };*/
 
-        public MenuState(ContentManager content) 
+        public SettingsState(ContentManager content)
         {
             LoadState(content);
 
-            var resumeButton = new ResumeButton(buttonTexture, buttonFont)
+            var resumeButton = new AudioButton(buttonTexture, buttonFont)
             {
                 Position = new Vector2(200, 200),
-                Text = "Resume"
+                Text = "Audio"
             };
 
-            var settingsButton = new SettingsButton(buttonTexture, buttonFont)
+            var settingsButton = new ControlsButton(buttonTexture, buttonFont)
             {
                 texture = buttonTexture,
                 Position = new Vector2(200, 400),
-                Text = "Settings"
+                Text = "Controls"
             };
 
-            var quitButton = new QuitButton(buttonTexture, buttonFont)
+            var quitButton = new SettingsReturnButton(buttonTexture, buttonFont)
             {
                 texture = buttonTexture,
                 Position = new Vector2(200, 600),
-                Text = "Quit"
+                Text = "Return"
             };
 
-            buttons = new List<Button>() 
-            { 
+            buttons = new List<Button>()
+            {
                 resumeButton, settingsButton, quitButton
             };
 

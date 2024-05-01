@@ -14,8 +14,6 @@ namespace ISP_Project
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private State currentState;
-
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -43,8 +41,9 @@ namespace ISP_Project
             // TODO: use this.Content to load your game content here
             
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            Globals.ContentManager = this.Content;
 
-            currentState = new MenuState(this.Content);
+            StateManager.ChangeState(new MenuState(this.Content));
         }
 
         protected override void Update(GameTime gameTime)
@@ -53,13 +52,15 @@ namespace ISP_Project
                 Exit();
 
             // TODO: Add your update logic here
-            InputManager.Update();
+            Globals.Update(gameTime);
             WindowManager.getWindow().updateWindowSize(_graphics);
+            InputManager.Update(gameTime);
+            StateManager.Update(gameTime);
 
             /*if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
                 Debug.WriteLine("UP");*/
 
-            currentState.Update(gameTime);
+
 
             /*if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isTriggered))
                 Debug.WriteLine("TRIGGERED");
@@ -82,7 +83,7 @@ namespace ISP_Project
             // I don't know why I should be using SpriteSortMode.Immediate. If I don't, the button text gets all funky
             _spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, null, null, null); // final null should be replaced with camera transformation matrix i think
 
-            currentState.Draw(gameTime, _spriteBatch);
+            StateManager.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.End();
 
