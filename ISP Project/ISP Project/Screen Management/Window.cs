@@ -49,12 +49,21 @@ namespace ISP_Project.Screen_Management
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            renderer.Activate();
+            // renderer.Activate();
             renderer.Draw(gameTime, spriteBatch);
         }
         public void SetRenderTarget()
         {
             renderer.Activate();
+        }
+
+        public float GetRenderScale()
+        {
+            return renderer.GetRenderScale();
+        }
+        public Vector2 GetRenderPosition()
+        {
+            return renderer.GetRenderPosition();
         }
     }
 }

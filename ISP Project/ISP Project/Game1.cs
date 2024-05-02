@@ -33,6 +33,7 @@ namespace ISP_Project
 
             // set and update window size
             WindowManager.InitializeWindow(_graphics);
+            WindowManager.SetMainWindowResolution(320, 180);
 
             base.Initialize();
         }
@@ -44,7 +45,6 @@ namespace ISP_Project
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Globals.ContentManager = this.Content;
 
-            WindowManager.LoadSampleTexture();
             StateManager.ChangeState(new MenuState(this.Content));
         }
 
@@ -60,11 +60,14 @@ namespace ISP_Project
             StateManager.Update(gameTime);
 
             if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered))
-                WindowManager.SetMainWindowResolution(1600, 900);
+                WindowManager.SetMainWindowResolution(320, 180);
             if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
-                WindowManager.SetMainWindowResolution(800, 900);
+                WindowManager.SetMainWindowResolution(480, 320);
             if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered))
-                WindowManager.SetMainWindowResolution(1600, 450);
+                WindowManager.SetMainWindowResolution(1280, 720);
+            if (InputManager.isKey(InputManager.Inputs.MAXIMIZESCREEN, InputManager.isTriggered))
+                WindowManager.SetMainWindowFullScreen();
+
             /*if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isTriggered))
                 Debug.WriteLine("TRIGGERED");
             if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isPressed))

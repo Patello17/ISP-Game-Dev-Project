@@ -28,11 +28,10 @@ namespace ISP_Project.Managers
             StateManager.Draw(gameTime, spriteBatch);
         }*/
         public static Window window;
-        public static Texture2D texture;
 
         public static void InitializeWindow(GraphicsDeviceManager graphicDeviceManager)
         {
-            window = new Window(1600, 900, graphicDeviceManager); // default window size
+            window = new Window(320, 180, graphicDeviceManager); // default window size
         }
 
         public static void Update(GameTime gameTime)
@@ -45,20 +44,29 @@ namespace ISP_Project.Managers
             window.SetRenderTarget();
             
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null); // final null should be replaced with camera transformation matrix i think
-            spriteBatch.Draw(texture, new Vector2(600, 600), Color.White);
             StateManager.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 
             window.Draw(gameTime, spriteBatch);
         }
 
+        public static float GetRenderScale()
+        {
+            return window.GetRenderScale();
+        }
+        public static Vector2 GetRenderPosition()
+        {
+            return window.GetRenderPosition();
+        }
+
+
         public static void SetMainWindowResolution(int width, int height)
         {
             window.SetResolution(width, height);
         }
-        public static void LoadSampleTexture()
+        public static void SetMainWindowFullScreen()
         {
-            texture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
+            window.SetFullScreen();
         }
 
     }

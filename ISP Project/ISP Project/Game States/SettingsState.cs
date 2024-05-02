@@ -34,23 +34,23 @@ namespace ISP_Project.Game_States
         {
             LoadState(content);
 
-            var resumeButton = new AudioButton(buttonTexture, buttonFont, 3, 2)
+            var resumeButton = new AudioButton(buttonTexture, buttonFont, 1, 0.5f)
             {
-                Position = new Vector2(200, 200),
+                Position = new Vector2(80, 16),
                 Text = "Audio"
             };
 
-            var settingsButton = new ControlsButton(buttonTexture, buttonFont, 3, 2)
+            var settingsButton = new ControlsButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 texture = buttonTexture,
-                Position = new Vector2(200, 400),
+                Position = new Vector2(80, 32),
                 Text = "Controls"
             };
 
-            var quitButton = new SettingsReturnButton(buttonTexture, buttonFont, 3, 2)
+            var quitButton = new SettingsReturnButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 texture = buttonTexture,
-                Position = new Vector2(200, 600),
+                Position = new Vector2(80, 48),
                 Text = "Return"
             };
 

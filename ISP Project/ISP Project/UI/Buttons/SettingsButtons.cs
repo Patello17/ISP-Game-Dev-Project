@@ -16,10 +16,10 @@ namespace ISP_Project.UI.Buttons
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
-        private int buttonScale;
-        private int fontScale;
+        private float buttonScale;
+        private float fontScale;
 
-        public AudioButton(Texture2D texture, SpriteFont font, int buttonScale, int fontScale) : base(texture, font, buttonScale, fontScale)
+        public AudioButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
         {
             buttonTexture = texture;
             buttonFont = font;
@@ -38,10 +38,10 @@ namespace ISP_Project.UI.Buttons
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
-        private int buttonScale;
-        private int fontScale;
+        private float buttonScale;
+        private float fontScale;
 
-        public ControlsButton(Texture2D texture, SpriteFont font, int buttonScale, int fontScale) : base(texture, font, buttonScale, fontScale)
+        public ControlsButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
         {
             buttonTexture = texture;
             buttonFont = font;
@@ -59,10 +59,10 @@ namespace ISP_Project.UI.Buttons
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
-        private int buttonScale;
-        private int fontScale;
+        private float buttonScale;
+        private float fontScale;
 
-        public SettingsReturnButton(Texture2D texture, SpriteFont font, int buttonScale, int fontScale) : base(texture, font, buttonScale, fontScale)
+        public SettingsReturnButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
         {
             buttonTexture = texture;
             buttonFont = font;
