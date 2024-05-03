@@ -20,10 +20,31 @@ namespace ISP_Project.UI.Buttons
         public string Text { get; set; }
         public Color TextColor { get; set; }
         private Vector2 position;
-        public Vector2 Position { get { return position * WindowManager.GetRenderScale() + WindowManager.GetRenderPosition(); } set { position = value * WindowManager.GetRenderScale(); } }
+        public Vector2 Position 
+        { 
+            get 
+            { 
+                return position * WindowManager.GetRenderScale() + WindowManager.GetRenderPosition(); 
+            } 
+            set
+            {
+                position = value; 
+            } 
+        }
         private float buttonScale;
-        public float ButtonScale { get { return buttonScale * WindowManager.GetRenderScale(); } set { buttonScale = value; } }
+        public float ButtonScale 
+        { 
+            get 
+            { 
+                return buttonScale * WindowManager.GetRenderScale(); 
+            } 
+            set 
+            { 
+                buttonScale = value; 
+            } 
+        }
         public float FontScale { get; set; }
+        
         // button "hitbox" ("clickbox," if you will :) )
         public Rectangle Rectangle
         {
@@ -47,7 +68,6 @@ namespace ISP_Project.UI.Buttons
 
         public void Update(GameTime gameTime)
         {
-            // Debug.WriteLine(Rectangle);
             if (InputManager.cursorRectangle.Intersects(Rectangle))
             {
                 isHovering = true;
@@ -67,7 +87,6 @@ namespace ISP_Project.UI.Buttons
         {
             // draw button and change color on cursor hover
             var color = Color.White;
-
             if (isHovering)
                 color = Color.Gray;
 

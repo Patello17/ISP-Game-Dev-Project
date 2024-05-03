@@ -18,25 +18,13 @@ namespace ISP_Project.Game_States
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
 
-        // private Texture2D buttonTexture; // expandable?: can add multiple button textures here and reference in dictionary
-        // private SpriteFont buttonFont;
-
-        /*public Dictionary<Texture2D, string> textures = new Dictionary<Texture2D, string>()
-        {
-            { buttonTexture, "UI Elements/Button"}
-        };
-        private Dictionary<SpriteFont, string> fonts = new Dictionary<SpriteFont, string>
-        {
-            
-        };*/
-
         public MenuState(ContentManager content) 
         {
             LoadState(content);
 
             var resumeButton = new ResumeButton(buttonTexture, buttonFont, 1, 0.5f)
             {
-                Position = new Vector2(0, 0),
+                Position = new Vector2(80, 16),
                 Text = "Resume"
             };
 

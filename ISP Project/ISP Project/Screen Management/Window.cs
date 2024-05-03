@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ISP_Project.Screen_Management
 {
+    // Code Reference: https://www.youtube.com/watch?v=lpFCseClnA4
     public class Window
     {
         private Vector2 windowSize;
@@ -19,7 +20,7 @@ namespace ISP_Project.Screen_Management
         public Window(int width, int height, GraphicsDeviceManager graphicsDeviceManager)
         {
             this.graphicsDeviceManager = graphicsDeviceManager;
-            renderer = new Renderer(graphicsDeviceManager.GraphicsDevice, width, height);
+            renderer = new Renderer(graphicsDeviceManager.GraphicsDevice, 640, 360); // default render size
             isFullScreen = false; // not full screen by default
             SetResolution(width, height);
         }

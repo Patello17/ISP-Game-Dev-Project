@@ -1,0 +1,6 @@
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\obj\Debug\net5.0\ISP Project.csproj.AssemblyReference.cache
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\obj\Debug\net5.0\ISP Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\obj\Debug\net5.0\ISP Project.AssemblyInfoInputs.cache
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\obj\Debug\net5.0\ISP Project.AssemblyInfo.cs
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\obj\Debug\net5.0\ISP Project.csproj.CoreCompileInputs.cache
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\obj\Debug\net5.0\ISP Project.sourcelink.json

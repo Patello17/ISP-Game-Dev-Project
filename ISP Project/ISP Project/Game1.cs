@@ -33,7 +33,8 @@ namespace ISP_Project
 
             // set and update window size
             WindowManager.InitializeWindow(_graphics);
-            WindowManager.SetMainWindowResolution(320, 180);
+            WindowManager.SetMainWindowResolution(1280, 720);
+            // _graphics.ToggleFullScreen();
 
             base.Initialize();
         }
@@ -66,7 +67,10 @@ namespace ISP_Project
             if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered))
                 WindowManager.SetMainWindowResolution(1280, 720);
             if (InputManager.isKey(InputManager.Inputs.MAXIMIZESCREEN, InputManager.isTriggered))
-                WindowManager.SetMainWindowFullScreen();
+            {
+                WindowManager.SetMainWindowResolution(1280, 720);
+                _graphics.ToggleFullScreen();
+            }
 
             /*if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isTriggered))
                 Debug.WriteLine("TRIGGERED");

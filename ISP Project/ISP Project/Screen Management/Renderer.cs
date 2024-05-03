@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ISP_Project.Screen_Management
 {
+    // Code Reference: https://www.youtube.com/watch?v=lpFCseClnA4
     public class Renderer
     {
         private RenderTarget2D renderTarget;
@@ -31,7 +32,6 @@ namespace ISP_Project.Screen_Management
             float scaleX = (float)screenSize.Width / renderTarget.Width;
             float scaleY = (float)screenSize.Height / renderTarget.Height;
             RenderScale = Math.Min(scaleX, scaleY);
-            Debug.WriteLine(screenSize + " || " + renderTarget.Bounds);
 
             int newWidth = (int)(renderTarget.Width * RenderScale);
             int newHeight = (int)(renderTarget.Height * RenderScale);
@@ -44,12 +44,14 @@ namespace ISP_Project.Screen_Management
         public void Activate()
         {
             graphicsDevice.SetRenderTarget(renderTarget);
-            graphicsDevice.Clear(Color.DarkSlateGray);
+            // set the unused render area this color
+            graphicsDevice.Clear(Color.Black);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             graphicsDevice.SetRenderTarget(null);
+            // set the excess window screen this color (i.e. the "black bars")
             graphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);

@@ -1,6 +1,5 @@
 ﻿using ISP_Project.Game_States;
 using ISP_Project.Managers;
-using ISP_Project.States;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -30,7 +29,7 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             // change Game State here!
-            Debug.WriteLine("Resuming...");
+            StateManager.ChangeState(new HubState(Globals.ContentManager));
         }
     }
     // create Settings Button

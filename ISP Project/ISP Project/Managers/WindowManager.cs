@@ -14,24 +14,11 @@ namespace ISP_Project.Managers
 {
     public class WindowManager
     {
-        /*// declare Window variable
-        public static Window Window { get; set; }
-
-        public static void Update(GameTime gameTime)
-        {
-            
-        }
-
-        public static void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            Window.Draw(gameTime, spriteBatch);
-            StateManager.Draw(gameTime, spriteBatch);
-        }*/
         public static Window window;
 
         public static void InitializeWindow(GraphicsDeviceManager graphicDeviceManager)
         {
-            window = new Window(320, 180, graphicDeviceManager); // default window size
+            window = new Window(640, 360, graphicDeviceManager); // default window size
         }
 
         public static void Update(GameTime gameTime)
