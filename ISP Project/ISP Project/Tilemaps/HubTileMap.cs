@@ -46,7 +46,7 @@ namespace ISP_Project.Tilemaps
                 {
                     { room, roomTileset},
                     { decorations, decorationsTileset},
-                    { collisions, collisionsTileset},
+                    // { collisions, collisionsTileset},
                 }, 
                 Position);
         }

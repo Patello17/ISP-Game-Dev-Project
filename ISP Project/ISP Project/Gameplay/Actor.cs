@@ -15,11 +15,12 @@ namespace ISP_Project.Gameplay
 {
     public abstract class Actor
     {
-        public Sprite sprite;
-        public Transform transform;
-        public Vector2 tileMapPosition;
+        public abstract Sprite Sprite { get; set; }
+        public abstract Transform Transform { get; set; }
+        public abstract Vector2 TileMapPosition { get; set; }
 
         public abstract void LoadContent(ContentManager content);
+        // Actors need a reference to a CollisionMap because they need to interact with the scene
         public abstract void Update(GameTime gameTime, CollisionMap collisionMap);
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
     }

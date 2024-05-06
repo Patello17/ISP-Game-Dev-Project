@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,11 +22,20 @@ namespace ISP_Project.Tilemaps
 
             // Debug.WriteLine(collisions.Count + " / " + map.Length);
 
-
             for (int i = 0; i < collisions.Count; i++)
             {
                 map[(int)collisions.ElementAt(i).Key.X, (int)collisions.ElementAt(i).Key.Y] =
                     collisions.ElementAt(i).Value;
+            }
+
+
+            for (int i = 0; i < map.GetLength(0); i++)
+            {
+                for (int j = 0; j < map.GetLength(1); j++)
+                {
+                    Debug.Write(map[i, j] + "\t");
+                }
+                Debug.WriteLine("");
             }
 
             /*for (int y = 0; y < mapHeight; y++)
@@ -38,12 +48,12 @@ namespace ISP_Project.Tilemaps
                     Debug.WriteLine(map);
                 }
             }*/
-            
+
         }
 
-        public bool isCollision(Vector2 position)
+        public bool isColliding(Vector2 position)
         {
-            if (map[(int)position.X, (int)position.Y] != -1)
+            if (map[(int)position.X, (int)position.Y] > 0)
                 return true;
             return false;
         }

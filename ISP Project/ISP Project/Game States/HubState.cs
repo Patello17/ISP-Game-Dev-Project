@@ -21,7 +21,7 @@ namespace ISP_Project.Game_States
         private SpriteFont buttonFont;
 
         private HubTileMap tileMap = new HubTileMap(new Vector2(120, 120));
-        private Snail player = new Snail();
+        private Snail player = new Snail(new Vector2(160, 208), new Vector2(2, 5));
 
         public HubState(ContentManager content)
         {
