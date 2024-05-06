@@ -29,14 +29,14 @@ namespace ISP_Project.Tilemaps
             }
 
 
-            for (int i = 0; i < map.GetLength(0); i++)
+            /*for (int i = 0; i < map.GetLength(0); i++)
             {
                 for (int j = 0; j < map.GetLength(1); j++)
                 {
                     Debug.Write(map[i, j] + "\t");
                 }
                 Debug.WriteLine("");
-            }
+            }*/
 
             /*for (int y = 0; y < mapHeight; y++)
             {
@@ -53,8 +53,16 @@ namespace ISP_Project.Tilemaps
 
         public bool isColliding(Vector2 position)
         {
-            if (map[(int)position.X, (int)position.Y] > 0)
-                return true;
+            try
+            {
+                // 0 is designated as "air" in the tilesheet
+                if (map[(int)position.X, (int)position.Y] > 0) 
+                    return true;
+            }
+            catch
+            {
+                return false;
+            }
             return false;
         }
 

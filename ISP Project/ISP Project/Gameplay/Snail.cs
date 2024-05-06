@@ -12,11 +12,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Content;
 
 namespace ISP_Project.Gameplay
 {
     internal class Snail : Actor
     {
+        private Texture2D frontTexture;
+        private Texture2D backTexture;
+        private Texture2D sideTexture;
         public override Sprite Sprite { get; set; }
         public override Transform Transform { get; set; }
         public override Vector2 TileMapPosition { get; set; }
@@ -29,7 +33,10 @@ namespace ISP_Project.Gameplay
         public override void LoadContent(ContentManager content)
         {
             Sprite = new Sprite(null, SpriteEffects.None, 0);
-            Sprite.Texture = content.Load<Texture2D>("Snail");
+            sideTexture = content.Load<Texture2D>("Snail/Snail");
+            frontTexture = content.Load<Texture2D>("Snail/SnailFront");
+            backTexture = content.Load<Texture2D>("Snail/SnailBack");
+            Sprite.Texture = sideTexture;
         }
         public override void Update(GameTime gameTime, CollisionMap collisionMap)
         {
@@ -41,21 +48,27 @@ namespace ISP_Project.Gameplay
             {
                 velocity = new Vector2(0, -16);
                 newTileMapPosition = new Vector2(TileMapPosition.X, TileMapPosition.Y - 1);
+                Sprite.Texture = backTexture;
             }
             else if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
             {
                 velocity = new Vector2(0, 16);
                 newTileMapPosition = new Vector2(TileMapPosition.X, TileMapPosition.Y + 1);
+                Sprite.Texture = frontTexture;
             }
             else if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered))
             {
                 velocity = new Vector2(-16, 0);
                 newTileMapPosition = new Vector2(TileMapPosition.X - 1, TileMapPosition.Y);
+                Sprite.SpriteEffects = SpriteEffects.FlipHorizontally;
+                Sprite.Texture = sideTexture;
             }
             else if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered))
             {
                 velocity = new Vector2(16, 0);
                 newTileMapPosition = new Vector2(TileMapPosition.X + 1, TileMapPosition.Y);
+                Sprite.SpriteEffects = SpriteEffects.None;
+                Sprite.Texture = sideTexture;
             }
 
             Debug.WriteLine("Collision Map is colliding with " + newTileMapPosition + "? " + collisionMap.isColliding(newTileMapPosition));
