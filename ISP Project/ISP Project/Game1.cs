@@ -4,6 +4,7 @@ using ISP_Project.Screen_Management;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 using System;
 using System.Diagnostics;
 using System.Xml;
@@ -14,6 +15,8 @@ namespace ISP_Project
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        public static bool quit = false;
 
         public Game1()
         {
@@ -51,7 +54,9 @@ namespace ISP_Project
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || 
+                Keyboard.GetState().IsKeyDown(Keys.Escape) ||
+                quit)
                 Exit();
 
             // TODO: Add your update logic here
@@ -60,12 +65,12 @@ namespace ISP_Project
             InputManager.Update(gameTime);
             StateManager.Update(gameTime);
 
-            if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered))
+            /*if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered))
                 WindowManager.SetMainWindowResolution(320, 180);
             if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
                 WindowManager.SetMainWindowResolution(480, 320);
             if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered))
-                WindowManager.SetMainWindowResolution(1280, 720);
+                WindowManager.SetMainWindowResolution(1280, 720);*/
             if (InputManager.isKey(InputManager.Inputs.MAXIMIZESCREEN, InputManager.isTriggered))
             {
                 WindowManager.SetMainWindowResolution(1280, 720);

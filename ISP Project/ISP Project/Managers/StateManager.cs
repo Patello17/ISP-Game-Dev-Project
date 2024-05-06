@@ -21,6 +21,7 @@ namespace ISP_Project.Managers
             {
                 currentState = nextState;
                 nextState = null;
+                currentState.LoadState(Globals.ContentManager);
             }
             currentState.Update(gameTime);
         }

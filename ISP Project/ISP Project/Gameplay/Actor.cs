@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using ISP_Project.Components;
+using ISP_Project.Tilemaps;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace ISP_Project.Gameplay
 {
-    internal class Actor
+    public abstract class Actor
     {
-        public Texture2D Sprite;
-        public Vector2 Position;
-        public int DrawLayer;
+        public Sprite sprite;
+        public Transform transform;
+        public Vector2 tileMapPosition;
 
-        public void Update(GameTime gameTime) { }
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch) { }
+        public abstract void LoadContent(ContentManager content);
+        public abstract void Update(GameTime gameTime, CollisionMap collisionMap);
+        public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
     }
 }

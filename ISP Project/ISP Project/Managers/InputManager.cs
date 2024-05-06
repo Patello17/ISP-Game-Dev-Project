@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework;
 
 namespace ISP_Project.Managers
 {
+    // Code Reference: My brother made this InputManager class a while back, but I added the click functionality
     public class InputManager
     {
         // create button detection variables

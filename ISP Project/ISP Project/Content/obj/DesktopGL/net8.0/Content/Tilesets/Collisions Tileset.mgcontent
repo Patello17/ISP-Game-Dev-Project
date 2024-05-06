@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/TemporaryAsset.png</SourceFile>
-  <SourceTime>2024-05-02T14:55:36.5890557-04:00</SourceTime>
-  <DestFile>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/bin/DesktopGL/TemporaryAsset.xnb</DestFile>
-  <DestTime>2024-05-02T20:58:47.4576843-04:00</DestTime>
+  <SourceFile>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Tilesets/Collisions Tileset.png</SourceFile>
+  <SourceTime>2024-05-02T13:38:43.5430051-04:00</SourceTime>
+  <DestFile>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/bin/DesktopGL/Content/Tilesets/Collisions Tileset.xnb</DestFile>
+  <DestTime>2024-05-03T08:18:28.1702085-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

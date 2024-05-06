@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static ISP_Project.UI.Buttons.GameplayButtons;
 using ISP_Project.Tilemaps;
+using ISP_Project.Gameplay;
 
 namespace ISP_Project.Game_States
 {
@@ -19,13 +20,14 @@ namespace ISP_Project.Game_States
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
 
-        private HubTileMap tileMap = new HubTileMap();
+        private HubTileMap tileMap = new HubTileMap(new Vector2(120, 120));
+        private Snail player = new Snail();
 
         public HubState(ContentManager content)
         {
             LoadState(content);
 
-            var resumeButton = new PauseButton(buttonTexture, buttonFont, 1, 0.5f)
+            var pauseButton = new PauseButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 Position = new Vector2(2, 2),
                 Text = "Pause"
@@ -34,7 +36,7 @@ namespace ISP_Project.Game_States
 
             buttons = new List<Button>()
             {
-                resumeButton
+                pauseButton
             };
 
         }
@@ -44,6 +46,7 @@ namespace ISP_Project.Game_States
             buttonTexture = content.Load<Texture2D>("UI Elements/Button");
             buttonFont = content.Load<SpriteFont>("Fonts/Button Font");
             tileMap.LoadContent(content);
+            player.LoadContent(content);
         }
         public override void Update(GameTime gameTime)
         {
@@ -51,6 +54,7 @@ namespace ISP_Project.Game_States
             {
                 button.Update(gameTime);
             }
+            player.Update(gameTime, tileMap.CollisionMap);
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -61,6 +65,8 @@ namespace ISP_Project.Game_States
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             tileMap.Draw(gameTime, spriteBatch);
+
+            player.Draw(gameTime, spriteBatch);
 
             foreach (Button button in buttons)
             {

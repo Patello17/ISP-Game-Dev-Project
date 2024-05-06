@@ -15,7 +15,10 @@ namespace ISP_Project.Game_States
     public class QuitState : State
     {
         public override void LoadState(ContentManager content) { }
-        public override void Update(GameTime gameTime) { }
+        public override void Update(GameTime gameTime) 
+        {
+            Game1.quit = true;
+        }
 
         public override void PostUpdate(GameTime gameTime) { }
 

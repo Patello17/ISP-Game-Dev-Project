@@ -46,7 +46,6 @@ namespace ISP_Project.Managers
             return window.GetRenderPosition();
         }
 
-
         public static void SetMainWindowResolution(int width, int height)
         {
             window.SetResolution(width, height);

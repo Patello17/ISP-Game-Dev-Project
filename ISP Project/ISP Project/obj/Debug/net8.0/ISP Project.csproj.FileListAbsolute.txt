@@ -33,3 +33,5 @@ C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\obj\Debug\net8.0\ISP Pro
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\obj\Debug\net8.0\ref\ISP Project.dll
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\TemporaryAsset.xnb
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Tilesets\Hub Tileset.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Tilesets\Collisions Tileset.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Snail.xnb
