@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ISP_Project.Tilemaps;
 using ISP_Project.Gameplay;
+using ISP_Project.Managers;
 
 namespace ISP_Project.Game_States
 {
@@ -19,8 +20,8 @@ namespace ISP_Project.Game_States
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
 
-        private HubTileMap tileMap = new HubTileMap(new Vector2(120, 120));
-        private Snail player = new Snail(new Vector2(160, 208), new Vector2(2, 5));
+        private HubTileMap tileMap = new HubTileMap(WindowManager.GetMainWindowCenter());
+        private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(8, 8), new Vector2(8, 4)); // Vector2(8, 8) is used to align Shelly with the grid since we're drawing from the middle of the sprite now
 
         public HubState(ContentManager content)
         {
@@ -28,7 +29,7 @@ namespace ISP_Project.Game_States
 
             var pauseButton = new PauseButton(buttonTexture, buttonFont, 1, 0.5f)
             {
-                Position = new Vector2(2, 2),
+                Position = new Vector2(buttonTexture.Width / 2, buttonTexture.Height / 2),
                 Text = "Pause"
             };
 

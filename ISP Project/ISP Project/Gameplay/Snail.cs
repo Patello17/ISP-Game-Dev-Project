@@ -79,7 +79,7 @@ namespace ISP_Project.Gameplay
                 // these vectors represent the position of the doorway
                 if (newTileMapPosition == new Vector2(0, 5) || newTileMapPosition == new Vector2(0, 6))
                 {
-                    StateManager.ChangeState(new MenuState(Globals.ContentManager));
+                    StateManager.ChangeState(new TitleState(Globals.ContentManager));
                 }
             }
 

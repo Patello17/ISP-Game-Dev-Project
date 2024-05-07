@@ -70,7 +70,9 @@ namespace ISP_Project.Tilemaps
                         pixelTileSize, pixelTileSize
                     );
 
-                    spriteBatch.Draw(textureMapDictionary[layer], destinationRectangle, sourceRectangle, Color.White);
+                    spriteBatch.Draw(textureMapDictionary[layer], destinationRectangle, sourceRectangle, Color.White, 0f,
+                        new Vector2(textureMapDictionary[layer].Width / 2, textureMapDictionary[layer].Height / 2), 
+                        SpriteEffects.None, 0f);
                 }
             }
         }

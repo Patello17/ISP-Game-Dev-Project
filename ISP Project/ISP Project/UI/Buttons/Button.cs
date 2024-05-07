@@ -25,7 +25,7 @@ namespace ISP_Project.UI.Buttons
         { 
             get 
             { 
-                return position * WindowManager.GetRenderScale() + WindowManager.GetRenderPosition(); 
+                return (position - Sprite.GetSpriteOrigin()) * WindowManager.GetRenderScale() + WindowManager.GetRenderPosition(); 
             } 
             set
             {
