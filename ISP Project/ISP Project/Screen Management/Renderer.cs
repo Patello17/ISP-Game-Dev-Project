@@ -19,10 +19,10 @@ namespace ISP_Project.Screen_Management
         public Vector2 RenderPosition { get; set; }
         public float RenderScale { get; set; }
 
-        public Renderer(GraphicsDevice graphicsDevice, int width, int height)
+        public Renderer(GraphicsDevice graphicsDevice, Vector2 renderSize)
         {
             this.graphicsDevice = graphicsDevice;
-            renderTarget = new RenderTarget2D(graphicsDevice, width, height);
+            renderTarget = new RenderTarget2D(graphicsDevice, (int)renderSize.X, (int)renderSize.Y);
         }
 
         public void SetDestinationRectangle()

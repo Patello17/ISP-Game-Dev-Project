@@ -26,5 +26,10 @@ namespace ISP_Project.Components
             return new Vector2(Texture.Width / 2, Texture.Height / 2);
         }
 
+        public Texture2D GetTexture()
+        {
+            return Texture;
+        }
+
     }
 }

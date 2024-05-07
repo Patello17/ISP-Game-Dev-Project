@@ -1,4 +1,5 @@
-﻿using ISP_Project.UI.Buttons;
+﻿using ISP_Project.Components;
+using ISP_Project.UI.Buttons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,20 +25,21 @@ namespace ISP_Project.Game_States
 
             var resumeButton = new AudioButton(buttonTexture, buttonFont, 1, 0.5f)
             {
+                Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
                 Position = new Vector2(80, 16),
                 Text = "Audio"
             };
 
             var settingsButton = new ControlsButton(buttonTexture, buttonFont, 1, 0.5f)
             {
-                texture = buttonTexture,
+                Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
                 Position = new Vector2(80, 32),
                 Text = "Controls"
             };
 
             var quitButton = new SettingsReturnButton(buttonTexture, buttonFont, 1, 0.5f)
             {
-                texture = buttonTexture,
+                Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
                 Position = new Vector2(80, 48),
                 Text = "Return"
             };

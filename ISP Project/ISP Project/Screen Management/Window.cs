@@ -13,6 +13,7 @@ namespace ISP_Project.Screen_Management
     public class Window
     {
         private Vector2 windowSize;
+        private Vector2 renderSize = new Vector2(640, 360); // default render size
         private bool isFullScreen;
         private Renderer renderer;
         private GraphicsDeviceManager graphicsDeviceManager;
@@ -20,7 +21,7 @@ namespace ISP_Project.Screen_Management
         public Window(int width, int height, GraphicsDeviceManager graphicsDeviceManager)
         {
             this.graphicsDeviceManager = graphicsDeviceManager;
-            renderer = new Renderer(graphicsDeviceManager.GraphicsDevice, 640, 360); // default render size
+            renderer = new Renderer(graphicsDeviceManager.GraphicsDevice, renderSize); 
             isFullScreen = false; // not full screen by default
             SetResolution(width, height);
         }
@@ -65,6 +66,10 @@ namespace ISP_Project.Screen_Management
         public Vector2 GetRenderPosition()
         {
             return renderer.GetRenderPosition();
+        }
+        public Vector2 GetCenter()
+        {
+            return renderSize / 2;
         }
     }
 }

@@ -45,6 +45,10 @@ namespace ISP_Project.Managers
         {
             return window.GetRenderPosition();
         }
+        public static Vector2 GetMainWindowCenter()
+        {
+            return window.GetCenter();
+        }
 
         public static void SetMainWindowResolution(int width, int height)
         {
@@ -54,6 +58,7 @@ namespace ISP_Project.Managers
         {
             window.SetFullScreen();
         }
+        
 
     }
 }

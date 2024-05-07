@@ -7,13 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using ISP_Project.Managers;
 using System.Diagnostics;
+using ISP_Project.Components;
 
 namespace ISP_Project.UI.Buttons
 {
     // Code Reference: https://github.com/Oyyou/MonoGame_Tutorials/blob/master/MonoGame_Tutorials/Tutorial013/Controls/Button.cs
     public abstract class Button
     {
-        public Texture2D texture;
+        public Sprite Sprite { get; set; } = new Sprite(null, SpriteEffects.None, 0);
         public string texturePath;
         public SpriteFont font;
         public string fontPath; // every button will have this font
@@ -51,14 +52,14 @@ namespace ISP_Project.UI.Buttons
             get
             {
                 return new Rectangle((int)(Position.X), (int)(Position.Y), 
-                    (int)(texture.Width * ButtonScale), (int)(texture.Height * ButtonScale));
+                    (int)(Sprite.Texture.Width * ButtonScale), (int)(Sprite.Texture.Height * ButtonScale));
             }
         }
         private bool isHovering;
 
         public Button(Texture2D texture, SpriteFont font, float buttonScale, float fontScale)
         {
-            this.texture = texture;
+            this.Sprite.Texture = texture;
             this.font = font;
 
             TextColor = Color.Black;
@@ -91,14 +92,14 @@ namespace ISP_Project.UI.Buttons
                 color = Color.Gray;
 
             // not relying on Rectangle data here because the Renderer will scale this
-            spriteBatch.Draw(texture, position, null, color, 0.0f, Vector2.Zero, buttonScale, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(Sprite.Texture, position, null, color, 0.0f, Sprite.GetSpriteOrigin(), buttonScale, SpriteEffects.None, 0.0f);
 
             // draw text
             if (!string.IsNullOrEmpty(Text))
             {
                 // find the center of the button and fit text
-                var x = (position.X + texture.Width / 2) - (font.MeasureString(Text).X * FontScale / 2);
-                var y = (position.Y + texture.Height / 2) - (font.MeasureString(Text).Y * FontScale / 2);
+                var x = (position.X) - (font.MeasureString(Text).X * FontScale / 2);
+                var y = (position.Y) - (font.MeasureString(Text).Y * FontScale / 2);
 
                 spriteBatch.DrawString(font, Text, new Vector2(x, y), TextColor, 0.0f, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
             }

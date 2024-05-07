@@ -1,4 +1,6 @@
-﻿using ISP_Project.UI.Buttons;
+﻿using ISP_Project.Components;
+using ISP_Project.Managers;
+using ISP_Project.UI.Buttons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,24 +24,26 @@ namespace ISP_Project.Game_States
         {
             LoadState(content);
 
+            Debug.WriteLine(WindowManager.GetMainWindowCenter());
             var resumeButton = new ResumeButton(buttonTexture, buttonFont, 1, 0.5f)
             {
-                Position = new Vector2(80, 16),
+                Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y - 16),
                 Text = "Resume"
             };
 
             var settingsButton = new SettingsButton(buttonTexture, buttonFont, 1, 0.5f)
             {
-                texture = buttonTexture,
-                Position = new Vector2(80, 32),
+                Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y),
                 Text = "Settings"
             };
 
-            var quitButton = new QuitButton(buttonTexture, buttonFont, 1, 0.5f)
+            var quitButton = new QuitToTitleButton(buttonTexture, buttonFont, 1, 0.5f)
             {
-                texture = buttonTexture,
-                Position = new Vector2(80, 48),
-                Text = "Quit"
+                Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y + 16),
+                Text = "To Title"
             };
 
             buttons = new List<Button>() 

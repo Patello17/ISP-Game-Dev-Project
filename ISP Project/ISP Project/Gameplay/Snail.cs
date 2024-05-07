@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using ISP_Project.Components;
+using ISP_Project.Game_States;
 using ISP_Project.Managers;
 using ISP_Project.Tilemaps;
 using Microsoft.Xna.Framework;
@@ -71,13 +72,24 @@ namespace ISP_Project.Gameplay
                 Sprite.Texture = sideTexture;
             }
 
-            Debug.WriteLine("Collision Map is colliding with " + newTileMapPosition + "? " + collisionMap.isColliding(newTileMapPosition));
+            // Debug.WriteLine("Collision Map is colliding with " + newTileMapPosition + "? " + collisionMap.isColliding(newTileMapPosition));
 
-            if (collisionMap.isColliding(newTileMapPosition) == false)
+            if (StateManager.GetCurrentState() is HubState)
+            {
+                // these vectors represent the position of the doorway
+                if (newTileMapPosition == new Vector2(0, 5) || newTileMapPosition == new Vector2(0, 6))
+                {
+                    StateManager.ChangeState(new MenuState(Globals.ContentManager));
+                }
+            }
+
+            if (collisionMap.GetCollision(newTileMapPosition) == 0)
             {
                 Transform.Position += velocity;
                 TileMapPosition = newTileMapPosition;
             }
+
+            
             
         }
 

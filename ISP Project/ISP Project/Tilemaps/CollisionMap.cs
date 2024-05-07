@@ -66,5 +66,17 @@ namespace ISP_Project.Tilemaps
             return false;
         }
 
+        public int GetCollision(Vector2 position)
+        {
+            try
+            {
+                return map[(int)position.X, (int)position.Y];
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
     }
 }

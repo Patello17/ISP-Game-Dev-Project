@@ -11,29 +11,26 @@ using ISP_Project.Game_States;
 
 namespace ISP_Project.UI.Buttons
 {
-    public class GameplayButtons
+    // create Pause Button
+    public class PauseButton : Button
     {
-        // create Audio Button
-        public class PauseButton : Button
+        private Texture2D buttonTexture;
+        private SpriteFont buttonFont;
+        private float buttonScale;
+        private float fontScale;
+
+        public PauseButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
         {
-            private Texture2D buttonTexture;
-            private SpriteFont buttonFont;
-            private float buttonScale;
-            private float fontScale;
+            buttonTexture = texture;
+            buttonFont = font;
+            this.buttonScale = buttonScale;
+            this.fontScale = buttonScale;
+        }
 
-            public PauseButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
-            {
-                buttonTexture = texture;
-                buttonFont = font;
-                this.buttonScale = buttonScale;
-                this.fontScale = buttonScale;
-            }
-
-            public override void TriggerEvent()
-            {
-                // change Game State here!
-                StateManager.ChangeState(new MenuState(Globals.ContentManager));
-            }
+        public override void TriggerEvent()
+        {
+            // change Game State here!
+            StateManager.ChangeState(new MenuState(Globals.ContentManager));
         }
     }
 }

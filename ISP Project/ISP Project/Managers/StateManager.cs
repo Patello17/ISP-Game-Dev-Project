@@ -12,6 +12,7 @@ namespace ISP_Project.Managers
 {
     public class StateManager
     {
+        private static State previousState;
         private static State currentState;
         private static State nextState;
 
@@ -19,6 +20,7 @@ namespace ISP_Project.Managers
         {
             if (nextState != null)
             {
+                previousState = currentState;
                 currentState = nextState;
                 nextState = null;
                 currentState.LoadState(Globals.ContentManager);
@@ -37,6 +39,10 @@ namespace ISP_Project.Managers
         public static State GetCurrentState()
         {
             return currentState;
+        }
+        public static State GetPreviousState()
+        {
+            return previousState;
         }
     }
 }

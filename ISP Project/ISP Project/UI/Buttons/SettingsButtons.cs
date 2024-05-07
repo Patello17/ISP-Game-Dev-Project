@@ -71,7 +71,15 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
-            StateManager.ChangeState(new MenuState(Globals.ContentManager));
+            if (StateManager.GetPreviousState() is MenuState)
+            {
+                StateManager.ChangeState(new MenuState(Globals.ContentManager));
+            }
+            else if (StateManager.GetPreviousState() is TitleState)
+            {
+                StateManager.ChangeState(new TitleState(Globals.ContentManager));
+            }
+
         }
     }
 }

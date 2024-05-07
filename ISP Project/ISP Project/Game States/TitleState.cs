@@ -7,35 +7,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ISP_Project.Tilemaps;
-using ISP_Project.Gameplay;
+using static ISP_Project.UI.Buttons.TitleButtons;
+using ISP_Project.Components;
 
 namespace ISP_Project.Game_States
 {
-    public class HubState : State
+    public class TitleState : State
     {
         private List<Button> buttons;
         // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
 
-        private HubTileMap tileMap = new HubTileMap(new Vector2(120, 120));
-        private Snail player = new Snail(new Vector2(160, 208), new Vector2(2, 5));
-
-        public HubState(ContentManager content)
+        public TitleState(ContentManager content)
         {
             LoadState(content);
 
-            var pauseButton = new PauseButton(buttonTexture, buttonFont, 1, 0.5f)
+            var loadGameButton = new LoadGameButton(buttonTexture, buttonFont, 1, 0.5f)
             {
-                Position = new Vector2(2, 2),
-                Text = "Pause"
+                Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
+                Position = new Vector2(80, 16),
+                Text = "Load"
             };
 
+            var settingsButton = new SettingsButton(buttonTexture, buttonFont, 1, 0.5f)
+            {
+                Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
+                Position = new Vector2(80, 32),
+                Text = "Settings"
+            };
+
+            var quitButton = new QuitButton(buttonTexture, buttonFont, 1, 0.5f)
+            {
+                Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
+                Position = new Vector2(80, 48),
+                Text = "Quit"
+            };
 
             buttons = new List<Button>()
             {
-                pauseButton
+                loadGameButton, settingsButton, quitButton
             };
 
         }
@@ -44,8 +55,6 @@ namespace ISP_Project.Game_States
             // load everything in this state
             buttonTexture = content.Load<Texture2D>("UI Elements/Button");
             buttonFont = content.Load<SpriteFont>("Fonts/Button Font");
-            tileMap.LoadContent(content);
-            player.LoadContent(content);
         }
         public override void Update(GameTime gameTime)
         {
@@ -53,7 +62,6 @@ namespace ISP_Project.Game_States
             {
                 button.Update(gameTime);
             }
-            player.Update(gameTime, tileMap.CollisionMap);
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -63,14 +71,10 @@ namespace ISP_Project.Game_States
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            tileMap.Draw(gameTime, spriteBatch);
-
-            player.Draw(gameTime, spriteBatch);
-
             foreach (Button button in buttons)
             {
                 button.Draw(gameTime, spriteBatch);
-            }           
+            }
         }
     }
 }

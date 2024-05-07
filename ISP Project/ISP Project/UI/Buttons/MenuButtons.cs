@@ -53,15 +53,15 @@ namespace ISP_Project.UI.Buttons
             StateManager.ChangeState(new SettingsState(Globals.ContentManager));
         }
     }
-    // create Quit Button
-    public class QuitButton : Button
+    // create QuitToTitle Button
+    public class QuitToTitleButton : Button
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
         private float buttonScale;
         private float fontScale;
 
-        public QuitButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
+        public QuitToTitleButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
         {
             buttonTexture = texture;
             buttonFont = font;
@@ -72,7 +72,7 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             Debug.WriteLine("Quitting...");
-            StateManager.ChangeState(new QuitState());
+            StateManager.ChangeState(new TitleState(Globals.ContentManager));
         }
     }
 }
