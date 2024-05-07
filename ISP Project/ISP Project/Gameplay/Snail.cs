@@ -9,6 +9,7 @@ using ISP_Project.Components;
 using ISP_Project.Game_States;
 using ISP_Project.Managers;
 using ISP_Project.Tilemaps;
+using ISP_Project.UI.Buttons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -35,8 +36,8 @@ namespace ISP_Project.Gameplay
         {
             Sprite = new Sprite(null, SpriteEffects.None, 0);
             sideTexture = content.Load<Texture2D>("Snail/Snail");
-            frontTexture = content.Load<Texture2D>("Snail/SnailFront");
-            backTexture = content.Load<Texture2D>("Snail/SnailBack");
+            frontTexture = content.Load<Texture2D>("Snail/Snail Front");
+            backTexture = content.Load<Texture2D>("Snail/Snail Back");
             Sprite.Texture = sideTexture;
         }
         public override void Update(GameTime gameTime, CollisionMap collisionMap)
@@ -81,6 +82,13 @@ namespace ISP_Project.Gameplay
                 {
                     StateManager.ChangeState(new TitleState(Globals.ContentManager));
                 }
+                // these vectors represent the positions right below the map board
+                if (TileMapPosition == new Vector2(6, 4) || TileMapPosition == new Vector2(7, 4) ||
+                    TileMapPosition == new Vector2(8, 4) || TileMapPosition == new Vector2(9, 4))
+                {
+                    MapButton.isMapUsable = true;
+                }
+                else { MapButton.isMapUsable = false; }
             }
 
             if (collisionMap.GetCollision(newTileMapPosition) == 0)

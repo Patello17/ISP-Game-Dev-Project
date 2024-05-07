@@ -18,10 +18,12 @@ namespace ISP_Project.Game_States
         private List<Button> buttons;
         // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
         private Texture2D buttonTexture;
+        private Texture2D mapButtonTexture;
         private SpriteFont buttonFont;
 
         private HubTileMap tileMap = new HubTileMap(WindowManager.GetMainWindowCenter());
-        private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(8, 8), new Vector2(8, 4)); // Vector2(8, 8) is used to align Shelly with the grid since we're drawing from the middle of the sprite now
+        // Vector2(8, 8) is used to align Shelly with the grid since we're drawing from the middle of the sprite now; y can be adjusted for a more 3D effect
+        private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(8, 8), new Vector2(8, 4)); 
 
         public HubState(ContentManager content)
         {
@@ -33,10 +35,15 @@ namespace ISP_Project.Game_States
                 Text = "Pause"
             };
 
+            var mapButton = new MapButton(mapButtonTexture, buttonFont, 1, 0.5f)
+            {
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y - 32),
+                Text = ""
+            };
 
             buttons = new List<Button>()
             {
-                pauseButton
+                pauseButton, mapButton
             };
 
         }
@@ -44,6 +51,7 @@ namespace ISP_Project.Game_States
         {
             // load everything in this state
             buttonTexture = content.Load<Texture2D>("UI Elements/Button");
+            mapButtonTexture = content.Load<Texture2D>("Interactables/Map Board");
             buttonFont = content.Load<SpriteFont>("Fonts/Button Font");
             tileMap.LoadContent(content);
             player.LoadContent(content);

@@ -50,9 +50,9 @@ namespace ISP_Project.Managers
             return window.GetCenter();
         }
 
-        public static void SetMainWindowResolution(int width, int height)
+        public static void SetMainWindowSize(int width, int height)
         {
-            window.SetResolution(width, height);
+            window.SetWindowSize(width, height);
         }
         public static void SetMainWindowFullScreen()
         {

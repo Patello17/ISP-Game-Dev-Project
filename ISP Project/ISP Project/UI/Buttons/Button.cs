@@ -25,8 +25,9 @@ namespace ISP_Project.UI.Buttons
         { 
             get 
             { 
+                // Why is WindowManager.GetRenderPosition() needed?
                 return (position - Sprite.GetSpriteOrigin()) * WindowManager.GetRenderScale() + WindowManager.GetRenderPosition(); 
-            } 
+            }
             set
             {
                 position = value; 
@@ -55,6 +56,7 @@ namespace ISP_Project.UI.Buttons
                     (int)(Sprite.Texture.Width * ButtonScale), (int)(Sprite.Texture.Height * ButtonScale));
             }
         }
+        public bool ForceShade { get; set; } = false;
         private bool isHovering;
 
         public Button(Texture2D texture, SpriteFont font, float buttonScale, float fontScale)
@@ -88,7 +90,7 @@ namespace ISP_Project.UI.Buttons
         {
             // draw button and change color on cursor hover
             var color = Color.White;
-            if (isHovering)
+            if (isHovering || ForceShade)
                 color = Color.Gray;
 
             // not relying on Rectangle data here because the Renderer will scale this

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static ISP_Project.UI.Buttons.TitleButtons;
 using ISP_Project.Components;
+using ISP_Project.Managers;
 
 namespace ISP_Project.Game_States
 {
@@ -26,21 +27,21 @@ namespace ISP_Project.Game_States
             var loadGameButton = new LoadGameButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
-                Position = new Vector2(80, 16),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y - 16),
                 Text = "Load"
             };
 
             var settingsButton = new SettingsButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
-                Position = new Vector2(80, 32),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y),
                 Text = "Settings"
             };
 
             var quitButton = new QuitButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
-                Position = new Vector2(80, 48),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y + 16),
                 Text = "Quit"
             };
 

@@ -23,10 +23,10 @@ namespace ISP_Project.Screen_Management
             this.graphicsDeviceManager = graphicsDeviceManager;
             renderer = new Renderer(graphicsDeviceManager.GraphicsDevice, renderSize); 
             isFullScreen = false; // not full screen by default
-            SetResolution(width, height);
+            SetWindowSize(width, height);
         }
 
-        public void SetResolution(int width, int height)
+        public void SetWindowSize(int width, int height)
         {
             windowSize = new Vector2(width, height);
             graphicsDeviceManager.PreferredBackBufferWidth = width;

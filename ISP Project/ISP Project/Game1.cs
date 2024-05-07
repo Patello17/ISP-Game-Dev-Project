@@ -36,7 +36,7 @@ namespace ISP_Project
 
             // set and update window size
             WindowManager.InitializeWindow(_graphics);
-            WindowManager.SetMainWindowResolution(1280, 720);
+            WindowManager.SetMainWindowSize(1280, 720);
             // _graphics.ToggleFullScreen();
 
             base.Initialize();
@@ -49,7 +49,7 @@ namespace ISP_Project
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Globals.ContentManager = this.Content;
 
-            StateManager.ChangeState(new MenuState(this.Content));
+            StateManager.ChangeState(new TitleState(this.Content));
         }
 
         protected override void Update(GameTime gameTime)
@@ -73,7 +73,7 @@ namespace ISP_Project
                 WindowManager.SetMainWindowResolution(1280, 720);*/
             if (InputManager.isKey(InputManager.Inputs.MAXIMIZESCREEN, InputManager.isTriggered))
             {
-                WindowManager.SetMainWindowResolution(1280, 720);
+                WindowManager.SetMainWindowSize(1280, 720);
                 _graphics.ToggleFullScreen();
             }
 
