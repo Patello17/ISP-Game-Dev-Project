@@ -65,6 +65,7 @@ namespace ISP_Project
             InputManager.Update(gameTime);
             StateManager.Update(gameTime);
 
+
             /*if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered))
                 WindowManager.SetMainWindowResolution(320, 180);
             if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
