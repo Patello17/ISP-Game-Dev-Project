@@ -23,7 +23,7 @@ namespace ISP_Project.Game_States
 
         private HubTileMap tileMap = new HubTileMap(WindowManager.GetMainWindowCenter());
         // + Vector2(x, y) is used to align Shelly with the grid since we're drawing from the middle of the sprite now; y can be adjusted for a more 3D effect
-        private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(-104, 24), new Vector2(1, 5)); 
+        private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(-152, 24), new Vector2(1, 6)); 
 
         public HubState(ContentManager content)
         {
@@ -37,7 +37,7 @@ namespace ISP_Project.Game_States
 
             var mapButton = new MapButton(mapButtonTexture, buttonFont, 1, 0.5f)
             {
-                Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y - 32),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X - 48, WindowManager.GetMainWindowCenter().Y - 48),
                 Text = ""
             };
 

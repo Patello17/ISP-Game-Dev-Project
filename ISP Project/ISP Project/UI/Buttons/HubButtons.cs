@@ -35,6 +35,10 @@ namespace ISP_Project.UI.Buttons
             {
                 StateManager.ChangeState(new LevelSelectionState(Globals.ContentManager));
             }
+            else
+            {
+                isClickable = false;
+            }
         }
     }
     public class LevelOneSelectButton : Button

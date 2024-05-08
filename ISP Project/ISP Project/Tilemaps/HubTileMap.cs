@@ -18,6 +18,7 @@ namespace ISP_Project.Tilemaps
         private Texture2D decorationsTileset;
         private Texture2D collisionsTileset;
         public override Transform Transform { get; set; } = new Transform(Vector2.Zero, 1f, 0f);
+        public override Vector2 TileMapDimensions { get; set; } = new Vector2(22, 10);
         private Dictionary<Vector2, int> room;
         private Dictionary<Vector2, int> decorations;
         private Dictionary<Vector2, int> collisions;

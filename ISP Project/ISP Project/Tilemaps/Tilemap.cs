@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tiled;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace ISP_Project.Tilemaps
     {
         public abstract CollisionMap CollisionMap { get; set; }
         public abstract Transform Transform { get; set; }
+        public abstract Vector2 TileMapDimensions { get; set; }
         public Dictionary<Vector2, int> LoadTileMap(string filePath)
         {
             Dictionary<Vector2, int> result = new Dictionary<Vector2, int>(); 
@@ -58,9 +60,9 @@ namespace ISP_Project.Tilemaps
                 foreach (var item in layer)
                 {
                     Rectangle destinationRectangle = new Rectangle(
-                        (int)item.Key.X * displayTileSize + (int)Transform.Position.X,
-                        (int)item.Key.Y * displayTileSize + (int)Transform.Position.Y,
-                        displayTileSize, displayTileSize);
+                        (int)item.Key.X * displayTileSize * (int)Transform.Scale + (int)Transform.Position.X,
+                        (int)item.Key.Y * displayTileSize * (int)Transform.Scale + (int)Transform.Position.Y,
+                        displayTileSize * (int)Transform.Scale, displayTileSize * (int)Transform.Scale);
 
                     int x = item.Value % numTilesPerRow;
                     int y = item.Value / numTilesPerRow;
@@ -71,8 +73,8 @@ namespace ISP_Project.Tilemaps
                         pixelTileSize, pixelTileSize
                     );
 
-                    Globals.SpriteBatch.Draw(textureMapDictionary[layer], destinationRectangle, sourceRectangle, Color.White, 0f,
-                        new Vector2(textureMapDictionary[layer].Width / 2, textureMapDictionary[layer].Height / 2), 
+                    Globals.SpriteBatch.Draw(textureMapDictionary[layer], destinationRectangle, sourceRectangle, Color.White, Transform.Rotation,
+                        new Vector2(TileMapDimensions.X * pixelTileSize / 2, TileMapDimensions.Y * pixelTileSize / 2), 
                         SpriteEffects.None, 0f);
                 }
             }

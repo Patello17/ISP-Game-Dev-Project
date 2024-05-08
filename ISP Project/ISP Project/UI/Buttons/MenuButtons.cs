@@ -79,7 +79,6 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
-            Debug.WriteLine("Quitting...");
             StateManager.ChangeState(new TitleState(Globals.ContentManager));
         }
     }

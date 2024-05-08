@@ -99,7 +99,7 @@ namespace ISP_Project.Gameplay
             if (StateManager.GetCurrentState() is HubState)
             {
                 // these vectors represent the position of the doorway
-                if (newTileMapPosition == new Vector2(0, 5) || newTileMapPosition == new Vector2(0, 6))
+                if (newTileMapPosition == new Vector2(0, 5) || newTileMapPosition == new Vector2(0, 6) || newTileMapPosition == new Vector2(0, 7))
                 {
                     StateManager.ChangeState(new TitleState(Globals.ContentManager));
                 }
@@ -109,6 +109,7 @@ namespace ISP_Project.Gameplay
                 {
                     MapButton.isClickable = true;
                 }
+                else { MapButton.isClickable = false; }
             }
 
             UpdatePosition(collisionMap);
