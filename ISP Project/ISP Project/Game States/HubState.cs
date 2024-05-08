@@ -22,8 +22,8 @@ namespace ISP_Project.Game_States
         private SpriteFont buttonFont;
 
         private HubTileMap tileMap = new HubTileMap(WindowManager.GetMainWindowCenter());
-        // Vector2(8, 8) is used to align Shelly with the grid since we're drawing from the middle of the sprite now; y can be adjusted for a more 3D effect
-        private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(8, 8), new Vector2(8, 4)); 
+        // + Vector2(x, y) is used to align Shelly with the grid since we're drawing from the middle of the sprite now; y can be adjusted for a more 3D effect
+        private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(-104, 24), new Vector2(1, 5)); 
 
         public HubState(ContentManager content)
         {

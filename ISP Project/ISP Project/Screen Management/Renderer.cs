@@ -54,7 +54,9 @@ namespace ISP_Project.Screen_Management
             // set the excess window screen this color (i.e. the "black bars")
             graphicsDevice.Clear(Color.Black);
 
-            Globals.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, null);
+            Globals.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, 
+                SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, 
+                null, null);
             Globals.SpriteBatch.Draw(renderTarget, destinationRectangle, Color.White);
             Globals.SpriteBatch.End();
         }

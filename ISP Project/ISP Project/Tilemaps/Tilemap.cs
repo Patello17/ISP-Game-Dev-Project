@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ISP_Project.Components;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tiled;
@@ -15,6 +16,7 @@ namespace ISP_Project.Tilemaps
     public abstract class Tilemap
     {
         public abstract CollisionMap CollisionMap { get; set; }
+        public abstract Transform Transform { get; set; }
         public Dictionary<Vector2, int> LoadTileMap(string filePath)
         {
             Dictionary<Vector2, int> result = new Dictionary<Vector2, int>(); 
@@ -49,16 +51,15 @@ namespace ISP_Project.Tilemaps
         // draw textures
         public void Draw(GameTime gameTime,
             int displayTileSize, int numTilesPerRow, int pixelTileSize,
-            Dictionary<Dictionary<Vector2, int>, Texture2D> textureMapDictionary,
-            Vector2 position)
+            Dictionary<Dictionary<Vector2, int>, Texture2D> textureMapDictionary)
         {
             foreach (var layer in textureMapDictionary.Keys)
             {
                 foreach (var item in layer)
                 {
                     Rectangle destinationRectangle = new Rectangle(
-                        (int)item.Key.X * displayTileSize + (int)position.X,
-                        (int)item.Key.Y * displayTileSize + (int)position.Y,
+                        (int)item.Key.X * displayTileSize + (int)Transform.Position.X,
+                        (int)item.Key.Y * displayTileSize + (int)Transform.Position.Y,
                         displayTileSize, displayTileSize);
 
                     int x = item.Value % numTilesPerRow;

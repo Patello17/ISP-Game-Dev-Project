@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ISP_Project.Components;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,8 +17,7 @@ namespace ISP_Project.Tilemaps
         private Texture2D roomTileset;
         private Texture2D decorationsTileset;
         private Texture2D collisionsTileset;
-        private Vector2 position;
-        public new Vector2 Position { get { return position; } set { position = value; } }
+        public override Transform Transform { get; set; } = new Transform(Vector2.Zero, 1f, 0f);
         private Dictionary<Vector2, int> room;
         private Dictionary<Vector2, int> decorations;
         private Dictionary<Vector2, int> collisions;
@@ -25,7 +25,7 @@ namespace ISP_Project.Tilemaps
 
         public HubTileMap(Vector2 position)
         {
-            Position = position;
+            Transform.Position = position;
             room = LoadTileMap("../../../Tilemaps/Maps/Hub Map/Hub Tilemap_Room.csv");
             decorations = LoadTileMap("../../../Tilemaps/Maps/Hub Map/Hub Tilemap_Decorations.csv");
             collisions = LoadTileMap("../../../Tilemaps/Maps/Hub Map/Hub Tilemap_Collisions.csv");
@@ -47,8 +47,7 @@ namespace ISP_Project.Tilemaps
                     { room, roomTileset},
                     { decorations, decorationsTileset},
                     // { collisions, collisionsTileset},
-                }, 
-                Position);
+                });
         }
     }
 }

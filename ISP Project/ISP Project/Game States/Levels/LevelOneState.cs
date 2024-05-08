@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ISP_Project.Components;
+using ISP_Project.Gameplay;
 
 namespace ISP_Project.Game_States.Levels
 {
@@ -18,6 +19,7 @@ namespace ISP_Project.Game_States.Levels
         // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
+        private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(8, 8), new Vector2(8, 4));
 
         public LevelOneState(ContentManager content)
         {
