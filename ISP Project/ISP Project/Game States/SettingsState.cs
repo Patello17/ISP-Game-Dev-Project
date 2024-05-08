@@ -24,21 +24,21 @@ namespace ISP_Project.Game_States
         {
             LoadState(content);
 
-            var resumeButton = new AudioButton(buttonTexture, buttonFont, 1, 0.5f)
+            var audioButton = new AudioButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
                 Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y - 16),
                 Text = "Audio"
             };
 
-            var settingsButton = new ControlsButton(buttonTexture, buttonFont, 1, 0.5f)
+            var controlsButton = new ControlsButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
                 Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y),
                 Text = "Controls"
             };
 
-            var quitButton = new SettingsReturnButton(buttonTexture, buttonFont, 1, 0.5f)
+            var settingsReturnButton = new ReturnButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
                 Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y + 16),
@@ -47,7 +47,7 @@ namespace ISP_Project.Game_States
 
             buttons = new List<Button>()
             {
-                resumeButton, settingsButton, quitButton
+                audioButton, controlsButton, settingsReturnButton
             };
 
         }

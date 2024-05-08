@@ -38,3 +38,7 @@ C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Interactables\Map Board.xnb
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Snail\Snail Back.xnb
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Snail\Snail Front.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Backgrounds\Map.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Interactables\Pin.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Interactables\White Note.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Interactables\Yellow Note.xnb

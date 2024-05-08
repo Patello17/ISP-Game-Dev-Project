@@ -107,9 +107,8 @@ namespace ISP_Project.Gameplay
                 if (TileMapPosition == new Vector2(6, 4) || TileMapPosition == new Vector2(7, 4) ||
                     TileMapPosition == new Vector2(8, 4) || TileMapPosition == new Vector2(9, 4))
                 {
-                    MapButton.isMapUsable = true;
+                    MapButton.isClickable = true;
                 }
-                else { MapButton.isMapUsable = false; }
             }
 
             UpdatePosition(collisionMap);

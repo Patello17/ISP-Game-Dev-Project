@@ -53,15 +53,15 @@ namespace ISP_Project.UI.Buttons
             Debug.WriteLine("Entering Controls Settings...");
         }
     }
-    // create Settings Return Button
-    public class SettingsReturnButton : Button
+    // create Return Button
+    public class ReturnButton : Button
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
         private float buttonScale;
         private float fontScale;
 
-        public SettingsReturnButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
+        public ReturnButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
         {
             buttonTexture = texture;
             buttonFont = font;
@@ -79,7 +79,6 @@ namespace ISP_Project.UI.Buttons
             {
                 StateManager.ChangeState(new TitleState(Globals.ContentManager));
             }
-
         }
     }
 }

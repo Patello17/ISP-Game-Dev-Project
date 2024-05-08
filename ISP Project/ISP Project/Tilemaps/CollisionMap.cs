@@ -77,6 +77,18 @@ namespace ISP_Project.Tilemaps
                 return 0;
             }
         }
+        public void SetCollision(Vector2 position, int tile)
+        {
+            try
+            {
+                map[(int)position.X, (int)position.Y] = tile;
+            }
+            catch
+            {
+                Debug.WriteLine("Couldn't change collision map.");
+                // do nothing
+            }
+        }
 
     }
 }

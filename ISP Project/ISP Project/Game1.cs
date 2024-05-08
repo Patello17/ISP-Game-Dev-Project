@@ -30,14 +30,16 @@ namespace ISP_Project
         {
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
-            Window.AllowUserResizing = true;
+            Window.AllowUserResizing = false;
             Window.AllowAltF4 = true;
             Window.Title = "Snail Mail";
 
             // set and update window size
             WindowManager.InitializeWindow(_graphics);
             WindowManager.SetMainWindowSize(1280, 720);
-            // _graphics.ToggleFullScreen();
+            // _graphics.ToggleFullScreen
+
+            _graphics.PreferMultiSampling = false;
 
             base.Initialize();
         }
@@ -68,11 +70,11 @@ namespace ISP_Project
 
 
             /*if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered))
-                WindowManager.SetMainWindowResolution(320, 180);
+                WindowManager.SetMainWindowSize(320, 180);
             if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
-                WindowManager.SetMainWindowResolution(480, 320);
+                WindowManager.SetMainWindowSize(480, 320);
             if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered))
-                WindowManager.SetMainWindowResolution(1280, 720);*/
+                WindowManager.SetMainWindowSize(1280, 720);*/
             if (InputManager.isKey(InputManager.Inputs.MAXIMIZESCREEN, InputManager.isTriggered))
             {
                 WindowManager.SetMainWindowSize(1280, 720);
@@ -94,6 +96,7 @@ namespace ISP_Project
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
+
 
             // I don't know why I should be using SpriteSortMode.Immediate. If I don't, the button text gets all funky
             

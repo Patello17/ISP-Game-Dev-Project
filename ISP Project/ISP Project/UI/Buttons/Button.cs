@@ -92,6 +92,7 @@ namespace ISP_Project.UI.Buttons
             var color = Color.White;
             if (isHovering || ForceShade)
                 color = Color.Gray;
+            else { ForceShade = false; }
 
             // not relying on Rectangle data here because the Renderer will scale this
             Globals.SpriteBatch.Draw(Sprite.Texture, position, null, color, 0.0f, Sprite.GetSpriteOrigin(), buttonScale, SpriteEffects.None, 0.0f);

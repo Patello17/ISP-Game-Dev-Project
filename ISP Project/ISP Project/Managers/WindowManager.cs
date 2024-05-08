@@ -29,8 +29,8 @@ namespace ISP_Project.Managers
         public static void DrawMainWindow(GameTime gameTime)
         {
             window.SetRenderTarget();
-            
-            Globals.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null); // final null should be replaced with camera transformation matrix i think
+
+            Globals.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, null); // final null should be replaced with camera transformation matrix i think
             StateManager.Draw(gameTime);
             Globals.SpriteBatch.End();
 

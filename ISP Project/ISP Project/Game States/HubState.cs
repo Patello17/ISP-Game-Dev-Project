@@ -45,7 +45,6 @@ namespace ISP_Project.Game_States
             {
                 pauseButton, mapButton
             };
-
         }
         public override void LoadState(ContentManager content)
         {

@@ -29,7 +29,15 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             // change Game State here!
-            StateManager.ChangeState(new HubState(Globals.ContentManager));
+            if (StateManager.GetPreviousState() is HubState)
+            {
+                StateManager.ChangeState(new HubState(Globals.ContentManager));
+            }
+            else if (StateManager.GetPreviousState() is LevelSelectionState)
+            {
+                StateManager.ChangeState(new LevelSelectionState(Globals.ContentManager));
+            }
+            
         }
     }
     // create Settings Button
