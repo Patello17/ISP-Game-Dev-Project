@@ -47,7 +47,7 @@ namespace ISP_Project.Tilemaps
         public abstract void LoadContent(ContentManager content);
 
         // draw textures
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch,
+        public void Draw(GameTime gameTime,
             int displayTileSize, int numTilesPerRow, int pixelTileSize,
             Dictionary<Dictionary<Vector2, int>, Texture2D> textureMapDictionary,
             Vector2 position)
@@ -70,7 +70,7 @@ namespace ISP_Project.Tilemaps
                         pixelTileSize, pixelTileSize
                     );
 
-                    spriteBatch.Draw(textureMapDictionary[layer], destinationRectangle, sourceRectangle, Color.White, 0f,
+                    Globals.SpriteBatch.Draw(textureMapDictionary[layer], destinationRectangle, sourceRectangle, Color.White, 0f,
                         new Vector2(textureMapDictionary[layer].Width / 2, textureMapDictionary[layer].Height / 2), 
                         SpriteEffects.None, 0f);
                 }

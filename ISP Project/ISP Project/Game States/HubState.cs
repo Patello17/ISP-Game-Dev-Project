@@ -70,15 +70,15 @@ namespace ISP_Project.Game_States
             // unload sprites if they're not needed
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime)
         {
-            tileMap.Draw(gameTime, spriteBatch);
+            tileMap.Draw(gameTime);
 
-            player.Draw(gameTime, spriteBatch);
+            player.Draw(gameTime);
 
             foreach (Button button in buttons)
             {
-                button.Draw(gameTime, spriteBatch);
+                button.Draw(gameTime);
             }           
         }
     }

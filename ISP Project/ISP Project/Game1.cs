@@ -48,6 +48,7 @@ namespace ISP_Project
             
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Globals.ContentManager = this.Content;
+            Globals.SpriteBatch = _spriteBatch;
 
             StateManager.ChangeState(new TitleState(this.Content));
         }
@@ -96,7 +97,7 @@ namespace ISP_Project
 
             // I don't know why I should be using SpriteSortMode.Immediate. If I don't, the button text gets all funky
             
-            WindowManager.DrawMainWindow(gameTime, _spriteBatch);
+            WindowManager.DrawMainWindow(gameTime);
 
             base.Draw(gameTime);
         }

@@ -49,10 +49,10 @@ namespace ISP_Project.Screen_Management
             renderer.SetDestinationRectangle();
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime)
         {
             // renderer.Activate();
-            renderer.Draw(gameTime, spriteBatch);
+            renderer.Draw(gameTime);
         }
         public void SetRenderTarget()
         {

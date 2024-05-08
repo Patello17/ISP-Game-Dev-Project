@@ -21,6 +21,6 @@ namespace ISP_Project.Game_States
 
         public override void PostUpdate(GameTime gameTime) { }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) { }
+        public override void Draw(GameTime gameTime) { }
     }
 }

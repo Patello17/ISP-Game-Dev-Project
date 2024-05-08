@@ -48,15 +48,15 @@ namespace ISP_Project.Screen_Management
             graphicsDevice.Clear(Color.Black);
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime)
         {
             graphicsDevice.SetRenderTarget(null);
             // set the excess window screen this color (i.e. the "black bars")
             graphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
-            spriteBatch.Draw(renderTarget, destinationRectangle, Color.White);
-            spriteBatch.End();
+            Globals.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
+            Globals.SpriteBatch.Draw(renderTarget, destinationRectangle, Color.White);
+            Globals.SpriteBatch.End();
         }
 
         public float GetRenderScale()

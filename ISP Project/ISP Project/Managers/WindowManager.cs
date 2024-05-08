@@ -26,15 +26,15 @@ namespace ISP_Project.Managers
             
         }
 
-        public static void DrawMainWindow(GameTime gameTime, SpriteBatch spriteBatch)
+        public static void DrawMainWindow(GameTime gameTime)
         {
             window.SetRenderTarget();
             
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null); // final null should be replaced with camera transformation matrix i think
-            StateManager.Draw(gameTime, spriteBatch);
-            spriteBatch.End();
+            Globals.SpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null); // final null should be replaced with camera transformation matrix i think
+            StateManager.Draw(gameTime);
+            Globals.SpriteBatch.End();
 
-            window.Draw(gameTime, spriteBatch);
+            window.Draw(gameTime);
         }
 
         public static float GetRenderScale()

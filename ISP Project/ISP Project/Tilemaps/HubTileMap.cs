@@ -39,9 +39,9 @@ namespace ISP_Project.Tilemaps
             collisionsTileset = content.Load<Texture2D>("Tilesets/Collisions Tileset");
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime)
         {
-            Draw(gameTime, spriteBatch, 16, 16, 16,
+            Draw(gameTime, 16, 16, 16,
                 new Dictionary<Dictionary<Vector2, int>, Texture2D>
                 {
                     { room, roomTileset},

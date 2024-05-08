@@ -86,7 +86,7 @@ namespace ISP_Project.UI.Buttons
 
         public abstract void TriggerEvent();
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime)
         {
             // draw button and change color on cursor hover
             var color = Color.White;
@@ -94,7 +94,7 @@ namespace ISP_Project.UI.Buttons
                 color = Color.Gray;
 
             // not relying on Rectangle data here because the Renderer will scale this
-            spriteBatch.Draw(Sprite.Texture, position, null, color, 0.0f, Sprite.GetSpriteOrigin(), buttonScale, SpriteEffects.None, 0.0f);
+            Globals.SpriteBatch.Draw(Sprite.Texture, position, null, color, 0.0f, Sprite.GetSpriteOrigin(), buttonScale, SpriteEffects.None, 0.0f);
 
             // draw text
             if (!string.IsNullOrEmpty(Text))
@@ -103,7 +103,7 @@ namespace ISP_Project.UI.Buttons
                 var x = (position.X) - (font.MeasureString(Text).X * FontScale / 2);
                 var y = (position.Y) - (font.MeasureString(Text).Y * FontScale / 2);
 
-                spriteBatch.DrawString(font, Text, new Vector2(x, y), TextColor, 0.0f, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
+                Globals.SpriteBatch.DrawString(font, Text, new Vector2(x, y), TextColor, 0.0f, Vector2.Zero, FontScale, SpriteEffects.None, 0f);
             }
         }
     }

@@ -15,6 +15,6 @@ namespace ISP_Project.Game_States
         public abstract void LoadState(ContentManager content);
         public abstract void Update(GameTime gameTime);
         public abstract void PostUpdate(GameTime gameTime);
-        public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
+        public abstract void Draw(GameTime gameTime);
     }
 }

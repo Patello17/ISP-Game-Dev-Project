@@ -116,9 +116,9 @@ namespace ISP_Project.Gameplay
 
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime)
         {
-            spriteBatch.Draw(Sprite.Texture, Transform.Position, null, Color.White,
+            Globals.SpriteBatch.Draw(Sprite.Texture, Transform.Position, null, Color.White,
                 Transform.Rotation, Sprite.GetSpriteOrigin(), Transform.Scale,
                 Sprite.SpriteEffects, Sprite.DrawLayer);
         }

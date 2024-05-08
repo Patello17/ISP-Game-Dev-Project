@@ -28,9 +28,9 @@ namespace ISP_Project.Managers
             currentState.Update(gameTime);
         }
 
-        public static void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public static void Draw(GameTime gameTime)
         {
-            currentState.Draw(gameTime, spriteBatch);
+            currentState.Draw(gameTime);
         }
         public static void ChangeState(State state)
         {
