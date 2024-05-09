@@ -46,6 +46,7 @@ namespace ISP_Project.Game_States
                 Position = new Vector2(WindowManager.GetMainWindowCenter().X - 132, WindowManager.GetMainWindowCenter().Y + 32),
                 Text = ""
             };
+            LevelOneSelectButton.isClickable = true;
 
             buttons = new List<Button>()
             {

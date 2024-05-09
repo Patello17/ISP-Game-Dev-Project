@@ -61,6 +61,7 @@ namespace ISP_Project.Game_States
             {
                 button.Update(gameTime);
             }
+            // let player know of the collision map
             player.Update(gameTime, tileMap.CollisionMap);
         }
 

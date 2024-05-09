@@ -129,6 +129,18 @@
 /processorParam:TextureFormat=Color
 /build:Tilesets/Collisions Tileset.png
 
+#begin Tilesets/Grassy Level Tileset.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tilesets/Grassy Level Tileset.png
+
 #begin Tilesets/Hub Tileset.png
 /importer:TextureImporter
 /processor:TextureProcessor

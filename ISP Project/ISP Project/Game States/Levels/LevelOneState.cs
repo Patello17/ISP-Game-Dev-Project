@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ISP_Project.Components;
 using ISP_Project.Gameplay;
+using ISP_Project.Tilemaps;
+using ISP_Project.Tilemaps.Maps.Level_1;
 
 namespace ISP_Project.Game_States.Levels
 {
@@ -19,7 +21,10 @@ namespace ISP_Project.Game_States.Levels
         // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
-        private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(8, 8), new Vector2(8, 4));
+        private LevelOneTileMap tileMap = new LevelOneTileMap(WindowManager.GetMainWindowCenter());
+        // + Vector2(x, y) is used to align Shelly with the grid since we're drawing from the middle of the sprite now; y can be adjusted for a more 3D effect
+        private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(-280, 120), new Vector2(2, 18));
+
 
         public LevelOneState(ContentManager content)
         {
@@ -42,6 +47,8 @@ namespace ISP_Project.Game_States.Levels
             // load everything in this state
             buttonTexture = content.Load<Texture2D>("UI Elements/Button");
             buttonFont = content.Load<SpriteFont>("Fonts/Button Font");
+            tileMap.LoadContent(content);
+            player.LoadContent(content);
         }
         public override void Update(GameTime gameTime)
         {
@@ -49,6 +56,8 @@ namespace ISP_Project.Game_States.Levels
             {
                 button.Update(gameTime);
             }
+            // let player know of the collision map
+            player.Update(gameTime, tileMap.CollisionMap);
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -58,6 +67,10 @@ namespace ISP_Project.Game_States.Levels
 
         public override void Draw(GameTime gameTime)
         {
+            tileMap.Draw(gameTime);
+
+            player.Draw(gameTime);
+
             foreach (Button button in buttons)
             {
                 button.Draw(gameTime);

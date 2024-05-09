@@ -184,8 +184,9 @@ namespace ISP_Project.Gameplay
         }
         public void UpdatePosition(CollisionMap collisionMap)
         {
-            // check for collisions
-            if (collisionMap.GetCollision(newTileMapPosition) == 0)
+            // check for collisions (1 = solid in the tilesheet; 5 = mailbox goal)
+            if (collisionMap.GetCollision(newTileMapPosition) != 1 &&
+                collisionMap.GetCollision(newTileMapPosition) != 5)
             {
                 // update position
                 Transform.Position += movementVector * 16; // tiles are 16x16
