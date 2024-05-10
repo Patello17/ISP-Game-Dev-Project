@@ -5,6 +5,13 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Backgrounds/Map.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Down Box.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Horizontal Box.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Left Box.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Right Box.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Star Box.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Up Box.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Vertical Box.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Fonts/Button Font.spritefont</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Map Board.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Pin.png</File>
@@ -19,6 +26,13 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Button.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

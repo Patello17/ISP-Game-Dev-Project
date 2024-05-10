@@ -63,6 +63,7 @@ namespace ISP_Project.Game_States
             }
             // let player know of the collision map
             player.Update(gameTime, tileMap.CollisionMap);
+            player.UpdatePosition(tileMap.CollisionMap);
         }
 
         public override void PostUpdate(GameTime gameTime)

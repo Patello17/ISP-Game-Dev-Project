@@ -84,7 +84,6 @@ namespace ISP_Project.Gameplay
         }
         public override void Update(GameTime gameTime, CollisionMap collisionMap)
         {
-            
             movementVector = Vector2.Zero;
             newTileMapPosition = TileMapPosition;
 
@@ -112,7 +111,7 @@ namespace ISP_Project.Gameplay
                 else { MapButton.isClickable = false; }
             }
 
-            UpdatePosition(collisionMap);
+            // UpdatePosition(collisionMap);
 
         }
 
@@ -139,6 +138,14 @@ namespace ISP_Project.Gameplay
                     keyDown = Inputs.RIGHT;
                     break;
             }
+        }
+        public Vector2 GetMovementVector()
+        {
+            return movementVector;
+        }
+        public Vector2 GetNextPosition()
+        {
+            return newTileMapPosition;
         }
         public void ApplyDAS()
         {
@@ -176,6 +183,7 @@ namespace ISP_Project.Gameplay
         {
             movementVector = movementDictionary[keyDown];
             newTileMapPosition = TileMapPosition + movementVector;
+            // Debug.WriteLine(movementVector);
         }
         public void SetTexture()
         {
@@ -184,14 +192,21 @@ namespace ISP_Project.Gameplay
         }
         public void UpdatePosition(CollisionMap collisionMap)
         {
+            Debug.WriteLine(movementVector + " || " + newTileMapPosition);
             // check for collisions (1 = solid in the tilesheet; 5 = mailbox goal)
             if (collisionMap.GetCollision(newTileMapPosition) != 1 &&
-                collisionMap.GetCollision(newTileMapPosition) != 5)
+                collisionMap.GetCollision(newTileMapPosition) != 5 &&
+                collisionMap.GetCollision(newTileMapPosition) != 3)
             {
                 // update position
                 Transform.Position += movementVector * 16; // tiles are 16x16
                 TileMapPosition = newTileMapPosition;
             }
+            // 3 = box
+            /*else if (collisionMap.GetCollision(newTileMapPosition) == 3)
+            {
+
+            }*/
         }
     }
 }
