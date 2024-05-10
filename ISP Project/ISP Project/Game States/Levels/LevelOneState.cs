@@ -70,59 +70,27 @@ namespace ISP_Project.Game_States.Levels
         }
         public override void Update(GameTime gameTime)
         {
+            // reset level
             if (InputManager.isKey(InputManager.Inputs.RESTART, InputManager.isTriggered))
+            {
                 StateManager.ChangeState(new LevelOneState(Globals.ContentManager));
+                Debug.WriteLine("RESTARTING!");
+            }
+                
             List<Box> boxUpdateOrder = new List<Box>();
             foreach (Button button in buttons)
             {
                 button.Update(gameTime);
             }
-            // let player know of the collision map
-            // Debug.WriteLine(player.GetMovementVector());
+
+            // let actors know of this level's collision map
             foreach (Box box in boxes)
             {
                 box.Update(gameTime, tileMap.CollisionMap);
             }
             player.Update(gameTime, tileMap.CollisionMap);
-            // Debug.WriteLine(player.GetMovementVector());
-            /*foreach (Box box in boxes)
-            {
-                bool canPush = false;
-                // push the box
-                if (player.GetNextPosition() == box.TileMapPosition && !box.GetSunkState())
-                {
-                    // check interaction with every other box
-                    foreach (Box _box in boxes)
-                    {
-                        box.SetNextPosition(player.GetMovementVector());
-                        if (_box != box && tileMap.CollisionMap.GetCollision(box.GetNextPosition()) == 3 && _box.CanMove)
-                        {
-                            _box.SetNextPosition(box.GetMovementVector());
-                            Debug.WriteLine(tileMap.CollisionMap.GetCollision(_box.GetNextPosition()));
-                            if (tileMap.CollisionMap.GetCollision(_box.GetNextPosition()) == 0 ||
-                                tileMap.CollisionMap.GetCollision(_box.GetNextPosition()) == 2 ||
-                                tileMap.CollisionMap.GetCollision(_box.GetNextPosition()) == 3)
-                            {
-                                canPush = true;
-                            }
-                            if (canPush)
-                            {
-                                box.SetNextPosition(player.GetMovementVector());
-                                _box.SetNextPosition(box.GetMovementVector());
-                            }
-                            else
-                            {
-                                box.SetNextPosition(Vector2.Zero);
-                                _box.SetNextPosition(Vector2.Zero);
-                            }
-                        }
-
-                    }
-
-                    // Debug.WriteLine("PUSHING BOX...");
-                }
-
-            }*/
+            
+            // check for box collisions
             foreach (Box box in boxes)
             {
                 // check if player is about to collide with unsunken box
@@ -131,8 +99,7 @@ namespace ISP_Project.Game_States.Levels
                     box.SetNextPosition(player.GetMovementVector(), false);
                     var currentBoxNextPosition = box.GetNextPosition();
                     boxUpdateOrder.Add(box);
-                    // var nextBoxNextPosition = currentBoxNextPosition + player.GetMovementVector();
-                    // var nextBoxNextPosition = currentBoxNextPosition;
+
                     // handle "chained" boxes
                     while (tileMap.CollisionMap.GetCollision(currentBoxNextPosition) == 3 && 
                         box.GetMovementVector() != Vector2.Zero && box.GetBoxType() != BoxType.STAR)
@@ -144,22 +111,21 @@ namespace ISP_Project.Game_States.Levels
                         }
                         
                         box.SetNextPosition(player.GetMovementVector(), false);
-                        //nextBoxNextPosition = currentBoxNextPosition + player.GetMovementVector();
                         currentBoxNextPosition += player.GetMovementVector();
-                        // nextBoxNextPosition += player.GetMovementVector();
                     }
-                    // boxUpdateOrder.Add(box);
 
                 }
 
             }
 
-            /*foreach (Box box in boxes)
+            // check for win
+            if (tileMap.CollisionMap.GetCollision(starBox.GetNextPosition()) == 5)
             {
-                box.UpdatePosition(tileMap.CollisionMap);
-            }*/
+                Debug.WriteLine("YAY! LEVEL COMPLETED.");
+                StateManager.ChangeState(new LevelSelectionState(Globals.ContentManager));
+            }
 
-            
+            // update actor positions
             if (boxUpdateOrder.Count > 0)
             {
                 // Debug.WriteLine(boxUpdateOrder.Count);
@@ -172,20 +138,10 @@ namespace ISP_Project.Game_States.Levels
                     var box = boxUpdateOrder[i - 1];
                     box.UpdatePosition(tileMap.CollisionMap);
                 }
-                /*for (int i = 0; i < boxUpdateOrder.Count; i++)
-                {
-                    var box = boxUpdateOrder[i];
-                    box.UpdatePosition(tileMap.CollisionMap);
-                }*/
             }
             
             player.UpdatePosition(tileMap.CollisionMap);
-
-            // TODO: Goal Tile should check for GetBoxType() starBox
-            if (tileMap.CollisionMap.GetCollision(starBox.TileMapPosition) == 5)
-            {
-                StateManager.ChangeState(new LevelSelectionState(Globals.ContentManager));
-            }
+            
         }
 
         public override void PostUpdate(GameTime gameTime)
