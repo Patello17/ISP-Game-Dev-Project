@@ -30,6 +30,7 @@ namespace ISP_Project.Gameplay
             STAR
         }
         private BoxType boxType = BoxType.RIGHT; // right by default
+        private bool isSunk = false;
         public override Sprite Sprite { get; set; }
         public override Transform Transform { get; set; }
         public override Vector2 TileMapPosition { get; set; }
@@ -75,25 +76,9 @@ namespace ISP_Project.Gameplay
         }
         public override void Update(GameTime gameTime, CollisionMap collisionMap)
         {
-            
 
-            // Debug.WriteLine("Collision Map is colliding with " + newTileMapPosition + "? " + collisionMap.isColliding(newTileMapPosition));
 
-            if (StateManager.GetCurrentState() is HubState)
-            {
-                // these vectors represent the position of the doorway
-                if (newTileMapPosition == new Vector2(0, 5) || newTileMapPosition == new Vector2(0, 6) || newTileMapPosition == new Vector2(0, 7))
-                {
-                    StateManager.ChangeState(new TitleState(Globals.ContentManager));
-                }
-                // these vectors represent the positions right below the map board
-                if (TileMapPosition == new Vector2(6, 4) || TileMapPosition == new Vector2(7, 4) ||
-                    TileMapPosition == new Vector2(8, 4) || TileMapPosition == new Vector2(9, 4))
-                {
-                    MapButton.isClickable = true;
-                }
-                else { MapButton.isClickable = false; }
-            }
+            SetTexture();
 
             UpdatePosition(collisionMap);
 
@@ -101,36 +86,56 @@ namespace ISP_Project.Gameplay
 
         public override void Draw(GameTime gameTime)
         {
-            Globals.SpriteBatch.Draw(Sprite.Texture, Transform.Position, null, Color.White,
+            Globals.SpriteBatch.Draw(Sprite.Texture, Transform.Position, null, Sprite.Color,
                 Transform.Rotation, Sprite.GetSpriteOrigin(), Transform.Scale,
                 Sprite.SpriteEffects, Sprite.DrawLayer);
         }
         
+        public bool GetSunkState()
+        {
+            return isSunk;
+        }
         public void SetNextPosition(Vector2 movementVector)
         {
             this.movementVector = movementVector;
             newTileMapPosition = TileMapPosition + this.movementVector;
-            Debug.WriteLine(this.movementVector + " || " + newTileMapPosition);
+            // Debug.WriteLine(this.movementVector + " || " + newTileMapPosition);
         }
         public void SetTexture()
         {
+            if (isSunk)
+            {
+                Sprite.Color = new Color(127, 174, 198);
+            }
+                
+            else { Sprite.Color = Color.White; }
             /*Sprite.Texture = textureDictionary[keyDown];
             Sprite.SpriteEffects = spriteEffectsDictionary[keyDown];*/
         }
         public void UpdatePosition(CollisionMap collisionMap)
         {
-            // check for collisions (1 = solid in the tilesheet; 5 = mailbox goal)
-            if (collisionMap.GetCollision(newTileMapPosition) != 1 &&
-                collisionMap.GetCollision(newTileMapPosition) != 2)
+            // check for collisions (1 = solid in the tilesheet; 2 = water; 5 = mailbox goal)
+            if (collisionMap.GetCollision(newTileMapPosition) == 2)
             {
-                // update position
+                isSunk = true;
                 Transform.Position += movementVector * 16; // tiles are 16x16
                 collisionMap.SetCollision(TileMapPosition, 0);
                 TileMapPosition = newTileMapPosition;
+                collisionMap.SetCollision(TileMapPosition, 0); // box acts as path when sunk!
+            }
+            else if (collisionMap.GetCollision(newTileMapPosition) != 1 && !isSunk)
+            {
+                // update position
+                Transform.Position += movementVector * 16; // tiles are 16x16
+                
+                collisionMap.SetCollision(TileMapPosition, 0);
+                TileMapPosition = newTileMapPosition;
                 collisionMap.SetCollision(TileMapPosition, 3);
-                Debug.WriteLine(collisionMap.GetCollision(TileMapPosition));
+
+                // Debug.WriteLine(collisionMap.GetCollision(TileMapPosition));
                 // Debug.WriteLine(TileMapPosition);
             }
+            
 
             movementVector = Vector2.Zero;
             newTileMapPosition = TileMapPosition;

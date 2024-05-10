@@ -192,7 +192,7 @@ namespace ISP_Project.Gameplay
         }
         public void UpdatePosition(CollisionMap collisionMap)
         {
-            Debug.WriteLine(movementVector + " || " + newTileMapPosition);
+            // Debug.WriteLine(movementVector + " || " + newTileMapPosition);
             // check for collisions (1 = solid in the tilesheet; 5 = mailbox goal)
             if (collisionMap.GetCollision(newTileMapPosition) != 1 &&
                 collisionMap.GetCollision(newTileMapPosition) != 5 &&

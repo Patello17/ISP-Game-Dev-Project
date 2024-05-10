@@ -13,6 +13,7 @@ namespace ISP_Project.Components
         public Texture2D Texture {  get; set; }
         public SpriteEffects SpriteEffects { get; set; }
         public int DrawLayer { get; set; }
+        public Color Color { get; set; }
 
         public Sprite(Texture2D texture, SpriteEffects spriteEffects, int drawLayer)
         {

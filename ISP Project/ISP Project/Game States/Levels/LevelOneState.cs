@@ -14,6 +14,7 @@ using ISP_Project.Tilemaps;
 using ISP_Project.Tilemaps.Maps.Level_1;
 using static ISP_Project.Gameplay.Box;
 using System.Diagnostics;
+using MonoGame.Extended.Timers;
 
 namespace ISP_Project.Game_States.Levels
 {
@@ -28,9 +29,15 @@ namespace ISP_Project.Game_States.Levels
         // + Vector2(x, y) is used to align Shelly with the grid since we're drawing from the middle of the sprite now; y can be adjusted for a more 3D effect
         private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(-280, 120), new Vector2(2, 18));
         private Box starBox = new Box(WindowManager.GetMainWindowCenter() + new Vector2(-264, 120), new Vector2(3, 18), BoxType.STAR);
+        private Box leftBox = new Box(WindowManager.GetMainWindowCenter() + new Vector2(-248, 120), new Vector2(4, 18), BoxType.LEFT);
 
         public LevelOneState(ContentManager content)
         {
+            boxes = new List<Box>()
+            {
+                starBox, leftBox
+            };
+
             LoadState(content);
 
             var pauseButton = new PauseButton(buttonTexture, buttonFont, 1, 0.5f)
@@ -43,11 +50,6 @@ namespace ISP_Project.Game_States.Levels
             {
                 pauseButton
             };
-
-            boxes = new List<Box>()
-            {
-                starBox
-            };
         }
         public override void LoadState(ContentManager content)
         {
@@ -56,7 +58,10 @@ namespace ISP_Project.Game_States.Levels
             buttonFont = content.Load<SpriteFont>("Fonts/Button Font");
             tileMap.LoadContent(content);
             player.LoadContent(content);
-            starBox.LoadContent(content);
+            foreach (Box box in boxes)
+            {
+                box.LoadContent(content);
+            }
         }
         public override void Update(GameTime gameTime)
         {
@@ -70,13 +75,16 @@ namespace ISP_Project.Game_States.Levels
             // Debug.WriteLine(player.GetMovementVector());
             foreach (Box box in boxes)
             {
-                if (player.GetNextPosition() == box.TileMapPosition)
+                if (player.GetNextPosition() == box.TileMapPosition && !box.GetSunkState())
                 {
                     box.SetNextPosition(player.GetMovementVector());
                     Debug.WriteLine("PUSHING BOX...");
                 }
             }
-            starBox.Update(gameTime, tileMap.CollisionMap);
+            foreach (Box box in boxes)
+            {
+                box.Update(gameTime, tileMap.CollisionMap);
+            }
             player.UpdatePosition(tileMap.CollisionMap);
 
             if (tileMap.CollisionMap.GetCollision(starBox.TileMapPosition) == 5)
@@ -93,8 +101,11 @@ namespace ISP_Project.Game_States.Levels
         public override void Draw(GameTime gameTime)
         {
             tileMap.Draw(gameTime);
+            foreach (Box box in boxes)
+            {
+                box.Draw(gameTime);
+            }
             player.Draw(gameTime);
-            starBox.Draw(gameTime);
 
             foreach (Button button in buttons)
             {
