@@ -48,6 +48,12 @@ namespace ISP_Project.Tilemaps
                     { room, roomTileset},
                     { decorations, decorationsTileset},
                     // { collisions, collisionsTileset},
+                },
+                new Dictionary<Dictionary<Vector2, int>, float>
+                {
+                    { room, 0f},
+                    { decorations, 0.2f},
+                    // { collisions, collisionsTileset},
                 });
         }
     }

@@ -53,7 +53,7 @@ namespace ISP_Project.Tilemaps
         // draw textures
         public void Draw(GameTime gameTime,
             int displayTileSize, int numTilesPerRow, int pixelTileSize,
-            Dictionary<Dictionary<Vector2, int>, Texture2D> textureMapDictionary)
+            Dictionary<Dictionary<Vector2, int>, Texture2D> textureMapDictionary, Dictionary<Dictionary<Vector2, int>, float> depthDictionary)
         {
             foreach (var layer in textureMapDictionary.Keys)
             {
@@ -75,7 +75,7 @@ namespace ISP_Project.Tilemaps
 
                     Globals.SpriteBatch.Draw(textureMapDictionary[layer], destinationRectangle, sourceRectangle, Color.White, Transform.Rotation,
                         new Vector2(TileMapDimensions.X * pixelTileSize / 2, TileMapDimensions.Y * pixelTileSize / 2), 
-                        SpriteEffects.None, 0f);
+                        SpriteEffects.None, depthDictionary[layer]);
                 }
             }
         }

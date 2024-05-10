@@ -41,6 +41,11 @@ namespace ISP_Project.Tilemaps.Maps.Level_1
                 {
                     { level, levelTileset},
                     // { collisions, collisionsTileset},
+                },
+                new Dictionary<Dictionary<Vector2, int>, float>
+                {
+                    { level, 0f}
+                    // { collisions, collisionsTileset},
                 });
         }
     }

@@ -12,10 +12,10 @@ namespace ISP_Project.Components
     {
         public Texture2D Texture {  get; set; }
         public SpriteEffects SpriteEffects { get; set; }
-        public int DrawLayer { get; set; }
+        public float DrawLayer { get; set; } = 0;
         public Color Color { get; set; }
 
-        public Sprite(Texture2D texture, SpriteEffects spriteEffects, int drawLayer)
+        public Sprite(Texture2D texture, SpriteEffects spriteEffects, float drawLayer)
         {
             Texture = texture;
             SpriteEffects = spriteEffects;

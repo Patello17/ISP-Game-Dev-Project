@@ -68,7 +68,7 @@ namespace ISP_Project.Gameplay
         
         public override void LoadContent(ContentManager content)
         {
-            Sprite = new Sprite(null, SpriteEffects.None, 0);
+            Sprite = new Sprite(null, SpriteEffects.None, 0.8f);
             sideTexture = content.Load<Texture2D>("Snail/Snail");
             frontTexture = content.Load<Texture2D>("Snail/Snail Front");
             backTexture = content.Load<Texture2D>("Snail/Snail Back");

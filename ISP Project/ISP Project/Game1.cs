@@ -1,4 +1,5 @@
 ﻿using ISP_Project.Game_States;
+using ISP_Project.Game_States.Levels;
 using ISP_Project.Managers;
 using ISP_Project.Screen_Management;
 using Microsoft.Xna.Framework;
@@ -52,7 +53,7 @@ namespace ISP_Project
             Globals.ContentManager = this.Content;
             Globals.SpriteBatch = _spriteBatch;
 
-            StateManager.ChangeState(new TitleState(this.Content));
+            StateManager.ChangeState(new LevelOneState(this.Content));
         }
 
         protected override void Update(GameTime gameTime)

@@ -30,7 +30,9 @@ namespace ISP_Project.Gameplay
             STAR
         }
         private BoxType boxType = BoxType.RIGHT; // right by default
-        private bool isSunk = false;
+        private bool isSunken = false;
+        private bool sinkLock = false;
+        public bool CanMove { get; set; }
         public override Sprite Sprite { get; set; }
         public override Transform Transform { get; set; }
         public override Vector2 TileMapPosition { get; set; }
@@ -47,7 +49,7 @@ namespace ISP_Project.Gameplay
 
         public override void LoadContent(ContentManager content)
         {
-            Sprite = new Sprite(null, SpriteEffects.None, 0);
+            Sprite = new Sprite(null, SpriteEffects.None, 1);
             // load the correct texture
             switch (boxType)
             {
@@ -80,7 +82,7 @@ namespace ISP_Project.Gameplay
 
             SetTexture();
 
-            UpdatePosition(collisionMap);
+            // UpdatePosition(collisionMap);
 
         }
 
@@ -93,22 +95,79 @@ namespace ISP_Project.Gameplay
         
         public bool GetSunkState()
         {
-            return isSunk;
+            return isSunken;
         }
-        public void SetNextPosition(Vector2 movementVector)
+        public Vector2 GetMovementVector()
         {
-            this.movementVector = movementVector;
+            return movementVector;
+        }
+        public Vector2 GetCurrentPosition()
+        {
+            return TileMapPosition;
+        }
+        public Vector2 GetNextPosition()
+        {
+            return newTileMapPosition;
+        }
+        public void SetNextPosition(Vector2 movementVector, bool isBoxPushing)
+        {
+            switch (boxType)
+            {
+                case BoxType.HORIZONTAL:
+                    if (movementVector == new Vector2(1, 0) || movementVector == new Vector2(-1, 0))
+                        this.movementVector = movementVector;
+                    break;
+                case BoxType.VERTICAL:
+                    if (movementVector == new Vector2(0, -1) || movementVector == new Vector2(0, 1))
+                        this.movementVector = movementVector;
+                    break;
+                case BoxType.UP:
+                    if (movementVector == new Vector2(0, -1))
+                        this.movementVector = movementVector;
+                    break;
+                case BoxType.DOWN:
+                    if (movementVector == new Vector2(0, 1))
+                        this.movementVector = movementVector;
+                    break;
+                case BoxType.LEFT:
+                    if (movementVector == new Vector2(-1, 0))
+                        this.movementVector = movementVector;
+                    break;
+                case BoxType.RIGHT:
+                    if (movementVector == new Vector2(1, 0))
+                        this.movementVector = movementVector;
+                    break;
+                case BoxType.STAR:
+                    this.movementVector = movementVector;
+                    break;
+            }
+            if (isBoxPushing)
+            {
+                this.movementVector = movementVector;
+                Debug.WriteLine("BOX IS PUSHING BOX");
+            }
+                
+
             newTileMapPosition = TileMapPosition + this.movementVector;
             // Debug.WriteLine(this.movementVector + " || " + newTileMapPosition);
         }
         public void SetTexture()
         {
-            if (isSunk)
+            if (isSunken)
             {
                 Sprite.Color = new Color(127, 174, 198);
+                Sprite.DrawLayer = 0.2f;
+                if (!sinkLock)
+                {
+                    Transform.Position += new Vector2(0, 7);
+                    sinkLock = true;
+                }
             }
-                
-            else { Sprite.Color = Color.White; }
+            else 
+            { 
+                Sprite.Color = Color.White;
+                sinkLock = false;
+            }
             /*Sprite.Texture = textureDictionary[keyDown];
             Sprite.SpriteEffects = spriteEffectsDictionary[keyDown];*/
         }
@@ -117,25 +176,28 @@ namespace ISP_Project.Gameplay
             // check for collisions (1 = solid in the tilesheet; 2 = water; 5 = mailbox goal)
             if (collisionMap.GetCollision(newTileMapPosition) == 2)
             {
-                isSunk = true;
+                // update position and sink
+                isSunken = true;
+                CanMove = false;
                 Transform.Position += movementVector * 16; // tiles are 16x16
                 collisionMap.SetCollision(TileMapPosition, 0);
                 TileMapPosition = newTileMapPosition;
-                collisionMap.SetCollision(TileMapPosition, 0); // box acts as path when sunk!
+                collisionMap.SetCollision(TileMapPosition, 0); // box acts as a path when sunk!
             }
-            else if (collisionMap.GetCollision(newTileMapPosition) != 1 && !isSunk)
+            else if (collisionMap.GetCollision(newTileMapPosition) != 1 &&
+                collisionMap.GetCollision(newTileMapPosition) != 3 &&
+                !isSunken)
             {
                 // update position
+                CanMove = true;
                 Transform.Position += movementVector * 16; // tiles are 16x16
                 
                 collisionMap.SetCollision(TileMapPosition, 0);
                 TileMapPosition = newTileMapPosition;
                 collisionMap.SetCollision(TileMapPosition, 3);
-
                 // Debug.WriteLine(collisionMap.GetCollision(TileMapPosition));
                 // Debug.WriteLine(TileMapPosition);
             }
-            
 
             movementVector = Vector2.Zero;
             newTileMapPosition = TileMapPosition;
