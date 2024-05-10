@@ -31,7 +31,8 @@ namespace ISP_Project.Managers
         {
             UP, DOWN, LEFT, RIGHT,
             INTERACT, PAUSE,
-            MAXIMIZESCREEN
+            MAXIMIZESCREEN,
+            RESTART
         }
         // declare click actions
         public enum ClickInputs
@@ -48,7 +49,8 @@ namespace ISP_Project.Managers
             { Inputs.RIGHT, Keys.D },
             { Inputs.INTERACT, Keys.Z},
             { Inputs.PAUSE, Keys.Escape},
-            { Inputs.MAXIMIZESCREEN, Keys.F11}
+            { Inputs.MAXIMIZESCREEN, Keys.F11},
+            { Inputs.RESTART, Keys.R}
 
         };
 

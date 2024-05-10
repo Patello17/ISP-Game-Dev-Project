@@ -90,5 +90,18 @@ namespace ISP_Project.Tilemaps
             }
         }
 
+        public void DrawMap()
+        {
+            Debug.WriteLine("------------------------------");
+            for (int i = 0; i < map.GetLength(1); i++)
+            {
+                for (int j = 0; j < map.GetLength(0); j++)
+                {
+                    Debug.Write(map[j, i] + " ");
+                }
+                Debug.WriteLine("");
+            }
+        }
+
     }
 }

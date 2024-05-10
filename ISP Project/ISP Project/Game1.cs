@@ -53,14 +53,12 @@ namespace ISP_Project
             Globals.ContentManager = this.Content;
             Globals.SpriteBatch = _spriteBatch;
 
-            StateManager.ChangeState(new LevelOneState(this.Content));
+            StateManager.ChangeState(new TitleState(this.Content));
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || 
-                Keyboard.GetState().IsKeyDown(Keys.Escape) ||
-                quit)
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || quit)
                 Exit();
 
             // TODO: Add your update logic here

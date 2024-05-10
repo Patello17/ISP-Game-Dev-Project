@@ -70,6 +70,8 @@ namespace ISP_Project.Game_States.Levels
         }
         public override void Update(GameTime gameTime)
         {
+            if (InputManager.isKey(InputManager.Inputs.RESTART, InputManager.isTriggered))
+                StateManager.ChangeState(new LevelOneState(Globals.ContentManager));
             List<Box> boxUpdateOrder = new List<Box>();
             foreach (Button button in buttons)
             {
@@ -128,10 +130,12 @@ namespace ISP_Project.Game_States.Levels
                 {
                     box.SetNextPosition(player.GetMovementVector(), false);
                     var currentBoxNextPosition = box.GetNextPosition();
+                    boxUpdateOrder.Add(box);
                     // var nextBoxNextPosition = currentBoxNextPosition + player.GetMovementVector();
                     // var nextBoxNextPosition = currentBoxNextPosition;
                     // handle "chained" boxes
-                    while (tileMap.CollisionMap.GetCollision(currentBoxNextPosition) == 3 && box.GetMovementVector() != Vector2.Zero)
+                    while (tileMap.CollisionMap.GetCollision(currentBoxNextPosition) == 3 && 
+                        box.GetMovementVector() != Vector2.Zero && box.GetBoxType() != BoxType.STAR)
                     {
                         if (GetBox(currentBoxNextPosition) != box)
                         {
@@ -144,10 +148,10 @@ namespace ISP_Project.Game_States.Levels
                         currentBoxNextPosition += player.GetMovementVector();
                         // nextBoxNextPosition += player.GetMovementVector();
                     }
-                    boxUpdateOrder.Add(box);
+                    // boxUpdateOrder.Add(box);
 
                 }
-                
+
             }
 
             /*foreach (Box box in boxes)
@@ -158,21 +162,21 @@ namespace ISP_Project.Game_States.Levels
             
             if (boxUpdateOrder.Count > 0)
             {
-                Debug.WriteLine(boxUpdateOrder.Count);
+                // Debug.WriteLine(boxUpdateOrder.Count);
                 foreach (Box box in boxUpdateOrder)
                 {
                     // Debug.WriteLine(box.GetMovementVector());
                 }
-                /*for (int i = boxOrder.Count; i > 0; i--)
+                for (int i = boxUpdateOrder.Count; i > 0; i--)
                 {
-                    var box = boxOrder[i - 1];
+                    var box = boxUpdateOrder[i - 1];
                     box.UpdatePosition(tileMap.CollisionMap);
-                }*/
-                for (int i = 0; i < boxUpdateOrder.Count; i++)
+                }
+                /*for (int i = 0; i < boxUpdateOrder.Count; i++)
                 {
                     var box = boxUpdateOrder[i];
                     box.UpdatePosition(tileMap.CollisionMap);
-                }
+                }*/
             }
             
             player.UpdatePosition(tileMap.CollisionMap);
@@ -208,7 +212,7 @@ namespace ISP_Project.Game_States.Levels
         {
             foreach (Box box in boxes)
             {
-                if (box.GetCurrentPosition() == tileMapPosition)
+                if (box.GetCurrentPosition() == tileMapPosition && !box.GetSunkState())
                 {
                     return box;
                 }

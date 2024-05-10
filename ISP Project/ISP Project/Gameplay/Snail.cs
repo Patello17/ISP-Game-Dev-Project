@@ -202,6 +202,11 @@ namespace ISP_Project.Gameplay
                 Transform.Position += movementVector * 16; // tiles are 16x16
                 TileMapPosition = newTileMapPosition;
             }
+            if (InputManager.isKey(InputManager.Inputs.PAUSE, isTriggered))
+            {
+                collisionMap.DrawMap();
+            }
+
             // 3 = box
             /*else if (collisionMap.GetCollision(newTileMapPosition) == 3)
             {
