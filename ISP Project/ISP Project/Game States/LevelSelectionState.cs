@@ -15,6 +15,7 @@ namespace ISP_Project.Game_States
     public class LevelSelectionState : State
     {
         private List<Button> buttons;
+        private List<Button> mapButtons;
         private int selectedButtonCounter = 0;
         private Texture2D mapTexture;
         // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
@@ -47,11 +48,16 @@ namespace ISP_Project.Game_States
                 Position = new Vector2(WindowManager.GetMainWindowCenter().X - 132, WindowManager.GetMainWindowCenter().Y + 32),
                 Text = ""
             };
-            LevelOneSelectButton.isClickable = true;
 
+            LevelOneSelectButton.isClickable = true;
+            
             buttons = new List<Button>()
             {
                 pauseButton, hubReturnButton, levelOneButton
+            };
+            mapButtons = new List<Button>()
+            {
+                hubReturnButton, levelOneButton
             };
 
         }
@@ -70,30 +76,36 @@ namespace ISP_Project.Game_States
             // pause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
-                StateManager.ChangeState(new MenuState(Globals.ContentManager));
+                StateManager.ChangeState(new PauseState(Globals.ContentManager));
             }
 
             var pauseButton = buttons[0];
 
             // keyboard only select
             if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
-                selectedButtonCounter = selectedButtonCounter + 1;
+                selectedButtonCounter++;
             if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
-                selectedButtonCounter = selectedButtonCounter - 1;
+                selectedButtonCounter--;
+            if (selectedButtonCounter >= 0)
+                selectedButtonCounter = -mapButtons.Count;
 
-            var selectedButton = Math.Abs(selectedButtonCounter % buttons.Count);
+            var selectedButton = Math.Abs(selectedButtonCounter % mapButtons.Count);
 
-            foreach (Button button in buttons)
+            bool isHovering = false;
+            foreach (Button button in mapButtons)
             {
                 button.Update(gameTime);
                 button.ForceShade = false;
+                if (isHovering == false)
+                    isHovering = button.GetCursorHover();
             }
 
-            buttons[selectedButton].ForceShade = true;
+            if (!isHovering)
+                mapButtons[selectedButton].ForceShade = true;
 
             if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
             {
-                buttons[selectedButton].TriggerEvent();
+                mapButtons[selectedButton].TriggerEvent();
             }
         }
 
@@ -106,6 +118,7 @@ namespace ISP_Project.Game_States
         {
             Globals.SpriteBatch.Draw(mapTexture, WindowManager.GetMainWindowCenter(), null, Color.White, 0f,
                 new Vector2(mapTexture.Width / 2, mapTexture.Height / 2), 1f, SpriteEffects.None, 0f);
+            
             foreach (Button button in buttons)
             {
                 button.Draw(gameTime);

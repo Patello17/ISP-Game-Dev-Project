@@ -27,8 +27,12 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Tilesets/Grassy Level Tileset.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Tilesets/Hub Tileset.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Button.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Horizontal Slider Bar.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Horizontal Slider.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

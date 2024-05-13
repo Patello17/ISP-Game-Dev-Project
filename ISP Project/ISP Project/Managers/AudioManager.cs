@@ -57,10 +57,14 @@ namespace ISP_Project.Managers
                 }
             }
 
-            if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
+            /*if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
                 AudioManager.ForcePlaySong(AudioManager.songs[0]);
+            if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
+                AudioManager.PauseSong();
+            if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
+                AudioManager.ResumeSong();*/
 
-            Debug.WriteLine(songStack.Count);
+            // Debug.WriteLine(songStack.Count);
         }
         public static Song GetCurrentSong()
         {
@@ -80,6 +84,21 @@ namespace ISP_Project.Managers
             else if (songStack[0] != song)
                 songStack.Insert(0, song); // adds song to the front of the stack
             MediaPlayer.Play(songStack[0]);
+        }
+        public static void PauseSong()
+        {
+            if (songStack.Count > 0)
+                MediaPlayer.Pause();
+        }
+        public static void ResumeSong()
+        {
+            if (songStack.Count > 0)
+                MediaPlayer.Resume();
+        }
+        public static void SkipSong()
+        {
+            if (songStack.Count > 0)
+                songStack.RemoveAt(0);
         }
         public static void ClearSongStack()
         {

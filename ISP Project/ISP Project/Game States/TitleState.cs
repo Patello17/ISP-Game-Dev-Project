@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using static ISP_Project.UI.Buttons.TitleButtons;
 using ISP_Project.Components;
 using ISP_Project.Managers;
+using System.Diagnostics;
 
 namespace ISP_Project.Game_States
 {
@@ -62,19 +63,25 @@ namespace ISP_Project.Game_States
         {
             // keyboard only select
             if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
-                selectedButtonCounter = selectedButtonCounter + 1;
+                selectedButtonCounter++;
             if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
-                selectedButtonCounter = selectedButtonCounter - 1;
+                selectedButtonCounter--;
+            if (selectedButtonCounter >= 0)
+                selectedButtonCounter = -buttons.Count;
 
             var selectedButton = Math.Abs(selectedButtonCounter % buttons.Count);
 
+            bool isHovering = false;
             foreach (Button button in buttons)
             {
                 button.Update(gameTime);
                 button.ForceShade = false;
+                if (isHovering == false)
+                    isHovering = button.GetCursorHover();
             }
 
-            buttons[selectedButton].ForceShade = true;
+            if (!isHovering)
+                buttons[selectedButton].ForceShade = true;
 
             if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
             {

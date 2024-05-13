@@ -107,5 +107,10 @@ namespace ISP_Project.UI.Buttons
                 Globals.SpriteBatch.DrawString(font, Text, new Vector2(x, y), TextColor, 0f, Vector2.Zero, FontScale, SpriteEffects.None, 1f);
             }
         }
+
+        public bool GetCursorHover()
+        {
+            return isHovering;
+        }
     }
 }

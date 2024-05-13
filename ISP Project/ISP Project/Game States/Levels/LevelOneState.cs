@@ -73,7 +73,7 @@ namespace ISP_Project.Game_States.Levels
             // pause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
-                StateManager.ChangeState(new MenuState(Globals.ContentManager));
+                StateManager.ChangeState(new PauseState(Globals.ContentManager));
             }
 
             // reset level

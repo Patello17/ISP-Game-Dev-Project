@@ -29,7 +29,7 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             // change Game State here!
-            Debug.WriteLine("Entering Audio Settings...");
+            StateManager.ChangeState(new AudioSettingsState(Globals.ContentManager));
         }
     }
     // create Controls Button
@@ -71,14 +71,35 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
-            if (StateManager.GetPreviousState() is MenuState)
+            if (StateManager.GetPreviousState() is PauseState)
             {
-                StateManager.ChangeState(new MenuState(Globals.ContentManager));
+                StateManager.ChangeState(new PauseState(Globals.ContentManager));
             }
             else if (StateManager.GetPreviousState() is TitleState)
             {
                 StateManager.ChangeState(new TitleState(Globals.ContentManager));
             }
+        }
+    }
+    public class SongSliderButton : Button
+    {
+        private Texture2D buttonTexture;
+        private SpriteFont buttonFont;
+        private float buttonScale;
+        private float fontScale;
+
+        public SongSliderButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
+        {
+            buttonTexture = texture;
+            buttonFont = font;
+            this.buttonScale = buttonScale;
+            this.fontScale = buttonScale;
+        }
+
+        public override void TriggerEvent()
+        {
+            // change Game State here!
+            AudioManager.SetSongVolume(Position.X);
         }
     }
 }

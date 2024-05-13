@@ -60,7 +60,7 @@ namespace ISP_Project.Game_States
             // pause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
-                StateManager.ChangeState(new MenuState(Globals.ContentManager));
+                StateManager.ChangeState(new PauseState(Globals.ContentManager));
             }
 
             var mapButton = buttons[1];
