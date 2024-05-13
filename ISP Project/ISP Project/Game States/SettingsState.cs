@@ -16,6 +16,7 @@ namespace ISP_Project.Game_States
     public class SettingsState : State
     {
         private List<Button> buttons;
+        private int selectedButtonCounter = 0;
         // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
@@ -59,9 +60,25 @@ namespace ISP_Project.Game_States
         }
         public override void Update(GameTime gameTime)
         {
+            // keyboard only select
+            if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
+                selectedButtonCounter = selectedButtonCounter + 1;
+            if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
+                selectedButtonCounter = selectedButtonCounter - 1;
+
+            var selectedButton = Math.Abs(selectedButtonCounter % buttons.Count);
+
             foreach (Button button in buttons)
             {
                 button.Update(gameTime);
+                button.ForceShade = false;
+            }
+
+            buttons[selectedButton].ForceShade = true;
+
+            if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
+            {
+                buttons[selectedButton].TriggerEvent();
             }
         }
 

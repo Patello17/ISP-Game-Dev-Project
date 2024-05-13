@@ -70,6 +70,12 @@ namespace ISP_Project.Game_States.Levels
         }
         public override void Update(GameTime gameTime)
         {
+            // pause
+            if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
+            {
+                StateManager.ChangeState(new MenuState(Globals.ContentManager));
+            }
+
             // reset level
             if (InputManager.isKey(InputManager.Inputs.RESTART, InputManager.isTriggered))
             {
@@ -121,6 +127,7 @@ namespace ISP_Project.Game_States.Levels
             // check for win
             if (tileMap.CollisionMap.GetCollision(starBox.GetNextPosition()) == 5)
             {
+                // go to win screen
                 Debug.WriteLine("YAY! LEVEL COMPLETED.");
                 StateManager.ChangeState(new LevelSelectionState(Globals.ContentManager));
             }
@@ -128,11 +135,6 @@ namespace ISP_Project.Game_States.Levels
             // update actor positions
             if (boxUpdateOrder.Count > 0)
             {
-                // Debug.WriteLine(boxUpdateOrder.Count);
-                foreach (Box box in boxUpdateOrder)
-                {
-                    // Debug.WriteLine(box.GetMovementVector());
-                }
                 for (int i = boxUpdateOrder.Count; i > 0; i--)
                 {
                     var box = boxUpdateOrder[i - 1];

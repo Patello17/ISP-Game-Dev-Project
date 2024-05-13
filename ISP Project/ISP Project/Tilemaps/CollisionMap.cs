@@ -90,6 +90,7 @@ namespace ISP_Project.Tilemaps
             }
         }
 
+        // for debugging purposes
         public void DrawMap()
         {
             Debug.WriteLine("------------------------------");

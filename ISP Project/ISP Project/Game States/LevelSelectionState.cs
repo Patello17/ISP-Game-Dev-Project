@@ -15,6 +15,7 @@ namespace ISP_Project.Game_States
     public class LevelSelectionState : State
     {
         private List<Button> buttons;
+        private int selectedButtonCounter = 0;
         private Texture2D mapTexture;
         // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
         private Texture2D buttonTexture;
@@ -66,9 +67,33 @@ namespace ISP_Project.Game_States
         }
         public override void Update(GameTime gameTime)
         {
+            // pause
+            if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
+            {
+                StateManager.ChangeState(new MenuState(Globals.ContentManager));
+            }
+
+            var pauseButton = buttons[0];
+
+            // keyboard only select
+            if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
+                selectedButtonCounter = selectedButtonCounter + 1;
+            if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
+                selectedButtonCounter = selectedButtonCounter - 1;
+
+            var selectedButton = Math.Abs(selectedButtonCounter % buttons.Count);
+
             foreach (Button button in buttons)
             {
                 button.Update(gameTime);
+                button.ForceShade = false;
+            }
+
+            buttons[selectedButton].ForceShade = true;
+
+            if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
+            {
+                buttons[selectedButton].TriggerEvent();
             }
         }
 

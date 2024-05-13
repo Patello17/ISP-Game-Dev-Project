@@ -43,10 +43,10 @@ namespace ISP_Project.Managers
         // assign button inputs to specific keys
         private static Dictionary<Inputs, Keys> playerKeys = new Dictionary<Inputs, Keys>()
         {
-            { Inputs.UP, Keys.W},
-            { Inputs.LEFT, Keys.A },
-            { Inputs.DOWN, Keys.S },
-            { Inputs.RIGHT, Keys.D },
+            { Inputs.UP, Keys.Up},
+            { Inputs.LEFT, Keys.Left },
+            { Inputs.DOWN, Keys.Down },
+            { Inputs.RIGHT, Keys.Right },
             { Inputs.INTERACT, Keys.Z},
             { Inputs.PAUSE, Keys.Escape},
             { Inputs.MAXIMIZESCREEN, Keys.F11},

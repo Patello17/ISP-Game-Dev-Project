@@ -144,7 +144,7 @@ namespace ISP_Project.Gameplay
             if (isBoxPushing)
             {
                 this.movementVector = movementVector;
-                Debug.WriteLine("BOX IS PUSHING BOX");
+                // Debug.WriteLine("BOX IS PUSHING BOX");
             }
                 
 

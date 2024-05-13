@@ -57,12 +57,44 @@ namespace ISP_Project.Game_States
         }
         public override void Update(GameTime gameTime)
         {
+            // pause
+            if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
+            {
+                StateManager.ChangeState(new MenuState(Globals.ContentManager));
+            }
+
+            var mapButton = buttons[1];
+
             foreach (Button button in buttons)
             {
                 button.Update(gameTime);
             }
+
             // let player know of the collision map
             player.Update(gameTime, tileMap.CollisionMap);
+
+            // these vectors represent the position of the doorway
+            if (player.GetNextPosition() == new Vector2(0, 5) || player.GetNextPosition() == new Vector2(0, 6) || player.GetNextPosition() == new Vector2(0, 7))
+            {
+                StateManager.ChangeState(new TitleState(Globals.ContentManager));
+            }
+            // these vectors represent the positions right below the map board
+            if (player.TileMapPosition == new Vector2(6, 4) || player.TileMapPosition == new Vector2(7, 4) ||
+                player.TileMapPosition == new Vector2(8, 4) || player.TileMapPosition == new Vector2(9, 4))
+            {
+
+                MapButton.isClickable = true;
+                mapButton.ForceShade = true;
+            }
+            else
+            {
+                MapButton.isClickable = false;
+                mapButton.ForceShade = false;
+            }
+            // detect mapButton interaction
+            if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
+                mapButton.TriggerEvent();
+
             player.UpdatePosition(tileMap.CollisionMap);
         }
 

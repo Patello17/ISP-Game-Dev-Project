@@ -95,7 +95,7 @@ namespace ISP_Project.Gameplay
 
             // Debug.WriteLine("Collision Map is colliding with " + newTileMapPosition + "? " + collisionMap.isColliding(newTileMapPosition));
 
-            if (StateManager.GetCurrentState() is HubState)
+            /*if (StateManager.GetCurrentState() is HubState)
             {
                 // these vectors represent the position of the doorway
                 if (newTileMapPosition == new Vector2(0, 5) || newTileMapPosition == new Vector2(0, 6) || newTileMapPosition == new Vector2(0, 7))
@@ -109,7 +109,7 @@ namespace ISP_Project.Gameplay
                     MapButton.isClickable = true;
                 }
                 else { MapButton.isClickable = false; }
-            }
+            }*/
 
             // UpdatePosition(collisionMap);
 
@@ -202,10 +202,10 @@ namespace ISP_Project.Gameplay
                 Transform.Position += movementVector * 16; // tiles are 16x16
                 TileMapPosition = newTileMapPosition;
             }
-            if (InputManager.isKey(InputManager.Inputs.PAUSE, isTriggered))
+            /*if (InputManager.isKey(InputManager.Inputs.PAUSE, isTriggered))
             {
                 collisionMap.DrawMap();
-            }
+            }*/
 
             // 3 = box
             /*else if (collisionMap.GetCollision(newTileMapPosition) == 3)
