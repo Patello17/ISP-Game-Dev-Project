@@ -93,7 +93,11 @@ namespace ISP_Project.Game_States
             }
             // detect mapButton interaction
             if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
+            {
                 mapButton.TriggerEvent();
+                AudioManager.PlaySoundEffect(AudioManager.soundEffects[0]);
+            }
+                
 
             player.UpdatePosition(tileMap.CollisionMap);
         }

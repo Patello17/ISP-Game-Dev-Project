@@ -53,6 +53,7 @@ namespace ISP_Project
             Globals.ContentManager = this.Content;
             Globals.SpriteBatch = _spriteBatch;
 
+            AudioManager.LoadAudio();
             StateManager.ChangeState(new TitleState(this.Content));
         }
 
@@ -66,7 +67,7 @@ namespace ISP_Project
             WindowManager.Update(gameTime);
             InputManager.Update(gameTime);
             StateManager.Update(gameTime);
-
+            AudioManager.Update(gameTime);
 
             /*if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered))
                 WindowManager.SetMainWindowSize(320, 180);

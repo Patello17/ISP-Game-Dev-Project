@@ -31,8 +31,8 @@ namespace ISP_Project.Game_States.Levels
         // naming convention: type of box + room # + letter from top down, left right
         private Box starBox = new Box(WindowManager.GetMainWindowCenter() + new Vector2(-264, 120), new Vector2(3, 18), BoxType.STAR);
         private Box leftBox2 = new Box(WindowManager.GetMainWindowCenter() + new Vector2(-40, 88), new Vector2(17, 16), BoxType.LEFT);
-        private Box leftBox3 = new Box(WindowManager.GetMainWindowCenter() + new Vector2(136, 104), new Vector2(28, 17), BoxType.LEFT);
-        private Box downBox3 = new Box(WindowManager.GetMainWindowCenter() + new Vector2(120, 104), new Vector2(27, 17), BoxType.DOWN);
+        private Box leftBox3 = new Box(WindowManager.GetMainWindowCenter() + new Vector2(168, 104), new Vector2(30, 17), BoxType.LEFT);
+        private Box downBox3 = new Box(WindowManager.GetMainWindowCenter() + new Vector2(152, 104), new Vector2(29, 17), BoxType.DOWN);
 
 
         public LevelOneState(ContentManager content)
@@ -80,7 +80,7 @@ namespace ISP_Project.Game_States.Levels
             if (InputManager.isKey(InputManager.Inputs.RESTART, InputManager.isTriggered))
             {
                 StateManager.ChangeState(new LevelOneState(Globals.ContentManager));
-                Debug.WriteLine("RESTARTING!");
+                // Debug.WriteLine("RESTARTING!");
             }
                 
             List<Box> boxUpdateOrder = new List<Box>();
