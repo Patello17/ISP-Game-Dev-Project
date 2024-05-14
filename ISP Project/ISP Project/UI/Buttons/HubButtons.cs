@@ -34,6 +34,7 @@ namespace ISP_Project.UI.Buttons
             if (isClickable)
             {
                 StateManager.ChangeState(new LevelSelectionState());
+                AudioManager.PlaySoundEffect("Enveloe");
             }
             else
             {

@@ -17,24 +17,21 @@ namespace ISP_Project.Managers
 {
     public class AudioManager
     {
-        public static List<Song> songs = new List<Song>();
+        public static Dictionary<string, Song> songs = new Dictionary<string, Song>();
         public static List<Song> songStack = new List<Song>(); // create an empty queue of songs
         private static MediaState previousMediaState;
         private static MediaState currentMediaState;
         // private static Song currentSong;
         /*private static Dictionary<Song, string> songPathDictionary;*/
-        public static List<SoundEffect> soundEffects = new List<SoundEffect>();
+        public static Dictionary<string, SoundEffect> soundEffects = new Dictionary<string, SoundEffect>();
         
         public static void LoadAudio()
         {
-            songs.Add(Globals.ContentManager.Load<Song>("Songs/Sample Song 2"));
-            songs.Add(Globals.ContentManager.Load<Song>("Songs/Sample Song"));
+            songs.Add("Sample Song", Globals.ContentManager.Load<Song>("Songs/Sample Song 2"));
+            songs.Add("Rick Roll", Globals.ContentManager.Load<Song>("Songs/Sample Song"));
 
-            soundEffects.Add(Globals.ContentManager.Load<SoundEffect>("Sound Effects/Envelope"));
-            /*foreach (Song song in songs)
-            {
-                Globals.ContentManager.Load<Song>("Songs/"+songPathDictionary[song]);
-            }*/
+            soundEffects.Add("Envelope", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Envelope"));
+            
             MediaPlayer.IsRepeating = false;
         }
         public static void Update(GameTime gameTime)
@@ -53,8 +50,10 @@ namespace ISP_Project.Managers
                 MediaPlayer.Play(songStack[0]);
             }
 
-            /*if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
-                AudioManager.ForcePlaySong(AudioManager.songs[0]);*/
+            if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
+                AudioManager.ForcePlaySong("Sample Song");
+            if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
+                AudioManager.ForcePlaySong("Rick Roll");
             /*if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
                 AudioManager.PauseSong();
             if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
@@ -66,20 +65,40 @@ namespace ISP_Project.Managers
         {
             return songStack[0];
         }
-        public static void PlaySong(Song song)
+        public static void PlaySong(string songName)
         {
-            if (songStack.Count == 0)
-                songStack.Insert(0, song);
-            else if (songStack[songStack.Count - 1] != song)
-                songStack.Insert(songStack.Count - 1, song); // adds song to the back of the stack
+            Song song;
+            try
+            {
+                song = songs[songName];
+                if (songStack.Count == 0)
+                    songStack.Insert(0, song);
+                else if (songStack[songStack.Count - 1] != song)
+                    songStack.Insert(songStack.Count - 1, song); // adds song to the back of the stack
+            }
+            catch
+            {
+                Debug.WriteLine("Song does not exist.");
+            }
+            
         }
-        public static void ForcePlaySong(Song song)
+        public static void ForcePlaySong(string songName)
         {
-            if (songStack.Count == 0)
-                songStack.Insert(0, song);
-            else if (songStack[0] != song)
-                songStack.Insert(0, song); // adds song to the front of the stack
-            // MediaPlayer.Play(songStack[0]);
+            Song song;
+            try
+            {
+                song = songs[songName];
+                MediaPlayer.Stop();
+                if (songStack.Count == 0)
+                    songStack.Insert(0, song);
+                else if (songStack[0] != song)
+                    songStack.Insert(0, song); // adds song to the front of the stack
+                MediaPlayer.Play(songStack[0]);
+            }
+            catch
+            {
+                Debug.WriteLine("Song does not exist.");
+            }
         }
         public static void PauseSong()
         {
@@ -100,10 +119,17 @@ namespace ISP_Project.Managers
         {
             songStack.Clear();
         }
-        public static void PlaySoundEffect(SoundEffect soundEffect)
+        public static void PlaySoundEffect(string soundEffectKey)
         {
-            var instance = soundEffect.CreateInstance();
-            instance.Play();
+            try
+            {
+                var instance = soundEffects[soundEffectKey].CreateInstance();
+                instance.Play();
+            }
+            catch
+            {
+                Debug.WriteLine("Sound Effect does not exist.");
+            }
         }
         public static void SetSongVolume(float volume)
         {

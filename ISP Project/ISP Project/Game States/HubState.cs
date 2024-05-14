@@ -95,7 +95,6 @@ namespace ISP_Project.Game_States
             if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
             {
                 mapButton.TriggerEvent();
-                AudioManager.PlaySoundEffect(AudioManager.soundEffects[0]);
             }
                 
 
