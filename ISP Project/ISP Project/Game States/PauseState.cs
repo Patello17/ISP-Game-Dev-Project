@@ -60,6 +60,11 @@ namespace ISP_Project.Game_States
         }
         public override void Update(GameTime gameTime)
         {
+            // unpause
+            if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
+            {
+                buttons[0].TriggerEvent();
+            }
             // keyboard only select
             if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
                 selectedButtonCounter++;

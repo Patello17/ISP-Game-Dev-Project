@@ -53,8 +53,8 @@ namespace ISP_Project.Managers
                 MediaPlayer.Play(songStack[0]);
             }
 
-            if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
-                AudioManager.ForcePlaySong(AudioManager.songs[0]);
+            /*if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
+                AudioManager.ForcePlaySong(AudioManager.songs[0]);*/
             /*if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
                 AudioManager.PauseSong();
             if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))

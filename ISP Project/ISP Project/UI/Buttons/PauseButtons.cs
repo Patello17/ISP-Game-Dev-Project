@@ -1,4 +1,5 @@
 ﻿using ISP_Project.Game_States;
+using ISP_Project.Game_States.Levels;
 using ISP_Project.Managers;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -29,7 +30,12 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             // change Game State here!
-            StateManager.ChangeState(StateManager.GetRecentState(new HubState()));
+            List<State> states = new List<State>()
+            {
+                new HubState(), new LevelSelectionState(),
+                new LevelOneState()
+            };
+            StateManager.ChangeState(StateManager.GetRecentState(StateManager.GetMostRecentState(states)));
         }
     }
     // create Settings Button
@@ -68,7 +74,6 @@ namespace ISP_Project.UI.Buttons
             this.buttonScale = buttonScale;
             this.fontScale = buttonScale;
         }
-
         public override void TriggerEvent()
         {
             StateManager.ChangeState(new TitleState());

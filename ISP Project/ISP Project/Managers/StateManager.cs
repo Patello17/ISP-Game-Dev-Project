@@ -115,6 +115,24 @@ namespace ISP_Project.Managers
             }
             return null;
         }
+        public static State GetMostRecentState(List<State> states)
+        {
+            Dictionary<int, State> stateDictionary = new Dictionary<int, State>();
+            List<int> indexList = new List<int>();
+
+            foreach (State _state in states)
+            {
+                if (IsStateInStateStack(stateStack, _state))
+                {
+                    var index = stateStack.FindIndex(s => s.GetType() == _state.GetType());
+                    stateDictionary.Add(index, _state);
+                    indexList.Add(index);
+                }
+            }
+            indexList.Sort();
+
+            return stateDictionary[indexList[0]]; 
+        }
         private static bool IsStateInStateStack(List<State> stateInstances, State state)
         {
             foreach (State _state in stateInstances)
