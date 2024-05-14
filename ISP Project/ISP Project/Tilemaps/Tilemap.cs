@@ -48,7 +48,7 @@ namespace ISP_Project.Tilemaps
         }
 
         // load textures
-        public abstract void LoadContent(ContentManager content);
+        public abstract void LoadContent();
 
         // draw textures
         public void Draw(GameTime gameTime,

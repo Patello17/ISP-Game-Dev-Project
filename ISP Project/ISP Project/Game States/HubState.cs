@@ -25,9 +25,9 @@ namespace ISP_Project.Game_States
         // + Vector2(x, y) is used to align Shelly with the grid since we're drawing from the middle of the sprite now; y can be adjusted for a more 3D effect
         private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(-152, 24), new Vector2(1, 6)); 
 
-        public HubState(ContentManager content)
+        public HubState()
         {
-            LoadState(content);
+            LoadState();
 
             var pauseButton = new PauseButton(buttonTexture, buttonFont, 1, 0.5f)
             {
@@ -46,21 +46,21 @@ namespace ISP_Project.Game_States
                 pauseButton, mapButton
             };
         }
-        public override void LoadState(ContentManager content)
+        public override void LoadState()
         {
             // load everything in this state
-            buttonTexture = content.Load<Texture2D>("UI Elements/Button");
-            mapButtonTexture = content.Load<Texture2D>("Interactables/Map Board");
-            buttonFont = content.Load<SpriteFont>("Fonts/Button Font");
-            tileMap.LoadContent(content);
-            player.LoadContent(content);
+            buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
+            mapButtonTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Map Board");
+            buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
+            tileMap.LoadContent();
+            player.LoadContent();
         }
         public override void Update(GameTime gameTime)
         {
             // pause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
-                StateManager.ChangeState(new PauseState(Globals.ContentManager));
+                StateManager.ChangeState(new PauseState());
             }
 
             var mapButton = buttons[1];
@@ -76,7 +76,7 @@ namespace ISP_Project.Game_States
             // these vectors represent the position of the doorway
             if (player.GetNextPosition() == new Vector2(0, 5) || player.GetNextPosition() == new Vector2(0, 6) || player.GetNextPosition() == new Vector2(0, 7))
             {
-                StateManager.ChangeState(new TitleState(Globals.ContentManager));
+                StateManager.ChangeState(new TitleState());
             }
             // these vectors represent the positions right below the map board
             if (player.TileMapPosition == new Vector2(6, 4) || player.TileMapPosition == new Vector2(7, 4) ||

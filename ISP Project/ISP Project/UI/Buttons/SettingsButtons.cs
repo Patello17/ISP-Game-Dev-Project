@@ -29,7 +29,7 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             // change Game State here!
-            StateManager.ChangeState(new AudioSettingsState(Globals.ContentManager));
+            StateManager.ChangeState(new AudioSettingsState());
         }
     }
     // create Controls Button
@@ -73,11 +73,11 @@ namespace ISP_Project.UI.Buttons
         {
             if (StateManager.GetPreviousState() is PauseState)
             {
-                StateManager.ChangeState(new PauseState(Globals.ContentManager));
+                StateManager.ChangeState(new PauseState());
             }
             else if (StateManager.GetPreviousState() is TitleState)
             {
-                StateManager.ChangeState(new TitleState(Globals.ContentManager));
+                StateManager.ChangeState(new TitleState());
             }
         }
     }

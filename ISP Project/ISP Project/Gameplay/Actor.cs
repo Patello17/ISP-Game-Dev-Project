@@ -19,7 +19,7 @@ namespace ISP_Project.Gameplay
         public abstract Transform Transform { get; set; }
         public abstract Vector2 TileMapPosition { get; set; }
 
-        public abstract void LoadContent(ContentManager content);
+        public abstract void LoadContent();
         // Actors need a reference to a CollisionMap because they need to interact with the scene
         public abstract void Update(GameTime gameTime, CollisionMap collisionMap);
         public abstract void Draw(GameTime gameTime);

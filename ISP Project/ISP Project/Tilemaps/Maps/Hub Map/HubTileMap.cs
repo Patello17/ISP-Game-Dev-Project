@@ -33,11 +33,11 @@ namespace ISP_Project.Tilemaps
             CollisionMap.SetMap(collisions);
         }
 
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
-            roomTileset = content.Load<Texture2D>("Tilesets/Hub Tileset");
-            decorationsTileset = content.Load<Texture2D>("Tilesets/Hub Tileset");
-            collisionsTileset = content.Load<Texture2D>("Tilesets/Collisions Tileset");
+            roomTileset = Globals.ContentManager.Load<Texture2D>("Tilesets/Hub Tileset");
+            decorationsTileset = Globals.ContentManager.Load<Texture2D>("Tilesets/Hub Tileset");
+            collisionsTileset = Globals.ContentManager.Load<Texture2D>("Tilesets/Collisions Tileset");
         }
 
         public void Draw(GameTime gameTime)

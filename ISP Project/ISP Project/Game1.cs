@@ -39,7 +39,6 @@ namespace ISP_Project
             WindowManager.InitializeWindow(_graphics);
             WindowManager.SetMainWindowSize(1280, 720);
             // _graphics.ToggleFullScreen
-
             _graphics.PreferMultiSampling = false;
 
             base.Initialize();
@@ -54,7 +53,6 @@ namespace ISP_Project
             Globals.SpriteBatch = _spriteBatch;
 
             AudioManager.LoadAudio();
-            StateManager.ChangeState(new TitleState(this.Content));
         }
 
         protected override void Update(GameTime gameTime)

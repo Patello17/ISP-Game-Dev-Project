@@ -28,10 +28,10 @@ namespace ISP_Project.Tilemaps.Maps.Level_1
             CollisionMap.SetMap(collisions);
         }
 
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
-            levelTileset = content.Load<Texture2D>("Tilesets/Grassy Level Tileset");
-            collisionsTileset = content.Load<Texture2D>("Tilesets/Collisions Tileset");
+            levelTileset = Globals.ContentManager.Load<Texture2D>("Tilesets/Grassy Level Tileset");
+            collisionsTileset = Globals.ContentManager.Load<Texture2D>("Tilesets/Collisions Tileset");
         }
 
         public void Draw(GameTime gameTime)

@@ -22,9 +22,9 @@ namespace ISP_Project.Game_States
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
 
-        public TitleState(ContentManager content)
+        public TitleState()
         {
-            LoadState(content);
+            LoadState();
 
             var loadGameButton = new LoadGameButton(buttonTexture, buttonFont, 1, 0.5f)
             {
@@ -53,11 +53,11 @@ namespace ISP_Project.Game_States
             };
 
         }
-        public override void LoadState(ContentManager content)
+        public override void LoadState()
         {
             // load everything in this state
-            buttonTexture = content.Load<Texture2D>("UI Elements/Button");
-            buttonFont = content.Load<SpriteFont>("Fonts/Button Font");
+            buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
+            buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
         }
         public override void Update(GameTime gameTime)
         {

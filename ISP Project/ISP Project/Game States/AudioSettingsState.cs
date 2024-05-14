@@ -25,9 +25,9 @@ namespace ISP_Project.Game_States
         private SpriteFont buttonFont;
         private HorizontalSlider songSlider;
 
-        public AudioSettingsState(ContentManager content)
+        public AudioSettingsState()
         {
-            LoadState(content);
+            LoadState();
 
             songSlider = new HorizontalSlider(sliderBarTexture, sliderTexture, buttonFont, 1f, 1f, 0.5f)
             {
@@ -49,13 +49,13 @@ namespace ISP_Project.Game_States
             };
 
         }
-        public override void LoadState(ContentManager content)
+        public override void LoadState()
         {
             // load everything in this state
-            buttonTexture = content.Load<Texture2D>("UI Elements/Button");
-            buttonFont = content.Load<SpriteFont>("Fonts/Button Font");
-            sliderBarTexture = content.Load<Texture2D>("UI Elements/Horizontal Slider Bar");
-            sliderTexture = content.Load<Texture2D>("UI Elements/Horizontal Slider");
+            buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
+            buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
+            sliderBarTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Horizontal Slider Bar");
+            sliderTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Horizontal Slider");
         }
         public override void Update(GameTime gameTime)
         {

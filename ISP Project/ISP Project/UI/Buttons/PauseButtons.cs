@@ -29,8 +29,7 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             // change Game State here!
-            State previousState = StateManager.GetPreviousState();
-            StateManager.ChangeState(previousState);
+            StateManager.ChangeState(StateManager.GetRecentState(new HubState()));
         }
     }
     // create Settings Button
@@ -51,7 +50,7 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
-            StateManager.ChangeState(new SettingsState(Globals.ContentManager));
+            StateManager.ChangeState(new SettingsState());
         }
     }
     // create QuitToTitle Button
@@ -72,7 +71,7 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
-            StateManager.ChangeState(new TitleState(Globals.ContentManager));
+            StateManager.ChangeState(new TitleState());
         }
     }
 }

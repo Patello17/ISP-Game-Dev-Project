@@ -42,24 +42,20 @@ namespace ISP_Project.Managers
             previousMediaState = currentMediaState;
             currentMediaState = MediaPlayer.State;
 
-            if (songStack.Count > 0)
+            // play next song once the current song is done playing
+            if (previousMediaState == MediaState.Playing && currentMediaState == MediaState.Stopped && songStack.Count > 0)
             {
-                //var currentSong = songStack[0];
-                // play current song when no other song is playing
-                if (MediaPlayer.State == MediaState.Stopped)
-                {
-                    MediaPlayer.Play(songStack[0]);
-                }
-                // play next song once the current song is done playing
-                if (previousMediaState == MediaState.Playing && currentMediaState == MediaState.Stopped)
-                {
-                    songStack.RemoveAt(0);
-                }
+                songStack.RemoveAt(0);
+            }
+            // play current song when no other song is playing
+            if (MediaPlayer.State == MediaState.Stopped && songStack.Count > 0)
+            {
+                MediaPlayer.Play(songStack[0]);
             }
 
-            /*if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
+            if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
                 AudioManager.ForcePlaySong(AudioManager.songs[0]);
-            if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
+            /*if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
                 AudioManager.PauseSong();
             if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
                 AudioManager.ResumeSong();*/
@@ -83,7 +79,7 @@ namespace ISP_Project.Managers
                 songStack.Insert(0, song);
             else if (songStack[0] != song)
                 songStack.Insert(0, song); // adds song to the front of the stack
-            MediaPlayer.Play(songStack[0]);
+            // MediaPlayer.Play(songStack[0]);
         }
         public static void PauseSong()
         {

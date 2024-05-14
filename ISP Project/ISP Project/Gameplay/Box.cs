@@ -47,32 +47,32 @@ namespace ISP_Project.Gameplay
             this.boxType = boxType;
         }
 
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
             Sprite = new Sprite(null, SpriteEffects.None, 1);
             // load the correct texture
             switch (boxType)
             {
                 case BoxType.HORIZONTAL:
-                    Sprite.Texture = content.Load<Texture2D>("Box/Horizontal Box");
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/Horizontal Box");
                     break;
                 case BoxType.VERTICAL:
-                    Sprite.Texture = content.Load<Texture2D>("Box/Vertical Box");
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/Vertical Box");
                     break;
                 case BoxType.UP:
-                    Sprite.Texture = content.Load<Texture2D>("Box/Up Box");
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/Up Box");
                     break;
                 case BoxType.DOWN:
-                    Sprite.Texture = content.Load<Texture2D>("Box/Down Box");
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/Down Box");
                     break;
                 case BoxType.LEFT:
-                    Sprite.Texture = content.Load<Texture2D>("Box/Left Box");
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/Left Box");
                     break;
                 case BoxType.RIGHT:
-                    Sprite.Texture = content.Load<Texture2D>("Box/Right Box");
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/Right Box");
                     break;
                 case BoxType.STAR:
-                    Sprite.Texture = content.Load<Texture2D>("Box/Star Box");
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/Star Box");
                     break;
             }
         }

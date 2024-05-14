@@ -66,12 +66,12 @@ namespace ISP_Project.Gameplay
             };
         }
         
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent()
         {
             Sprite = new Sprite(null, SpriteEffects.None, 0.8f);
-            sideTexture = content.Load<Texture2D>("Snail/Snail");
-            frontTexture = content.Load<Texture2D>("Snail/Snail Front");
-            backTexture = content.Load<Texture2D>("Snail/Snail Back");
+            sideTexture = Globals.ContentManager.Load<Texture2D>("Snail/Snail");
+            frontTexture = Globals.ContentManager.Load<Texture2D>("Snail/Snail Front");
+            backTexture = Globals.ContentManager.Load<Texture2D>("Snail/Snail Back");
             Sprite.Texture = sideTexture;
 
             textureDictionary = new Dictionary<Inputs, Texture2D>()

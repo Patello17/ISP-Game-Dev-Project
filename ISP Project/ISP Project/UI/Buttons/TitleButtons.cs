@@ -31,7 +31,7 @@ namespace ISP_Project.UI.Buttons
             public override void TriggerEvent()
             {
                 // change Game State here!
-                StateManager.ChangeState(new HubState(Globals.ContentManager));
+                StateManager.ChangeState(new HubState());
             }
         }
         public class QuitButton : Button

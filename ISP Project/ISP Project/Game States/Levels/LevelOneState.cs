@@ -35,14 +35,14 @@ namespace ISP_Project.Game_States.Levels
         private Box downBox3 = new Box(WindowManager.GetMainWindowCenter() + new Vector2(152, 104), new Vector2(29, 17), BoxType.DOWN);
 
 
-        public LevelOneState(ContentManager content)
+        public LevelOneState()
         {
             boxes = new List<Box>()
             {
                 starBox, leftBox2, leftBox3, downBox3
             };
 
-            LoadState(content);
+            LoadState();
 
             var pauseButton = new PauseButton(buttonTexture, buttonFont, 1, 0.5f)
             {
@@ -55,16 +55,16 @@ namespace ISP_Project.Game_States.Levels
                 pauseButton
             };
         }
-        public override void LoadState(ContentManager content)
+        public override void LoadState()
         {
             // load everything in this state
-            buttonTexture = content.Load<Texture2D>("UI Elements/Button");
-            buttonFont = content.Load<SpriteFont>("Fonts/Button Font");
-            tileMap.LoadContent(content);
-            player.LoadContent(content);
+            buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
+            buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
+            tileMap.LoadContent();
+            player.LoadContent();
             foreach (Box box in boxes)
             {
-                box.LoadContent(content);
+                box.LoadContent();
                 box.UpdatePosition(tileMap.CollisionMap);
             }
         }
@@ -73,13 +73,13 @@ namespace ISP_Project.Game_States.Levels
             // pause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
-                StateManager.ChangeState(new PauseState(Globals.ContentManager));
+                StateManager.ChangeState(new PauseState());
             }
 
             // reset level
             if (InputManager.isKey(InputManager.Inputs.RESTART, InputManager.isTriggered))
             {
-                StateManager.ChangeState(new LevelOneState(Globals.ContentManager));
+                StateManager.ChangeState(new LevelOneState());
                 // Debug.WriteLine("RESTARTING!");
             }
                 
@@ -129,7 +129,7 @@ namespace ISP_Project.Game_States.Levels
             {
                 // go to win screen
                 Debug.WriteLine("YAY! LEVEL COMPLETED.");
-                StateManager.ChangeState(new LevelSelectionState(Globals.ContentManager));
+                StateManager.ChangeState(new LevelSelectionState());
             }
 
             // update actor positions

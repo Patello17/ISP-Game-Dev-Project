@@ -33,7 +33,7 @@ namespace ISP_Project.UI.Buttons
             // change Game State here!
             if (isClickable)
             {
-                StateManager.ChangeState(new LevelSelectionState(Globals.ContentManager));
+                StateManager.ChangeState(new LevelSelectionState());
             }
             else
             {
@@ -62,7 +62,7 @@ namespace ISP_Project.UI.Buttons
             // change Game State here!
             if (isClickable)
             {
-                StateManager.ChangeState(new LevelOneState(Globals.ContentManager));
+                StateManager.ChangeState(new LevelOneState());
             }
             else
             {
@@ -87,7 +87,7 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
-            StateManager.ChangeState(new HubState(Globals.ContentManager));
+            StateManager.ChangeState(StateManager.GetRecentState(new HubState()));
         }
     }
 

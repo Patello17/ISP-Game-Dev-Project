@@ -25,9 +25,9 @@ namespace ISP_Project.Game_States
         private Texture2D yellowNoteTexture;
         private Texture2D pinTexture;
 
-        public LevelSelectionState(ContentManager content)
+        public LevelSelectionState()
         {
-            LoadState(content);
+            LoadState();
 
             var pauseButton = new PauseButton(buttonTexture, buttonFont, 1, 0.5f)
             {
@@ -61,22 +61,22 @@ namespace ISP_Project.Game_States
             };
 
         }
-        public override void LoadState(ContentManager content)
+        public override void LoadState()
         {
             // load everything in this state
-            mapTexture = content.Load<Texture2D>("Backgrounds/Map");
-            whiteNoteTexture = content.Load<Texture2D>("Interactables/White Note");
-            yellowNoteTexture = content.Load<Texture2D>("Interactables/Yellow Note");
-            pinTexture = content.Load<Texture2D>("Interactables/Pin");
-            buttonTexture = content.Load<Texture2D>("UI Elements/Button");
-            buttonFont = content.Load<SpriteFont>("Fonts/Button Font");
+            mapTexture = Globals.ContentManager.Load<Texture2D>("Backgrounds/Map");
+            whiteNoteTexture = Globals.ContentManager.Load<Texture2D>("Interactables/White Note");
+            yellowNoteTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Yellow Note");
+            pinTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Pin");
+            buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
+            buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
         }
         public override void Update(GameTime gameTime)
         {
             // pause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
-                StateManager.ChangeState(new PauseState(Globals.ContentManager));
+                StateManager.ChangeState(new PauseState());
             }
 
             var pauseButton = buttons[0];
@@ -106,6 +106,11 @@ namespace ISP_Project.Game_States
             if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
             {
                 mapButtons[selectedButton].TriggerEvent();
+            }
+
+            foreach(Button button in buttons)
+            {
+                button.Update(gameTime);
             }
         }
 

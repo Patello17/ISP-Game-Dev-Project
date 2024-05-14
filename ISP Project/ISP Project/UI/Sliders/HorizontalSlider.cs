@@ -66,6 +66,7 @@ namespace ISP_Project.UI.Sliders
             BarSprite.Texture = barTexture;
             Slider = new SongSliderButton(sliderTexture, buttonFont, buttonScale, fontScale);
             Slider.Position = BarPosition;
+            this.buttonScale = buttonScale;
             sliderValue = value;
         }
         public void Update(GameTime gameTime)
