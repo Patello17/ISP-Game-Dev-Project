@@ -76,6 +76,7 @@ namespace ISP_Project.Game_States
             // pause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
+                AudioManager.PlaySoundEffect("Button Press");
                 StateManager.ChangeState(new PauseState());
             }
 

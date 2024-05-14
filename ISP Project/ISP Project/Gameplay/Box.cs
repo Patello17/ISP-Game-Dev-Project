@@ -35,13 +35,25 @@ namespace ISP_Project.Gameplay
         public bool CanMove { get; set; }
         public override Sprite Sprite { get; set; }
         public override Transform Transform { get; set; }
-        public override Vector2 TileMapPosition { get; set; }
+        private Vector2 tileMapPosition;
+        public override Vector2 TileMapPosition
+        {
+            get { return tileMapPosition; }
+            set
+            {
+                tileMapPosition = value;
+                var centeredTileMapPosition = tileMapPosition - new Vector2(20, 11);
+                Transform.Position = new Vector2(
+                    (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
+                    (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
+            }
+        }
         Vector2 newTileMapPosition;
         Vector2 movementVector;
         
-        public Box(Vector2 position, Vector2 tileMapPosition, BoxType boxType)
+        public Box(Vector2 tileMapPosition, BoxType boxType)
         {
-            Transform = new Transform(position, 1f, 0f);
+            Transform = new Transform(Vector2.Zero, 1f, 0f);
             TileMapPosition = tileMapPosition;
             newTileMapPosition = TileMapPosition;
             this.boxType = boxType;

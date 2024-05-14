@@ -28,7 +28,19 @@ namespace ISP_Project.Gameplay
         private Texture2D sideTexture;
         public override Sprite Sprite { get; set; }
         public override Transform Transform { get; set; }
-        public override Vector2 TileMapPosition { get; set; }
+        private Vector2 tileMapPosition;
+        public override Vector2 TileMapPosition
+        {
+            get { return tileMapPosition; }
+            set
+            {
+                tileMapPosition = value;
+                var centeredTileMapPosition = tileMapPosition - new Vector2(20, 11);
+                Transform.Position = new Vector2(
+                    (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
+                    (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
+            }
+        }
         Vector2 newTileMapPosition;
         Vector2 movementVector;
         private Inputs previousKeyDown;
@@ -42,9 +54,9 @@ namespace ISP_Project.Gameplay
         private Dictionary<Inputs, Texture2D> textureDictionary = new Dictionary<Inputs, Texture2D>();
         private Dictionary<Inputs, SpriteEffects> spriteEffectsDictionary = new Dictionary<Inputs, SpriteEffects>();
 
-        public Snail(Vector2 position, Vector2 tileMapPosition)
+        public Snail(Vector2 tileMapPosition)
         {
-            Transform = new Transform(position, 1f, 0f);
+            Transform = new Transform(Vector2.Zero, 1f, 0f);
             TileMapPosition = tileMapPosition;
             newTileMapPosition = TileMapPosition;
             keyDown = Inputs.RIGHT;
@@ -94,25 +106,7 @@ namespace ISP_Project.Gameplay
             SetTexture();
 
             // Debug.WriteLine("Collision Map is colliding with " + newTileMapPosition + "? " + collisionMap.isColliding(newTileMapPosition));
-
-            /*if (StateManager.GetCurrentState() is HubState)
-            {
-                // these vectors represent the position of the doorway
-                if (newTileMapPosition == new Vector2(0, 5) || newTileMapPosition == new Vector2(0, 6) || newTileMapPosition == new Vector2(0, 7))
-                {
-                    StateManager.ChangeState(new TitleState(Globals.ContentManager));
-                }
-                // these vectors represent the positions right below the map board
-                if (TileMapPosition == new Vector2(6, 4) || TileMapPosition == new Vector2(7, 4) ||
-                    TileMapPosition == new Vector2(8, 4) || TileMapPosition == new Vector2(9, 4))
-                {
-                    MapButton.isClickable = true;
-                }
-                else { MapButton.isClickable = false; }
-            }*/
-
             // UpdatePosition(collisionMap);
-
         }
 
         public override void Draw(GameTime gameTime)
@@ -159,6 +153,7 @@ namespace ISP_Project.Gameplay
             if (isKey(keyDown, isTriggered))
             {
                 SetNextPosition();
+                // Slide(GetNextPosition());
             }
             if (isKey(keyDown, isPressed))
             {
@@ -202,16 +197,13 @@ namespace ISP_Project.Gameplay
                 Transform.Position += movementVector * 16; // tiles are 16x16
                 TileMapPosition = newTileMapPosition;
             }
-            /*if (InputManager.isKey(InputManager.Inputs.PAUSE, isTriggered))
-            {
-                collisionMap.DrawMap();
-            }*/
-
-            // 3 = box
-            /*else if (collisionMap.GetCollision(newTileMapPosition) == 3)
-            {
-
-            }*/
+        }
+        private void Slide(Vector2 targetPosition)
+        {
+            targetPosition = targetPosition * 16 - new Vector2(8, 8);
+            Vector2 oldPosition = Transform.Position;
+            Vector2 newPosition = Vector2.Lerp(Transform.Position, targetPosition, 0.5f);
+            Transform.Position = newPosition;
         }
     }
 }

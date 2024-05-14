@@ -27,18 +27,20 @@ namespace ISP_Project.Managers
         
         public static void LoadAudio()
         {
-            songs.Add("Sample Song", Globals.ContentManager.Load<Song>("Songs/Sample Song 2"));
-            songs.Add("Rick Roll", Globals.ContentManager.Load<Song>("Songs/Sample Song"));
+            songs.Add("Hub Theme", Globals.ContentManager.Load<Song>("Songs/Hub Theme"));
 
             soundEffects.Add("Envelope", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Envelope"));
-            
-            MediaPlayer.IsRepeating = false;
+            soundEffects.Add("Button Press", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Button Press"));
         }
         public static void Update(GameTime gameTime)
         {
             previousMediaState = currentMediaState;
             currentMediaState = MediaPlayer.State;
 
+            // loop last song
+            MediaPlayer.IsRepeating = false;
+            if (songStack.Count == 1)
+                MediaPlayer.IsRepeating = true;
             // play next song once the current song is done playing
             if (previousMediaState == MediaState.Playing && currentMediaState == MediaState.Stopped && songStack.Count > 0)
             {
@@ -49,15 +51,6 @@ namespace ISP_Project.Managers
             {
                 MediaPlayer.Play(songStack[0]);
             }
-
-            if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
-                AudioManager.ForcePlaySong("Sample Song");
-            if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
-                AudioManager.ForcePlaySong("Rick Roll");
-            /*if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
-                AudioManager.PauseSong();
-            if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
-                AudioManager.ResumeSong();*/
 
             // Debug.WriteLine(songStack.Count);
         }

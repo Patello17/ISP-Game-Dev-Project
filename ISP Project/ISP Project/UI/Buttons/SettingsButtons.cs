@@ -1,4 +1,5 @@
 ﻿using ISP_Project.Game_States;
+using ISP_Project.Game_States.Levels;
 using ISP_Project.Managers;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -29,6 +30,7 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             // change Game State here!
+            AudioManager.PlaySoundEffect("Button Press");
             StateManager.ChangeState(new AudioSettingsState());
         }
     }
@@ -50,6 +52,7 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
+            AudioManager.PlaySoundEffect("Button Press");
             Debug.WriteLine("Entering Controls Settings...");
         }
     }
@@ -71,14 +74,12 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
-            if (StateManager.GetPreviousState() is PauseState)
+            AudioManager.PlaySoundEffect("Button Press");
+            List<State> states = new List<State>()
             {
-                StateManager.ChangeState(new PauseState());
-            }
-            else if (StateManager.GetPreviousState() is TitleState)
-            {
-                StateManager.ChangeState(new TitleState());
-            }
+                new PauseState(), new TitleState()
+            };
+            StateManager.ChangeState(StateManager.GetRecentState(StateManager.GetMostRecentState(states)));
         }
     }
     public class SongSliderButton : Button

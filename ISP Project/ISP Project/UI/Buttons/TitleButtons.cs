@@ -31,6 +31,7 @@ namespace ISP_Project.UI.Buttons
             public override void TriggerEvent()
             {
                 // change Game State here!
+                AudioManager.PlaySoundEffect("Button Press");
                 StateManager.ChangeState(new HubState());
             }
         }
@@ -51,7 +52,7 @@ namespace ISP_Project.UI.Buttons
 
             public override void TriggerEvent()
             {
-                Debug.WriteLine("Quitting...");
+                AudioManager.PlaySoundEffect("Button Press");
                 StateManager.ChangeState(new QuitState());
             }
 

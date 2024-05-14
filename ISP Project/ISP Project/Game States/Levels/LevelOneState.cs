@@ -27,12 +27,12 @@ namespace ISP_Project.Game_States.Levels
         private SpriteFont buttonFont;
         private LevelOneTileMap tileMap = new LevelOneTileMap(WindowManager.GetMainWindowCenter());
         // + Vector2(x, y) is used to align Shelly with the grid since we're drawing from the middle of the sprite now; y can be adjusted for a more 3D effect
-        private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(-280, 120), new Vector2(2, 18));
+        private Snail player = new Snail(new Vector2(2, 18));
         // naming convention: type of box + room # + letter from top down, left right
-        private Box starBox = new Box(WindowManager.GetMainWindowCenter() + new Vector2(-264, 120), new Vector2(3, 18), BoxType.STAR);
-        private Box leftBox2 = new Box(WindowManager.GetMainWindowCenter() + new Vector2(-40, 88), new Vector2(17, 16), BoxType.LEFT);
-        private Box leftBox3 = new Box(WindowManager.GetMainWindowCenter() + new Vector2(168, 104), new Vector2(30, 17), BoxType.LEFT);
-        private Box downBox3 = new Box(WindowManager.GetMainWindowCenter() + new Vector2(152, 104), new Vector2(29, 17), BoxType.DOWN);
+        private Box starBox = new Box(new Vector2(3, 18), BoxType.STAR);
+        private Box leftBox2 = new Box(new Vector2(17, 16), BoxType.LEFT);
+        private Box leftBox3 = new Box(new Vector2(30, 17), BoxType.LEFT);
+        private Box downBox3 = new Box(new Vector2(29, 17), BoxType.DOWN);
 
 
         public LevelOneState()
@@ -73,6 +73,7 @@ namespace ISP_Project.Game_States.Levels
             // pause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
+                AudioManager.PlaySoundEffect("Button Press");
                 StateManager.ChangeState(new PauseState());
             }
 

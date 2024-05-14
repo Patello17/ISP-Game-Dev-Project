@@ -22,8 +22,9 @@ namespace ISP_Project.Game_States
         private SpriteFont buttonFont;
 
         private HubTileMap tileMap = new HubTileMap(WindowManager.GetMainWindowCenter());
+
         // + Vector2(x, y) is used to align Shelly with the grid since we're drawing from the middle of the sprite now; y can be adjusted for a more 3D effect
-        private Snail player = new Snail(WindowManager.GetMainWindowCenter() + new Vector2(-152, 24), new Vector2(1, 6)); 
+        private Snail player = new Snail(new Vector2(10, 12)); 
 
         public HubState()
         {
@@ -54,12 +55,14 @@ namespace ISP_Project.Game_States
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             tileMap.LoadContent();
             player.LoadContent();
+            AudioManager.PlaySong("Hub Theme");
         }
         public override void Update(GameTime gameTime)
         {
             // pause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
+                AudioManager.PlaySoundEffect("Button Press");
                 StateManager.ChangeState(new PauseState());
             }
 
@@ -74,13 +77,15 @@ namespace ISP_Project.Game_States
             player.Update(gameTime, tileMap.CollisionMap);
 
             // these vectors represent the position of the doorway
-            if (player.GetNextPosition() == new Vector2(0, 5) || player.GetNextPosition() == new Vector2(0, 6) || player.GetNextPosition() == new Vector2(0, 7))
+            if (player.GetNextPosition() == new Vector2(9, 11) || 
+                player.GetNextPosition() == new Vector2(9, 12) || 
+                player.GetNextPosition() == new Vector2(9, 13))
             {
                 StateManager.ChangeState(new TitleState());
             }
             // these vectors represent the positions right below the map board
-            if (player.TileMapPosition == new Vector2(6, 4) || player.TileMapPosition == new Vector2(7, 4) ||
-                player.TileMapPosition == new Vector2(8, 4) || player.TileMapPosition == new Vector2(9, 4))
+            if (player.TileMapPosition == new Vector2(15, 10) || player.TileMapPosition == new Vector2(16, 10) ||
+                player.TileMapPosition == new Vector2(17, 10) || player.TileMapPosition == new Vector2(18, 10))
             {
 
                 MapButton.isClickable = true;

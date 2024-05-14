@@ -29,6 +29,7 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
+            AudioManager.PlaySoundEffect("Button Press");
             // change Game State here!
             List<State> states = new List<State>()
             {
@@ -56,6 +57,7 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
+            AudioManager.PlaySoundEffect("Button Press");
             StateManager.ChangeState(new SettingsState());
         }
     }
@@ -76,6 +78,7 @@ namespace ISP_Project.UI.Buttons
         }
         public override void TriggerEvent()
         {
+            AudioManager.PlaySoundEffect("Button Press");
             StateManager.ChangeState(new TitleState());
         }
     }

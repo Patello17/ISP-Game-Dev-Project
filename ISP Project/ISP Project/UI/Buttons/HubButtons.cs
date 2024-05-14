@@ -33,8 +33,8 @@ namespace ISP_Project.UI.Buttons
             // change Game State here!
             if (isClickable)
             {
+                AudioManager.PlaySoundEffect("Envelope");
                 StateManager.ChangeState(new LevelSelectionState());
-                AudioManager.PlaySoundEffect("Enveloe");
             }
             else
             {
@@ -63,6 +63,7 @@ namespace ISP_Project.UI.Buttons
             // change Game State here!
             if (isClickable)
             {
+                AudioManager.PlaySoundEffect("Button Press");
                 StateManager.ChangeState(new LevelOneState());
             }
             else
@@ -88,6 +89,7 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
+            AudioManager.PlaySoundEffect("Button Press");
             StateManager.ChangeState(StateManager.GetRecentState(new HubState()));
         }
     }
