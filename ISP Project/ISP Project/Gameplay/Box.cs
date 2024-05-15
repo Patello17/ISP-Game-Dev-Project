@@ -42,19 +42,24 @@ namespace ISP_Project.Gameplay
             set
             {
                 tileMapPosition = value;
-                var centeredTileMapPosition = tileMapPosition - new Vector2(20, 11);
+                /*var centeredTileMapPosition = tileMapPosition - new Vector2(20, 11);
                 Transform.Position = new Vector2(
                     (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
-                    (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
+                    (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);*/
             }
         }
         Vector2 newTileMapPosition;
         Vector2 movementVector;
-        
+        private bool isSliding = false;
+
         public Box(Vector2 tileMapPosition, BoxType boxType)
         {
             Transform = new Transform(Vector2.Zero, 1f, 0f);
             TileMapPosition = tileMapPosition;
+            var centeredTileMapPosition = tileMapPosition - new Vector2(20, 11);
+            Transform.Position = new Vector2(
+                    (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
+                    (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
             newTileMapPosition = TileMapPosition;
             this.boxType = boxType;
         }
@@ -90,15 +95,15 @@ namespace ISP_Project.Gameplay
         }
         public override void Update(GameTime gameTime, CollisionMap collisionMap)
         {
-
-
             SetTexture();
 
-            // UpdatePosition(collisionMap);
+            // slide
+            Slide(GetNextPosition());
 
+            // UpdatePosition(collisionMap);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             Globals.SpriteBatch.Draw(Sprite.Texture, Transform.Position, null, Sprite.Color,
                 Transform.Rotation, Sprite.GetSpriteOrigin(), Transform.Scale,
@@ -171,12 +176,12 @@ namespace ISP_Project.Gameplay
                 Sprite.DrawLayer = 0.2f;
                 if (!sinkLock)
                 {
-                    Transform.Position += new Vector2(0, 7);
+                    // newTileMapPosition += new Vector2(0, 7 * 11 / 180);
                     sinkLock = true;
                 }
             }
             else 
-            { 
+            {
                 Sprite.Color = Color.White;
                 sinkLock = false;
             }
@@ -191,7 +196,7 @@ namespace ISP_Project.Gameplay
                 // update position and sink
                 isSunken = true;
                 CanMove = false;
-                Transform.Position += movementVector * 16; // tiles are 16x16
+                // Transform.Position += movementVector * 16; // tiles are 16x16
                 collisionMap.SetCollision(TileMapPosition, 0);
                 TileMapPosition = newTileMapPosition;
                 collisionMap.SetCollision(TileMapPosition, 0); // box acts as a path when sunk!
@@ -202,23 +207,43 @@ namespace ISP_Project.Gameplay
             {
                 // update position
                 CanMove = true;
-                Transform.Position += movementVector * 16; // tiles are 16x16
+                // Transform.Position += movementVector * 16; // tiles are 16x16
                 
                 collisionMap.SetCollision(TileMapPosition, 0);
                 TileMapPosition = newTileMapPosition;
                 collisionMap.SetCollision(TileMapPosition, 3);
                 // Debug.WriteLine(collisionMap.GetCollision(TileMapPosition));
-                // Debug.WriteLine(TileMapPosition);
+                
             }
 
             movementVector = Vector2.Zero;
             newTileMapPosition = TileMapPosition;
+
             // collisionMap.SetCollision(TileMapPosition, 3);
         }
 
         public BoxType GetBoxType()
         {
             return boxType;
+        }
+
+        private void Slide(Vector2 targetPosition)
+        {
+            var centeredTileMapPosition = targetPosition - new Vector2(20, 11);
+            targetPosition = new Vector2(
+                (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
+                (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
+            /*targetPosition = new Vector2(targetPosition.X * 16 + 8, targetPosition.Y * (180 / 11) + 8);*/
+            var clampBound = 1f; // snap to position when within 1 pixels
+
+            Vector2 newPosition = Vector2.Lerp(Transform.Position, targetPosition, 0.3f);
+            if (Math.Abs(newPosition.X - targetPosition.X) <= clampBound &&
+                    Math.Abs(newPosition.Y - targetPosition.Y) <= clampBound)
+            {
+                newPosition = targetPosition;
+                isSliding = false;
+            }
+            Transform.Position = newPosition;
         }
     }
 }

@@ -22,6 +22,6 @@ namespace ISP_Project.Gameplay
         public abstract void LoadContent();
         // Actors need a reference to a CollisionMap because they need to interact with the scene
         public abstract void Update(GameTime gameTime, CollisionMap collisionMap);
-        public abstract void Draw(GameTime gameTime);
+        public abstract void Draw();
     }
 }

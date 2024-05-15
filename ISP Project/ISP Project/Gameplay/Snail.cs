@@ -35,10 +35,6 @@ namespace ISP_Project.Gameplay
             set
             {
                 tileMapPosition = value;
-                var centeredTileMapPosition = tileMapPosition - new Vector2(20, 11);
-                Transform.Position = new Vector2(
-                    (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
-                    (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
             }
         }
         Vector2 newTileMapPosition;
@@ -48,7 +44,8 @@ namespace ISP_Project.Gameplay
         private float dasTimer; // DAS stands for "delayed auto shift"
         private float autoShiftDelay = 0.8f;
         private float transitionTimer;
-        private float transitionSpeed = 0.2f;
+        private float transitionSpeed = 0.4f;
+        private bool isSliding = false;
 
         private Dictionary<Inputs, Vector2> movementDictionary = new Dictionary<Inputs, Vector2>();
         private Dictionary<Inputs, Texture2D> textureDictionary = new Dictionary<Inputs, Texture2D>();
@@ -58,6 +55,10 @@ namespace ISP_Project.Gameplay
         {
             Transform = new Transform(Vector2.Zero, 1f, 0f);
             TileMapPosition = tileMapPosition;
+            var centeredTileMapPosition = tileMapPosition - new Vector2(20, 11);
+            Transform.Position = new Vector2(
+                (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
+                (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
             newTileMapPosition = TileMapPosition;
             keyDown = Inputs.RIGHT;
 
@@ -96,20 +97,20 @@ namespace ISP_Project.Gameplay
         }
         public override void Update(GameTime gameTime, CollisionMap collisionMap)
         {
-            movementVector = Vector2.Zero;
-            newTileMapPosition = TileMapPosition;
-
             previousKeyDown = keyDown;
 
             GetKeyDown();
             ApplyDAS();
             SetTexture();
 
+            // slide
+            Slide(GetNextPosition());
+
             // Debug.WriteLine("Collision Map is colliding with " + newTileMapPosition + "? " + collisionMap.isColliding(newTileMapPosition));
             // UpdatePosition(collisionMap);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             Globals.SpriteBatch.Draw(Sprite.Texture, Transform.Position, null, Color.White,
                 Transform.Rotation, Sprite.GetSpriteOrigin(), Transform.Scale,
@@ -143,36 +144,32 @@ namespace ISP_Project.Gameplay
         }
         public void ApplyDAS()
         {
-            // Debug.WriteLine(keyDown);
             if (isKey(keyDown, isReleased) || keyDown != previousKeyDown)
             {
                 dasTimer = 0f;
                 transitionTimer = 0f;
-                // Debug.WriteLine("KEY CHANGE");
             }
             if (isKey(keyDown, isTriggered))
             {
                 SetNextPosition();
-                // Slide(GetNextPosition());
+                isSliding = true;
             }
             if (isKey(keyDown, isPressed))
             {
                 dasTimer += Globals.Time;
-                // Debug.WriteLine(dasTimer);
             }
-            if (dasTimer >= autoShiftDelay)
+            if (dasTimer >= autoShiftDelay && isSliding == false)
             {
-                if (transitionTimer >= transitionSpeed)
+                if (transitionTimer >= transitionSpeed && isSliding == false)
                 {
                     SetNextPosition();
-                    transitionTimer = 0f;
+                    isSliding = true;
                 }
                 else
                 {
                     transitionTimer += Globals.Time;
                 }
             }
-
         }
         public void SetNextPosition()
         {
@@ -182,8 +179,11 @@ namespace ISP_Project.Gameplay
         }
         public void SetTexture()
         {
-            Sprite.Texture = textureDictionary[keyDown];
-            Sprite.SpriteEffects = spriteEffectsDictionary[keyDown];
+            if (isSliding)
+            {
+                Sprite.Texture = textureDictionary[keyDown];
+                Sprite.SpriteEffects = spriteEffectsDictionary[keyDown];
+            }
         }
         public void UpdatePosition(CollisionMap collisionMap)
         {
@@ -194,15 +194,30 @@ namespace ISP_Project.Gameplay
                 collisionMap.GetCollision(newTileMapPosition) != 3)
             {
                 // update position
-                Transform.Position += movementVector * 16; // tiles are 16x16
+                // Transform.Position += movementVector * 16; // tiles are 16x16
                 TileMapPosition = newTileMapPosition;
             }
+
+            movementVector = Vector2.Zero;
+            newTileMapPosition = TileMapPosition;
+
         }
         private void Slide(Vector2 targetPosition)
         {
-            targetPosition = targetPosition * 16 - new Vector2(8, 8);
-            Vector2 oldPosition = Transform.Position;
-            Vector2 newPosition = Vector2.Lerp(Transform.Position, targetPosition, 0.5f);
+            var centeredTileMapPosition = targetPosition - new Vector2(20, 11);
+            targetPosition = new Vector2(
+                (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
+                (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
+            /*targetPosition = new Vector2(targetPosition.X * 16 + 8, targetPosition.Y * (180 / 11) + 8);*/
+            var clampBound = 1f; // snap to position when within 1 pixels
+
+            Vector2 newPosition = Vector2.Lerp(Transform.Position, targetPosition, 0.3f);
+            if (Math.Abs(newPosition.X - targetPosition.X) <= clampBound &&
+                    Math.Abs(newPosition.Y - targetPosition.Y) <= clampBound)
+            {
+                newPosition = targetPosition;
+                isSliding = false;
+            }
             Transform.Position = newPosition;
         }
     }

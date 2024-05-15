@@ -174,9 +174,9 @@ namespace ISP_Project.Game_States.Levels
             tileMap.Draw(gameTime);
             foreach (Box box in boxes)
             {
-                box.Draw(gameTime);
+                box.Draw();
             }
-            player.Draw(gameTime);
+            player.Draw();
 
             foreach (Button button in buttons)
             {
