@@ -36,7 +36,7 @@ namespace ISP_Project.Tilemaps.Maps.Level_1
 
         public void Draw(GameTime gameTime)
         {
-            Draw(gameTime, 16, 10, 16,
+            Draw(gameTime, 16, 12, 16,
                 new Dictionary<Dictionary<Vector2, int>, Texture2D>
                 {
                     { level, levelTileset},

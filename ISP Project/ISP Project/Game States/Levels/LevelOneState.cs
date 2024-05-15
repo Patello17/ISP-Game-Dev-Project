@@ -27,19 +27,36 @@ namespace ISP_Project.Game_States.Levels
         private SpriteFont buttonFont;
         private LevelOneTileMap tileMap = new LevelOneTileMap(WindowManager.GetMainWindowCenter());
         // + Vector2(x, y) is used to align Shelly with the grid since we're drawing from the middle of the sprite now; y can be adjusted for a more 3D effect
-        private Snail player = new Snail(new Vector2(2, 18));
+        private Snail player = new Snail(new Vector2(4, 16));
         // naming convention: type of box + room # + letter from top down, left right
-        private Box starBox = new Box(new Vector2(3, 18), BoxType.STAR);
-        private Box leftBox2 = new Box(new Vector2(17, 16), BoxType.LEFT);
-        private Box leftBox3 = new Box(new Vector2(30, 17), BoxType.LEFT);
-        private Box downBox3 = new Box(new Vector2(29, 17), BoxType.DOWN);
+        private Box starBox = new Box(new Vector2(5, 16), BoxType.STAR);
+        private Box leftBox2 = new Box(new Vector2(20, 14), BoxType.LEFT);
+        private Box leftBox3 = new Box(new Vector2(33, 15), BoxType.LEFT);
+        private Box upBox3 = new Box(new Vector2(32, 15), BoxType.UP);
+        private Box leftBox4 = new Box(new Vector2(34, 6), BoxType.LEFT);
+        private Box downBox4 = new Box(new Vector2(33, 6), BoxType.DOWN);
+        private Box rightBox4 = new Box(new Vector2(33, 7), BoxType.RIGHT);
+        private Box leftBox5a = new Box(new Vector2(20, 7), BoxType.LEFT);
+        private Box leftBox5b = new Box(new Vector2(24, 7), BoxType.LEFT);
+        private Box leftBox5c = new Box(new Vector2(25, 7), BoxType.LEFT);
+        private Box leftBox5d = new Box(new Vector2(27, 7), BoxType.LEFT);
+        private Box upBox5a = new Box(new Vector2(21, 9), BoxType.UP);
+        private Box upBox5b = new Box(new Vector2(24, 9), BoxType.UP);
+        private Box upBox5c = new Box(new Vector2(26, 8), BoxType.UP);
+        private Box downBox5a = new Box(new Vector2(19, 4), BoxType.DOWN);
+        private Box downBox5b = new Box(new Vector2(25, 5), BoxType.DOWN);
+
 
 
         public LevelOneState()
         {
             boxes = new List<Box>()
             {
-                starBox, leftBox2, leftBox3, downBox3
+                starBox, 
+                leftBox2, 
+                leftBox3, upBox3,
+                leftBox4, downBox4, rightBox4,
+                leftBox5a, leftBox5b, leftBox5c, leftBox5d, upBox5a, upBox5b, upBox5c, downBox5a, downBox5b
             };
 
             LoadState();
