@@ -91,7 +91,8 @@ namespace ISP_Project.Managers
             if (nextState != null)
             {
                 stateStack.Insert(0, nextState);
-                stateStack[0].LoadState();
+                // stateStack[0].LoadState();
+                // Debug.WriteLine("STATE CHANGE!");
             }
         }
         public static State GetCurrentState()

@@ -21,17 +21,20 @@ namespace ISP_Project.Managers
         public static List<Song> songStack = new List<Song>(); // create an empty queue of songs
         private static MediaState previousMediaState;
         private static MediaState currentMediaState;
+        private static Song previousSong;
+        private static Song currentSong;
         // private static Song currentSong;
         /*private static Dictionary<Song, string> songPathDictionary;*/
         public static Dictionary<string, SoundEffect> soundEffects = new Dictionary<string, SoundEffect>();
         private static float fadeTimer = 0f;
-        private static float fadeInDuration = 4f;
-        private static float fadeOutDuration = 4f;
+        private static float fadeDuration = 3f;
         private static bool isFadingOut = false;
         private static bool isFadingIn = true;
+        private static bool transitionLock = false;
         private static float currentSongTime = 0f;
-        private static float initialFadeInVolume;
-        private static float initialFadeOutVolume;
+        private static float maximumVolume = 1f;
+        private static float volumeLow = 0;
+        private static float volumeHigh = maximumVolume;
 
         public static void LoadAudio()
         {
@@ -41,59 +44,52 @@ namespace ISP_Project.Managers
             soundEffects.Add("Envelope", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Envelope"));
             soundEffects.Add("Button Press", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Button Press"));
 
-            songStack.Insert(0, songs["Title Theme"]);
-            songStack.Insert(0, songs["Title Theme"]);
-            /*var titleTheme = Globals.ContentManager.Load<SoundEffect>("Songs/Title Theme");
-            var instance = titleTheme.CreateInstance();
-            instance.IsLooped = true;
-            instance.Play();*/
-            // MediaPlayer.Volume = 0f;
+            MediaPlayer.Volume = 0f;
         }
         public static void Update(GameTime gameTime)
         {
             previousMediaState = currentMediaState;
             currentMediaState = MediaPlayer.State;
 
-            // play next song once the current song is done playing
-            if (previousMediaState == MediaState.Playing && currentMediaState == MediaState.Stopped && songStack.Count > 0)
-            {
-                songStack.RemoveAt(0);
-                currentSongTime = 0f;
-                MediaPlayer.Volume = 0f;
-                initialFadeInVolume = MediaPlayer.Volume;
-            }
-            // play current song when no other song is playing
-            if (MediaPlayer.State == MediaState.Stopped && songStack.Count > 0)
-            {
-                isFadingIn = true;
-                MediaPlayer.Play(songStack[0]);
-                initialFadeOutVolume = MediaPlayer.Volume;
-            }
-            // track how much of the song has elapsed
-            if (MediaPlayer.State == MediaState.Playing)
-            {
-                currentSongTime += Globals.Time;
-            }
-
-            // fade in
-            if (isFadingIn)
-            {
-                Fade(initialFadeInVolume, 1f);
-            }
-            // fade out when nearing the end of a song
             if (songStack.Count > 0)
             {
-                if (songStack[0].Duration.Seconds - currentSongTime <= fadeOutDuration)
+                previousSong = currentSong;
+                currentSong = songStack[0];
+
+                currentSongTime += Globals.Time;
+
+                // play new song
+                if (currentMediaState == MediaState.Stopped || currentSong != previousSong)
                 {
-                    isFadingOut = true;
-                    Fade(initialFadeOutVolume, 0f);
+                    MediaPlayer.Play(currentSong);
+                    currentSongTime = 0f;
                 }
+                // signal fade out when nearing the end of a song
+                if (Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime) <= fadeDuration && !isFadingOut)
+                {
+                    volumeHigh = MediaPlayer.Volume;
+                    isFadingOut = true;
+                }
+                
             }
             
-            // Debug.WriteLine(currentSongTime);
 
-            // Debug.WriteLine(songStack.Count);
-            // Debug.WriteLine(songStack[0].Duration);
+            if (isFadingIn)
+            {
+                Fade(volumeLow, maximumVolume); // fade in
+            }
+            if (isFadingOut)
+            {
+                Fade(volumeHigh, volumeLow); // fade out
+            }
+
+            Debug.WriteLine(songStack.Count);
+            foreach (Song _song in songStack)
+            {
+                Debug.WriteLine(_song.Name);
+            }
+            /*Debug.WriteLine(currentSong.Duration.TotalSeconds - currentSongTime);*/
+            // Debug.WriteLine(isFadingOut);
         }
         public static Song GetCurrentSong()
         {
@@ -104,11 +100,24 @@ namespace ISP_Project.Managers
             Song song;
             try
             {
-                song = songs[songName];
+                /*song = songs[songName];
                 if (songStack.Count == 0)
                     songStack.Insert(0, song);
-                else if (songStack[songStack.Count - 1] != song && songStack[0] != song)
-                    songStack.Insert(songStack.Count - 1, song); // adds song to the back of the stack
+                else if (songStack[songStack.Count - 1] != song)
+                    songStack.Insert(songStack.Count, song); // adds song to the back of the stack*/
+                song = songs[songName];
+                if (songStack.Count > 0)
+                {
+                    if (songStack[songStack.Count - 1] != song)
+                    {
+                        songStack.Insert(songStack.Count, song);
+                    }
+                }
+                else
+                {
+                    songStack.Insert(0, song);
+                }
+                
             }
             catch
             {
@@ -122,14 +131,19 @@ namespace ISP_Project.Managers
             try
             {
                 song = songs[songName];
-                MediaPlayer.Stop();
-                if (songStack.Count == 0)
-                    songStack.Insert(0, song);
-                else if (songStack[0] != song)
+                if (songStack.Count > 0)
                 {
-                    songStack.Insert(0, song); // adds song to the front of the stack
+                    if (currentSong != song)
+                    {
+                        songStack.Insert(1, song);
+                        volumeHigh = MediaPlayer.Volume;
+                        isFadingOut = true;
+                    }
                 }
-                MediaPlayer.Play(songStack[0]);
+                else
+                {
+                    songStack.Insert(0, song);
+                }
             }
             catch
             {
@@ -155,6 +169,18 @@ namespace ISP_Project.Managers
         {
             songStack.Clear();
         }
+        public static void PlayNextSong()
+        {
+            isFadingIn = true;
+            if (songStack.Count > 1)
+            {
+                // MediaPlayer.Stop();
+                songStack.RemoveAt(0);
+                // MediaPlayer.Play(songStack[0]);
+                MediaPlayer.Volume = 0f;
+            }
+
+        }
         public static void PlaySoundEffect(string soundEffectKey)
         {
             try
@@ -176,34 +202,31 @@ namespace ISP_Project.Managers
         {
             SoundEffect.MasterVolume = volume;
         }
-
-        /*private static void FadeOut(float fadeDuration, float targetVolume)
-        {
-            var fadeTimer = 0f;
-            var fadeSlope = (targetVolume - MediaPlayer.Volume) / fadeDuration;
-
-            while (fadeTimer <= fadeDuration)
-            {
-                var newVolume = MediaPlayer.Volume + fadeSlope;
-                MediaPlayer.Volume = newVolume;
-            }
-        }*/
         
         private static void Fade(float initialVolume, float targetVolume)
         {
-            if (fadeTimer > fadeInDuration)
+            if (fadeTimer > fadeDuration)
             {
                 fadeTimer = 0f;
-                isFadingIn = false;
+
+                if (isFadingIn)
+                {
+                    isFadingIn = false;
+                }
+                if (isFadingOut)
+                {
+                    PlayNextSong();
+                    isFadingOut = false;
+                }
             }
             else
             {
                 fadeTimer += Globals.Time;
-            }
 
-            var fadeIncrement = ((targetVolume - initialVolume) / fadeInDuration) * Globals.Time;
-            MediaPlayer.Volume += fadeIncrement;
-            // Debug.WriteLine(fadeTimer + " : " + fadeIncrement + " : " + MediaPlayer.Volume);
+                var fadeIncrement = ((targetVolume - initialVolume) / fadeDuration) * Globals.Time;
+                MediaPlayer.Volume += fadeIncrement;
+                // Debug.WriteLine(fadeTimer + " : " + fadeIncrement + " : " + MediaPlayer.Volume);
+            }
         }
     }
 }

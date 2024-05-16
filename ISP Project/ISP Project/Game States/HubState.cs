@@ -55,11 +55,11 @@ namespace ISP_Project.Game_States
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             tileMap.LoadContent();
             player.LoadContent();
+            // play music
+            AudioManager.ForcePlaySong("Hub Theme");
         }
         public override void Update(GameTime gameTime)
         {
-            // play music
-            // AudioManager.PlaySong("Hub Theme");
             // pause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {

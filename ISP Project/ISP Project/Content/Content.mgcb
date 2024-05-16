@@ -207,11 +207,11 @@
 /processorParam:Quality=Best
 /build:Songs/Hub Theme.mp3
 
-#begin Songs/Title Theme.wav
-/importer:WavImporter
+#begin Songs/Title Theme.mp3
+/importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Songs/Title Theme.wav
+/build:Songs/Title Theme.mp3
 
 #begin Sound Effects/Button Press.mp3
 /importer:Mp3Importer

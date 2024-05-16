@@ -58,12 +58,11 @@ namespace ISP_Project.Game_States
             // load everything in this state
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
-            
+            // play music
+            AudioManager.ForcePlaySong("Title Theme");
         }
         public override void Update(GameTime gameTime)
         {
-            // play music
-            // AudioManager.PlaySong("Title Theme");
             // keyboard only select
             if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
                 selectedButtonCounter++;
