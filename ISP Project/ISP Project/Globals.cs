@@ -7,6 +7,7 @@ using ISP_Project.Managers;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace ISP_Project
 {
@@ -20,7 +21,7 @@ namespace ISP_Project
 
         public static void Update(GameTime gameTime)
         {
-            Time = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Time = (float)gameTime.ElapsedGameTime.TotalSeconds; // typically 60 fps (1 / 60 = 0.0167...)
         }
 
     }
