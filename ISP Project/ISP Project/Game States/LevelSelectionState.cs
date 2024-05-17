@@ -18,7 +18,6 @@ namespace ISP_Project.Game_States
         private List<Button> mapButtons;
         private int selectedButtonCounter = 0;
         private Texture2D mapTexture;
-        // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
         private Texture2D whiteNoteTexture;
@@ -61,9 +60,9 @@ namespace ISP_Project.Game_States
             };
 
         }
+
         public override void LoadState()
         {
-            // load everything in this state
             mapTexture = Globals.ContentManager.Load<Texture2D>("Backgrounds/Map");
             whiteNoteTexture = Globals.ContentManager.Load<Texture2D>("Interactables/White Note");
             yellowNoteTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Yellow Note");
@@ -71,7 +70,8 @@ namespace ISP_Project.Game_States
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
         }
-        public override void Update(GameTime gameTime)
+
+        public override void Update()
         {
             // pause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
@@ -95,7 +95,7 @@ namespace ISP_Project.Game_States
             bool isHovering = false;
             foreach (Button button in mapButtons)
             {
-                button.Update(gameTime);
+                button.Update();
                 button.ForceShade = false;
                 if (isHovering == false)
                     isHovering = button.GetCursorHover();
@@ -109,25 +109,26 @@ namespace ISP_Project.Game_States
                 mapButtons[selectedButton].TriggerEvent();
             }
 
+            // update buttons
             foreach(Button button in buttons)
             {
-                button.Update(gameTime);
+                button.Update();
             }
         }
 
-        public override void PostUpdate(GameTime gameTime)
+        public override void PostUpdate()
         {
             // unload sprites if they're not needed
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             Globals.SpriteBatch.Draw(mapTexture, WindowManager.GetMainWindowCenter(), null, Color.White, 0f,
                 new Vector2(mapTexture.Width / 2, mapTexture.Height / 2), 1f, SpriteEffects.None, 0f);
             
             foreach (Button button in buttons)
             {
-                button.Draw(gameTime);
+                button.Draw();
             }
         }
     }

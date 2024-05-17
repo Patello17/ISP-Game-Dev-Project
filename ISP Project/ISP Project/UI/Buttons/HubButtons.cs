@@ -42,6 +42,8 @@ namespace ISP_Project.UI.Buttons
             }
         }
     }
+
+    // create Level One Select Button
     public class LevelOneSelectButton : Button
     {
         private Texture2D buttonTexture;
@@ -73,6 +75,7 @@ namespace ISP_Project.UI.Buttons
         }
     }
     
+    // create Hub Return Button
     public class HubReturnButton : Button
     {
         private Texture2D buttonTexture;
@@ -93,5 +96,4 @@ namespace ISP_Project.UI.Buttons
             StateManager.ChangeState(StateManager.GetRecentState(new HubState()));
         }
     }
-
 }

@@ -31,10 +31,12 @@ namespace ISP_Project.UI.Buttons
             public override void TriggerEvent()
             {
                 // change Game State here!
-                AudioManager.PlaySoundEffect("Button Press");
+                AudioManager.PlaySoundEffect("Door Opening");
                 StateManager.ChangeState(new HubState());
             }
         }
+
+        // create Quit Button
         public class QuitButton : Button
         {
             private Texture2D buttonTexture;
@@ -55,10 +57,6 @@ namespace ISP_Project.UI.Buttons
                 AudioManager.PlaySoundEffect("Button Press");
                 StateManager.ChangeState(new QuitState());
             }
-
-
         }
-
-        
     }
 }

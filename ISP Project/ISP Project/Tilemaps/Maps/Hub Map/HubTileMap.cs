@@ -14,14 +14,19 @@ namespace ISP_Project.Tilemaps
     // Code Reference: https://www.youtube.com/watch?v=LViEJPIu76E
     public class HubTileMap : Tilemap
     {
+        // create tileset variables
         private Texture2D roomTileset;
         private Texture2D decorationsTileset;
         private Texture2D collisionsTileset;
         public override Transform Transform { get; set; } = new Transform(Vector2.Zero, 1f, 0f);
         public override Vector2 TileMapDimensions { get; set; } = new Vector2(40, 22);
+
+        // create variables for individual layers
         private Dictionary<Vector2, int> room;
         private Dictionary<Vector2, int> decorations;
         private Dictionary<Vector2, int> collisions;
+
+        // create collision map
         public override CollisionMap CollisionMap { get; set; } = new CollisionMap();
 
         public HubTileMap(Vector2 position)
@@ -40,9 +45,9 @@ namespace ISP_Project.Tilemaps
             collisionsTileset = Globals.ContentManager.Load<Texture2D>("Tilesets/Collisions Tileset");
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw()
         {
-            Draw(gameTime, 16, 16, 16,
+            Draw(16, 16, 16,
                 new Dictionary<Dictionary<Vector2, int>, Texture2D>
                 {
                     { room, roomTileset},

@@ -13,6 +13,10 @@ namespace ISP_Project.Tilemaps
     {
         private int[,] map = { };
 
+        /// <summary>
+        /// Parses the Collision Map .csv file and maps values onto a C# array.
+        /// </summary>
+        /// <param name="collisions"></param>
         public void SetMap(Dictionary<Vector2, int> collisions)
         {
             var mapWidth = collisions.ElementAt(collisions.Count - 1).Key.X + 1;
@@ -20,37 +24,18 @@ namespace ISP_Project.Tilemaps
 
             map = new int[(int)mapWidth, (int)mapHeight];
 
-            // Debug.WriteLine(collisions.Count + " / " + map.Length);
-
             for (int i = 0; i < collisions.Count; i++)
             {
                 map[(int)collisions.ElementAt(i).Key.X, (int)collisions.ElementAt(i).Key.Y] =
                     collisions.ElementAt(i).Value;
             }
-
-
-            /*for (int i = 0; i < map.GetLength(0); i++)
-            {
-                for (int j = 0; j < map.GetLength(1); j++)
-                {
-                    Debug.Write(map[i, j] + "\t");
-                }
-                Debug.WriteLine("");
-            }*/
-
-            /*for (int y = 0; y < mapHeight; y++)
-            {
-                for (int x = 0; x < mapWidth; x++)
-                {
-                    Debug.WriteLine(x + ", " + y);
-                    Debug.WriteLine(mapWidth + ", " + mapHeight);
-                    map[x, y] = collisions.ElementAt((Index)((mapWidth * y) + x)).Value;
-                    Debug.WriteLine(map);
-                }
-            }*/
-
         }
 
+        /// <summary>
+        /// Detects if a tile is not an air tile.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public bool isColliding(Vector2 position)
         {
             try
@@ -66,6 +51,11 @@ namespace ISP_Project.Tilemaps
             return false;
         }
 
+        /// <summary>
+        /// Gets the collision tile at the given position coordinate.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public int GetCollision(Vector2 position)
         {
             try
@@ -77,6 +67,12 @@ namespace ISP_Project.Tilemaps
                 return 0;
             }
         }
+
+        /// <summary>
+        /// Changes a collision tile at a specific position coordinate.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="tile"></param>
         public void SetCollision(Vector2 position, int tile)
         {
             try
@@ -85,12 +81,14 @@ namespace ISP_Project.Tilemaps
             }
             catch
             {
-                Debug.WriteLine("Couldn't change collision map.");
+                Debug.WriteLine("Could not change collision map.");
                 // do nothing
             }
         }
 
-        // for debugging purposes
+        /// <summary>
+        /// Draws the Collision Map (purely for debugging purposes).
+        /// </summary>
         public void DrawMap()
         {
             Debug.WriteLine("------------------------------");

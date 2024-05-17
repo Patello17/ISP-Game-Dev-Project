@@ -17,15 +17,16 @@ namespace ISP_Project.Game_States
     {
         private List<Button> buttons;
         private int selectedButtonCounter = 0;
-        // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
+
+        private ResumeButton resumeButton;
 
         public PauseState() 
         {
             LoadState();
 
-            var resumeButton = new ResumeButton(buttonTexture, buttonFont, 1, 0.5f)
+            resumeButton = new ResumeButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
                 Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y - 16),
@@ -52,19 +53,21 @@ namespace ISP_Project.Game_States
             };
 
         }
+
         public override void LoadState()
         {
-            // load everything in this state
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
         }
-        public override void Update(GameTime gameTime)
+
+        public override void Update()
         {
             // unpause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
-                buttons[0].TriggerEvent();
+                resumeButton.TriggerEvent();
             }
+
             // keyboard only select
             if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
                 selectedButtonCounter++;
@@ -78,7 +81,7 @@ namespace ISP_Project.Game_States
             bool isHovering = false;
             foreach (Button button in buttons)
             {
-                button.Update(gameTime);
+                button.Update();
                 button.ForceShade = false;
                 if (isHovering == false)
                     isHovering = button.GetCursorHover();
@@ -93,16 +96,16 @@ namespace ISP_Project.Game_States
             }
         }
 
-        public override void PostUpdate(GameTime gameTime)
+        public override void PostUpdate()
         {
             // unload sprites if they're not needed
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             foreach (Button button in buttons)
             {
-                button.Draw(gameTime);
+                button.Draw();
             }
         }
     }

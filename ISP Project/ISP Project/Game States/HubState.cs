@@ -16,14 +16,14 @@ namespace ISP_Project.Game_States
     public class HubState : State
     {
         private List<Button> buttons;
-        // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
         private Texture2D buttonTexture;
         private Texture2D mapButtonTexture;
         private SpriteFont buttonFont;
 
+        // create tile map instance
         private HubTileMap tileMap = new HubTileMap(WindowManager.GetMainWindowCenter());
 
-        // + Vector2(x, y) is used to align Shelly with the grid since we're drawing from the middle of the sprite now; y can be adjusted for a more 3D effect
+        // initialize player
         private Snail player = new Snail(new Vector2(10, 12)); 
 
         public HubState()
@@ -47,18 +47,20 @@ namespace ISP_Project.Game_States
                 pauseButton, mapButton
             };
         }
+
         public override void LoadState()
         {
-            // load everything in this state
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             mapButtonTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Map Board");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             tileMap.LoadContent();
             player.LoadContent();
+
             // play music
             AudioManager.ForcePlaySong("Hub Theme");
         }
-        public override void Update(GameTime gameTime)
+
+        public override void Update()
         {
             // pause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
@@ -71,11 +73,11 @@ namespace ISP_Project.Game_States
 
             foreach (Button button in buttons)
             {
-                button.Update(gameTime);
+                button.Update();
             }
 
             // let player know of the collision map
-            player.Update(gameTime, tileMap.CollisionMap);
+            player.Update(tileMap.CollisionMap);
 
             // these vectors represent the position of the doorway
             if (player.GetNextPosition() == new Vector2(9, 11) || 
@@ -88,7 +90,6 @@ namespace ISP_Project.Game_States
             if (player.TileMapPosition == new Vector2(15, 10) || player.TileMapPosition == new Vector2(16, 10) ||
                 player.TileMapPosition == new Vector2(17, 10) || player.TileMapPosition == new Vector2(18, 10))
             {
-
                 MapButton.isClickable = true;
                 mapButton.ForceShade = true;
             }
@@ -101,26 +102,26 @@ namespace ISP_Project.Game_States
             if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
             {
                 mapButton.TriggerEvent();
-            }
-                
+            } 
 
+            // update Actor positions
             player.UpdatePosition(tileMap.CollisionMap);
         }
 
-        public override void PostUpdate(GameTime gameTime)
+        public override void PostUpdate()
         {
             // unload sprites if they're not needed
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
-            tileMap.Draw(gameTime);
+            tileMap.Draw();
 
             player.Draw();
 
             foreach (Button button in buttons)
             {
-                button.Draw(gameTime);
+                button.Draw();
             }           
         }
     }

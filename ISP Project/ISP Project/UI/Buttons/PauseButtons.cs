@@ -39,6 +39,7 @@ namespace ISP_Project.UI.Buttons
             StateManager.ChangeState(StateManager.GetRecentState(StateManager.GetMostRecentState(states)));
         }
     }
+
     // create Settings Button
     public class SettingsButton : Button
     {
@@ -61,7 +62,8 @@ namespace ISP_Project.UI.Buttons
             StateManager.ChangeState(new SettingsState());
         }
     }
-    // create QuitToTitle Button
+
+    // create Quit To Title Button
     public class QuitToTitleButton : Button
     {
         private Texture2D buttonTexture;

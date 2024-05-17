@@ -13,19 +13,22 @@ namespace ISP_Project.Screen_Management
     public class Window
     {
         private Vector2 windowSize;
-        private Vector2 renderSize = new Vector2(640, 360); // default render size
-        private bool isFullScreen;
+        private bool isFullScreen = false; // not full screen by default
         private Renderer renderer;
         private GraphicsDeviceManager graphicsDeviceManager;
 
         public Window(int width, int height, GraphicsDeviceManager graphicsDeviceManager)
         {
             this.graphicsDeviceManager = graphicsDeviceManager;
-            renderer = new Renderer(graphicsDeviceManager.GraphicsDevice, renderSize); 
-            isFullScreen = false; // not full screen by default
+            renderer = new Renderer(graphicsDeviceManager.GraphicsDevice); 
             SetWindowSize(width, height);
         }
 
+        /// <summary>
+        /// Sets the size of the window.
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public void SetWindowSize(int width, int height)
         {
             windowSize = new Vector2(width, height);
@@ -36,6 +39,9 @@ namespace ISP_Project.Screen_Management
             renderer.SetDestinationRectangle();
         }
 
+        /// <summary>
+        /// Sets the window to full screen mode and adjusts render target accordingly.
+        /// </summary>
         public void SetFullScreen()
         {
             var screenSizeWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
@@ -49,27 +55,48 @@ namespace ISP_Project.Screen_Management
             renderer.SetDestinationRectangle();
         }
 
+        /// <summary>
+        /// Draws the render target
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Draw(GameTime gameTime)
         {
-            // renderer.Activate();
             renderer.Draw(gameTime);
         }
+
+        /// <summary>
+        /// Sets the render target
+        /// </summary>
         public void SetRenderTarget()
         {
             renderer.Activate();
         }
 
+        /// <summary>
+        /// Gets the render scale.
+        /// </summary>
+        /// <returns></returns>
         public float GetRenderScale()
         {
             return renderer.GetRenderScale();
         }
+
+        /// <summary>
+        /// Gets the position of the render target on the window.
+        /// </summary>
+        /// <returns></returns>
         public Vector2 GetRenderPosition()
         {
             return renderer.GetRenderPosition();
         }
+
+        /// <summary>
+        /// Gets the center of the window.
+        /// </summary>
+        /// <returns></returns>
         public Vector2 GetCenter()
         {
-            return renderSize / 2;
+            return renderer.GetRenderSize() / 2;
         }
     }
 }

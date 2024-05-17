@@ -213,17 +213,41 @@
 /processorParam:Quality=Best
 /build:Songs/Title Theme.mp3
 
+#begin Sound Effects/Box Splash.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound Effects/Box Splash.mp3
+
 #begin Sound Effects/Button Press.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sound Effects/Button Press.mp3
 
+#begin Sound Effects/Door Opening.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound Effects/Door Opening.mp3
+
 #begin Sound Effects/Envelope.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sound Effects/Envelope.mp3
+
+#begin Sound Effects/Player Movement.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound Effects/Player Movement.mp3
+
+#begin Sound Effects/Victory Jingle.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound Effects/Victory Jingle.mp3
 
 #begin Tilesets/Collisions Tileset.png
 /importer:TextureImporter

@@ -21,7 +21,7 @@ namespace ISP_Project.Managers
             window = new Window(640, 360, graphicDeviceManager); // default window size
         }
 
-        public static void Update(GameTime gameTime)
+        public static void Update()
         {
             
         }
@@ -33,7 +33,7 @@ namespace ISP_Project.Managers
             Globals.SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, 
                 SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, 
                 null, null); // final null should be replaced with camera transformation matrix i think
-            StateManager.Draw(gameTime);
+            StateManager.Draw();
             Globals.SpriteBatch.End();
 
             window.Draw(gameTime);

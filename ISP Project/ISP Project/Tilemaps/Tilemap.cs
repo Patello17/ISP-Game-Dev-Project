@@ -47,13 +47,22 @@ namespace ISP_Project.Tilemaps
             return result;
         }
 
-        // load textures
+        /// <summary>
+        /// Loads the tilesets for this Tile Map.
+        /// </summary>
         public abstract void LoadContent();
 
-        // draw textures
-        public void Draw(GameTime gameTime,
-            int displayTileSize, int numTilesPerRow, int pixelTileSize,
-            Dictionary<Dictionary<Vector2, int>, Texture2D> textureMapDictionary, Dictionary<Dictionary<Vector2, int>, float> depthDictionary)
+        /// <summary>
+        /// Draws this Tile Map using the given tileset(s).
+        /// </summary>
+        /// <param name="displayTileSize"></param>
+        /// <param name="numTilesPerRow"></param>
+        /// <param name="pixelTileSize"></param>
+        /// <param name="textureMapDictionary"></param>
+        /// <param name="depthDictionary"></param>
+        public void Draw(int displayTileSize, int numTilesPerRow, int pixelTileSize,
+            Dictionary<Dictionary<Vector2, int>, Texture2D> textureMapDictionary, 
+            Dictionary<Dictionary<Vector2, int>, float> depthDictionary)
         {
             foreach (var layer in textureMapDictionary.Keys)
             {

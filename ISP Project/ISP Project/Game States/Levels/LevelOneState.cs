@@ -20,14 +20,18 @@ namespace ISP_Project.Game_States.Levels
 {
     public class LevelOneState : State
     {
-        private List<Button> buttons;
         private List<Box> boxes;
-        // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
+        private List<Button> buttons;
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
+        
+        // create tile map instance
         private LevelOneTileMap tileMap = new LevelOneTileMap(WindowManager.GetMainWindowCenter());
-        // + Vector2(x, y) is used to align Shelly with the grid since we're drawing from the middle of the sprite now; y can be adjusted for a more 3D effect
+        
+        // initialize player
         private Snail player = new Snail(new Vector2(4, 16));
+        
+        // intialize box position and type
         // naming convention: type of box + room # + letter from top down, left right
         private Box starBox = new Box(new Vector2(5, 16), BoxType.STAR);
         private Box leftBox2 = new Box(new Vector2(20, 14), BoxType.LEFT);
@@ -45,8 +49,6 @@ namespace ISP_Project.Game_States.Levels
         private Box upBox5c = new Box(new Vector2(26, 8), BoxType.UP);
         private Box downBox5a = new Box(new Vector2(19, 4), BoxType.DOWN);
         private Box downBox5b = new Box(new Vector2(25, 5), BoxType.DOWN);
-
-
 
         public LevelOneState()
         {
@@ -72,20 +74,22 @@ namespace ISP_Project.Game_States.Levels
                 pauseButton
             };
         }
+
         public override void LoadState()
         {
-            // load everything in this state
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             tileMap.LoadContent();
             player.LoadContent();
+
             foreach (Box box in boxes)
             {
                 box.LoadContent();
                 box.UpdatePosition(tileMap.CollisionMap);
             }
         }
-        public override void Update(GameTime gameTime)
+
+        public override void Update()
         {
             // pause
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
@@ -98,23 +102,23 @@ namespace ISP_Project.Game_States.Levels
             if (InputManager.isKey(InputManager.Inputs.RESTART, InputManager.isTriggered))
             {
                 StateManager.ChangeState(new LevelOneState());
-                // Debug.WriteLine("RESTARTING!");
             }
-                
-            List<Box> boxUpdateOrder = new List<Box>();
+
+            // update buttons
             foreach (Button button in buttons)
             {
-                button.Update(gameTime);
+                button.Update();
             }
 
             // let actors know of this level's collision map
             foreach (Box box in boxes)
             {
-                box.Update(gameTime, tileMap.CollisionMap);
+                box.Update(tileMap.CollisionMap);
             }
-            player.Update(gameTime, tileMap.CollisionMap);
-            
+            player.Update(tileMap.CollisionMap);
+
             // check for box collisions
+            List<Box> boxUpdateOrder = new List<Box>();
             foreach (Box box in boxes)
             {
                 // check if player is about to collide with unsunken box
@@ -137,20 +141,18 @@ namespace ISP_Project.Game_States.Levels
                         box.SetNextPosition(player.GetMovementVector(), false);
                         currentBoxNextPosition += player.GetMovementVector();
                     }
-
                 }
-
             }
 
             // check for win
             if (tileMap.CollisionMap.GetCollision(starBox.GetNextPosition()) == 5)
             {
                 // go to win screen
-                Debug.WriteLine("YAY! LEVEL COMPLETED.");
+                AudioManager.PlaySoundEffect("Victory Jingle");
                 StateManager.ChangeState(new LevelSelectionState());
             }
 
-            // update actor positions
+            // update Actor positions
             if (boxUpdateOrder.Count > 0)
             {
                 for (int i = boxUpdateOrder.Count; i > 0; i--)
@@ -159,19 +161,17 @@ namespace ISP_Project.Game_States.Levels
                     box.UpdatePosition(tileMap.CollisionMap);
                 }
             }
-            
             player.UpdatePosition(tileMap.CollisionMap);
-            
         }
 
-        public override void PostUpdate(GameTime gameTime)
+        public override void PostUpdate()
         {
             // unload sprites if they're not needed
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
-            tileMap.Draw(gameTime);
+            tileMap.Draw();
             foreach (Box box in boxes)
             {
                 box.Draw();
@@ -180,7 +180,7 @@ namespace ISP_Project.Game_States.Levels
 
             foreach (Button button in buttons)
             {
-                button.Draw(gameTime);
+                button.Draw();
             }
         }
 
@@ -195,6 +195,5 @@ namespace ISP_Project.Game_States.Levels
             }
             return null;
         }
-
     }
 }

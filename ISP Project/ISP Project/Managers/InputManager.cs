@@ -32,7 +32,7 @@ namespace ISP_Project.Managers
             UP, DOWN, LEFT, RIGHT,
             INTERACT, PAUSE,
             MAXIMIZESCREEN,
-            RESTART
+            RESTART, UNDO
         }
         // declare click actions
         public enum ClickInputs
@@ -43,14 +43,15 @@ namespace ISP_Project.Managers
         // assign button inputs to specific keys
         private static Dictionary<Inputs, Keys> playerKeys = new Dictionary<Inputs, Keys>()
         {
-            { Inputs.UP, Keys.Up},
+            { Inputs.UP, Keys.Up },
             { Inputs.LEFT, Keys.Left },
             { Inputs.DOWN, Keys.Down },
             { Inputs.RIGHT, Keys.Right },
-            { Inputs.INTERACT, Keys.Z},
-            { Inputs.PAUSE, Keys.Escape},
-            { Inputs.MAXIMIZESCREEN, Keys.F11},
-            { Inputs.RESTART, Keys.R}
+            { Inputs.INTERACT, Keys.Z },
+            { Inputs.PAUSE, Keys.Escape },
+            { Inputs.MAXIMIZESCREEN, Keys.F11 },
+            { Inputs.RESTART, Keys.C },
+            { Inputs.UNDO, Keys.X }
 
         };
 
@@ -58,7 +59,7 @@ namespace ISP_Project.Managers
         private static Dictionary<ClickInputs, ButtonState> currentPlayerClicks;
         private static Dictionary<ClickInputs, bool> previousPlayerClicks;
 
-        public static void Update(GameTime gameTime)
+        public static void Update()
         {
             // update key press logic variables
             previousKeyState = currentKeyState;
@@ -72,7 +73,7 @@ namespace ISP_Project.Managers
                 { ClickInputs.INTERACT, previousLeftButtonState}
             };
 
-            // update click dictionary with mouseState (there's has to be a better way to do this...)
+            // update click dictionary with mouseState
             mouseState = Mouse.GetState();
             currentPlayerClicks = new Dictionary<ClickInputs, ButtonState>()
             {
@@ -88,12 +89,23 @@ namespace ISP_Project.Managers
         public static Func<bool, bool, bool> isTriggered = (currentState, previousState) => currentState && !previousState;
         public static Func<bool, bool, bool> isReleased = (currentState, previousState) => !currentState && previousState;
 
-        // specify key to get input information from
+        /// <summary>
+        /// Applies a state function to a given key input action.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="checkState"></param>
+        /// <returns></returns>
         public static bool isKey(Inputs input, Func<bool, bool, bool> checkState)
         {
             return checkState(currentKeyState.IsKeyDown(playerKeys[input]), previousKeyState.IsKeyDown(playerKeys[input]));
         }
 
+        /// <summary>
+        /// Applies a state function to a given click action.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="checkState"></param>
+        /// <returns></returns>
         public static bool isClick(ClickInputs input, Func<bool, bool, bool> checkState)
         {
             var currentClickState = false;

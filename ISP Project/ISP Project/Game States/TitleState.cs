@@ -18,7 +18,6 @@ namespace ISP_Project.Game_States
     {
         private List<Button> buttons;
         private int selectedButtonCounter = 0;
-        // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
 
@@ -53,15 +52,17 @@ namespace ISP_Project.Game_States
             };
 
         }
+
         public override void LoadState()
         {
-            // load everything in this state
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
+            
             // play music
             AudioManager.ForcePlaySong("Title Theme");
         }
-        public override void Update(GameTime gameTime)
+
+        public override void Update()
         {
             // keyboard only select
             if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
@@ -76,7 +77,7 @@ namespace ISP_Project.Game_States
             bool isHovering = false;
             foreach (Button button in buttons)
             {
-                button.Update(gameTime);
+                button.Update();
                 button.ForceShade = false;
                 if (isHovering == false)
                     isHovering = button.GetCursorHover();
@@ -91,16 +92,16 @@ namespace ISP_Project.Game_States
             }
         }
 
-        public override void PostUpdate(GameTime gameTime)
+        public override void PostUpdate()
         {
             // unload sprites if they're not needed
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
             foreach (Button button in buttons)
             {
-                button.Draw(gameTime);
+                button.Draw();
             }
         }
     }

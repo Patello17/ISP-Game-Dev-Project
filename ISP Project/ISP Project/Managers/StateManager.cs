@@ -13,56 +13,21 @@ namespace ISP_Project.Managers
 {
     public class StateManager
     {
-        /*private static State previousState;
-        private static State currentState;
-        private static State nextState;
-
-        public static void Update(GameTime gameTime)
-        {
-            if (nextState != null)
-            {
-                previousState = currentState;
-                currentState = nextState;
-                nextState = null;
-                currentState.LoadState();
-            }
-            currentState.Update(gameTime);
-        }
-
-        public static void Draw(GameTime gameTime)
-        {
-            currentState.Draw(gameTime);
-        }
-        public static void ChangeState(State state)
-        {
-            nextState = state;
-        }
-        public static State GetCurrentState()
-        {
-            return currentState;
-        }
-        public static State GetPreviousState()
-        {
-            return previousState;
-        }*/
-
-        /*public static List<State> states = new List<State>()
-        {
-            new TitleState(),
-            new PauseState(),
-            new SettingsState(),
-            new AudioSettingsState(),
-
-        };*/
+        // create a stack of states
         private static List<State> stateStack = new List<State>()
         {
             new TitleState()
         };
 
-        public static void Update(GameTime gameTime)
+        /// <summary>
+        /// Updates the states.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public static void Update()
         {
+            // update the current state
             if (stateStack.Count > 0)
-                GetCurrentState().Update(gameTime);
+                GetCurrentState().Update();
 
             // if there are duplicate states, only keep the most recent one
             var newStateStack = new List<State>();
@@ -72,41 +37,58 @@ namespace ISP_Project.Managers
                     newStateStack.Add(stateStack[i]);
             }
             stateStack = newStateStack;
-
-            // Debug.WriteLine(stateStack.Count);
         }
-        public static void Draw(GameTime gameTime)
+
+        /// <summary>
+        /// Draws the states.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public static void Draw()
         {
+            // draws the current state
             if (stateStack.Count > 0)
-                GetCurrentState().Draw(gameTime);
+                GetCurrentState().Draw();
         }
 
-        /*public static void AddState(State state)
-        {
-            stateStack.Insert(0, state);
-        }*/
-
+        /// <summary>
+        /// Changes the current state by sending it to the top of the state stack.
+        /// </summary>
+        /// <param name="nextState"></param>
         public static void ChangeState(State nextState)
         {
             if (nextState != null)
             {
                 stateStack.Insert(0, nextState);
-                // stateStack[0].LoadState();
-                // Debug.WriteLine("STATE CHANGE!");
             }
         }
+
+        /// <summary>
+        /// Gets the current state.
+        /// </summary>
+        /// <returns></returns>
         public static State GetCurrentState()
         {
             if (stateStack.Count > 0)
                 return stateStack[0];
             return null;
         }
+
+        /// <summary>
+        /// Gets the previous state.
+        /// </summary>
+        /// <returns></returns>
         public static State GetPreviousState()
         {
             if (stateStack.Count > 1)
                 return stateStack[1];
             return null;
         }
+
+        /// <summary>
+        /// Gets the most recent instance of the given state.
+        /// </summary>
+        /// <param name="state"></param>
+        /// <returns></returns>
         public static State GetRecentState(State state)
         {
             foreach (State _state in stateStack)
@@ -116,6 +98,12 @@ namespace ISP_Project.Managers
             }
             return null;
         }
+
+        /// <summary>
+        /// Compares types of states and returns the most recent one in the state stack.
+        /// </summary>
+        /// <param name="states"></param>
+        /// <returns></returns>
         public static State GetMostRecentState(List<State> states)
         {
             Dictionary<int, State> stateDictionary = new Dictionary<int, State>();
@@ -134,6 +122,13 @@ namespace ISP_Project.Managers
 
             return stateDictionary[indexList[0]]; 
         }
+
+        /// <summary>
+        /// Checks if an instance of the given state is already in the state stack.
+        /// </summary>
+        /// <param name="stateInstances"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
         private static bool IsStateInStateStack(List<State> stateInstances, State state)
         {
             foreach (State _state in stateInstances)

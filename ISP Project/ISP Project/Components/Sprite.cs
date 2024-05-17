@@ -22,11 +22,19 @@ namespace ISP_Project.Components
             DrawLayer = drawLayer;
         }
 
+        /// <summary>
+        /// Gets the center of the texture.
+        /// </summary>
+        /// <returns></returns>
         public Vector2 GetSpriteOrigin()
         {
             return new Vector2(Texture.Width / 2, Texture.Height / 2);
         }
 
+        /// <summary>
+        /// Gets the texture.
+        /// </summary>
+        /// <returns></returns>
         public Texture2D GetTexture()
         {
             return Texture;

@@ -13,18 +13,25 @@ namespace ISP_Project.Screen_Management
     // Code Reference: https://www.youtube.com/watch?v=lpFCseClnA4
     public class Renderer
     {
+        // create render target variables
         private RenderTarget2D renderTarget;
-        private GraphicsDevice graphicsDevice;
         private Rectangle destinationRectangle;
         public Vector2 RenderPosition { get; set; }
         public float RenderScale { get; set; }
+        private Vector2 renderSize = new Vector2(640, 360); // default resolution
 
-        public Renderer(GraphicsDevice graphicsDevice, Vector2 renderSize)
+        // create instance of a graphics device
+        private GraphicsDevice graphicsDevice;
+
+        public Renderer(GraphicsDevice graphicsDevice)
         {
             this.graphicsDevice = graphicsDevice;
             renderTarget = new RenderTarget2D(graphicsDevice, (int)renderSize.X, (int)renderSize.Y);
         }
 
+        /// <summary>
+        /// Adjusts the destination rectangle of the render target to fit the window dimensions.
+        /// </summary>
         public void SetDestinationRectangle()
         {
             var screenSize = graphicsDevice.PresentationParameters.Bounds;
@@ -40,7 +47,10 @@ namespace ISP_Project.Screen_Management
 
             destinationRectangle = new Rectangle((int)RenderPosition.X, (int)RenderPosition.Y, newWidth, newHeight);
         }
-
+        
+        /// <summary>
+        /// Activate the render target.
+        /// </summary>
         public void Activate()
         {
             graphicsDevice.SetRenderTarget(renderTarget);
@@ -48,6 +58,10 @@ namespace ISP_Project.Screen_Management
             graphicsDevice.Clear(Color.Black);
         }
 
+        /// <summary>
+        /// Draw the render target.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Draw(GameTime gameTime)
         {
             graphicsDevice.SetRenderTarget(null);
@@ -61,13 +75,31 @@ namespace ISP_Project.Screen_Management
             Globals.SpriteBatch.End();
         }
 
+        /// <summary>
+        /// Gets the render scale.
+        /// </summary>
+        /// <returns></returns>
         public float GetRenderScale()
         {
             return RenderScale;
         }
+
+        /// <summary>
+        /// Gets the position of the render target on the window.
+        /// </summary>
+        /// <returns></returns>
         public Vector2 GetRenderPosition()
         {
             return RenderPosition;
+        }
+
+        /// <summary>
+        /// Gets the render dimensions.
+        /// </summary>
+        /// <returns></returns>
+        public Vector2 GetRenderSize()
+        {
+            return renderSize;
         }
     }
 }

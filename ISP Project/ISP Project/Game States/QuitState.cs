@@ -14,13 +14,14 @@ namespace ISP_Project.Game_States
     public class QuitState : State
     {
         public override void LoadState() { }
-        public override void Update(GameTime gameTime) 
+       
+        public override void Update() 
         {
-            Game1.quit = true;
+            Game1.quit = true; // quit game
         }
 
-        public override void PostUpdate(GameTime gameTime) { }
+        public override void PostUpdate() { }
 
-        public override void Draw(GameTime gameTime) { }
+        public override void Draw() { }
     }
 }

@@ -23,6 +23,7 @@ namespace ISP_Project
         {
             _graphics = new GraphicsDeviceManager(this);
             // Globals.GraphicsDeviceManager = _graphics;
+            Globals.GraphicsDevice = _graphics.GraphicsDevice;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -57,34 +58,23 @@ namespace ISP_Project
 
         protected override void Update(GameTime gameTime)
         {
+            // quit game
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || quit)
                 Exit();
 
-            // TODO: Add your update logic here
-            Globals.Update(gameTime);
-            WindowManager.Update(gameTime);
-            InputManager.Update(gameTime);
-            StateManager.Update(gameTime);
-            AudioManager.Update(gameTime);
-
-            /*if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered))
-                WindowManager.SetMainWindowSize(320, 180);
-            if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
-                WindowManager.SetMainWindowSize(480, 320);
-            if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered))
-                WindowManager.SetMainWindowSize(1280, 720);*/
+            // maximize the screen
             if (InputManager.isKey(InputManager.Inputs.MAXIMIZESCREEN, InputManager.isTriggered))
             {
                 WindowManager.SetMainWindowSize(1280, 720);
                 _graphics.ToggleFullScreen();
             }
 
-            /*if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isTriggered))
-                Debug.WriteLine("TRIGGERED");
-            if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isPressed))
-                Debug.WriteLine("PRESSED");
-            if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isReleased))
-                Debug.WriteLine("RELEASED");*/
+            // update managers
+            Globals.Update(gameTime);
+            WindowManager.Update();
+            InputManager.Update();
+            StateManager.Update();
+            AudioManager.Update();
 
             base.Update(gameTime);
         }

@@ -12,9 +12,24 @@ namespace ISP_Project.Game_States
     // Code Reference: https://github.com/Oyyou/MonoGame_Tutorials/blob/master/MonoGame_Tutorials/Tutorial013/States/State.cs
     public abstract class State
     {
+        /// <summary>
+        /// Loads everything in this State.
+        /// </summary>
         public abstract void LoadState();
-        public abstract void Update(GameTime gameTime);
-        public abstract void PostUpdate(GameTime gameTime);
-        public abstract void Draw(GameTime gameTime);
+
+        /// <summary>
+        /// Updates everything in this State.
+        /// </summary>
+        public abstract void Update();
+
+        /// <summary>
+        /// Updates everything in this State one last time.
+        /// </summary>
+        public abstract void PostUpdate();
+
+        /// <summary>
+        /// Draws everything in this State.
+        /// </summary>
+        public abstract void Draw();
     }
 }

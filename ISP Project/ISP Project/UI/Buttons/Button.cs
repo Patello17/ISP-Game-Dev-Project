@@ -17,16 +17,17 @@ namespace ISP_Project.UI.Buttons
         public Sprite Sprite { get; set; } = new Sprite(null, SpriteEffects.None, 0);
         public string texturePath;
         public SpriteFont font;
-        public string fontPath; // every button will have this font
+        public string fontPath;
+
+        // create Button properties and fields
         public string Text { get; set; }
         public Color TextColor { get; set; }
         private Vector2 position;
         public Vector2 Position 
         { 
             get 
-            { 
-                // Why is WindowManager.GetRenderPosition() needed?
-                return (position - Sprite.GetSpriteOrigin()) * WindowManager.GetRenderScale() + WindowManager.GetRenderPosition(); 
+            {
+                return (position - Sprite.GetSpriteOrigin()) * WindowManager.GetRenderScale(); // + WindowManager.GetRenderPosition; 
             }
             set
             {
@@ -47,7 +48,7 @@ namespace ISP_Project.UI.Buttons
         }
         public float FontScale { get; set; }
         
-        // button "hitbox" ("clickbox," if you will :) )
+        // create Button "hitbox" -- "clickbox," if you will :)
         public Rectangle Rectangle
         {
             get
@@ -56,12 +57,14 @@ namespace ISP_Project.UI.Buttons
                     (int)(Sprite.Texture.Width * ButtonScale), (int)(Sprite.Texture.Height * ButtonScale));
             }
         }
+
+        // create shading variables
         public bool ForceShade { get; set; } = false;
         private bool isHovering;
 
         public Button(Texture2D texture, SpriteFont font, float buttonScale, float fontScale)
         {
-            this.Sprite.Texture = texture;
+            Sprite.Texture = texture;
             this.font = font;
 
             TextColor = Color.Black;
@@ -69,7 +72,10 @@ namespace ISP_Project.UI.Buttons
             FontScale = fontScale;
         }
 
-        public void Update(GameTime gameTime)
+        /// <summary>
+        /// Updates this Button.
+        /// </summary>
+        public void Update()
         {
             if (InputManager.cursorRectangle.Intersects(Rectangle))
             {
@@ -84,9 +90,15 @@ namespace ISP_Project.UI.Buttons
             else { isHovering = false; }
         }
 
+        /// <summary>
+        /// Runs a specified event, likely a scene change.
+        /// </summary>
         public abstract void TriggerEvent();
 
-        public void Draw(GameTime gameTime)
+        /// <summary>
+        /// Draws this Button.
+        /// </summary>
+        public void Draw()
         {
             // draw button and change color on cursor hover
             var color = Color.White;
@@ -108,6 +120,10 @@ namespace ISP_Project.UI.Buttons
             }
         }
 
+        /// <summary>
+        /// Checks whether the cursor is hovering over this button or not.
+        /// </summary>
+        /// <returns></returns>
         public bool GetCursorHover()
         {
             return isHovering;

@@ -18,7 +18,6 @@ namespace ISP_Project.Game_States
     {
         private List<Button> buttons;
         private int selectedButtonCounter = 0;
-        // create variables for the textures and fonts of the buttons (Buttons can share the same texture/font)
         private Texture2D buttonTexture;
         private Texture2D sliderBarTexture;
         private Texture2D sliderTexture;
@@ -36,28 +35,22 @@ namespace ISP_Project.Game_States
                 BarPosition = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y)
             };
 
-            /*var audioButton = new AudioButton(buttonTexture, buttonFont, 1, 0.5f)
-            {
-                Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
-                Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y - 16),
-                Text = "Audio"
-            };*/
-
             buttons = new List<Button>()
             {
                 songSlider.Slider
             };
 
         }
+
         public override void LoadState()
         {
-            // load everything in this state
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             sliderBarTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Horizontal Slider Bar");
             sliderTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Horizontal Slider");
         }
-        public override void Update(GameTime gameTime)
+
+        public override void Update()
         {
             // keyboard only select
             /*if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
@@ -86,24 +79,26 @@ namespace ISP_Project.Game_States
                 buttons[selectedButton].TriggerEvent();
             }*/
 
-            songSlider.Update(gameTime);
+            songSlider.Update();
+
             foreach (Button button in buttons)
             {
-                button.Update(gameTime);
+                button.Update();
             }
         }
 
-        public override void PostUpdate(GameTime gameTime)
+        public override void PostUpdate()
         {
             // unload sprites if they're not needed
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw()
         {
-            songSlider.Draw(gameTime);
+            songSlider.Draw();
+
             foreach (Button button in buttons)
             {
-                button.Draw(gameTime);
+                button.Draw();
             }
         }
     }

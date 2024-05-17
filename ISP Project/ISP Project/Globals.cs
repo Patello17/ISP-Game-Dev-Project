@@ -11,17 +11,20 @@ using System.Diagnostics;
 
 namespace ISP_Project
 {
+    /// <summary>
+    /// This class holds references to frequently accessed global variables.
+    /// </summary>
     public static class Globals
     {
-        // this class holds references to frequently accessed global variables
         public static float Time { get; set; }
         public static ContentManager ContentManager { get; set; }
         public static GraphicsDeviceManager GraphicsDeviceManager { get; set; }
+        public static GraphicsDevice GraphicsDevice { get; set; }
         public static SpriteBatch SpriteBatch { get; set; }
 
         public static void Update(GameTime gameTime)
         {
-            Time = (float)gameTime.ElapsedGameTime.TotalSeconds; // typically 60 fps (1 / 60 = 0.0167...)
+            Time = (float)gameTime.ElapsedGameTime.TotalSeconds; // should be 60 fps (1 / 60 = 0.0167...)
         }
 
     }

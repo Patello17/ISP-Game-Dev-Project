@@ -31,9 +31,10 @@ namespace ISP_Project.UI.Buttons
         {
             // change Game State here!
             AudioManager.PlaySoundEffect("Button Press");
-            StateManager.ChangeState(new AudioSettingsState());
+            // StateManager.ChangeState(new AudioSettingsState());
         }
     }
+
     // create Controls Button
     public class ControlsButton : Button
     {
@@ -56,6 +57,7 @@ namespace ISP_Project.UI.Buttons
             Debug.WriteLine("Entering Controls Settings...");
         }
     }
+
     // create Return Button
     public class ReturnButton : Button
     {
@@ -82,6 +84,8 @@ namespace ISP_Project.UI.Buttons
             StateManager.ChangeState(StateManager.GetRecentState(StateManager.GetMostRecentState(states)));
         }
     }
+
+    // create Song Slider Button
     public class SongSliderButton : Button
     {
         private Texture2D buttonTexture;

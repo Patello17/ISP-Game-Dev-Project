@@ -23,50 +23,49 @@ namespace ISP_Project.Gameplay
 {
     internal class Box : Actor
     {
+        // enumerate box types
         public enum BoxType
         {
             HORIZONTAL, VERTICAL,
             UP, DOWN, LEFT, RIGHT,
             STAR
         }
-        private BoxType boxType = BoxType.RIGHT; // right by default
+        private BoxType boxType;
+
+        // create sinking logic variables
         private bool isSunken = false;
         private bool sinkLock = false;
-        public bool CanMove { get; set; }
+
+        // reference Actor properties
         public override Sprite Sprite { get; set; }
         public override Transform Transform { get; set; }
-        private Vector2 tileMapPosition;
-        public override Vector2 TileMapPosition
-        {
-            get { return tileMapPosition; }
-            set
-            {
-                tileMapPosition = value;
-                /*var centeredTileMapPosition = tileMapPosition - new Vector2(20, 11);
-                Transform.Position = new Vector2(
-                    (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
-                    (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);*/
-            }
-        }
-        Vector2 newTileMapPosition;
+        public override Vector2 TileMapPosition { get; set; }
+
+        // create movement-related properties and fields
+        public override List<Vector2> PastPositions { get; set; }
+        Vector2 nextTileMapPosition;
         Vector2 movementVector;
-        private bool isSliding = false;
 
         public Box(Vector2 tileMapPosition, BoxType boxType)
         {
             Transform = new Transform(Vector2.Zero, 1f, 0f);
             TileMapPosition = tileMapPosition;
+            
+            // convert tile position coordinates to screen resolution coordinates
             var centeredTileMapPosition = tileMapPosition - new Vector2(20, 11);
             Transform.Position = new Vector2(
                     (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
                     (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
-            newTileMapPosition = TileMapPosition;
+
+            PastPositions = new List<Vector2>();
+            nextTileMapPosition = TileMapPosition;
             this.boxType = boxType;
         }
 
         public override void LoadContent()
         {
             Sprite = new Sprite(null, SpriteEffects.None, 1);
+
             // load the correct texture
             switch (boxType)
             {
@@ -93,14 +92,11 @@ namespace ISP_Project.Gameplay
                     break;
             }
         }
-        public override void Update(GameTime gameTime, CollisionMap collisionMap)
+
+        public override void Update(CollisionMap collisionMap)
         {
             SetTexture();
-
-            // slide
-            Slide(GetNextPosition());
-
-            // UpdatePosition(collisionMap);
+            Slide(GetNextPosition()); // slide to next position
         }
 
         public override void Draw()
@@ -110,22 +106,47 @@ namespace ISP_Project.Gameplay
                 Sprite.SpriteEffects, Sprite.DrawLayer);
         }
         
+        /// <summary>
+        /// Gets whether this box has sunk or not.
+        /// </summary>
+        /// <returns></returns>
         public bool GetSunkState()
         {
             return isSunken;
         }
+
+        /// <summary>
+        /// Gets this box's movement vector.
+        /// </summary>
+        /// <returns></returns>
         public Vector2 GetMovementVector()
         {
             return movementVector;
         }
+
+        /// <summary>
+        /// Gets this box's current position.
+        /// </summary>
+        /// <returns></returns>
         public Vector2 GetCurrentPosition()
         {
             return TileMapPosition;
         }
+
+        /// <summary>
+        /// Gets this box's next position.
+        /// </summary>
+        /// <returns></returns>
         public Vector2 GetNextPosition()
         {
-            return newTileMapPosition;
+            return nextTileMapPosition;
         }
+
+        /// <summary>
+        /// Sets next position if movement vector is valid.
+        /// </summary>
+        /// <param name="movementVector"></param>
+        /// <param name="isBoxPushing"></param>
         public void SetNextPosition(Vector2 movementVector, bool isBoxPushing)
         {
             switch (boxType)
@@ -161,87 +182,86 @@ namespace ISP_Project.Gameplay
             if (isBoxPushing)
             {
                 this.movementVector = movementVector;
-                // Debug.WriteLine("BOX IS PUSHING BOX");
             }
-                
 
-            newTileMapPosition = TileMapPosition + this.movementVector;
-            // Debug.WriteLine(this.movementVector + " || " + newTileMapPosition);
+            nextTileMapPosition = TileMapPosition + this.movementVector;
         }
+
+        /// <summary>
+        /// Sets this box's texture.
+        /// </summary>
         public void SetTexture()
         {
             if (isSunken)
             {
                 Sprite.Color = new Color(127, 174, 198);
                 Sprite.DrawLayer = 0.2f;
-                if (!sinkLock)
-                {
-                    // newTileMapPosition += new Vector2(0, 7 * 11 / 180);
-                    sinkLock = true;
-                }
             }
             else 
             {
                 Sprite.Color = Color.White;
-                sinkLock = false;
             }
-            /*Sprite.Texture = textureDictionary[keyDown];
-            Sprite.SpriteEffects = spriteEffectsDictionary[keyDown];*/
         }
-        public void UpdatePosition(CollisionMap collisionMap)
+
+        public override void UpdatePosition(CollisionMap collisionMap)
         {
-            // check for collisions (1 = solid in the tilesheet; 2 = water; 5 = mailbox goal)
-            if (collisionMap.GetCollision(newTileMapPosition) == 2)
+            // check for collisions
+            if (collisionMap.GetCollision(nextTileMapPosition) == 2) // water
             {
-                // update position and sink
+                // play sound effect
+                AudioManager.PlaySoundEffect("Box Splash");
+
+                // sink
                 isSunken = true;
-                CanMove = false;
-                // Transform.Position += movementVector * 16; // tiles are 16x16
+
+                // update position
                 collisionMap.SetCollision(TileMapPosition, 0);
-                TileMapPosition = newTileMapPosition;
+                TileMapPosition = nextTileMapPosition;
                 collisionMap.SetCollision(TileMapPosition, 0); // box acts as a path when sunk!
             }
-            else if (collisionMap.GetCollision(newTileMapPosition) != 1 &&
-                collisionMap.GetCollision(newTileMapPosition) != 3 &&
+            else if (collisionMap.GetCollision(nextTileMapPosition) != 1 && // solids
+                collisionMap.GetCollision(nextTileMapPosition) != 3 && // other boxes
                 !isSunken)
             {
                 // update position
-                CanMove = true;
-                // Transform.Position += movementVector * 16; // tiles are 16x16
-                
                 collisionMap.SetCollision(TileMapPosition, 0);
-                TileMapPosition = newTileMapPosition;
+                TileMapPosition = nextTileMapPosition;
                 collisionMap.SetCollision(TileMapPosition, 3);
-                // Debug.WriteLine(collisionMap.GetCollision(TileMapPosition));
-                
             }
 
             movementVector = Vector2.Zero;
-            newTileMapPosition = TileMapPosition;
-
-            // collisionMap.SetCollision(TileMapPosition, 3);
+            nextTileMapPosition = TileMapPosition;
         }
 
+        /// <summary>
+        /// Gets what type of box this box is.
+        /// </summary>
+        /// <returns></returns>
         public BoxType GetBoxType()
         {
             return boxType;
         }
 
+        /// <summary>
+        /// Slides the box to its next position.
+        /// </summary>
+        /// <param name="targetPosition"></param>
         private void Slide(Vector2 targetPosition)
         {
+            // convert tile position coordinates to screen resolution coordinates
             var centeredTileMapPosition = targetPosition - new Vector2(20, 11);
             targetPosition = new Vector2(
                 (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
                 (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
-            /*targetPosition = new Vector2(targetPosition.X * 16 + 8, targetPosition.Y * (180 / 11) + 8);*/
-            var clampBound = 1f; // snap to position when within 1 pixels
 
+            var clampBound = 1f; // snap to position when within 1 pixel
+
+            // smoothly transition from current tile to next tile.
             Vector2 newPosition = Vector2.Lerp(Transform.Position, targetPosition, 0.3f);
             if (Math.Abs(newPosition.X - targetPosition.X) <= clampBound &&
                     Math.Abs(newPosition.Y - targetPosition.Y) <= clampBound)
             {
                 newPosition = targetPosition;
-                isSliding = false;
             }
             Transform.Position = newPosition;
         }

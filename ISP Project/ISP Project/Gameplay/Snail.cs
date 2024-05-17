@@ -37,12 +37,13 @@ namespace ISP_Project.Gameplay
                 tileMapPosition = value;
             }
         }
-        Vector2 newTileMapPosition;
+        public override List<Vector2> PastPositions { get; set; }
+        Vector2 nextTileMapPosition;
         Vector2 movementVector;
         private Inputs previousKeyDown;
         private Inputs keyDown;
         private float dasTimer; // DAS stands for "delayed auto shift"
-        private float autoShiftDelay = 0.8f;
+        private float autoShiftDelay = 0.1f;
         private float transitionTimer;
         private float transitionSpeed = 0.4f;
         private bool isSliding = false;
@@ -59,7 +60,8 @@ namespace ISP_Project.Gameplay
             Transform.Position = new Vector2(
                 (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
                 (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
-            newTileMapPosition = TileMapPosition;
+            PastPositions = new List<Vector2>();
+            nextTileMapPosition = TileMapPosition;
             keyDown = Inputs.RIGHT;
 
             movementDictionary = new Dictionary<Inputs, Vector2>()
@@ -95,17 +97,18 @@ namespace ISP_Project.Gameplay
                 { Inputs.RIGHT, sideTexture }
             };
         }
-        public override void Update(GameTime gameTime, CollisionMap collisionMap)
+        public override void Update(CollisionMap collisionMap)
         {
             previousKeyDown = keyDown;
 
             GetKeyDown();
             ApplyDAS();
             SetTexture();
-
+            
             // slide
             Slide(GetNextPosition());
 
+            //Debug.WriteLine(PastPositions.Count);
             // Debug.WriteLine("Collision Map is colliding with " + newTileMapPosition + "? " + collisionMap.isColliding(newTileMapPosition));
             // UpdatePosition(collisionMap);
         }
@@ -116,6 +119,10 @@ namespace ISP_Project.Gameplay
                 Transform.Rotation, Sprite.GetSpriteOrigin(), Transform.Scale,
                 Sprite.SpriteEffects, Sprite.DrawLayer);
         }
+
+        /// <summary>
+        /// Gets the most recent movement key pressed.
+        /// </summary>
         public void GetKeyDown()
         {
             switch (true)
@@ -134,14 +141,28 @@ namespace ISP_Project.Gameplay
                     break;
             }
         }
+
+        /// <summary>
+        /// Gets the player's movement vector.
+        /// </summary>
+        /// <returns></returns>
         public Vector2 GetMovementVector()
         {
             return movementVector;
         }
+
+        /// <summary>
+        /// Gets the player's next position.
+        /// </summary>
+        /// <returns></returns>
         public Vector2 GetNextPosition()
         {
-            return newTileMapPosition;
+            return nextTileMapPosition;
         }
+
+        /// <summary>
+        /// Applies a Delayed Auto Shift and updates movement.
+        /// </summary>
         public void ApplyDAS()
         {
             if (isKey(keyDown, isReleased) || keyDown != previousKeyDown)
@@ -158,9 +179,9 @@ namespace ISP_Project.Gameplay
             {
                 dasTimer += Globals.Time;
             }
-            if (dasTimer >= autoShiftDelay && isSliding == false)
+            if (dasTimer >= autoShiftDelay && !isSliding)
             {
-                if (transitionTimer >= transitionSpeed && isSliding == false)
+                if (transitionTimer >= transitionSpeed && !isSliding)
                 {
                     SetNextPosition();
                     isSliding = true;
@@ -171,12 +192,20 @@ namespace ISP_Project.Gameplay
                 }
             }
         }
+
+        /// <summary>
+        /// Sets the player's next position.
+        /// </summary>
         public void SetNextPosition()
         {
+            AudioManager.PlaySoundEffect("Player Movement");
             movementVector = movementDictionary[keyDown];
-            newTileMapPosition = TileMapPosition + movementVector;
-            // Debug.WriteLine(movementVector);
+            nextTileMapPosition = TileMapPosition + movementVector;
         }
+
+        /// <summary>
+        /// Sets the player's texture
+        /// </summary>
         public void SetTexture()
         {
             if (isSliding)
@@ -185,32 +214,39 @@ namespace ISP_Project.Gameplay
                 Sprite.SpriteEffects = spriteEffectsDictionary[keyDown];
             }
         }
-        public void UpdatePosition(CollisionMap collisionMap)
+
+        public override void UpdatePosition(CollisionMap collisionMap)
         {
-            // Debug.WriteLine(movementVector + " || " + newTileMapPosition);
-            // check for collisions (1 = solid in the tilesheet; 5 = mailbox goal)
-            if (collisionMap.GetCollision(newTileMapPosition) != 1 &&
-                collisionMap.GetCollision(newTileMapPosition) != 5 &&
-                collisionMap.GetCollision(newTileMapPosition) != 3)
+            // check for collisions
+
+            if (nextTileMapPosition != TileMapPosition &&
+                collisionMap.GetCollision(nextTileMapPosition) != 1 && // solids
+                collisionMap.GetCollision(nextTileMapPosition) != 3 && // boxes
+                collisionMap.GetCollision(nextTileMapPosition) != 5) // mailbox
             {
                 // update position
-                // Transform.Position += movementVector * 16; // tiles are 16x16
-                TileMapPosition = newTileMapPosition;
+                TileMapPosition = nextTileMapPosition;
             }
 
             movementVector = Vector2.Zero;
-            newTileMapPosition = TileMapPosition;
-
+            nextTileMapPosition = TileMapPosition;
         }
+
+        /// <summary>
+        /// Slides the box to its next position.
+        /// </summary>
+        /// <param name="targetPosition"></param>
         private void Slide(Vector2 targetPosition)
         {
+            // convert tile position coordinates to screen resolution coordinates
             var centeredTileMapPosition = targetPosition - new Vector2(20, 11);
             targetPosition = new Vector2(
                 (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
                 (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
-            /*targetPosition = new Vector2(targetPosition.X * 16 + 8, targetPosition.Y * (180 / 11) + 8);*/
-            var clampBound = 1f; // snap to position when within 1 pixels
 
+            var clampBound = 1f; // snap to position when within 1 pixel
+
+            // smoothly transition from the current tile to the next tile.
             Vector2 newPosition = Vector2.Lerp(Transform.Position, targetPosition, 0.3f);
             if (Math.Abs(newPosition.X - targetPosition.X) <= clampBound &&
                     Math.Abs(newPosition.Y - targetPosition.Y) <= clampBound)

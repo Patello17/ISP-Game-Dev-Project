@@ -69,9 +69,13 @@ namespace ISP_Project.UI.Sliders
             this.buttonScale = buttonScale;
             sliderValue = value;
         }
-        public void Update(GameTime gameTime)
+
+        /// <summary>
+        /// Updates this Horizontal Slider.
+        /// </summary>
+        public void Update()
         {
-            Slider.Update(gameTime);
+            Slider.Update();
             
             if (InputManager.cursorRectangle.Intersects(Slider.Rectangle) &&
                 InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isPressed))
@@ -80,10 +84,14 @@ namespace ISP_Project.UI.Sliders
             }
             Debug.WriteLine(BarPosition);
         }
-        public void Draw(GameTime gameTime)
+
+        /// <summary>
+        /// Draws this Horizontal Slider.
+        /// </summary>
+        public void Draw()
         {
             Globals.SpriteBatch.Draw(BarSprite.Texture, BarPosition, null, Color.White, 0f, BarSprite.GetSpriteOrigin(), buttonScale, BarSprite.SpriteEffects, BarSprite.DrawLayer);
-            Slider.Draw(gameTime);
+            Slider.Draw();
         }
     }
 }
