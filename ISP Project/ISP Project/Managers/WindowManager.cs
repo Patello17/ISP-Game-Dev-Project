@@ -61,7 +61,10 @@ namespace ISP_Project.Managers
         {
             window.SetFullScreen();
         }
-        
 
+        public static RenderTarget2D GetRenderTarget()
+        {
+            return window.GetRenderTarget();
+        }
     }
 }

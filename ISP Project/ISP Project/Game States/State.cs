@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ISP_Project.Managers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +19,7 @@ namespace ISP_Project.Game_States
         public State()
         {
             target = Globals.GetNewRenderTarget();
+            Debug.WriteLine(target.Bounds);
         }
         /// <summary>
         /// Loads everything in this State.
@@ -47,11 +50,13 @@ namespace ISP_Project.Game_States
                 SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise,
                 null, null);
             Draw();
+            // Debug.WriteLine("DRAWING!");
             Globals.SpriteBatch.End();
 
             // Draw();
 
-            Globals.GraphicsDevice.SetRenderTarget(null);
+            Globals.GraphicsDevice.SetRenderTarget(WindowManager.GetRenderTarget());
+            // Debug.WriteLine(target);
             return target;
         }
     }

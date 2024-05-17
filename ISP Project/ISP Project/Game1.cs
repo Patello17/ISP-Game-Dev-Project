@@ -46,6 +46,7 @@ namespace ISP_Project
             
             Globals.ContentManager = Content;
             Globals.GraphicsDevice = GraphicsDevice;
+            // Globals.StateGraphicsDevice = new GraphicsDevice(this.GraphicsDevice.Adapter, GraphicsProfile.Reach, new PresentationParameters());
             Debug.WriteLine(Globals.GraphicsDevice);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Globals.SpriteBatch = _spriteBatch;

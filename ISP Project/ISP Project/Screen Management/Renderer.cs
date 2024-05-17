@@ -98,5 +98,10 @@ namespace ISP_Project.Screen_Management
         {
             return renderSize;
         }
+
+        public RenderTarget2D GetRenderTarget()
+        {
+            return renderTarget;
+        }
     }
 }

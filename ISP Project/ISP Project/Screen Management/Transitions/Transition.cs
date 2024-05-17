@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ISP_Project.Managers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ISP_Project.Screen_Management.Transitions
 {
+    // Code Reference: https://www.youtube.com/watch?v=oeUE2O6LAEU
     public abstract class Transition(RenderTarget2D transitionFrame)
     {
         protected RenderTarget2D frame = transitionFrame;
@@ -38,12 +40,14 @@ namespace ISP_Project.Screen_Management.Transitions
         {
             Globals.GraphicsDevice.SetRenderTarget(frame);
             Globals.GraphicsDevice.Clear(Color.Black);
+            
             Globals.SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend,
                 SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise,
                 null, null);
             Process();
             Globals.SpriteBatch.End();
-            Globals.GraphicsDevice.SetRenderTarget(null);
+
+            Globals.GraphicsDevice.SetRenderTarget(WindowManager.GetRenderTarget());
 
             return frame;
         }

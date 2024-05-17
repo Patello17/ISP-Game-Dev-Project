@@ -13,6 +13,7 @@ using System.Xml.Schema;
 
 namespace ISP_Project.Managers
 {
+    // Code Reference (for transitions): https://www.youtube.com/watch?v=oeUE2O6LAEU
     public class StateManager
     {
         // create a stack of states
@@ -43,7 +44,7 @@ namespace ISP_Project.Managers
             }
             else
             {
-                Debug.WriteLine("TRANSITIONING!");
+                // Debug.WriteLine("TRANSITIONING!");
                 IsTransitioning = transition.Update();
             }
                 
@@ -67,15 +68,16 @@ namespace ISP_Project.Managers
             // draws the current state
             if (stateStack.Count > 0)
             {
-                
 
+                var frame = GetCurrentState().GetFrame();
+                Debug.WriteLine(frame);
+                
                 Globals.SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend,
                     SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise,
                     null, null); // final null should be replaced with camera transformation matrix i think
-                /*var frame = GetFrame();
-                Globals.SpriteBatch.Draw(frame, Vector2.Zero, Color.White);*/
 
-                GetCurrentState().Draw();
+                Globals.SpriteBatch.Draw(frame, Vector2.Zero, Color.White);
+                // GetCurrentState().Draw();
                 Globals.SpriteBatch.End();
                 // Globals.SpriteBatch.Draw(frame, Vector2.Zero, Color.White);
             }
