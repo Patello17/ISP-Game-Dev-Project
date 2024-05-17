@@ -20,13 +20,10 @@ namespace ISP_Project.Screen_Management
         public float RenderScale { get; set; }
         private Vector2 renderSize = new Vector2(640, 360); // default resolution
 
-        // create instance of a graphics device
-        private GraphicsDevice graphicsDevice;
 
-        public Renderer(GraphicsDevice graphicsDevice)
+        public Renderer()
         {
-            this.graphicsDevice = graphicsDevice;
-            renderTarget = new RenderTarget2D(graphicsDevice, (int)renderSize.X, (int)renderSize.Y);
+            renderTarget = new RenderTarget2D(Globals.GraphicsDevice, (int)renderSize.X, (int)renderSize.Y);
         }
 
         /// <summary>
@@ -34,7 +31,7 @@ namespace ISP_Project.Screen_Management
         /// </summary>
         public void SetDestinationRectangle()
         {
-            var screenSize = graphicsDevice.PresentationParameters.Bounds;
+            var screenSize = Globals.GraphicsDevice.PresentationParameters.Bounds;
 
             float scaleX = (float)screenSize.Width / renderTarget.Width;
             float scaleY = (float)screenSize.Height / renderTarget.Height;
@@ -53,9 +50,9 @@ namespace ISP_Project.Screen_Management
         /// </summary>
         public void Activate()
         {
-            graphicsDevice.SetRenderTarget(renderTarget);
-            // set the unused render area this color
-            graphicsDevice.Clear(Color.Black);
+            Globals.GraphicsDevice.SetRenderTarget(renderTarget);
+            // set the unused render area to this color
+            Globals.GraphicsDevice.Clear(Color.Coral);
         }
 
         /// <summary>
@@ -64,12 +61,12 @@ namespace ISP_Project.Screen_Management
         /// <param name="gameTime"></param>
         public void Draw(GameTime gameTime)
         {
-            graphicsDevice.SetRenderTarget(null);
+            Globals.GraphicsDevice.SetRenderTarget(null);
             // set the excess window screen this color (i.e. the "black bars")
-            graphicsDevice.Clear(Color.Black);
+            Globals.GraphicsDevice.Clear(Color.LightSlateGray);
 
-            Globals.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, 
-                SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, 
+            Globals.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend,
+                SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise,
                 null, null);
             Globals.SpriteBatch.Draw(renderTarget, destinationRectangle, Color.White);
             Globals.SpriteBatch.End();

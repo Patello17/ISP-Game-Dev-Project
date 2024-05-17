@@ -30,11 +30,12 @@ namespace ISP_Project.Managers
         {
             window.SetRenderTarget();
 
-            Globals.SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, 
-                SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, 
-                null, null); // final null should be replaced with camera transformation matrix i think
+            /*Globals.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend,
+                SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise,
+                null, null);
             StateManager.Draw();
-            Globals.SpriteBatch.End();
+            Globals.SpriteBatch.End();*/
+            StateManager.Draw(); //
 
             window.Draw(gameTime);
         }

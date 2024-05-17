@@ -80,8 +80,8 @@ namespace ISP_Project.Managers
                 { ClickInputs.INTERACT, mouseState.LeftButton}
             };
 
-            // update cursor rectangle
-            cursorRectangle = new Rectangle(mouseState.Position.X, mouseState.Position.Y, 1, 1);
+            // update cursor rectangle -- EDIT: Disabled Mouse Functionality
+            // cursorRectangle = new Rectangle(mouseState.Position.X, mouseState.Position.Y, 1, 1);
         }
 
         // get different information from key inputs

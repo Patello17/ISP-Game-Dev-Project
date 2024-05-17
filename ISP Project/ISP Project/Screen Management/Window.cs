@@ -20,7 +20,7 @@ namespace ISP_Project.Screen_Management
         public Window(int width, int height, GraphicsDeviceManager graphicsDeviceManager)
         {
             this.graphicsDeviceManager = graphicsDeviceManager;
-            renderer = new Renderer(graphicsDeviceManager.GraphicsDevice); 
+            renderer = new Renderer(); 
             SetWindowSize(width, height);
         }
 
@@ -56,7 +56,7 @@ namespace ISP_Project.Screen_Management
         }
 
         /// <summary>
-        /// Draws the render target
+        /// Draws the render target.
         /// </summary>
         /// <param name="gameTime"></param>
         public void Draw(GameTime gameTime)
@@ -65,7 +65,7 @@ namespace ISP_Project.Screen_Management
         }
 
         /// <summary>
-        /// Sets the render target
+        /// Sets the render target.
         /// </summary>
         public void SetRenderTarget()
         {

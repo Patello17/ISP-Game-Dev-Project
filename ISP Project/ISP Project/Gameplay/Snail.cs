@@ -98,18 +98,19 @@ namespace ISP_Project.Gameplay
             };
         }
 
-        public override void Update(CollisionMap collisionMap)
+        public override void Update()
         {
             previousKeyDown = keyDown;
+
+            movementVector = Vector2.Zero;
+            nextTileMapPosition = TileMapPosition;
 
             GetKeyDown();
             ApplyDAS();
             SetTexture();
-            
-            // slide
             Slide(GetNextPosition());
 
-            //Debug.WriteLine(PastPositions.Count);
+            // Debug.WriteLine(PastPositions.Count);
             // Debug.WriteLine("Collision Map is colliding with " + newTileMapPosition + "? " + collisionMap.isColliding(newTileMapPosition));
             // UpdatePosition(collisionMap);
         }
@@ -173,19 +174,24 @@ namespace ISP_Project.Gameplay
             }
             if (isKey(keyDown, isTriggered))
             {
-                SetNextPosition();
                 isSliding = true;
+                SetNextPosition();
             }
             if (isKey(keyDown, isPressed))
             {
                 dasTimer += Globals.Time;
             }
+            else
+            {
+                dasTimer = 0f;
+                transitionTimer = 0f;
+            }
             if (dasTimer >= autoShiftDelay && !isSliding)
             {
                 if (transitionTimer >= transitionSpeed && !isSliding)
                 {
-                    SetNextPosition();
                     isSliding = true;
+                    SetNextPosition();
                 }
                 else
                 {
@@ -229,8 +235,7 @@ namespace ISP_Project.Gameplay
                 TileMapPosition = nextTileMapPosition;
             }
 
-            movementVector = Vector2.Zero;
-            nextTileMapPosition = TileMapPosition;
+            // Debug.WriteLine(nextTileMapPosition);
         }
 
         /// <summary>

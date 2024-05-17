@@ -93,10 +93,10 @@ namespace ISP_Project.Gameplay
             }
         }
 
-        public override void Update(CollisionMap collisionMap)
+        public override void Update()
         {
             SetTexture();
-            Slide(GetNextPosition()); // slide to next position
+            Slide(GetNextPosition());
         }
 
         public override void Draw()

@@ -75,9 +75,7 @@ namespace ISP_Project.Game_States
             {
                 button.Update();
             }
-
-            // let player know of the collision map
-            player.Update(tileMap.CollisionMap);
+            player.Update();
 
             // these vectors represent the position of the doorway
             if (player.GetNextPosition() == new Vector2(9, 11) || 

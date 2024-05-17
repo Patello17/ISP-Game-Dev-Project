@@ -110,12 +110,11 @@ namespace ISP_Project.Game_States.Levels
                 button.Update();
             }
 
-            // let actors know of this level's collision map
             foreach (Box box in boxes)
             {
-                box.Update(tileMap.CollisionMap);
+                box.Update();
             }
-            player.Update(tileMap.CollisionMap);
+            player.Update();
 
             // check for box collisions
             List<Box> boxUpdateOrder = new List<Box>();

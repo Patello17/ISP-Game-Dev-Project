@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,13 +31,22 @@ namespace ISP_Project.Screen_Management.Transitions
         {
             durationLeft -= Globals.Time;
             percentage = durationLeft / duration;
-            return durationLeft < 0f;
+            return !(durationLeft < 0f);
         }
 
-        /*public RenderTarget2D GetFrame()
+        public RenderTarget2D GetFrame()
         {
-            Globals.GraphicsDevice
-        }*/
+            Globals.GraphicsDevice.SetRenderTarget(frame);
+            Globals.GraphicsDevice.Clear(Color.Black);
+            Globals.SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend,
+                SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise,
+                null, null);
+            Process();
+            Globals.SpriteBatch.End();
+            Globals.GraphicsDevice.SetRenderTarget(null);
+
+            return frame;
+        }
 
     }
 }

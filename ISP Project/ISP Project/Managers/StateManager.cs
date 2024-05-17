@@ -1,4 +1,5 @@
 ﻿using ISP_Project.Game_States;
+using ISP_Project.Screen_Management.Transitions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Sprites;
@@ -8,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace ISP_Project.Managers
 {
@@ -19,6 +21,15 @@ namespace ISP_Project.Managers
             new TitleState()
         };
 
+        // create transition variables
+        private static RenderTarget2D transitionFrame = Globals.GetNewRenderTarget();
+        private static Dictionary<Transitions, Transition> transitions = new Dictionary<Transitions, Transition>()
+        {
+            { Transitions.BlackFade, new BlackFadeTransition(transitionFrame) }
+        };
+        private static Transition transition;
+        public static bool IsTransitioning { get; set; } = false;
+
         /// <summary>
         /// Updates the states.
         /// </summary>
@@ -26,8 +37,16 @@ namespace ISP_Project.Managers
         public static void Update()
         {
             // update the current state
-            if (stateStack.Count > 0)
+            if (stateStack.Count > 0 && !IsTransitioning)
+            {
                 GetCurrentState().Update();
+            }
+            else
+            {
+                Debug.WriteLine("TRANSITIONING!");
+                IsTransitioning = transition.Update();
+            }
+                
 
             // if there are duplicate states, only keep the most recent one
             var newStateStack = new List<State>();
@@ -47,7 +66,20 @@ namespace ISP_Project.Managers
         {
             // draws the current state
             if (stateStack.Count > 0)
+            {
+                
+
+                Globals.SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend,
+                    SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise,
+                    null, null); // final null should be replaced with camera transformation matrix i think
+                /*var frame = GetFrame();
+                Globals.SpriteBatch.Draw(frame, Vector2.Zero, Color.White);*/
+
                 GetCurrentState().Draw();
+                Globals.SpriteBatch.End();
+                // Globals.SpriteBatch.Draw(frame, Vector2.Zero, Color.White);
+            }
+                
         }
 
         /// <summary>
@@ -58,7 +90,13 @@ namespace ISP_Project.Managers
         {
             if (nextState != null)
             {
+                var oldScene = stateStack[0].GetFrame();
+                var newScene = nextState.GetFrame();
                 stateStack.Insert(0, nextState);
+
+                transition = transitions[Transitions.BlackFade];
+                transition.Start(oldScene, newScene, 2f);
+                IsTransitioning = true;
             }
         }
 
@@ -137,6 +175,11 @@ namespace ISP_Project.Managers
                     return true;
             }
             return false;
+        }
+
+        private static RenderTarget2D GetFrame()
+        {
+            return IsTransitioning ? transition.GetFrame() : stateStack[0].GetFrame();
         }
     }
 }

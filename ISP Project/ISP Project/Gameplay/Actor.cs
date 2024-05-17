@@ -26,13 +26,13 @@ namespace ISP_Project.Gameplay
         public abstract void LoadContent();
 
         /// <summary>
-        /// Updates this Actor; Actors need a reference to a collision map to interact with the scene and determine collisions.
+        /// Updates this Actor.
         /// </summary>
         /// <param name="collisionMap"></param>
-        public abstract void Update(CollisionMap collisionMap);
+        public abstract void Update();
 
         /// <summary>
-        /// Updates the position of the Actor.
+        /// Updates the position of this Actor; Actors need a reference to a collision map to interact with the scene and determine collisions.
         /// </summary>
         /// <param name="collisionMap"></param>
         public abstract void UpdatePosition(CollisionMap collisionMap);

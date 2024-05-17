@@ -22,8 +22,6 @@ namespace ISP_Project
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
-            // Globals.GraphicsDeviceManager = _graphics;
-            Globals.GraphicsDevice = _graphics.GraphicsDevice;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -31,14 +29,11 @@ namespace ISP_Project
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            IsMouseVisible = true;
-            Window.AllowUserResizing = false;
+            IsMouseVisible = true; // not using mouse
+            Window.AllowUserResizing = true;
             Window.AllowAltF4 = true;
             Window.Title = "Snail Mail";
 
-            // set and update window size
-            WindowManager.InitializeWindow(_graphics);
-            WindowManager.SetMainWindowSize(1280, 720);
             // _graphics.ToggleFullScreen
             _graphics.PreferMultiSampling = false;
 
@@ -49,9 +44,16 @@ namespace ISP_Project
         {
             // TODO: use this.Content to load your game content here
             
+            Globals.ContentManager = Content;
+            Globals.GraphicsDevice = GraphicsDevice;
+            Debug.WriteLine(Globals.GraphicsDevice);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            Globals.ContentManager = this.Content;
             Globals.SpriteBatch = _spriteBatch;
+
+            // set and update window size
+            WindowManager.InitializeWindow(_graphics);
+            WindowManager.SetMainWindowSize(1280, 720);
+
 
             AudioManager.LoadAudio();
         }
@@ -72,8 +74,8 @@ namespace ISP_Project
             // update managers
             Globals.Update(gameTime);
             WindowManager.Update();
-            InputManager.Update();
             StateManager.Update();
+            InputManager.Update();
             AudioManager.Update();
 
             base.Update(gameTime);
@@ -81,7 +83,7 @@ namespace ISP_Project
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            Globals.GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
 
