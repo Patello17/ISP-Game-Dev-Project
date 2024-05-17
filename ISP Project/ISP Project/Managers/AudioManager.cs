@@ -61,6 +61,9 @@ namespace ISP_Project.Managers
 
             // start from the lowest volume
             MediaPlayer.Volume = volumeLow;
+
+            // set soudne effect volume
+            // SetSoundEffectVolume(0.2f);
         }
 
         /// <summary>
@@ -267,7 +270,7 @@ namespace ISP_Project.Managers
         }
         
         /// <summary>
-        /// Fades between two songs as a transition.
+        /// Fades between two songs.
         /// </summary>
         /// <param name="initialVolume"></param>
         /// <param name="targetVolume"></param>

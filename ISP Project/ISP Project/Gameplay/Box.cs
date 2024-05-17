@@ -23,7 +23,7 @@ namespace ISP_Project.Gameplay
 {
     internal class Box : Actor
     {
-        // enumerate box types
+        // define box types
         public enum BoxType
         {
             HORIZONTAL, VERTICAL,

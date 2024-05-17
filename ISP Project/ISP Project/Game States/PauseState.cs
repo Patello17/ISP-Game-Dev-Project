@@ -1,4 +1,5 @@
 ﻿using ISP_Project.Components;
+using ISP_Project.Game_States.Levels;
 using ISP_Project.Managers;
 using ISP_Project.UI.Buttons;
 using Microsoft.Xna.Framework;
@@ -21,6 +22,9 @@ namespace ISP_Project.Game_States
         private SpriteFont buttonFont;
 
         private ResumeButton resumeButton;
+        private SettingsButton settingsButton;
+        private QuitToTitleButton quitToTitleButton;
+        private HubReturnButton quitToHubButton;
 
         public PauseState() 
         {
@@ -33,25 +37,31 @@ namespace ISP_Project.Game_States
                 Text = "Resume"
             };
 
-            var settingsButton = new SettingsButton(buttonTexture, buttonFont, 1, 0.5f)
+            settingsButton = new SettingsButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
                 Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y),
                 Text = "Settings"
             };
 
-            var quitButton = new QuitToTitleButton(buttonTexture, buttonFont, 1, 0.5f)
+            quitToTitleButton = new QuitToTitleButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
                 Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y + 16),
-                Text = "To Title"
+                Text = "Exit"
             };
 
-            buttons = new List<Button>() 
-            { 
-                resumeButton, settingsButton, quitButton
+            quitToHubButton = new HubReturnButton(buttonTexture, buttonFont, 1, 0.5f)
+            {
+                Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y + 16),
+                Text = "To Hub"
             };
 
+            buttons = new List<Button>()
+            {
+                resumeButton, settingsButton, quitToTitleButton
+            };
         }
 
         public override void LoadState()
@@ -66,6 +76,22 @@ namespace ISP_Project.Game_States
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
                 resumeButton.TriggerEvent();
+            }
+
+            // change exit button between hub and title
+            if (StateManager.GetPreviousState() is HubState)
+            {
+                buttons = new List<Button>()
+                {
+                    resumeButton, settingsButton, quitToTitleButton
+                };
+            }
+            else
+            {
+                buttons = new List<Button>()
+                {
+                    resumeButton, settingsButton, quitToHubButton
+                };
             }
 
             // keyboard only select

@@ -23,23 +23,22 @@ namespace ISP_Project.Gameplay
 {
     internal class Snail : Actor
     {
+        // create texture variables
         private Texture2D frontTexture;
         private Texture2D backTexture;
         private Texture2D sideTexture;
+
+        // reference Actor properties
         public override Sprite Sprite { get; set; }
         public override Transform Transform { get; set; }
-        private Vector2 tileMapPosition;
-        public override Vector2 TileMapPosition
-        {
-            get { return tileMapPosition; }
-            set
-            {
-                tileMapPosition = value;
-            }
-        }
+        public override Vector2 TileMapPosition { get; set; }
+
+        // create movement-related properties and fields
         public override List<Vector2> PastPositions { get; set; }
         Vector2 nextTileMapPosition;
         Vector2 movementVector;
+
+        // create fine-control movement variables
         private Inputs previousKeyDown;
         private Inputs keyDown;
         private float dasTimer; // DAS stands for "delayed auto shift"
@@ -48,6 +47,7 @@ namespace ISP_Project.Gameplay
         private float transitionSpeed = 0.4f;
         private bool isSliding = false;
 
+        // create dictionaries for commonly referenced information
         private Dictionary<Inputs, Vector2> movementDictionary = new Dictionary<Inputs, Vector2>();
         private Dictionary<Inputs, Texture2D> textureDictionary = new Dictionary<Inputs, Texture2D>();
         private Dictionary<Inputs, SpriteEffects> spriteEffectsDictionary = new Dictionary<Inputs, SpriteEffects>();
@@ -97,6 +97,7 @@ namespace ISP_Project.Gameplay
                 { Inputs.RIGHT, sideTexture }
             };
         }
+
         public override void Update(CollisionMap collisionMap)
         {
             previousKeyDown = keyDown;
