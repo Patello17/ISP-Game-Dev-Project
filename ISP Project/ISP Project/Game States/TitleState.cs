@@ -20,6 +20,7 @@ namespace ISP_Project.Game_States
         private int selectedButtonCounter = 0;
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
+        private Texture2D controlsUI;
 
         public TitleState()
         {
@@ -50,16 +51,13 @@ namespace ISP_Project.Game_States
             {
                 loadGameButton, settingsButton, quitButton
             };
-
         }
 
         public override void LoadState()
         {
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
-            
-            // play music
-            AudioManager.ForcePlaySong("Title Theme");
+            controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Title");
         }
 
         public override void Update()
@@ -103,6 +101,15 @@ namespace ISP_Project.Game_States
             {
                 button.Draw();
             }
+
+            var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
+            Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
+        }
+
+        public override void PlayStateSong()
+        {
+            // play music
+            AudioManager.ForcePlaySong("Title Theme");
         }
     }
 }

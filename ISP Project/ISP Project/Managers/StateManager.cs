@@ -17,10 +17,8 @@ namespace ISP_Project.Managers
     public class StateManager
     {
         // create a stack of states
-        private static List<State> stateStack = new List<State>()
-        {
-            new TitleState()
-        };
+        private static List<State> stateStack = new List<State>();
+        private static State startingState = new TitleState();
 
         // create transition variables
         private static RenderTarget2D transitionFrame = Globals.GetNewRenderTarget();
@@ -38,13 +36,23 @@ namespace ISP_Project.Managers
         /// <param name="gameTime"></param>
         public static void Update()
         {
+            State previousState = GetCurrentState();
+
             // update the current state
             if (stateStack.Count > 0)
             {
                 GetCurrentState().Update();
 
+                if (previousState != GetCurrentState())
+                    GetCurrentState().PlayStateSong();
+
                 if (IsTransitioning)
                     IsTransitioning = transition.Update();
+            }
+            else
+            {
+                stateStack.Add(startingState);
+                startingState.PlayStateSong();
             }
 
             // if there are duplicate states, only keep the most recent one

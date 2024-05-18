@@ -29,8 +29,8 @@ namespace ISP_Project
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            IsMouseVisible = true; // not using mouse
-            Window.AllowUserResizing = true;
+            IsMouseVisible = false; // not using mouse
+            Window.AllowUserResizing = false;
             Window.AllowAltF4 = true;
             Window.Title = "Snail Mail";
 
@@ -47,7 +47,7 @@ namespace ISP_Project
             Globals.ContentManager = Content;
             Globals.GraphicsDevice = GraphicsDevice;
             // Globals.StateGraphicsDevice = new GraphicsDevice(this.GraphicsDevice.Adapter, GraphicsProfile.Reach, new PresentationParameters());
-            Debug.WriteLine(Globals.GraphicsDevice);
+            // Debug.WriteLine(Globals.GraphicsDevice);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Globals.SpriteBatch = _spriteBatch;
 

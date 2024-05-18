@@ -24,6 +24,7 @@ namespace ISP_Project.Game_States
         private Texture2D whiteNoteTexture;
         private Texture2D yellowNoteTexture;
         private Texture2D pinTexture;
+        private Texture2D controlsUI;
 
         public LevelSelectionState()
         {
@@ -59,7 +60,6 @@ namespace ISP_Project.Game_States
             {
                 hubReturnButton, levelOneButton
             };
-
         }
 
         public override void LoadState()
@@ -70,9 +70,7 @@ namespace ISP_Project.Game_States
             pinTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Pin");
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
-
-            // play music
-            AudioManager.ForcePlaySong("Hub Theme");
+            controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Map");
         }
 
         public override void Update()
@@ -134,6 +132,14 @@ namespace ISP_Project.Game_States
             {
                 button.Draw();
             }
+
+            var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
+            Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
+        }
+
+        public override void PlayStateSong()
+        {
+            // play music
         }
     }
 }

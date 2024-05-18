@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ISP_Project.Managers;
 
 namespace ISP_Project.Game_States
 {
@@ -23,5 +24,7 @@ namespace ISP_Project.Game_States
         public override void PostUpdate() { }
 
         public override void Draw() { }
+
+        public override void PlayStateSong() { }
     }
 }

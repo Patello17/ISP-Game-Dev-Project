@@ -59,5 +59,7 @@ namespace ISP_Project.Game_States
             // Debug.WriteLine(target);
             return target;
         }
+
+        public abstract void PlayStateSong();
     }
 }

@@ -101,5 +101,10 @@ namespace ISP_Project.Game_States
                 button.Draw();
             }
         }
+
+        public override void PlayStateSong()
+        {
+            // play music
+        }
     }
 }

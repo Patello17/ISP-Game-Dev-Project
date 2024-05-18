@@ -47,10 +47,10 @@ namespace ISP_Project.Game_States.Levels
         private Box leftBox5c = new Box(new Vector2(25, 7), BoxType.LEFT);
         private Box leftBox5d = new Box(new Vector2(27, 7), BoxType.LEFT);
         private Box upBox5a = new Box(new Vector2(21, 9), BoxType.UP);
-        private Box upBox5b = new Box(new Vector2(24, 9), BoxType.UP);
+        private Box upBox5b = new Box(new Vector2(24, 8), BoxType.UP);
         private Box upBox5c = new Box(new Vector2(26, 8), BoxType.UP);
-        private Box downBox5a = new Box(new Vector2(19, 4), BoxType.DOWN);
-        private Box downBox5b = new Box(new Vector2(25, 5), BoxType.DOWN);
+        private Box downBox5a = new Box(new Vector2(19, 5), BoxType.DOWN);
+        private Box downBox5b = new Box(new Vector2(25, 6), BoxType.DOWN);
 
         public LevelOneState()
         {
@@ -82,6 +82,7 @@ namespace ISP_Project.Game_States.Levels
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display");
+
             tileMap.LoadContent();
             player.LoadContent();
 
@@ -90,9 +91,6 @@ namespace ISP_Project.Game_States.Levels
                 box.LoadContent();
                 box.UpdatePosition(tileMap.CollisionMap);
             }
-
-            // play music
-            AudioManager.ForcePlaySong("Level 1 Theme");
         }
 
         public override void Update()
@@ -162,7 +160,7 @@ namespace ISP_Project.Game_States.Levels
             {
                 // go to win screen
                 AudioManager.PlaySoundEffect("Victory Jingle");
-                StateManager.ChangeState(new LevelSelectionState(), Transitions.BlackFade, 0.1f);
+                StateManager.ChangeState(StateManager.GetRecentState(new HubState()), Transitions.BlackFade, 0.1f);
             }
 
             // add new moves to the undo lists
@@ -219,6 +217,12 @@ namespace ISP_Project.Game_States.Levels
 
             var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
             Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
+        }
+
+        public override void PlayStateSong()
+        {
+            // play music
+            AudioManager.ForcePlaySong("Level 1 Theme");
         }
 
         private Box GetBox(Vector2 tileMapPosition)

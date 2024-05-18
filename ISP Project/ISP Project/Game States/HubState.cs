@@ -58,9 +58,6 @@ namespace ISP_Project.Game_States
             controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Hub");
             tileMap.LoadContent();
             player.LoadContent();
-
-            // play music
-            AudioManager.ForcePlaySong("Hub Theme");
         }
 
         public override void Update()
@@ -69,7 +66,7 @@ namespace ISP_Project.Game_States
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
                 AudioManager.PlaySoundEffect("Button Press");
-                StateManager.ChangeState(new PauseState(), Transitions.BlackFade, 0.1f);
+                StateManager.ChangeState(new PauseState(), Transitions.BlackFade, 0f);
             }
 
             var mapButton = buttons[0];
@@ -127,6 +124,12 @@ namespace ISP_Project.Game_States
 
             var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
             Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
+        }
+
+        public override void PlayStateSong()
+        {
+            // play music
+            AudioManager.ForcePlaySong("Hub Theme");
         }
     }
 }

@@ -20,6 +20,7 @@ namespace ISP_Project.Game_States
         private int selectedButtonCounter = 0;
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
+        private Texture2D controlsUI;
 
         private ResumeButton resumeButton;
         private SettingsButton settingsButton;
@@ -58,28 +59,13 @@ namespace ISP_Project.Game_States
                 Text = "To Hub"
             };
 
-            buttons = new List<Button>()
-            {
-                resumeButton, settingsButton, quitToTitleButton
-            };
-        }
-
-        public override void LoadState()
-        {
-            buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
-            buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
-        }
-
-        public override void Update()
-        {
-            // unpause
-            if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
-            {
-                resumeButton.TriggerEvent();
-            }
-
             // change exit button between hub and title
-            if (StateManager.GetPreviousState() is HubState)
+            List<State> states = new List<State>()
+            {
+                new HubState(), new LevelOneState(), new LevelSelectionState()
+            };
+
+            if (StateManager.GetMostRecentState(states) is HubState)
             {
                 buttons = new List<Button>()
                 {
@@ -92,6 +78,22 @@ namespace ISP_Project.Game_States
                 {
                     resumeButton, settingsButton, quitToHubButton
                 };
+            }
+        }
+
+        public override void LoadState()
+        {
+            buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
+            buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
+            controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Pause");
+        }
+
+        public override void Update()
+        {
+            // unpause
+            if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
+            {
+                resumeButton.TriggerEvent();
             }
 
             // keyboard only select
@@ -133,6 +135,14 @@ namespace ISP_Project.Game_States
             {
                 button.Draw();
             }
+
+            var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
+            Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
+        }
+
+        public override void PlayStateSong()
+        {
+            // play music
         }
     }
 }
