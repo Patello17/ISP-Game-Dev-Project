@@ -315,6 +315,30 @@
 /processorParam:TextureFormat=Color
 /build:UI Elements/Button.png
 
+#begin UI Elements/Controls Display Hub.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI Elements/Controls Display Hub.png
+
+#begin UI Elements/Controls Display.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI Elements/Controls Display.png
+
 #begin UI Elements/Horizontal Slider Bar.png
 /importer:TextureImporter
 /processor:TextureProcessor

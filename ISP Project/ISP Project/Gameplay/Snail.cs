@@ -238,7 +238,7 @@ namespace ISP_Project.Gameplay
                         break;
                     case 2: // water
                         IsColliding = false;
-                        AudioManager.PlaySoundEffect("Player Movement");
+                        AudioManager.PlaySoundEffect("Box Splash");
                         TileMapPosition = nextTileMapPosition; // update position
                         break;
                     case 3: // boxes

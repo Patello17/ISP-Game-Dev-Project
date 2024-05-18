@@ -20,6 +20,7 @@ namespace ISP_Project.Game_States
         private Texture2D buttonTexture;
         private Texture2D mapButtonTexture;
         private SpriteFont buttonFont;
+        private Texture2D controlsUI;
 
         // create tile map instance
         private HubTileMap tileMap = new HubTileMap(WindowManager.GetMainWindowCenter());
@@ -54,6 +55,7 @@ namespace ISP_Project.Game_States
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             mapButtonTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Map Board");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
+            controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Hub");
             tileMap.LoadContent();
             player.LoadContent();
 
@@ -121,7 +123,10 @@ namespace ISP_Project.Game_States
             foreach (Button button in buttons)
             {
                 button.Draw();
-            }           
+            }
+
+            var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
+            Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
         }
     }
 }

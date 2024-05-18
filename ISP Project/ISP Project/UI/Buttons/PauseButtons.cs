@@ -37,7 +37,7 @@ namespace ISP_Project.UI.Buttons
                 new HubState(), new LevelSelectionState(),
                 new LevelOneState()
             };
-            StateManager.ChangeState(StateManager.GetRecentState(StateManager.GetMostRecentState(states)), Transitions.BlackFade, 0.1f);
+            StateManager.ChangeState(StateManager.GetRecentState(StateManager.GetMostRecentState(states)), Transitions.BlackFade, 0f);
         }
     }
 
