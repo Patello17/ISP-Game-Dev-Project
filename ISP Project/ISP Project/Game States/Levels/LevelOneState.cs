@@ -15,6 +15,7 @@ using ISP_Project.Tilemaps.Maps.Level_1;
 using static ISP_Project.Gameplay.Box;
 using System.Diagnostics;
 using MonoGame.Extended.Timers;
+using ISP_Project.Screen_Management.Transitions;
 
 namespace ISP_Project.Game_States.Levels
 {
@@ -71,7 +72,7 @@ namespace ISP_Project.Game_States.Levels
 
             buttons = new List<Button>()
             {
-                pauseButton
+                // pauseButton
             };
         }
 
@@ -87,6 +88,9 @@ namespace ISP_Project.Game_States.Levels
                 box.LoadContent();
                 box.UpdatePosition(tileMap.CollisionMap);
             }
+
+            // play music
+            AudioManager.ForcePlaySong("Level 1 Theme");
         }
 
         public override void Update()
@@ -95,40 +99,50 @@ namespace ISP_Project.Game_States.Levels
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
                 AudioManager.PlaySoundEffect("Button Press");
-                StateManager.ChangeState(new PauseState());
+                // StateManager.ChangeState(new PauseState(), Transitions.BlackFade, 0f);
+                tileMap.CollisionMap.DrawMap();
             }
 
             // reset level
             if (InputManager.isKey(InputManager.Inputs.RESTART, InputManager.isTriggered))
             {
-                StateManager.ChangeState(new LevelOneState());
+                StateManager.ChangeState(new LevelOneState(), Transitions.Push, 0.5f);
             }
 
-            // update buttons
+            // undo moves
+            if (InputManager.isKey(InputManager.Inputs.UNDO, InputManager.isTriggered))
+            {
+                Undo();
+            }
+
+            // update Buttons
             foreach (Button button in buttons)
             {
                 button.Update();
             }
 
+            // update Actors
             foreach (Box box in boxes)
             {
                 box.Update();
             }
             player.Update();
 
+            
+
             // check for box collisions
             List<Box> boxUpdateOrder = new List<Box>();
             foreach (Box box in boxes)
             {
                 // check if player is about to collide with unsunken box
-                if (player.GetNextPosition() == box.TileMapPosition && !box.GetSunkState())
+                if (player.GetNextPosition() == box.TileMapPosition && !box.GetSinkState())
                 {
                     box.SetNextPosition(player.GetMovementVector(), false);
                     var currentBoxNextPosition = box.GetNextPosition();
                     boxUpdateOrder.Add(box);
 
                     // handle "chained" boxes
-                    while (tileMap.CollisionMap.GetCollision(currentBoxNextPosition) == 3 && 
+                    while (tileMap.CollisionMap.GetCollision(currentBoxNextPosition) == 3 && // another box
                         box.GetMovementVector() != Vector2.Zero && box.GetBoxType() != BoxType.STAR)
                     {
                         if (GetBox(currentBoxNextPosition) != box)
@@ -144,11 +158,26 @@ namespace ISP_Project.Game_States.Levels
             }
 
             // check for win
-            if (tileMap.CollisionMap.GetCollision(starBox.GetNextPosition()) == 5)
+            if (tileMap.CollisionMap.GetCollision(starBox.GetNextPosition()) == 5) // mailbox
             {
                 // go to win screen
                 AudioManager.PlaySoundEffect("Victory Jingle");
-                StateManager.ChangeState(new LevelSelectionState());
+                StateManager.ChangeState(new LevelSelectionState(), Transitions.BlackFade, 0.1f);
+            }
+
+            // add new moves to the undo lists
+            if (!player.IsColliding && player.PastPositions[0] != player.TileMapPosition)
+            {
+                player.PastPositions.Insert(0, player.TileMapPosition);
+                player.PastSprites.Insert(0, new Sprite(player.Sprite.Texture, player.Sprite.SpriteEffects, 0.8f));
+
+                foreach (Box box in boxes)
+                {
+                    box.PastPositions.Insert(0, box.TileMapPosition);
+                    box.PastSinkState.Insert(0, box.IsSunken);
+                }
+                Debug.WriteLine(player.PastSprites.Count + " : " + player.PastSprites[0].ToString());
+
             }
 
             // update Actor positions
@@ -161,6 +190,12 @@ namespace ISP_Project.Game_States.Levels
                 }
             }
             player.UpdatePosition(tileMap.CollisionMap);
+
+            foreach (Box box in boxes)
+            {
+                if (!box.IsSunken)
+                    tileMap.CollisionMap.SetCollision(box.TileMapPosition, 3);
+            }
         }
 
         public override void PostUpdate()
@@ -187,12 +222,106 @@ namespace ISP_Project.Game_States.Levels
         {
             foreach (Box box in boxes)
             {
-                if (box.GetCurrentPosition() == tileMapPosition && !box.GetSunkState())
+                if (box.GetCurrentPosition() == tileMapPosition && !box.GetSinkState())
                 {
                     return box;
                 }
             }
             return null;
+        }
+
+        private void Undo()
+        {
+            /*if (player.PastPositions.Count > 1 &&
+                starBox.PastPositions.Count > 1 &&
+                player.PastTextures.Count > 1 &&
+                starBox.PastSinkState.Count > 1)
+            {
+                player.TileMapPosition = player.PastPositions[1];
+                player.PastPositions.RemoveAt(0);
+                player.Sprite.Texture = player.PastTextures[0];
+                player.PastTextures.RemoveAt(0);
+
+                foreach (Box box in boxes)
+                {
+                    box.IsSunken = box.PastSinkState[1];
+                    if (box.PastSinkState[0] == true) //  && GetBox(box.PastPositions[1]) != null
+                    {
+                        tileMap.CollisionMap.SetCollision(box.TileMapPosition, 2);
+                    }
+                    // Debug.WriteLine(box.PastSinkState[0]);
+                    box.PastSinkState.RemoveAt(0);
+
+                    if (!box.IsSunken)
+                    {
+                        tileMap.CollisionMap.SetCollision(box.TileMapPosition, 0);
+                        box.TileMapPosition = box.PastPositions[1];
+                        box.PastPositions.RemoveAt(0);
+                    }
+                    else
+                    {
+                        box.PastPositions.RemoveAt(0);
+                    }
+                    
+
+                }
+                // Debug.WriteLine(starBox.TileMapPosition + " : " + starBox.PastPositions[1]);
+            }*/
+
+            if (player.PastPositions.Count > 1)
+            {
+                player.TileMapPosition = player.PastPositions[1];
+                player.PastPositions.RemoveAt(0);
+                player.Sprite = player.PastSprites[0];
+                player.PastSprites.RemoveAt(0);
+
+                /*foreach (bool sink in starBox.PastSinkState)
+                {
+                    Debug.WriteLine(sink);
+                }*/
+                foreach (Box box in boxes)
+                {
+                    /*if (box.PastSinkState[0] && box.TileMapPosition != box.PastPositions[1])
+                    {
+                        Debug.WriteLine("WAS SUNK");
+                        tileMap.CollisionMap.SetCollision(box.TileMapPosition, 2);
+                    }
+                    else if (GetBox(box.TileMapPosition) != null && box.TileMapPosition != box.PastPositions[1])
+                    {
+                        Debug.WriteLine("SET AIR");
+                        tileMap.CollisionMap.SetCollision(box.TileMapPosition, 0);
+                    }*/
+
+                    /*if (box.PastSinkState[0] && box.TileMapPosition != box.PastPositions[1])
+                    {
+                        Debug.WriteLine("WAS SUNK");
+                        tileMap.CollisionMap.SetCollision(box.TileMapPosition, 2);
+                    }
+                    else if (GetBox(box.TileMapPosition) != null && box.TileMapPosition != box.PastPositions[1])
+                    {
+                        Debug.WriteLine("SET AIR");
+                        tileMap.CollisionMap.SetCollision(box.TileMapPosition, 0);
+                    }
+*/
+                    if (box.TileMapPosition != box.PastPositions[1])
+                    {
+                        if (box.PastSinkState[0])
+                        {
+                            tileMap.CollisionMap.SetCollision(box.TileMapPosition, 2);
+                        }
+                        else if (GetBox(box.TileMapPosition) != null)
+                        {
+                            tileMap.CollisionMap.SetCollision(box.TileMapPosition, 0);
+                        }
+                    }
+
+                    box.TileMapPosition = box.PastPositions[1];
+                    box.PastPositions.RemoveAt(0);
+                    box.IsSunken = box.PastSinkState[1];
+                    box.PastSinkState.RemoveAt(0);
+                }
+                // Debug.WriteLine(starBox.PastSinkState[0]);
+            }
         }
     }
 }

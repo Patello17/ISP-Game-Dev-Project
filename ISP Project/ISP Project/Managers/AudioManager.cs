@@ -50,6 +50,7 @@ namespace ISP_Project.Managers
             // add every song
             songs.Add("Hub Theme", Globals.ContentManager.Load<Song>("Songs/Hub Theme"));
             songs.Add("Title Theme", Globals.ContentManager.Load<Song>("Songs/Title Theme"));
+            songs.Add("Level 1 Theme", Globals.ContentManager.Load<Song>("Songs/Level1"));
 
             // add every sound effect
             soundEffects.Add("Envelope", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Envelope"));
@@ -58,6 +59,8 @@ namespace ISP_Project.Managers
             soundEffects.Add("Box Splash", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Box Splash"));
             soundEffects.Add("Victory Jingle", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Victory Jingle"));
             soundEffects.Add("Door Opening", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Door Opening"));
+            soundEffects.Add("Collision Not Permitted", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Collision Not Permitted"));
+            soundEffects.Add("Reset", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Reset"));
 
             // start from the lowest volume
             MediaPlayer.Volume = volumeLow;

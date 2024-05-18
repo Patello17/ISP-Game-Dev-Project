@@ -35,6 +35,8 @@ namespace ISP_Project.Gameplay
 
         // create movement-related properties and fields
         public override List<Vector2> PastPositions { get; set; }
+        public List<Sprite> PastSprites { get; set; }
+        public bool IsColliding { get; set; } = false;
         Vector2 nextTileMapPosition;
         Vector2 movementVector;
 
@@ -60,7 +62,7 @@ namespace ISP_Project.Gameplay
             Transform.Position = new Vector2(
                 (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
                 (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
-            PastPositions = new List<Vector2>();
+            PastPositions = new List<Vector2>() { TileMapPosition };
             nextTileMapPosition = TileMapPosition;
             keyDown = Inputs.RIGHT;
 
@@ -88,6 +90,7 @@ namespace ISP_Project.Gameplay
             frontTexture = Globals.ContentManager.Load<Texture2D>("Snail/Snail Front");
             backTexture = Globals.ContentManager.Load<Texture2D>("Snail/Snail Back");
             Sprite.Texture = sideTexture;
+            PastSprites = new List<Sprite>() { Sprite };
 
             textureDictionary = new Dictionary<Inputs, Texture2D>()
             {
@@ -102,6 +105,7 @@ namespace ISP_Project.Gameplay
         {
             previousKeyDown = keyDown;
 
+            // reset movement variables
             movementVector = Vector2.Zero;
             nextTileMapPosition = TileMapPosition;
 
@@ -205,7 +209,6 @@ namespace ISP_Project.Gameplay
         /// </summary>
         public void SetNextPosition()
         {
-            AudioManager.PlaySoundEffect("Player Movement");
             movementVector = movementDictionary[keyDown];
             nextTileMapPosition = TileMapPosition + movementVector;
         }
@@ -225,16 +228,50 @@ namespace ISP_Project.Gameplay
         public override void UpdatePosition(CollisionMap collisionMap)
         {
             // check for collisions
-
-            if (nextTileMapPosition != TileMapPosition &&
-                collisionMap.GetCollision(nextTileMapPosition) != 1 && // solids
+            if (nextTileMapPosition != TileMapPosition)
+            {
+                switch(collisionMap.GetCollision(nextTileMapPosition))
+                {
+                    case 1: // solids
+                        IsColliding = true;
+                        AudioManager.PlaySoundEffect("Collision Not Permitted");
+                        break;
+                    case 2: // water
+                        IsColliding = false;
+                        AudioManager.PlaySoundEffect("Player Movement");
+                        TileMapPosition = nextTileMapPosition; // update position
+                        break;
+                    case 3: // boxes
+                        AudioManager.PlaySoundEffect("Player Movement");
+                        break;
+                    case 5: // mailbox
+                        IsColliding = true;
+                        AudioManager.PlaySoundEffect("Collision Not Permitted");
+                        break;
+                    default:
+                        IsColliding = false;
+                        AudioManager.PlaySoundEffect("Player Movement");
+                        TileMapPosition = nextTileMapPosition; // update position
+                        break;
+                }
+                /*if (collisionMap.GetCollision(nextTileMapPosition) != 1 && // solids
                 collisionMap.GetCollision(nextTileMapPosition) != 3 && // boxes
                 collisionMap.GetCollision(nextTileMapPosition) != 5) // mailbox
-            {
-                // update position
-                TileMapPosition = nextTileMapPosition;
-            }
+                {
+                    AudioManager.PlaySoundEffect("Player Movement");
 
+                    // update position
+                    TileMapPosition = nextTileMapPosition;
+                }
+                if (collisionMap.GetCollision(nextTileMapPosition) == 1 || // solids
+                    collisionMap.GetCollision(nextTileMapPosition) == 5) // mailbox
+                {
+                    AudioManager.PlaySoundEffect("Collision Not Permitted");
+                    // update position
+                    TileMapPosition = nextTileMapPosition;
+                }*/
+            }
+            
             // Debug.WriteLine(nextTileMapPosition);
         }
 

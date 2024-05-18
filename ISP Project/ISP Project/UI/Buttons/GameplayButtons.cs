@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.Design;
 using ISP_Project.Game_States;
+using ISP_Project.Screen_Management.Transitions;
 
 namespace ISP_Project.UI.Buttons
 {
@@ -31,7 +32,7 @@ namespace ISP_Project.UI.Buttons
         {
             // change Game State here!
             AudioManager.PlaySoundEffect("Button Press");
-            StateManager.ChangeState(new PauseState());
+            StateManager.ChangeState(new PauseState(), Transitions.BlackFade, 0f);
         }
     }
 }

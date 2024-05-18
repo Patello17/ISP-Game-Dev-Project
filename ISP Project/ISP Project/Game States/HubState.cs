@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using ISP_Project.Tilemaps;
 using ISP_Project.Gameplay;
 using ISP_Project.Managers;
+using ISP_Project.Screen_Management.Transitions;
 
 namespace ISP_Project.Game_States
 {
@@ -44,7 +45,7 @@ namespace ISP_Project.Game_States
 
             buttons = new List<Button>()
             {
-                pauseButton, mapButton
+                mapButton
             };
         }
 
@@ -66,10 +67,10 @@ namespace ISP_Project.Game_States
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
                 AudioManager.PlaySoundEffect("Button Press");
-                StateManager.ChangeState(new PauseState());
+                StateManager.ChangeState(new PauseState(), Transitions.BlackFade, 0.1f);
             }
 
-            var mapButton = buttons[1];
+            var mapButton = buttons[0];
 
             foreach (Button button in buttons)
             {
@@ -82,7 +83,7 @@ namespace ISP_Project.Game_States
                 player.GetNextPosition() == new Vector2(9, 12) || 
                 player.GetNextPosition() == new Vector2(9, 13))
             {
-                StateManager.ChangeState(new TitleState());
+                StateManager.ChangeState(new TitleState(), Transitions.BlackFade, 0.1f);
             }
             // these vectors represent the positions right below the map board
             if (player.TileMapPosition == new Vector2(15, 10) || player.TileMapPosition == new Vector2(16, 10) ||

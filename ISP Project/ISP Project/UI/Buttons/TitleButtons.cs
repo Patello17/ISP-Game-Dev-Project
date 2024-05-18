@@ -1,5 +1,6 @@
 ﻿using ISP_Project.Game_States;
 using ISP_Project.Managers;
+using ISP_Project.Screen_Management.Transitions;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace ISP_Project.UI.Buttons
             {
                 // change Game State here!
                 AudioManager.PlaySoundEffect("Door Opening");
-                StateManager.ChangeState(new HubState());
+                StateManager.ChangeState(new HubState(), Transitions.BlackFade, 0.1f);
             }
         }
 
@@ -55,7 +56,7 @@ namespace ISP_Project.UI.Buttons
             public override void TriggerEvent()
             {
                 AudioManager.PlaySoundEffect("Button Press");
-                StateManager.ChangeState(new QuitState());
+                StateManager.ChangeState(new QuitState(), Transitions.BlackFade, 0.1f);
             }
         }
     }

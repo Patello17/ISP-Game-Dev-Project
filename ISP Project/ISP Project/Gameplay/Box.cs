@@ -33,7 +33,7 @@ namespace ISP_Project.Gameplay
         private BoxType boxType;
 
         // create sinking logic variables
-        private bool isSunken = false;
+        public bool IsSunken { get; set; } = false;
         private bool sinkLock = false;
 
         // reference Actor properties
@@ -43,6 +43,8 @@ namespace ISP_Project.Gameplay
 
         // create movement-related properties and fields
         public override List<Vector2> PastPositions { get; set; }
+        public List<bool> PastSinkState { get; set; }
+        public bool IsColliding { get; set; }
         Vector2 nextTileMapPosition;
         Vector2 movementVector;
 
@@ -56,15 +58,16 @@ namespace ISP_Project.Gameplay
             Transform.Position = new Vector2(
                     (int)(WindowManager.GetMainWindowCenter().X + (centeredTileMapPosition.X * 16)) + 8,
                     (int)(WindowManager.GetMainWindowCenter().Y + (centeredTileMapPosition.Y * (180 / 11))) + 8);
-
-            PastPositions = new List<Vector2>();
+            PastPositions = new List<Vector2>() { TileMapPosition };
+            PastSinkState = new List<bool>() { IsSunken };
             nextTileMapPosition = TileMapPosition;
             this.boxType = boxType;
         }
 
         public override void LoadContent()
         {
-            Sprite = new Sprite(null, SpriteEffects.None, 1);
+            Sprite = new Sprite(null, SpriteEffects.None, 0.8f);
+            Sprite.Color = Color.White;
 
             // load the correct texture
             switch (boxType)
@@ -95,6 +98,10 @@ namespace ISP_Project.Gameplay
 
         public override void Update()
         {
+            // reset movement variables
+            movementVector = Vector2.Zero;
+            nextTileMapPosition = TileMapPosition;
+
             SetTexture();
             Slide(GetNextPosition());
         }
@@ -110,9 +117,9 @@ namespace ISP_Project.Gameplay
         /// Gets whether this box has sunk or not.
         /// </summary>
         /// <returns></returns>
-        public bool GetSunkState()
+        public bool GetSinkState()
         {
-            return isSunken;
+            return IsSunken;
         }
 
         /// <summary>
@@ -192,7 +199,7 @@ namespace ISP_Project.Gameplay
         /// </summary>
         public void SetTexture()
         {
-            if (isSunken)
+            if (IsSunken)
             {
                 Sprite.Color = new Color(127, 174, 198);
                 Sprite.DrawLayer = 0.2f;
@@ -200,19 +207,55 @@ namespace ISP_Project.Gameplay
             else 
             {
                 Sprite.Color = Color.White;
+                Sprite.DrawLayer = 0.8f;
             }
         }
 
         public override void UpdatePosition(CollisionMap collisionMap)
         {
             // check for collisions
-            if (collisionMap.GetCollision(nextTileMapPosition) == 2) // water
+            switch (collisionMap.GetCollision(nextTileMapPosition))
+            {
+                case 1: // solids
+                    IsColliding = true;
+                    collisionMap.SetCollision(TileMapPosition, 3);
+                    break;
+                case 2: // water
+                    IsColliding = false;
+                    IsSunken = true;
+                    collisionMap.SetCollision(TileMapPosition, 0);
+                    TileMapPosition = nextTileMapPosition;
+                    collisionMap.SetCollision(TileMapPosition, 0); // box acts as path when sunk!
+                    AudioManager.PlaySoundEffect("Box Splash");
+                    break;
+                case 3: // boxes
+                    IsColliding = true;
+                    collisionMap.SetCollision(TileMapPosition, 3);
+                    break;
+                case 5: // mailbox
+                    IsColliding = true;
+                    collisionMap.SetCollision(TileMapPosition, 0);
+                    TileMapPosition = nextTileMapPosition;
+                    collisionMap.SetCollision(TileMapPosition, 3);
+                    break;
+                default:
+                    if (!IsSunken) 
+                    {
+                        IsColliding = false;
+                        collisionMap.SetCollision(TileMapPosition, 0);
+                        TileMapPosition = nextTileMapPosition;
+                        collisionMap.SetCollision(TileMapPosition, 3);
+                    }
+                    
+                    break;
+            }
+            /*if (collisionMap.GetCollision(nextTileMapPosition) == 2) // water
             {
                 // play sound effect
                 AudioManager.PlaySoundEffect("Box Splash");
 
                 // sink
-                isSunken = true;
+                IsSunken = true;
 
                 // update position
                 collisionMap.SetCollision(TileMapPosition, 0);
@@ -221,16 +264,13 @@ namespace ISP_Project.Gameplay
             }
             else if (collisionMap.GetCollision(nextTileMapPosition) != 1 && // solids
                 collisionMap.GetCollision(nextTileMapPosition) != 3 && // other boxes
-                !isSunken)
+                !IsSunken)
             {
                 // update position
                 collisionMap.SetCollision(TileMapPosition, 0);
                 TileMapPosition = nextTileMapPosition;
                 collisionMap.SetCollision(TileMapPosition, 3);
-            }
-
-            movementVector = Vector2.Zero;
-            nextTileMapPosition = TileMapPosition;
+            }*/
         }
 
         /// <summary>

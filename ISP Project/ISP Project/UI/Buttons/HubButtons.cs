@@ -1,6 +1,7 @@
 ﻿using ISP_Project.Game_States;
 using ISP_Project.Game_States.Levels;
 using ISP_Project.Managers;
+using ISP_Project.Screen_Management.Transitions;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace ISP_Project.UI.Buttons
             if (isClickable)
             {
                 AudioManager.PlaySoundEffect("Envelope");
-                StateManager.ChangeState(new LevelSelectionState());
+                StateManager.ChangeState(new LevelSelectionState(), Transitions.BlackFade, 0.1f);
             }
             else
             {
@@ -66,7 +67,7 @@ namespace ISP_Project.UI.Buttons
             if (isClickable)
             {
                 AudioManager.PlaySoundEffect("Button Press");
-                StateManager.ChangeState(new LevelOneState());
+                StateManager.ChangeState(new LevelOneState(), Transitions.BlackFade, 0.1f);
             }
             else
             {
@@ -93,7 +94,7 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             AudioManager.PlaySoundEffect("Button Press");
-            StateManager.ChangeState(StateManager.GetRecentState(new HubState()));
+            StateManager.ChangeState(StateManager.GetRecentState(new HubState()), Transitions.BlackFade, 0.1f);
         }
     }
 }

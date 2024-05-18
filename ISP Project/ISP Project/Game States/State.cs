@@ -19,7 +19,7 @@ namespace ISP_Project.Game_States
         public State()
         {
             target = Globals.GetNewRenderTarget();
-            Debug.WriteLine(target.Bounds);
+            // Debug.WriteLine(target.Bounds);
         }
         /// <summary>
         /// Loads everything in this State.

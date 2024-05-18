@@ -26,7 +26,8 @@ namespace ISP_Project.Managers
         private static RenderTarget2D transitionFrame = Globals.GetNewRenderTarget();
         private static Dictionary<Transitions, Transition> transitions = new Dictionary<Transitions, Transition>()
         {
-            { Transitions.BlackFade, new BlackFadeTransition(transitionFrame) }
+            { Transitions.BlackFade, new BlackFadeOutTransition(transitionFrame) },
+            { Transitions.Push, new PushTransition(transitionFrame) }
         };
         private static Transition transition;
         public static bool IsTransitioning { get; set; } = false;
@@ -38,16 +39,13 @@ namespace ISP_Project.Managers
         public static void Update()
         {
             // update the current state
-            if (stateStack.Count > 0 && !IsTransitioning)
+            if (stateStack.Count > 0)
             {
                 GetCurrentState().Update();
+
+                if (IsTransitioning)
+                    IsTransitioning = transition.Update();
             }
-            else
-            {
-                // Debug.WriteLine("TRANSITIONING!");
-                IsTransitioning = transition.Update();
-            }
-                
 
             // if there are duplicate states, only keep the most recent one
             var newStateStack = new List<State>();
@@ -60,45 +58,41 @@ namespace ISP_Project.Managers
         }
 
         /// <summary>
-        /// Draws the states.
+        /// Draws the current frame of the current state.
         /// </summary>
         /// <param name="gameTime"></param>
         public static void Draw()
         {
-            // draws the current state
             if (stateStack.Count > 0)
             {
-
-                var frame = GetCurrentState().GetFrame();
-                Debug.WriteLine(frame);
+                var frame = GetFrame();
                 
                 Globals.SpriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend,
                     SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise,
                     null, null); // final null should be replaced with camera transformation matrix i think
-
                 Globals.SpriteBatch.Draw(frame, Vector2.Zero, Color.White);
-                // GetCurrentState().Draw();
                 Globals.SpriteBatch.End();
-                // Globals.SpriteBatch.Draw(frame, Vector2.Zero, Color.White);
             }
-                
         }
 
         /// <summary>
         /// Changes the current state by sending it to the top of the state stack.
         /// </summary>
         /// <param name="nextState"></param>
-        public static void ChangeState(State nextState)
+        public static void ChangeState(State nextState, Transitions stateChangeTransition, float duration)
         {
-            if (nextState != null)
+            if (nextState != null && !IsTransitioning)
             {
+                if (stateChangeTransition is Transitions.Push)
+                    AudioManager.PlaySoundEffect("Reset");
+
+                IsTransitioning = true;
                 var oldScene = stateStack[0].GetFrame();
                 var newScene = nextState.GetFrame();
                 stateStack.Insert(0, nextState);
 
-                transition = transitions[Transitions.BlackFade];
-                transition.Start(oldScene, newScene, 2f);
-                IsTransitioning = true;
+                transition = transitions[stateChangeTransition];
+                transition.Start(oldScene, newScene, duration);
             }
         }
 
@@ -181,7 +175,7 @@ namespace ISP_Project.Managers
 
         private static RenderTarget2D GetFrame()
         {
-            return IsTransitioning ? transition.GetFrame() : stateStack[0].GetFrame();
+            return IsTransitioning ? transition.GetFrame() : GetCurrentState().GetFrame();
         }
     }
 }

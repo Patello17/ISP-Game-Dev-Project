@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ISP_Project.Managers;
 using ISP_Project.Components;
+using ISP_Project.Screen_Management.Transitions;
 
 namespace ISP_Project.Game_States
 {
@@ -52,7 +53,7 @@ namespace ISP_Project.Game_States
             
             buttons = new List<Button>()
             {
-                pauseButton, hubReturnButton, levelOneButton
+                hubReturnButton, levelOneButton
             };
             mapButtons = new List<Button>()
             {
@@ -69,6 +70,9 @@ namespace ISP_Project.Game_States
             pinTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Pin");
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
+
+            // play music
+            AudioManager.ForcePlaySong("Hub Theme");
         }
 
         public override void Update()
@@ -77,7 +81,7 @@ namespace ISP_Project.Game_States
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
                 AudioManager.PlaySoundEffect("Button Press");
-                StateManager.ChangeState(new PauseState());
+                StateManager.ChangeState(new PauseState(), Transitions.BlackFade, 0f);
             }
 
             var pauseButton = buttons[0];

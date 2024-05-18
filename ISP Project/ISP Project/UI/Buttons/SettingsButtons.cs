@@ -1,6 +1,7 @@
 ﻿using ISP_Project.Game_States;
 using ISP_Project.Game_States.Levels;
 using ISP_Project.Managers;
+using ISP_Project.Screen_Management.Transitions;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -81,7 +82,7 @@ namespace ISP_Project.UI.Buttons
             {
                 new PauseState(), new TitleState()
             };
-            StateManager.ChangeState(StateManager.GetRecentState(StateManager.GetMostRecentState(states)));
+            StateManager.ChangeState(StateManager.GetRecentState(StateManager.GetMostRecentState(states)), Transitions.BlackFade, 0.1f);
         }
     }
 
