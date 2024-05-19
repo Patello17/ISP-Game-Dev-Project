@@ -22,6 +22,7 @@ namespace ISP_Project.Game_States
         private Texture2D mapButtonTexture;
         private SpriteFont buttonFont;
         private Texture2D controlsUI;
+        private Texture2D hubDisplay;
 
         // create tile map instance
         private HubTileMap tileMap = new HubTileMap(WindowManager.GetMainWindowCenter());
@@ -59,6 +60,8 @@ namespace ISP_Project.Game_States
             mapButtonTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Map Board");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Hub");
+            hubDisplay = Globals.ContentManager.Load<Texture2D>("UI Elements/Hub Display");
+
             tileMap.LoadContent();
             player.LoadContent();
         }
@@ -127,6 +130,8 @@ namespace ISP_Project.Game_States
 
             var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
             Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
+            var hubDisplayOrigin = new Vector2(hubDisplay.Width / 2, hubDisplay.Height / 2);
+            Globals.SpriteBatch.Draw(hubDisplay, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
         }
 
         public override void PlayStateSong()
