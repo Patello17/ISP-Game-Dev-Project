@@ -62,9 +62,15 @@ namespace ISP_Project.Game_States
         {
             // keyboard only select
             if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
+            {
                 selectedButtonCounter++;
+                AudioManager.PlaySoundEffect("Scroll");
+            }
             if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
+            {
                 selectedButtonCounter--;
+                AudioManager.PlaySoundEffect("Scroll");
+            }
             if (selectedButtonCounter >= 0)
                 selectedButtonCounter = -buttons.Count;
 

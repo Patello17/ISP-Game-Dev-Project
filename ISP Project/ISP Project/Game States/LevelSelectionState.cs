@@ -85,10 +85,16 @@ namespace ISP_Project.Game_States
             var pauseButton = buttons[0];
 
             // keyboard only select
-            if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
+            if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered))
+            {
                 selectedButtonCounter++;
-            if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
+                AudioManager.PlaySoundEffect("Scroll");
+            }  
+            if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered))
+            {
                 selectedButtonCounter--;
+                AudioManager.PlaySoundEffect("Scroll");
+            }
             if (selectedButtonCounter >= 0)
                 selectedButtonCounter = -mapButtons.Count;
 

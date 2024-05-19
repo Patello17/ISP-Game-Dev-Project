@@ -61,6 +61,7 @@ namespace ISP_Project.Managers
             soundEffects.Add("Door Opening", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Door Opening"));
             soundEffects.Add("Collision Not Permitted", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Collision Not Permitted"));
             soundEffects.Add("Reset", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Reset"));
+            soundEffects.Add("Scroll", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Scroll"));
 
             // start from the lowest volume
             MediaPlayer.Volume = volumeLow;

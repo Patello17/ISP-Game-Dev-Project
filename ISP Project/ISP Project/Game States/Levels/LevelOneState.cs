@@ -158,6 +158,16 @@ namespace ISP_Project.Game_States.Levels
             // check for win
             if (tileMap.CollisionMap.GetCollision(starBox.GetNextPosition()) == 5) // mailbox
             {
+                // save new save file
+                if (SaveManager.Load().LevelsCompleted < 1)
+                {
+                    SaveFile saveFile = new SaveFile()
+                    {
+                        LevelsCompleted = SaveManager.Load().LevelsCompleted + 1
+                    };
+                    SaveManager.Save(saveFile);
+                }
+                
                 // go to win screen
                 AudioManager.PlaySoundEffect("Victory Jingle");
                 StateManager.ChangeState(StateManager.GetRecentState(new HubState()), Transitions.BlackFade, 0.1f);

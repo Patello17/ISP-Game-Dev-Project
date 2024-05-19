@@ -11,6 +11,7 @@ using ISP_Project.Tilemaps;
 using ISP_Project.Gameplay;
 using ISP_Project.Managers;
 using ISP_Project.Screen_Management.Transitions;
+using System.Diagnostics;
 
 namespace ISP_Project.Game_States
 {
@@ -31,6 +32,8 @@ namespace ISP_Project.Game_States
         public HubState()
         {
             LoadState();
+
+            Debug.WriteLine(SaveManager.Load().LevelsCompleted);
 
             var pauseButton = new PauseButton(buttonTexture, buttonFont, 1, 0.5f)
             {

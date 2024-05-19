@@ -261,6 +261,12 @@
 /processorParam:Quality=Best
 /build:Sound Effects/Reset.mp3
 
+#begin Sound Effects/Scroll.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound Effects/Scroll.mp3
+
 #begin Sound Effects/Victory Jingle.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -315,6 +321,18 @@
 /processorParam:TextureFormat=Color
 /build:UI Elements/Button.png
 
+#begin UI Elements/Controls Display Audio Setting.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI Elements/Controls Display Audio Setting.png
+
 #begin UI Elements/Controls Display Hub.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -350,6 +368,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:UI Elements/Controls Display Pause.png
+
+#begin UI Elements/Controls Display Settings.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UI Elements/Controls Display Settings.png
 
 #begin UI Elements/Controls Display Title.png
 /importer:TextureImporter

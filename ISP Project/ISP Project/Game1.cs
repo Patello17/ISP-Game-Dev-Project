@@ -46,15 +46,19 @@ namespace ISP_Project
             
             Globals.ContentManager = Content;
             Globals.GraphicsDevice = GraphicsDevice;
-            // Globals.StateGraphicsDevice = new GraphicsDevice(this.GraphicsDevice.Adapter, GraphicsProfile.Reach, new PresentationParameters());
-            // Debug.WriteLine(Globals.GraphicsDevice);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Globals.SpriteBatch = _spriteBatch;
+
+            // create fresh save file
+            SaveFile saveFile = new SaveFile()
+            {
+                LevelsCompleted = 0,
+            };
+            SaveManager.Save(saveFile);
 
             // set and update window size
             WindowManager.InitializeWindow(_graphics);
             WindowManager.SetMainWindowSize(1280, 720);
-
 
             AudioManager.LoadAudio();
         }
