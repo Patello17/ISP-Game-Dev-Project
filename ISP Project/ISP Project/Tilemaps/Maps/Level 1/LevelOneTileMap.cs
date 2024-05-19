@@ -20,6 +20,7 @@ namespace ISP_Project.Tilemaps.Maps.Level_1
 
         // create variables for individual layers
         private Dictionary<Vector2, int> level;
+        private Dictionary<Vector2, int> decorations;
         private Dictionary<Vector2, int> collisions;
 
         // create collision map
@@ -29,6 +30,7 @@ namespace ISP_Project.Tilemaps.Maps.Level_1
         {
             Transform.Position = position;
             level = LoadTileMap("../../../Tilemaps/Maps/Level 1/Level One Tilemap_Level Map.csv");
+            decorations = LoadTileMap("../../../Tilemaps/Maps/Level 1/Level One Tilemap_Decorations.csv");
             collisions = LoadTileMap("../../../Tilemaps/Maps/Level 1/Level One Tilemap_Collisions.csv");
             CollisionMap.SetMap(collisions);
         }
@@ -41,15 +43,17 @@ namespace ISP_Project.Tilemaps.Maps.Level_1
 
         public void Draw()
         {
-            Draw(16, 12, 16,
+            Draw(16, 14, 16,
                 new Dictionary<Dictionary<Vector2, int>, Texture2D>
                 {
-                    { level, levelTileset},
+                    { level, levelTileset },
+                    { decorations, levelTileset }
                     // { collisions, collisionsTileset},
                 },
                 new Dictionary<Dictionary<Vector2, int>, float>
                 {
-                    { level, 0f}
+                    { level, 0f},
+                    { decorations, 0.2f},
                     // { collisions, collisionsTileset},
                 });
         }

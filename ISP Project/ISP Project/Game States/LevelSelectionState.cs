@@ -50,15 +50,23 @@ namespace ISP_Project.Game_States
                 Text = ""
             };
 
+            var levelTwoButton = new LevelTwoSelectButton(pinTexture, buttonFont, 1, 0.5f)
+            {
+                Sprite = new Sprite(pinTexture, SpriteEffects.None, 0),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X - 172, WindowManager.GetMainWindowCenter().Y - 42),
+                Text = ""
+            };
+
             LevelOneSelectButton.isClickable = true;
-            
+            LevelTwoSelectButton.isClickable = true;
+
             buttons = new List<Button>()
             {
-                hubReturnButton, levelOneButton
+                hubReturnButton, levelOneButton, levelTwoButton
             };
             mapButtons = new List<Button>()
             {
-                hubReturnButton, levelOneButton
+                hubReturnButton, levelOneButton, levelTwoButton
             };
         }
 
@@ -85,12 +93,12 @@ namespace ISP_Project.Game_States
             var pauseButton = buttons[0];
 
             // keyboard only select
-            if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered))
+            if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered))
             {
                 selectedButtonCounter++;
                 AudioManager.PlaySoundEffect("Scroll");
             }  
-            if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered))
+            if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered))
             {
                 selectedButtonCounter--;
                 AudioManager.PlaySoundEffect("Scroll");
