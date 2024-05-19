@@ -13,6 +13,36 @@ namespace ISP_Project.UI.Buttons
 {
     public class TitleButtons
     {
+        // create NewGame Button
+        public class NewGameButton : Button
+        {
+            private Texture2D buttonTexture;
+            private SpriteFont buttonFont;
+            private float buttonScale;
+            private float fontScale;
+
+            public NewGameButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
+            {
+                buttonTexture = texture;
+                buttonFont = font;
+                this.buttonScale = buttonScale;
+                this.fontScale = buttonScale;
+            }
+
+            public override void TriggerEvent()
+            {
+                // create fresh save file
+                SaveFile saveFile = new SaveFile()
+                {
+                    LevelsCompleted = 0,
+                };
+                SaveManager.Save(saveFile);
+                // change Game State here!
+                AudioManager.PlaySoundEffect("Door Opening");
+                StateManager.ChangeState(new HubState(), Transitions.BlackFade, 0.1f);
+            }
+        }
+
         // create LoadGame Button
         public class LoadGameButton : Button
         {

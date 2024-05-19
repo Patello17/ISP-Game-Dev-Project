@@ -62,7 +62,7 @@ namespace ISP_Project.Game_States
             // change exit button between hub and title
             List<State> states = new List<State>()
             {
-                new HubState(), new LevelOneState(), new LevelSelectionState()
+                new TitleState(), new HubState(), new LevelOneState(), new LevelSelectionState()
             };
 
             if (StateManager.GetMostRecentState(states) is HubState)

@@ -16,7 +16,7 @@ namespace ISP_Project.Game_States
     public class LevelSelectionState : State
     {
         private List<Button> buttons;
-        private List<Button> mapButtons;
+        // private List<Button> mapButtons;
         private int selectedButtonCounter = 0;
         private Texture2D mapTexture;
         private Texture2D buttonTexture;
@@ -57,17 +57,43 @@ namespace ISP_Project.Game_States
                 Text = ""
             };
 
-            LevelOneSelectButton.isClickable = true;
-            LevelTwoSelectButton.isClickable = true;
-
             buttons = new List<Button>()
             {
-                hubReturnButton, levelOneButton, levelTwoButton
+                hubReturnButton
             };
-            mapButtons = new List<Button>()
+
+            switch (SaveManager.Load().LevelsCompleted)
+            {
+                case 1:
+                    LevelOneSelectButton.isClickable = true;
+                    LevelTwoSelectButton.isClickable = true;
+                    buttons.Add(levelOneButton);
+                    buttons.Add(levelTwoButton);
+                    // third level unlocked
+                    break;
+                case 2:
+                    LevelOneSelectButton.isClickable = true;
+                    LevelTwoSelectButton.isClickable = true;
+                    buttons.Add(levelOneButton);
+                    buttons.Add(levelTwoButton);
+                    break;
+                default:
+                    LevelOneSelectButton.isClickable = true;
+                    buttons.Add(levelOneButton);
+                    break;
+            }
+
+            /*LevelOneSelectButton.isClickable = true;
+            LevelTwoSelectButton.isClickable = true;*/
+
+            /*buttons = new List<Button>()
             {
                 hubReturnButton, levelOneButton, levelTwoButton
-            };
+            };*/
+            /*mapButtons = new List<Button>()
+            {
+                hubReturnButton, levelOneButton, levelTwoButton
+            };*/
         }
 
         public override void LoadState()
@@ -104,12 +130,12 @@ namespace ISP_Project.Game_States
                 AudioManager.PlaySoundEffect("Scroll");
             }
             if (selectedButtonCounter >= 0)
-                selectedButtonCounter = -mapButtons.Count;
+                selectedButtonCounter = -buttons.Count;
 
-            var selectedButton = Math.Abs(selectedButtonCounter % mapButtons.Count);
+            var selectedButton = Math.Abs(selectedButtonCounter % buttons.Count);
 
             bool isHovering = false;
-            foreach (Button button in mapButtons)
+            foreach (Button button in buttons)
             {
                 button.Update();
                 button.ForceShade = false;
@@ -118,11 +144,11 @@ namespace ISP_Project.Game_States
             }
 
             if (!isHovering)
-                mapButtons[selectedButton].ForceShade = true;
+                buttons[selectedButton].ForceShade = true;
 
             if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
             {
-                mapButtons[selectedButton].TriggerEvent();
+                buttons[selectedButton].TriggerEvent();
             }
 
             // update buttons

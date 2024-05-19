@@ -26,11 +26,18 @@ namespace ISP_Project.Game_States
         {
             LoadState();
 
+            var newGameButton = new NewGameButton(buttonTexture, buttonFont, 1, 0.5f)
+            {
+                Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y - 32),
+                Text = "New Game"
+            };
+
             var loadGameButton = new LoadGameButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
                 Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y - 16),
-                Text = "Load"
+                Text = "Load Game"
             };
 
             var settingsButton = new SettingsButton(buttonTexture, buttonFont, 1, 0.5f)
@@ -49,7 +56,7 @@ namespace ISP_Project.Game_States
 
             buttons = new List<Button>()
             {
-                loadGameButton, settingsButton, quitButton
+                newGameButton, loadGameButton, settingsButton, quitButton
             };
         }
 

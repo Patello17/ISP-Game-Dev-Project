@@ -49,12 +49,12 @@ namespace ISP_Project
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Globals.SpriteBatch = _spriteBatch;
 
-            // create fresh save file
+            /*// create fresh save file
             SaveFile saveFile = new SaveFile()
             {
                 LevelsCompleted = 0,
             };
-            SaveManager.Save(saveFile);
+            SaveManager.Save(saveFile);*/
 
             // set and update window size
             WindowManager.InitializeWindow(_graphics);
