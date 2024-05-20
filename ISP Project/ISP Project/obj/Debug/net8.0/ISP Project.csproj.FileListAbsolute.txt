@@ -82,3 +82,10 @@ C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\UI Elements\Controls Display Audio Setting.xnb
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\UI Elements\Controls Display Settings.xnb
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\UI Elements\Hub Display.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Songs\Hub Theme 1.ogg
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Songs\Hub Theme 1.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Interactables\Envelope.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\UI Elements\Closed Envelope.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\UI Elements\Controls Display Envelope.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\UI Elements\Open Envelope Back.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\UI Elements\Open Envelope Front.xnb

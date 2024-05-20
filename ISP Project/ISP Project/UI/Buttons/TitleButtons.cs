@@ -39,7 +39,7 @@ namespace ISP_Project.UI.Buttons
                 SaveManager.Save(saveFile);
                 // change Game State here!
                 AudioManager.PlaySoundEffect("Door Opening");
-                StateManager.ChangeState(new HubState(), Transitions.BlackFade, 0.1f);
+                StateManager.ChangeState(new HubState(), Transitions.BlackFade, 2f);
             }
         }
 
@@ -63,7 +63,7 @@ namespace ISP_Project.UI.Buttons
             {
                 // change Game State here!
                 AudioManager.PlaySoundEffect("Door Opening");
-                StateManager.ChangeState(new HubState(), Transitions.BlackFade, 2f);
+                StateManager.ChangeState(new HubState(), Transitions.BlackFade, 3f);
             }
         }
 

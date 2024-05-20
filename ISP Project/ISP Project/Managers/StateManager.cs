@@ -24,7 +24,7 @@ namespace ISP_Project.Managers
         private static RenderTarget2D transitionFrame = Globals.GetNewRenderTarget();
         private static Dictionary<Transitions, Transition> transitions = new Dictionary<Transitions, Transition>()
         {
-            { Transitions.BlackFade, new BlackFadeOutTransition(transitionFrame) },
+            { Transitions.BlackFade, new BlackFadeTransition(transitionFrame) },
             { Transitions.Push, new PushTransition(transitionFrame) }
         };
         private static Transition transition;

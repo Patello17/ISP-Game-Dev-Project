@@ -137,7 +137,19 @@ namespace ISP_Project.Game_States
         public override void PlayStateSong()
         {
             // play music
-            AudioManager.ForcePlaySong("Hub Theme");
+            switch (SaveManager.Load().LevelsCompleted)
+            {
+                case 1:
+                    AudioManager.ForcePlaySong("Hub Theme 1");
+                    break;
+                case 2:
+                    AudioManager.ForcePlaySong("Hub Theme 1"); // play hub theme 2
+                    break;
+                default:
+                    AudioManager.ForcePlaySong("Hub Theme");
+                    break;
+            }
+            
         }
     }
 }

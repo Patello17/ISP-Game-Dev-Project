@@ -49,6 +49,7 @@ namespace ISP_Project.Managers
         {
             // add every song
             songs.Add("Hub Theme", Globals.ContentManager.Load<Song>("Songs/Hub Theme"));
+            songs.Add("Hub Theme 1", Globals.ContentManager.Load<Song>("Songs/Hub Theme 1"));
             songs.Add("Title Theme", Globals.ContentManager.Load<Song>("Songs/Title Theme"));
             songs.Add("Level 1 Theme", Globals.ContentManager.Load<Song>("Songs/Level1"));
 
