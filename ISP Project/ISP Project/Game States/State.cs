@@ -60,6 +60,9 @@ namespace ISP_Project.Game_States
             return target;
         }
 
+        /// <summary>
+        /// Plays the song for this state.
+        /// </summary>
         public abstract void PlayStateSong();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ISP_Project.Game_States;
+using ISP_Project.Gameplay;
 using ISP_Project.Screen_Management.Transitions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -41,10 +42,13 @@ namespace ISP_Project.Managers
             // update the current state
             if (stateStack.Count > 0)
             {
-                GetCurrentState().Update();
-
                 if (previousState != GetCurrentState())
+                {
+                    GetCurrentState().LoadState();
                     GetCurrentState().PlayStateSong();
+                }
+
+                GetCurrentState().Update();
 
                 if (IsTransitioning)
                     IsTransitioning = transition.Update();
@@ -91,6 +95,8 @@ namespace ISP_Project.Managers
         {
             if (nextState != null && !IsTransitioning)
             {
+                stateStack[0].PostUpdate();
+
                 if (stateChangeTransition is Transitions.Push)
                     AudioManager.PlaySoundEffect("Reset");
 

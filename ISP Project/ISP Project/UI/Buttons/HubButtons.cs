@@ -129,4 +129,48 @@ namespace ISP_Project.UI.Buttons
             StateManager.ChangeState(StateManager.GetRecentState(new HubState()), Transitions.BlackFade, 0f);
         }
     }
+
+    // create Envelope 1
+    public class EnvelopeOneButton : Button
+    {
+        private Texture2D buttonTexture;
+        private SpriteFont buttonFont;
+        private float buttonScale;
+        private float fontScale;
+
+        public EnvelopeOneButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
+        {
+            buttonTexture = texture;
+            buttonFont = font;
+            this.buttonScale = buttonScale;
+            this.fontScale = buttonScale;
+        }
+
+        public override void TriggerEvent()
+        {
+            AudioManager.PlaySoundEffect("Envelope");
+        }
+    }
+
+    // create Envelope 2
+    public class EnvelopeTwoButton : Button
+    {
+        private Texture2D buttonTexture;
+        private SpriteFont buttonFont;
+        private float buttonScale;
+        private float fontScale;
+
+        public EnvelopeTwoButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
+        {
+            buttonTexture = texture;
+            buttonFont = font;
+            this.buttonScale = buttonScale;
+            this.fontScale = buttonScale;
+        }
+
+        public override void TriggerEvent()
+        {
+            AudioManager.PlaySoundEffect("Box Splash");
+        }
+    }
 }

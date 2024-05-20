@@ -37,6 +37,7 @@ namespace ISP_Project.Gameplay
         public override List<Vector2> PastPositions { get; set; }
         public List<Sprite> PastSprites { get; set; }
         public bool IsColliding { get; set; } = false;
+        public bool isSelectingEnvelope { get; set; } = false;
         Vector2 nextTileMapPosition;
         Vector2 movementVector;
 
@@ -210,8 +211,19 @@ namespace ISP_Project.Gameplay
         /// </summary>
         public void SetNextPosition()
         {
-            movementVector = movementDictionary[keyDown];
-            nextTileMapPosition = TileMapPosition + movementVector;
+            if (!StateManager.IsTransitioning)
+            {
+                if (!isSelectingEnvelope)
+                {
+                    movementVector = movementDictionary[keyDown];
+                    nextTileMapPosition = TileMapPosition + movementVector;
+                }
+                else if (movementDictionary[keyDown] != new Vector2(0, -1) && movementDictionary[keyDown] != new Vector2(0, 1))
+                {
+                    movementVector = movementDictionary[keyDown];
+                    nextTileMapPosition = TileMapPosition + movementVector;
+                }
+            }
         }
 
         /// <summary>
@@ -221,8 +233,19 @@ namespace ISP_Project.Gameplay
         {
             if (isSliding)
             {
-                Sprite.Texture = textureDictionary[keyDown];
-                Sprite.SpriteEffects = spriteEffectsDictionary[keyDown];
+                if (keyDown == Inputs.UP || keyDown == Inputs.DOWN)
+                {
+                    if (!isSelectingEnvelope)
+                    {
+                        Sprite.Texture = textureDictionary[keyDown];
+                        Sprite.SpriteEffects = spriteEffectsDictionary[keyDown];
+                    }
+                }
+                else
+                {
+                    Sprite.Texture = textureDictionary[keyDown];
+                    Sprite.SpriteEffects = spriteEffectsDictionary[keyDown];
+                }
             }
         }
 
