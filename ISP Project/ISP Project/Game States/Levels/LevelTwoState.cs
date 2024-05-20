@@ -232,6 +232,12 @@ namespace ISP_Project.Game_States.Levels
 
             var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
             Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
+
+            string movesText = "Moves: " + (player.PastPositions.Count - 1);
+            float movesTextSize = 0.5f;
+            var x = WindowManager.GetMainWindowCenter().X - (buttonFont.MeasureString(movesText).X * movesTextSize / 2);
+            var y = WindowManager.GetMainWindowCenter().Y - 160 - (buttonFont.MeasureString(movesText).Y * movesTextSize / 2);
+            Globals.SpriteBatch.DrawString(buttonFont, movesText, new Vector2(x, y), Color.White, 0f, Vector2.Zero, movesTextSize, SpriteEffects.None, 1f);
         }
 
         public override void PlayStateSong()

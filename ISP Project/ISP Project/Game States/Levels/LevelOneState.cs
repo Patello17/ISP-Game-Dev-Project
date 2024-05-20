@@ -16,6 +16,7 @@ using static ISP_Project.Gameplay.Box;
 using System.Diagnostics;
 using MonoGame.Extended.Timers;
 using ISP_Project.Screen_Management.Transitions;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ISP_Project.Game_States.Levels
 {
@@ -26,10 +27,16 @@ namespace ISP_Project.Game_States.Levels
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
         private Texture2D controlsUI;
-        
+
         // create tile map instance
         private LevelOneTileMap tileMap = new LevelOneTileMap(WindowManager.GetMainWindowCenter());
-        
+
+        // create undo timing variables
+        private float undoDasTimer; // DAS stands for "delayed auto shift"
+        private float undoDelay = 0.4f;
+        private float transitionTimer;
+        private float transitionSpeed = 0.1f;
+
         // initialize player
         private Snail player = new Snail(new Vector2(4, 16));
         
@@ -110,9 +117,35 @@ namespace ISP_Project.Game_States.Levels
             }
 
             // undo moves
+            /*if (InputManager.isKey(InputManager.Inputs.UNDO, InputManager.isTriggered))
+            {
+                Undo();
+            }*/
+
             if (InputManager.isKey(InputManager.Inputs.UNDO, InputManager.isTriggered))
             {
                 Undo();
+            }
+            if (InputManager.isKey(InputManager.Inputs.UNDO, InputManager.isPressed))
+            {
+                undoDasTimer += Globals.Time;
+            }
+            else
+            {
+                undoDasTimer = 0f;
+                transitionTimer = 0f;
+            }
+            if (undoDasTimer >= undoDelay)
+            {
+                if (transitionTimer >= transitionSpeed)
+                {
+                    transitionTimer = 0f;
+                    Undo();
+                }
+                else
+                {
+                    transitionTimer += Globals.Time;
+                }
             }
 
             // update Buttons
@@ -227,6 +260,12 @@ namespace ISP_Project.Game_States.Levels
 
             var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
             Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
+
+            string movesText = "Moves: " + (player.PastPositions.Count - 1);
+            float movesTextSize = 0.5f;
+            var x = WindowManager.GetMainWindowCenter().X - (buttonFont.MeasureString(movesText).X * movesTextSize / 2);
+            var y = WindowManager.GetMainWindowCenter().Y - 160 - (buttonFont.MeasureString(movesText).Y * movesTextSize / 2);
+            Globals.SpriteBatch.DrawString(buttonFont, movesText, new Vector2(x, y), Color.White, 0f, Vector2.Zero, movesTextSize, SpriteEffects.None, 1f);
         }
 
         public override void PlayStateSong()

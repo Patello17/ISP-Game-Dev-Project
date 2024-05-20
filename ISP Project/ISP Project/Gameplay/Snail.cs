@@ -48,6 +48,7 @@ namespace ISP_Project.Gameplay
         private float transitionTimer;
         private float transitionSpeed = 0.4f;
         private bool isSliding = false;
+        private float slideSpeed = 0.3f;
 
         // create dictionaries for commonly referenced information
         private Dictionary<Inputs, Vector2> movementDictionary = new Dictionary<Inputs, Vector2>();
@@ -290,7 +291,7 @@ namespace ISP_Project.Gameplay
             var clampBound = 1f; // snap to position when within 1 pixel
 
             // smoothly transition from the current tile to the next tile.
-            Vector2 newPosition = Vector2.Lerp(Transform.Position, targetPosition, 0.3f);
+            Vector2 newPosition = Vector2.Lerp(Transform.Position, targetPosition, slideSpeed);
             if (Math.Abs(newPosition.X - targetPosition.X) <= clampBound &&
                     Math.Abs(newPosition.Y - targetPosition.Y) <= clampBound)
             {

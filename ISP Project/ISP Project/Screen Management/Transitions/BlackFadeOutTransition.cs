@@ -14,7 +14,10 @@ namespace ISP_Project.Screen_Management.Transitions
         protected override void Process()
         {
             Globals.SpriteBatch.Draw(oldScene, Vector2.Zero, Color.White * percentage);
-            Globals.SpriteBatch.Draw(newScene, Vector2.Zero, Color.Black * (1 - percentage));
+            //Globals.SpriteBatch.Draw(newScene, Vector2.Zero, Color.Black * (1 - percentage));
+            Globals.SpriteBatch.Draw(oldScene, Vector2.Zero, Color.Black * (1 - percentage));
+            Globals.SpriteBatch.Draw(newScene, Vector2.Zero, Color.White * (float)Math.Cos(Math.PI * percentage));
+            // Globals.SpriteBatch.Draw(newScene, Vector2.Zero, Color.White * (1 - percentage));
         }
     }
 }

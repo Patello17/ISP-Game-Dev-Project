@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ISP Project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34e587faa19033960ce271a893c05802c0c0e044")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32abb39c3e3d820aa750f1b3bbf4ce85b52ef33f")]
 [assembly: System.Reflection.AssemblyProductAttribute("ISP Project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ISP Project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
