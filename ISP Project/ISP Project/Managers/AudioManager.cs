@@ -38,9 +38,10 @@ namespace ISP_Project.Managers
         private static bool isFadingIn = true;
         
         // create volume control variables
-        private static float maximumVolume = 0.5f;
+        private static float maximumSongVolume = 1f;
+        private static float maximumSFXVolume = 1f;
         private static float volumeLow = 0;
-        private static float volumeHigh = maximumVolume;
+        private static float volumeHigh = maximumSongVolume;
 
         /// <summary>
         /// Loads all of the Audio.
@@ -105,7 +106,7 @@ namespace ISP_Project.Managers
 
             if (isFadingIn)
             {
-                Fade(volumeLow, maximumVolume); // fade in
+                Fade(volumeLow, maximumSongVolume); // fade in
             }
             if (isFadingOut)
             {
@@ -128,6 +129,24 @@ namespace ISP_Project.Managers
         public static Song GetCurrentSong()
         {
             return songStack[0];
+        }
+
+        /// <summary>
+        /// Gets the maximum song volume.
+        /// </summary>
+        /// <returns></returns>
+        public static float GetMaximumSongVolume()
+        {
+            return maximumSongVolume;
+        }
+
+        /// <summary>
+        /// Gets the maximum sound effects volume.
+        /// </summary>
+        /// <returns></returns>
+        public static float GetMaximumSFXVolume()
+        {
+            return maximumSFXVolume;
         }
 
         /// <summary>
@@ -250,6 +269,7 @@ namespace ISP_Project.Managers
             try
             {
                 var instance = soundEffects[soundEffectKey].CreateInstance();
+                instance.Volume = maximumSFXVolume;
                 instance.Play();
             }
             catch
@@ -264,6 +284,7 @@ namespace ISP_Project.Managers
         /// <param name="volume"></param>
         public static void SetSongVolume(float volume)
         {
+            maximumSongVolume = volume;
             MediaPlayer.Volume = volume;
         }
 
@@ -273,7 +294,9 @@ namespace ISP_Project.Managers
         /// <param name="volume"></param>
         public static void SetSoundEffectVolume(float volume)
         {
-            SoundEffect.MasterVolume = volume;
+            maximumSFXVolume = volume;
+            Debug.WriteLine(maximumSFXVolume);
+            // SoundEffect.MasterVolume = (int)volume;
         }
         
         /// <summary>

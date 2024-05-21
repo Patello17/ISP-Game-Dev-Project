@@ -13,18 +13,15 @@ using System.Threading.Tasks;
 
 namespace ISP_Project.UI.Sliders
 {
-    internal class HorizontalSlider
+    public abstract class HorizontalSlider
     {
         public Sprite BarSprite { get; set; } = new Sprite(null, SpriteEffects.None, 0);
-        public Sprite SliderSprite
-        {
-            get { return Slider.Sprite; }
-            set { Slider.Sprite = value; } 
-        }
-        public SongSliderButton Slider { get; set; }
-        private float sliderValue;
+        public Sprite SliderSprite { get; set; }
+        public Transform SliderTransform { get; set; }
+        public float Value { get; set; }
         public Vector2 BarPosition { get; set; }
         private float buttonScale;
+        private float volumeIncrement = 0.05f;
         /*public Vector2 Position
         {
             get
@@ -61,13 +58,14 @@ namespace ISP_Project.UI.Sliders
         private bool isHovering;*/
 
 
-        public HorizontalSlider(Texture2D barTexture, Texture2D sliderTexture, SpriteFont buttonFont, float buttonScale, float fontScale, float value)
+        public HorizontalSlider(Texture2D barTexture, Texture2D sliderTexture, SpriteFont buttonFont, float buttonScale, float fontScale, Vector2 position, float value)
         {
             BarSprite.Texture = barTexture;
-            Slider = new SongSliderButton(sliderTexture, buttonFont, buttonScale, fontScale);
-            Slider.Position = BarPosition;
+            SliderSprite = new Sprite(sliderTexture, SpriteEffects.None, 0.8f);
+            BarPosition = position;
+            SliderTransform = new Transform(BarPosition, buttonScale, 0f);
             this.buttonScale = buttonScale;
-            sliderValue = value;
+            Value = value;
         }
 
         /// <summary>
@@ -75,14 +73,27 @@ namespace ISP_Project.UI.Sliders
         /// </summary>
         public void Update()
         {
-            Slider.Update();
-            
-            if (InputManager.cursorRectangle.Intersects(Slider.Rectangle) &&
+
+            /*if (InputManager.cursorRectangle.Intersects(Slider.Rectangle) &&
                 InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isPressed))
             {
                 Slider.Position = new Vector2(InputManager.cursorRectangle.X + InputManager.cursorRectangle.Width / 2, Slider.Position.Y);
+            }*/
+
+            var slideIncrement = BarSprite.Texture.Width * buttonScale / (1 / volumeIncrement);
+            if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered) && Value > 0)
+            {
+                SliderTransform.Position = new Vector2(SliderTransform.Position.X - slideIncrement, SliderTransform.Position.Y);
+                Value -= volumeIncrement;
+                SetVolume();
             }
-            Debug.WriteLine(BarPosition);
+            if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered) && Value < 1)
+            {
+                SliderTransform.Position = new Vector2(SliderTransform.Position.X + slideIncrement, SliderTransform.Position.Y);
+                Value += volumeIncrement;
+                SetVolume();
+            }
+            // Debug.WriteLine(BarPosition);
         }
 
         /// <summary>
@@ -90,8 +101,12 @@ namespace ISP_Project.UI.Sliders
         /// </summary>
         public void Draw()
         {
-            Globals.SpriteBatch.Draw(BarSprite.Texture, BarPosition, null, Color.White, 0f, BarSprite.GetSpriteOrigin(), buttonScale, BarSprite.SpriteEffects, BarSprite.DrawLayer);
-            Slider.Draw();
+            Globals.SpriteBatch.Draw(BarSprite.Texture, BarPosition, null, Color.White, 0f, BarSprite.GetSpriteOrigin(), 
+                buttonScale, BarSprite.SpriteEffects, 0.6f);
+            Globals.SpriteBatch.Draw(SliderSprite.Texture, SliderTransform.Position + new Vector2(BarSprite.Texture.Width / 2, 0), null, SliderSprite.Color, 0f, SliderSprite.GetSpriteOrigin(), 
+                buttonScale, SliderSprite.SpriteEffects, 0.8f);
         }
+
+        public abstract void SetVolume();
     }
 }

@@ -2,6 +2,8 @@
 using ISP_Project.Game_States.Levels;
 using ISP_Project.Managers;
 using ISP_Project.Screen_Management.Transitions;
+using ISP_Project.UI.Sliders;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -32,7 +34,10 @@ namespace ISP_Project.UI.Buttons
         {
             // change Game State here!
             AudioManager.PlaySoundEffect("Button Press");
-            // StateManager.ChangeState(new AudioSettingsState());
+            if (StateManager.GetRecentState(new AudioSettingsState()) == null)
+                StateManager.ChangeState(new AudioSettingsState(), Transitions.BlackFade, 0.1f);
+            else
+                StateManager.ChangeState(StateManager.GetRecentState(new AudioSettingsState()), Transitions.BlackFade, 0.1f);
         }
     }
 
@@ -59,15 +64,15 @@ namespace ISP_Project.UI.Buttons
         }
     }
 
-    // create Return Button
-    public class ReturnButton : Button
+    // create Settings Return Button
+    public class SettingsReturnButton : Button
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
         private float buttonScale;
         private float fontScale;
 
-        public ReturnButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
+        public SettingsReturnButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
         {
             buttonTexture = texture;
             buttonFont = font;
@@ -86,15 +91,14 @@ namespace ISP_Project.UI.Buttons
         }
     }
 
-    // create Song Slider Button
-    public class SongSliderButton : Button
+    public class FineControlsReturnButton : Button
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
         private float buttonScale;
         private float fontScale;
 
-        public SongSliderButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
+        public FineControlsReturnButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
         {
             buttonTexture = texture;
             buttonFont = font;
@@ -104,8 +108,82 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
+            AudioManager.PlaySoundEffect("Button Press");
+            StateManager.ChangeState(new SettingsState(), Transitions.BlackFade, 0.1f);
+        }
+    }
+
+    // create Song Slider Button
+    public class SongSlider : HorizontalSlider
+    {
+        private Texture2D barTexture;
+        private Texture2D sliderTexture;
+        private SpriteFont buttonFont;
+        private float buttonScale;
+        private float fontScale;
+        private Vector2 position;
+        private float value;
+
+        public SongSlider(
+            Texture2D barTexture,
+            Texture2D sliderTexture,
+            SpriteFont font,
+            float buttonScale,
+            float fontScale,
+            Vector2 position,
+            float value) :
+            base(barTexture, sliderTexture, font, buttonScale, fontScale, position, value)
+        {
+            this.barTexture = barTexture;
+            this.sliderTexture = sliderTexture;
+            buttonFont = font;
+            this.buttonScale = buttonScale;
+            this.fontScale = buttonScale;
+            this.position = position;
+            this.value = value;
+        }
+
+        public override void SetVolume()
+        {
             // change Game State here!
-            AudioManager.SetSongVolume(Position.X);
+            AudioManager.SetSongVolume(Value);
+        }
+    }
+
+    // create Sound Effects Slider Button
+    public class SoundEffectsSlider : HorizontalSlider
+    {
+        private Texture2D barTexture;
+        private Texture2D sliderTexture;
+        private SpriteFont buttonFont;
+        private float buttonScale;
+        private float fontScale;
+        private Vector2 position;
+        private float value;
+
+        public SoundEffectsSlider(
+            Texture2D barTexture, 
+            Texture2D sliderTexture, 
+            SpriteFont font, 
+            float buttonScale, 
+            float fontScale, 
+            Vector2 position,
+            float value) : 
+            base(barTexture, sliderTexture, font, buttonScale, fontScale, position, value)
+        {
+            this.barTexture = barTexture;
+            this.sliderTexture = sliderTexture;
+            buttonFont = font;
+            this.buttonScale = buttonScale;
+            this.fontScale = buttonScale;
+            this.position = position;
+            this.value = value;
+        }
+
+        public override void SetVolume()
+        {
+            // change Game State here!
+            AudioManager.SetSoundEffectVolume(Value);
         }
     }
 }

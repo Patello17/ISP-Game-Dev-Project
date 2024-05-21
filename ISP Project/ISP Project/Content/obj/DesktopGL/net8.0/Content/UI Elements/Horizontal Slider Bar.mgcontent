@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Horizontal Slider Bar.png</SourceFile>
-  <SourceTime>2024-05-13T17:24:08.4601977-04:00</SourceTime>
+  <SourceTime>2024-05-21T15:45:45.4943861-04:00</SourceTime>
   <DestFile>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/bin/DesktopGL/Content/UI Elements/Horizontal Slider Bar.xnb</DestFile>
-  <DestTime>2024-05-13T17:29:33.8224961-04:00</DestTime>
+  <DestTime>2024-05-21T15:49:47.4711653-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

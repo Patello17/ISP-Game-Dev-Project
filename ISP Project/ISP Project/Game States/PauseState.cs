@@ -93,6 +93,8 @@ namespace ISP_Project.Game_States
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Pause");
+
+            selectedButton = 1;
         }
 
         public override void Update()
@@ -147,10 +149,10 @@ namespace ISP_Project.Game_States
             var backgroundOrigin = new Vector2(backgroundTexture.Width / 2, backgroundTexture.Height / 2);
             Globals.SpriteBatch.Draw(backgroundTexture, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, backgroundOrigin, 1f, SpriteEffects.None, 0f);
 
-            var movesText = "PAUSED";
-            var movesX = WindowManager.GetMainWindowCenter().X - (buttonFont.MeasureString(movesText).X * 1f / 2);
-            var movesY = WindowManager.GetMainWindowCenter().Y - 80 - (buttonFont.MeasureString(movesText).Y * 1f / 2);
-            Globals.SpriteBatch.DrawString(buttonFont, movesText, new Vector2(movesX, movesY),
+            var text = "PAUSED";
+            var testX = WindowManager.GetMainWindowCenter().X - (buttonFont.MeasureString(text).X * 1f / 2);
+            var textY = WindowManager.GetMainWindowCenter().Y - 80 - (buttonFont.MeasureString(text).Y * 1f / 2);
+            Globals.SpriteBatch.DrawString(buttonFont, text, new Vector2(testX, textY),
                 Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
             foreach (Button button in buttons)

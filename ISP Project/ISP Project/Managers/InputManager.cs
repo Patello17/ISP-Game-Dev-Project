@@ -106,7 +106,7 @@ namespace ISP_Project.Managers
         /// <param name="input"></param>
         /// <param name="checkState"></param>
         /// <returns></returns>
-        public static bool isClick(ClickInputs input, Func<bool, bool, bool> checkState)
+        /*public static bool isClick(ClickInputs input, Func<bool, bool, bool> checkState)
         {
             var currentClickState = false;
             var previousClickState = previousPlayerClicks[input];
@@ -115,6 +115,6 @@ namespace ISP_Project.Managers
                 currentClickState = true;
 
             return checkState(currentClickState, previousClickState);
-        }
+        }*/
     }
 }

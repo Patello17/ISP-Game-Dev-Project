@@ -72,6 +72,8 @@ namespace ISP_Project.Game_States
             titleTexture = Globals.ContentManager.Load<Texture2D>("Backgrounds/Title");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Title");
+
+            selectedButton = 1;
         }
 
         public override void Update()

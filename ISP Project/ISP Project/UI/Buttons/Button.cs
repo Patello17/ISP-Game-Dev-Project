@@ -81,8 +81,7 @@ namespace ISP_Project.UI.Buttons
             {
                 isHovering = true;
 
-                if (InputManager.isClick(InputManager.ClickInputs.INTERACT, InputManager.isTriggered) ||
-                    InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
+                if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
                 {
                     TriggerEvent();
                 }

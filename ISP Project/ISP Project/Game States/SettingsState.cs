@@ -41,7 +41,7 @@ namespace ISP_Project.Game_States
                 Text = "Controls"
             };
 
-            var settingsReturnButton = new ReturnButton(buttonTexture, buttonFont, 1, 0.5f)
+            var settingsReturnButton = new SettingsReturnButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
                 Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y + 16),
@@ -109,10 +109,10 @@ namespace ISP_Project.Game_States
             var backgroundOrigin = new Vector2(backgroundTexture.Width / 2, backgroundTexture.Height / 2);
             Globals.SpriteBatch.Draw(backgroundTexture, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, backgroundOrigin, 1f, SpriteEffects.None, 0f);
 
-            var movesText = "SETTINGS";
-            var movesX = WindowManager.GetMainWindowCenter().X - (buttonFont.MeasureString(movesText).X * 1f / 2);
-            var movesY = WindowManager.GetMainWindowCenter().Y - 80 - (buttonFont.MeasureString(movesText).Y * 1f / 2);
-            Globals.SpriteBatch.DrawString(buttonFont, movesText, new Vector2(movesX, movesY),
+            var text = "SETTINGS";
+            var textX = WindowManager.GetMainWindowCenter().X - (buttonFont.MeasureString(text).X * 1f / 2);
+            var textY = WindowManager.GetMainWindowCenter().Y - 80 - (buttonFont.MeasureString(text).Y * 1f / 2);
+            Globals.SpriteBatch.DrawString(buttonFont, text, new Vector2(textX, textY),
                 Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
             foreach (Button button in buttons)
