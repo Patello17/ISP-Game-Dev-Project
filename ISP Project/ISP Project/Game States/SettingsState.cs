@@ -17,6 +17,9 @@ namespace ISP_Project.Game_States
     {
         private List<Button> buttons;
         private int selectedButtonCounter = 0;
+        private int selectedButton;
+        private Texture2D selectorTexture;
+        private Texture2D backgroundTexture;
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
 
@@ -54,6 +57,8 @@ namespace ISP_Project.Game_States
 
         public override void LoadState()
         {
+            selectorTexture = Globals.ContentManager.Load<Texture2D>("Snail/Snail");
+            backgroundTexture = Globals.ContentManager.Load<Texture2D>("Backgrounds/Title Background");
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
         }
@@ -74,7 +79,7 @@ namespace ISP_Project.Game_States
             if (selectedButtonCounter >= 0)
                 selectedButtonCounter = -buttons.Count;
 
-            var selectedButton = Math.Abs(selectedButtonCounter % buttons.Count);
+            selectedButton = Math.Abs(selectedButtonCounter % buttons.Count);
 
             bool isHovering = false;
             foreach (Button button in buttons)
@@ -101,10 +106,24 @@ namespace ISP_Project.Game_States
 
         public override void Draw()
         {
+            var backgroundOrigin = new Vector2(backgroundTexture.Width / 2, backgroundTexture.Height / 2);
+            Globals.SpriteBatch.Draw(backgroundTexture, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, backgroundOrigin, 1f, SpriteEffects.None, 0f);
+
+            var movesText = "SETTINGS";
+            var movesX = WindowManager.GetMainWindowCenter().X - (buttonFont.MeasureString(movesText).X * 1f / 2);
+            var movesY = WindowManager.GetMainWindowCenter().Y - 80 - (buttonFont.MeasureString(movesText).Y * 1f / 2);
+            Globals.SpriteBatch.DrawString(buttonFont, movesText, new Vector2(movesX, movesY),
+                Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+
             foreach (Button button in buttons)
             {
                 button.Draw();
             }
+
+            var selectorOrigin = new Vector2(selectorTexture.Width / 2, selectorTexture.Height / 2);
+            Globals.SpriteBatch.Draw(selectorTexture,
+                WindowManager.GetMainWindowCenter() - new Vector2(56, 16) + (new Vector2(0, 16 * selectedButton)),
+                null, Color.White, 0f, selectorOrigin, 1f, SpriteEffects.None, 1f);
         }
 
         public override void PlayStateSong()

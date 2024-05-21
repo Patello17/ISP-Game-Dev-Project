@@ -18,7 +18,11 @@ namespace ISP_Project.Game_States
     {
         private List<Button> buttons;
         private int selectedButtonCounter = 0;
+        private int selectedButton;
+        private Texture2D selectorTexture;
         private Texture2D buttonTexture;
+        private Texture2D backgroundTexture;
+        private Texture2D titleTexture;
         private SpriteFont buttonFont;
         private Texture2D controlsUI;
 
@@ -62,7 +66,10 @@ namespace ISP_Project.Game_States
 
         public override void LoadState()
         {
+            selectorTexture = Globals.ContentManager.Load<Texture2D>("Snail/Snail");
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
+            backgroundTexture = Globals.ContentManager.Load<Texture2D>("Backgrounds/Title Background");
+            titleTexture = Globals.ContentManager.Load<Texture2D>("Backgrounds/Title");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Title");
         }
@@ -83,7 +90,7 @@ namespace ISP_Project.Game_States
             if (selectedButtonCounter >= 0)
                 selectedButtonCounter = -buttons.Count;
 
-            var selectedButton = Math.Abs(selectedButtonCounter % buttons.Count);
+            selectedButton = Math.Abs(selectedButtonCounter % buttons.Count);
 
             bool isHovering = false;
             foreach (Button button in buttons)
@@ -110,10 +117,20 @@ namespace ISP_Project.Game_States
 
         public override void Draw()
         {
+            var backgroundOrigin = new Vector2(backgroundTexture.Width / 2, backgroundTexture.Height / 2);
+            Globals.SpriteBatch.Draw(backgroundTexture, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, backgroundOrigin, 1f, SpriteEffects.None, 0f);
+            var titleOrigin = new Vector2(titleTexture.Width / 2, titleTexture.Height / 2);
+            Globals.SpriteBatch.Draw(titleTexture, WindowManager.GetMainWindowCenter() - new Vector2(0, 80), null, Color.White, 0f, titleOrigin, 1f, SpriteEffects.None, 0f);
+
             foreach (Button button in buttons)
             {
                 button.Draw();
             }
+
+            var selectorOrigin = new Vector2(selectorTexture.Width / 2, selectorTexture.Height / 2);
+            Globals.SpriteBatch.Draw(selectorTexture, 
+                WindowManager.GetMainWindowCenter() - new Vector2(56, 32) + (new Vector2(0, 16 * selectedButton)), 
+                null, Color.White, 0f, selectorOrigin, 1f, SpriteEffects.None, 1f);
 
             var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
             Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);

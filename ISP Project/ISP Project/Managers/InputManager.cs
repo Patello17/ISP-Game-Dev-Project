@@ -66,19 +66,19 @@ namespace ISP_Project.Managers
             currentKeyState = Keyboard.GetState();
 
             // update click logic variables
-            previousLeftButtonState = mouseState.LeftButton == ButtonState.Pressed ? true: false;
+            /*previousLeftButtonState = mouseState.LeftButton == ButtonState.Pressed ? true: false;
             previousRightButtonState = mouseState.RightButton == ButtonState.Pressed ? true : false;
             previousPlayerClicks = new Dictionary<ClickInputs, bool>()
             {
                 { ClickInputs.INTERACT, previousLeftButtonState}
-            };
+            };*/
 
             // update click dictionary with mouseState
-            mouseState = Mouse.GetState();
+            /*mouseState = Mouse.GetState();
             currentPlayerClicks = new Dictionary<ClickInputs, ButtonState>()
             {
                 { ClickInputs.INTERACT, mouseState.LeftButton}
-            };
+            };*/
 
             // update cursor rectangle -- EDIT: Disabled Mouse Functionality
             // cursorRectangle = new Rectangle(mouseState.Position.X, mouseState.Position.Y, 1, 1);

@@ -5,6 +5,8 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Backgrounds/Map.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Backgrounds/Title Background.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Backgrounds/Title.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Down Box.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Horizontal Box.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Left Box.png</File>
@@ -58,6 +60,8 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Open Envelope Front.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

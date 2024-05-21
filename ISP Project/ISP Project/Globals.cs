@@ -18,6 +18,7 @@ namespace ISP_Project
     {
         public static float Time { get; set; }
         public static ContentManager ContentManager { get; set; }
+        // public static ContentManager CurrentStateTextureContentManager { get; set; }
         public static GraphicsDevice GraphicsDevice { get; set; }
         public static GraphicsDevice StateGraphicsDevice { get; set; }
         public static GraphicsDeviceManager GraphicsDeviceManager { get; set; }

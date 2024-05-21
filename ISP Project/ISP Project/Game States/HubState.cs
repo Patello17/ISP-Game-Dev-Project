@@ -109,7 +109,7 @@ namespace ISP_Project.Game_States
             if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
             {
                 AudioManager.PlaySoundEffect("Button Press");
-                StateManager.ChangeState(new PauseState(), Transitions.BlackFade, 0f);
+                StateManager.ChangeState(new PauseState(), Transitions.BlackFade, 0.1f);
             }
 
             player.Update();

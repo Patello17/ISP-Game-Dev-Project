@@ -3,6 +3,7 @@ using ISP_Project.Game_States.Levels;
 using ISP_Project.Managers;
 using ISP_Project.Screen_Management;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
@@ -45,6 +46,9 @@ namespace ISP_Project
             // TODO: use this.Content to load your game content here
             
             Globals.ContentManager = Content;
+            /* var currentStateTextureContentManager = new ContentManager(Content.ServiceProvider);
+            currentStateTextureContentManager.RootDirectory = "Content";
+            Globals.CurrentStateTextureContentManager = currentStateTextureContentManager;*/
             Globals.GraphicsDevice = GraphicsDevice;
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Globals.SpriteBatch = _spriteBatch;
