@@ -10,19 +10,26 @@ using System.Threading.Tasks;
 using ISP_Project.Managers;
 using ISP_Project.Components;
 using ISP_Project.Screen_Management.Transitions;
+using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
+using System.IO;
 
 namespace ISP_Project.Game_States
 {
     public class LevelSelectionState : State
     {
-        private List<Button> buttons;
+        private Button[,] buttons = new Button[3, 4];
         // private List<Button> mapButtons;
-        private int selectedButtonCounter = 0;
+        private int selectedButtonCounterY = 0;
+        private int selectedButtonCounterX = 0;
+        private int selectedButtonX;
+        private int selectedButtonY;
         private Texture2D mapTexture;
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
         private Texture2D whiteNoteTexture;
         private Texture2D yellowNoteTexture;
+        private Texture2D selectionTexture;
         private Texture2D pinTexture;
         private Texture2D controlsUI;
 
@@ -39,47 +46,56 @@ namespace ISP_Project.Game_States
             var hubReturnButton = new HubReturnButton(whiteNoteTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(whiteNoteTexture, SpriteEffects.None, 0),
-                Position = new Vector2(WindowManager.GetMainWindowCenter().X + 221, WindowManager.GetMainWindowCenter().Y + 80),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X + 114, WindowManager.GetMainWindowCenter().Y - 81),
                 Text = "Back\nTo\nHub"
             };
 
+            var levelOnePin = new LevelOneSelectButton(pinTexture, buttonFont, 1, 0.5f)
+            {
+                Sprite = new Sprite(pinTexture, SpriteEffects.None, 0),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X - 131, WindowManager.GetMainWindowCenter().Y + 32),
+                Text = ""
+            };
             var levelOneButton = new LevelOneSelectButton(pinTexture, buttonFont, 1, 0.5f)
             {
-                Sprite = new Sprite(pinTexture, SpriteEffects.None, 0),
-                Position = new Vector2(WindowManager.GetMainWindowCenter().X - 132, WindowManager.GetMainWindowCenter().Y + 32),
-                Text = ""
+                Sprite = new Sprite(yellowNoteTexture, SpriteEffects.None, 0),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X + 170, WindowManager.GetMainWindowCenter().Y - 81),
+                Text = "LVL.\n 1"
             };
 
+            var levelTwoPin = new LevelTwoSelectButton(pinTexture, buttonFont, 1, 0.5f)
+            {
+                Sprite = new Sprite(pinTexture, SpriteEffects.None, 0),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X - 170, WindowManager.GetMainWindowCenter().Y - 32),
+                Text = ""
+            };
             var levelTwoButton = new LevelTwoSelectButton(pinTexture, buttonFont, 1, 0.5f)
             {
-                Sprite = new Sprite(pinTexture, SpriteEffects.None, 0),
-                Position = new Vector2(WindowManager.GetMainWindowCenter().X - 172, WindowManager.GetMainWindowCenter().Y - 42),
-                Text = ""
+                Sprite = new Sprite(yellowNoteTexture, SpriteEffects.None, 0),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X + 226, WindowManager.GetMainWindowCenter().Y - 81),
+                Text = "LVL.\n 2"
             };
 
-            buttons = new List<Button>()
-            {
-                hubReturnButton
-            };
+            buttons[0, 0] = hubReturnButton;
 
             switch (SaveManager.Load().LevelsCompleted)
             {
                 case 1:
                     LevelOneSelectButton.isClickable = true;
                     LevelTwoSelectButton.isClickable = true;
-                    buttons.Add(levelOneButton);
-                    buttons.Add(levelTwoButton);
+                    buttons[1, 0] = levelOneButton;
+                    buttons[2, 0] = levelTwoButton;
                     // third level unlocked
                     break;
                 case 2:
                     LevelOneSelectButton.isClickable = true;
                     LevelTwoSelectButton.isClickable = true;
-                    buttons.Add(levelOneButton);
-                    buttons.Add(levelTwoButton);
+                    buttons[1, 0] = levelOneButton;
+                    buttons[2, 0] = levelTwoButton;
                     break;
                 default:
                     LevelOneSelectButton.isClickable = true;
-                    buttons.Add(levelOneButton);
+                    buttons[1, 0] = levelOneButton;
                     break;
             }
 
@@ -101,6 +117,7 @@ namespace ISP_Project.Game_States
             mapTexture = Globals.ContentManager.Load<Texture2D>("Backgrounds/Map");
             whiteNoteTexture = Globals.ContentManager.Load<Texture2D>("Interactables/White Note");
             yellowNoteTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Yellow Note");
+            selectionTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Hover Note");
             pinTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Pin");
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
@@ -116,46 +133,67 @@ namespace ISP_Project.Game_States
                 StateManager.ChangeState(new PauseState(), Transitions.BlackFade, 0f);
             }
 
-            var pauseButton = buttons[0];
-
             // keyboard only select
-            if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered))
-            {
-                selectedButtonCounter++;
-                AudioManager.PlaySoundEffect("Scroll");
-            }  
             if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered))
             {
-                selectedButtonCounter--;
+                selectedButtonCounterX++;
+                AudioManager.PlaySoundEffect("Scroll");
+            }  
+            if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered))
+            {
+                selectedButtonCounterX--;
                 AudioManager.PlaySoundEffect("Scroll");
             }
-            if (selectedButtonCounter >= 0)
-                selectedButtonCounter = -buttons.Count;
+            if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
+            {
+                selectedButtonCounterY++;
+                AudioManager.PlaySoundEffect("Scroll");
+            }
+            if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
+            {
+                selectedButtonCounterY--;
+                AudioManager.PlaySoundEffect("Scroll");
+            }
 
-            var selectedButton = Math.Abs(selectedButtonCounter % buttons.Count);
+            /*var lengthX = buttons ? buttons.GetLength(1) = 0;
+            var lengthY = buttons[0, 1]*/
+            if (selectedButtonCounterX >= 0)
+                selectedButtonCounterX = -buttons.GetLength(0);
+            if (selectedButtonCounterY >= 0)
+                selectedButtonCounterY = -buttons.GetLength(1);
 
-            bool isHovering = false;
+            selectedButtonY = Math.Abs(selectedButtonCounterY % buttons.GetLength(1));
+            selectedButtonX = Math.Abs(selectedButtonCounterX % buttons.GetLength(0));
+
+            // Debug.WriteLine(selectedButtonX + ", " + selectedButtonY);
             foreach (Button button in buttons)
             {
-                button.Update();
-                button.ForceShade = false;
-                if (isHovering == false)
-                    isHovering = button.GetCursorHover();
+                if (button != null)
+                {
+                    button.Update();
+                    button.ForceShade = false;
+                    button.Sprite.Texture = yellowNoteTexture;
+                }
             }
 
-            if (!isHovering)
-                buttons[selectedButton].ForceShade = true;
-
-            if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
+            // Debug.WriteLine(selectedButtonCounterX + ", " + selectedButtonCounterY
+            if (buttons[selectedButtonX, selectedButtonY] != null)
             {
-                buttons[selectedButton].TriggerEvent();
+                buttons[selectedButtonX, selectedButtonY].Sprite.Texture = whiteNoteTexture;
+
+                if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
+                {
+                    buttons[selectedButtonX, selectedButtonY].TriggerEvent();
+                }
             }
+            
 
             // update buttons
-            foreach(Button button in buttons)
+            /*foreach(Button button in buttons)
             {
+                if (button != null)
                 button.Update();
-            }
+            }*/
         }
 
         public override void PostUpdate()
@@ -170,8 +208,14 @@ namespace ISP_Project.Game_States
             
             foreach (Button button in buttons)
             {
-                button.Draw();
+                if (button != null)
+                    button.Draw();
             }
+
+            var selectionOrigin = new Vector2(selectionTexture.Width / 2, selectionTexture.Height / 2);
+            Globals.SpriteBatch.Draw(selectionTexture, WindowManager.GetMainWindowCenter() +
+                new Vector2(114, -81) + new Vector2(56 * selectedButtonX, 52 * selectedButtonY), null, Color.White,
+                0f, selectionOrigin, 1f, SpriteEffects.None, 1f);
 
             var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
             Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);

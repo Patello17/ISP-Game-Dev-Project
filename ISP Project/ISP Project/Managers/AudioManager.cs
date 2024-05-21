@@ -33,7 +33,7 @@ namespace ISP_Project.Managers
 
         // create song fade variables
         private static float fadeTimer = 0f;
-        private static float fadeDuration = 3f;
+        private static float fadeDuration = 2f;
         private static bool isFadingOut = false;
         private static bool isFadingIn = true;
         

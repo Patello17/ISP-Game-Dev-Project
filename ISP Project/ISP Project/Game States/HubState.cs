@@ -17,7 +17,7 @@ namespace ISP_Project.Game_States
 {
     public class HubState : State
     {
-        private List<Button> envelopes;
+        private List<Button> envelopes = new List<Button>();
         private Texture2D buttonTexture;
         private int selectedButtonCounter = 0;
         private Button mapButton;
@@ -43,7 +43,7 @@ namespace ISP_Project.Game_States
         {
             LoadState();
 
-            Debug.WriteLine(SaveManager.Load().LevelsCompleted);
+            // Debug.WriteLine(SaveManager.Load().LevelsCompleted);
 
             var pauseButton = new PauseButton(buttonTexture, buttonFont, 1, 0.5f)
             {
@@ -70,7 +70,7 @@ namespace ISP_Project.Game_States
             tileMap.LoadContent();
             player.LoadContent();
 
-            envelopes = new List<Button>();
+            envelopes.Clear();
             switch (SaveManager.Load().LevelsCompleted)
             {
                 case 1:
@@ -88,12 +88,18 @@ namespace ISP_Project.Game_States
                     break;
             }
 
+            // Debug.WriteLine(envelopes.Count);
+            shelf1.Clear();
+            shelf2.Clear();
+            shelf3.Clear();
+            shelf4.Clear();
             foreach (Button envelope in envelopes)
             {
                 if (envelope is EnvelopeOneButton || envelope is EnvelopeTwoButton)
                 {
                     shelf1.Add(envelope);
                 }
+                // Debug.Write(envelope + ", ");
             }
         }
 
@@ -145,7 +151,7 @@ namespace ISP_Project.Game_States
                 currentShelf = shelf3;
 
             }
-            else if (player.TileMapPosition == new Vector2(28, 12))
+            else if (player.TileMapPosition == new Vector2(28, 12) || player.TileMapPosition == new Vector2(29, 12))
             {
                 player.isSelectingEnvelope = true;
                 currentShelf = shelf4;
@@ -191,7 +197,7 @@ namespace ISP_Project.Game_States
                     envelope.ForceShade = false;
                 }
                 currentShelf[selectedEnvelope].ForceShade = true;
-                Debug.WriteLine(currentShelf.Count);
+                // Debug.WriteLine(currentShelf.Count);
 
                 if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
                 {

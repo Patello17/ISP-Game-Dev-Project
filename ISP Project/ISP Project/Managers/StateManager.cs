@@ -47,12 +47,10 @@ namespace ISP_Project.Managers
 
                 if (previousState != GetCurrentState())
                 {
-                    // GetCurrentState().LoadState();
+                    GetCurrentState().LoadState();
                     GetCurrentState().PlayStateSong();
-                    Debug.Write("STATE CHANGE!");
+                    // Debug.WriteLine("STATE CHANGE!");
                 }
-
-                
 
                 if (IsTransitioning)
                     IsTransitioning = transition.Update();

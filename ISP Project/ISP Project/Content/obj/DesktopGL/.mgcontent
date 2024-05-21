@@ -15,6 +15,7 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Fonts/Button Font.spritefont</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Blank Letter.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Envelope.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Hover Note.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Map Board.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Pin.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/White Note.png</File>
@@ -57,6 +58,7 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Open Envelope Front.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
