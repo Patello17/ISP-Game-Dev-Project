@@ -26,7 +26,8 @@ namespace ISP_Project.Managers
         private static Dictionary<Transitions, Transition> transitions = new Dictionary<Transitions, Transition>()
         {
             { Transitions.BlackFade, new BlackFadeTransition(transitionFrame) },
-            { Transitions.Push, new PushTransition(transitionFrame) }
+            { Transitions.Push, new PushTransition(transitionFrame) },
+            { Transitions.EnvelopeOpen, new EnvelopeOpenTransition(transitionFrame) }
         };
         private static Transition transition;
         public static bool IsTransitioning { get; set; } = false;
@@ -42,13 +43,16 @@ namespace ISP_Project.Managers
             // update the current state
             if (stateStack.Count > 0)
             {
+                GetCurrentState().Update();
+
                 if (previousState != GetCurrentState())
                 {
-                    GetCurrentState().LoadState();
+                    // GetCurrentState().LoadState();
                     GetCurrentState().PlayStateSong();
+                    Debug.Write("STATE CHANGE!");
                 }
 
-                GetCurrentState().Update();
+                
 
                 if (IsTransitioning)
                     IsTransitioning = transition.Update();

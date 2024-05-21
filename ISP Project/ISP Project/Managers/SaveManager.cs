@@ -13,6 +13,8 @@ namespace ISP_Project.Managers
     public class SaveFile
     {
         public int LevelsCompleted { get; set; }
+        public int LevelOneFewestMoves { get; set; }
+        public int LevelTwoFewestMoves { get; set; }
     }
 
     // Code Reference: https://www.youtube.com/watch?v=gYksT0d_xLM
@@ -38,6 +40,17 @@ namespace ISP_Project.Managers
         {
             var fileContents = File.ReadAllText(PATH);
             return JsonSerializer.Deserialize<SaveFile>(fileContents);
+        }
+
+        public static void NewSave()
+        {
+            SaveFile newSave = new SaveFile()
+            {
+                LevelsCompleted = 0,
+                LevelOneFewestMoves = 0,
+                LevelTwoFewestMoves = 0,
+            };
+            Save(newSave);
         }
     }
 }

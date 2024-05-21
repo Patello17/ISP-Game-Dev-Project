@@ -27,6 +27,12 @@ namespace ISP_Project.Game_States.Levels
         private SpriteFont buttonFont;
         private Texture2D controlsUI;
 
+        // create undo timing variables
+        private float undoDasTimer; // DAS stands for "delayed auto shift"
+        private float undoDelay = 0.4f;
+        private float transitionTimer;
+        private float transitionSpeed = 0.1f;
+
         // create tile map instance
         private LevelTwoTileMap tileMap = new LevelTwoTileMap(WindowManager.GetMainWindowCenter());
 
@@ -119,6 +125,27 @@ namespace ISP_Project.Game_States.Levels
             {
                 Undo();
             }
+            if (InputManager.isKey(InputManager.Inputs.UNDO, InputManager.isPressed))
+            {
+                undoDasTimer += Globals.Time;
+            }
+            else
+            {
+                undoDasTimer = 0f;
+                transitionTimer = 0f;
+            }
+            if (undoDasTimer >= undoDelay)
+            {
+                if (transitionTimer >= transitionSpeed)
+                {
+                    transitionTimer = 0f;
+                    Undo();
+                }
+                else
+                {
+                    transitionTimer += Globals.Time;
+                }
+            }
 
             // update Buttons
             foreach (Button button in buttons)
@@ -168,14 +195,16 @@ namespace ISP_Project.Game_States.Levels
                 {
                     SaveFile saveFile = new SaveFile()
                     {
-                        LevelsCompleted = SaveManager.Load().LevelsCompleted + 1
+                        LevelsCompleted = SaveManager.Load().LevelsCompleted + 1,
+                        LevelOneFewestMoves = SaveManager.Load().LevelOneFewestMoves,
+                        LevelTwoFewestMoves = player.PastPositions.Count - 1
                     };
                     SaveManager.Save(saveFile);
                 }
 
                 // go to win screen
                 AudioManager.PlaySoundEffect("Victory Jingle");
-                StateManager.ChangeState(StateManager.GetRecentState(new HubState()), Transitions.BlackFade, 0.1f);
+                StateManager.ChangeState(new HubState(), Transitions.BlackFade, 0.1f);
             }
 
             // add new moves to the undo lists

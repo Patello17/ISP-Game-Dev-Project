@@ -1,4 +1,5 @@
 ﻿using ISP_Project.Game_States;
+using ISP_Project.Game_States.Letters;
 using ISP_Project.Game_States.Levels;
 using ISP_Project.Managers;
 using ISP_Project.Screen_Management.Transitions;
@@ -149,6 +150,7 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             AudioManager.PlaySoundEffect("Envelope");
+            StateManager.ChangeState(new LetterOne(), Transitions.EnvelopeOpen, 1f);
         }
     }
 

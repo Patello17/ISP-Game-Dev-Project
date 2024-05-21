@@ -242,7 +242,7 @@ namespace ISP_Project.Game_States
                     AudioManager.ForcePlaySong("Hub Theme 1");
                     break;
                 case 2:
-                    AudioManager.ForcePlaySong("Hub Theme 1"); // play hub theme 2
+                    AudioManager.ForcePlaySong("Hub Theme 2");
                     break;
                 default:
                     AudioManager.ForcePlaySong("Hub Theme");

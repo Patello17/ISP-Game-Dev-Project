@@ -13,6 +13,7 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Up Box.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Vertical Box.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Fonts/Button Font.spritefont</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Blank Letter.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Envelope.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Map Board.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Pin.png</File>
@@ -22,8 +23,9 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Snail/Snail Front.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Snail/Snail.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Hub Theme 1.mp3</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Hub Theme 2.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Hub Theme.mp3</File>
-    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Level1.mp3</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Level 1.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Title Theme.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Sound Effects/Box Splash.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Sound Effects/Button Press.mp3</File>
@@ -34,6 +36,7 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Sound Effects/Reset.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Sound Effects/Scroll.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Sound Effects/Victory Jingle.mp3</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Sound Effects/Water Step.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Tilesets/Collisions Tileset.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Tilesets/Grassy Level Tileset.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Tilesets/Hub Tileset.png</File>
@@ -54,6 +57,9 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Open Envelope Front.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

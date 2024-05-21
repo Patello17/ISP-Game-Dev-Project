@@ -192,18 +192,17 @@ namespace ISP_Project.Game_States.Levels
             if (tileMap.CollisionMap.GetCollision(starBox.GetNextPosition()) == 5) // mailbox
             {
                 // save new save file
-                if (SaveManager.Load().LevelsCompleted < 1)
+                SaveFile saveFile = new SaveFile()
                 {
-                    SaveFile saveFile = new SaveFile()
-                    {
-                        LevelsCompleted = SaveManager.Load().LevelsCompleted + 1
-                    };
-                    SaveManager.Save(saveFile);
-                }
-                
+                    LevelsCompleted = SaveManager.Load().LevelsCompleted == 0 ? 1 : SaveManager.Load().LevelsCompleted,
+                    LevelOneFewestMoves = SaveManager.Load().LevelOneFewestMoves < player.PastPositions.Count - 1 ? SaveManager.Load().LevelOneFewestMoves : player.PastPositions.Count - 1,
+                    LevelTwoFewestMoves = SaveManager.Load().LevelTwoFewestMoves
+                };
+                SaveManager.Save(saveFile);
+
                 // go to win screen
                 AudioManager.PlaySoundEffect("Victory Jingle");
-                StateManager.ChangeState(StateManager.GetRecentState(new HubState()), Transitions.BlackFade, 0.1f);
+                StateManager.ChangeState(new HubState(), Transitions.BlackFade, 0.1f);
             }
 
             // add new moves to the undo lists

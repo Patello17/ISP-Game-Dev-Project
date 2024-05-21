@@ -19,10 +19,11 @@ namespace ISP_Project.Tilemaps
         /// <param name="collisions"></param>
         public void SetMap(Dictionary<Vector2, int> collisions)
         {
-            var mapWidth = collisions.ElementAt(collisions.Count - 1).Key.X + 1;
+            /*var mapWidth = collisions.ElementAt(collisions.Count - 1).Key.X + 1;
             var mapHeight = collisions.ElementAt(collisions.Count - 1).Key.Y + 1;
 
-            map = new int[(int)mapWidth, (int)mapHeight];
+            map = new int[(int)mapWidth, (int)mapHeight];*/
+            map = new int[40, 22];
 
             for (int i = 0; i < collisions.Count; i++)
             {

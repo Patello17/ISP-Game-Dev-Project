@@ -32,11 +32,7 @@ namespace ISP_Project.UI.Buttons
             public override void TriggerEvent()
             {
                 // create fresh save file
-                SaveFile saveFile = new SaveFile()
-                {
-                    LevelsCompleted = 0,
-                };
-                SaveManager.Save(saveFile);
+                SaveManager.NewSave();
                 // change Game State here!
                 AudioManager.PlaySoundEffect("Door Opening");
                 StateManager.ChangeState(new HubState(), Transitions.BlackFade, 2f);

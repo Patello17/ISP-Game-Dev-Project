@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Open Envelope Front.png</SourceFile>
-  <SourceTime>2024-05-20T11:21:47.5062522-04:00</SourceTime>
+  <SourceTime>2024-05-20T17:34:49.863332-04:00</SourceTime>
   <DestFile>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/bin/DesktopGL/UI Elements/Open Envelope Front.xnb</DestFile>
-  <DestTime>2024-05-20T11:30:17.0014337-04:00</DestTime>
+  <DestTime>2024-05-20T21:25:31.6888703-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
