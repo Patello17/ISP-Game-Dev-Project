@@ -33,7 +33,7 @@ namespace ISP_Project.Managers
 
         // create song fade variables
         private static float fadeTimer = 0f;
-        private static float fadeDuration = 2f;
+        private static float fadeDuration = 3f;
         private static bool isFadingOut = false;
         private static bool isFadingIn = true;
         
@@ -107,12 +107,16 @@ namespace ISP_Project.Managers
 
             if (isFadingIn)
             {
+                // Debug.WriteLine("Fade IN");
                 Fade(volumeLow, maximumSongVolume); // fade in
             }
             if (isFadingOut)
             {
+                // Debug.WriteLine("Fade OUT");
                 Fade(volumeHigh, volumeLow); // fade out
             }
+
+            // Debug.WriteLine("IN: " + isFadingIn + " | " + "OUT: " + isFadingOut + " || " + "Current Time: " + currentSongTime + " | " + " Remaining Time: " + Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime));
 
             /*Debug.WriteLine(songStack.Count);
             foreach (Song _song in songStack)
@@ -250,7 +254,6 @@ namespace ISP_Project.Managers
         /// </summary>
         public static void PlayNextSong()
         {
-            isFadingIn = true;
             if (songStack.Count > 1)
             {
                 // MediaPlayer.Stop();
@@ -312,12 +315,16 @@ namespace ISP_Project.Managers
 
                 if (isFadingIn)
                 {
+                    // Debug.WriteLine("ENDING FADE IN");
                     isFadingIn = false;
+                    isFadingOut = false;
                 }
                 if (isFadingOut)
                 {
-                    PlayNextSong();
+                    // Debug.WriteLine("ENDING FADE OUT");
                     isFadingOut = false;
+                    isFadingIn = true;
+                    PlayNextSong();
                 }
             }
             else

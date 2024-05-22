@@ -287,7 +287,7 @@ namespace ISP_Project.Game_States.Levels
 
         private void Undo()
         {
-            if (player.PastPositions.Count > 1)
+            if (player.PastPositions.Count > 1 && player.PastSprites.Count > 1)
             {
                 player.TileMapPosition = player.PastPositions[1];
                 player.PastPositions.RemoveAt(0);

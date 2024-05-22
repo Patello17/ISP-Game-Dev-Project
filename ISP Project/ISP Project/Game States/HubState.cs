@@ -32,6 +32,7 @@ namespace ISP_Project.Game_States
         private List<Button> shelf2 = new List<Button>();
         private List<Button> shelf3 = new List<Button>();
         private List<Button> shelf4 = new List<Button>();
+        public static bool NewEnvelopeFlag = false;
 
         // create tile map instance
         private HubTileMap tileMap = new HubTileMap(WindowManager.GetMainWindowCenter());
