@@ -16,10 +16,15 @@ namespace ISP_Project.Game_States.Letters
         private SpriteFont letterFont;
         private float letterFontSize = 0.5f;
         private Texture2D controlsUI;
+        public bool Opened { get; set; } = false;
         private const string letterText = 
             "Dear Shelly,\n" +
             "Thank you! Your help\n" +
-            "is very appreciated.";
+            "is very appreciated.\n" +
+            "My little tadpoles will\n" +
+            "love the socks you delivered\n" +
+            "With gratitude,\n" +
+            "Timmothy Toad";
 
         public LetterOne()
         {

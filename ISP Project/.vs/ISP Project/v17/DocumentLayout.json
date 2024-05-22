@@ -3,6 +3,46 @@
   "WorkspaceRootPath": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\game states\\hubstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\game states\\hubstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\bin\\debug\\net8.0\\read_envelopes.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\bin\\debug\\net8.0\\read_envelopes.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\ui\\buttons\\hubbuttons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\ui\\buttons\\hubbuttons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\game states\\letters\\letterone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\game states\\letters\\letterone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\ui\\buttons\\envelope.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\ui\\buttons\\envelope.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\managers\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\managers\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\ui\\buttons\\titlebuttons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\ui\\buttons\\titlebuttons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\ui\\buttons\\button.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\ui\\buttons\\button.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\tilemaps\\maps\\hub map\\hubtilemap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\tilemaps\\maps\\hub map\\hubtilemap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\game states\\levels\\levelonestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\game states\\levels\\levelonestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\game states\\levels\\leveltwostate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\game states\\levels\\leveltwostate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +53,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\managers\\statemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\managers\\statemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\ui\\buttons\\hubbuttons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\ui\\buttons\\hubbuttons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\game states\\audiosettingsstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,10 +79,6 @@
       "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\ui\\buttons\\pausebuttons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\ui\\buttons\\titlebuttons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\ui\\buttons\\titlebuttons.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\game states\\pausestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\game states\\pausestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -55,20 +87,8 @@
       "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\game states\\titlestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\game states\\hubstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\game states\\hubstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\game states\\letters\\letterone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\game states\\letters\\letterone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\ui\\buttons\\button.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\ui\\buttons\\button.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\managers\\inputmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -83,10 +103,6 @@
       "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\game states\\quitstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\game states\\levels\\levelonestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\game states\\levels\\levelonestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\globals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\globals.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -99,16 +115,8 @@
       "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\gameplay\\snail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\tilemaps\\maps\\hub map\\hubtilemap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\tilemaps\\maps\\hub map\\hubtilemap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\tilemaps\\maps\\hub map\\hub tilemap_collisions.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\tilemaps\\maps\\hub map\\hub tilemap_collisions.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\managers\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|solutionrelative:isp project\\managers\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DE7DD853-08F0-4FB5-BFCA-8CB218BA207E}|ISP Project\\ISP Project.csproj|c:\\users\\praya\\isp project 2024\\isp project\\isp project\\screen management\\transitions\\envelopeopentransition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -198,11 +206,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 21,
               "Title": "Game1.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game1.cs",
               "RelativeDocumentMoniker": "ISP Project\\Game1.cs",
@@ -216,7 +224,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
               "Title": "AudioManager.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\AudioManager.cs",
               "RelativeDocumentMoniker": "ISP Project\\Managers\\AudioManager.cs",
@@ -230,15 +238,57 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 3,
               "Title": "LetterOne.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\Letters\\LetterOne.cs",
               "RelativeDocumentMoniker": "ISP Project\\Game States\\Letters\\LetterOne.cs",
               "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\Letters\\LetterOne.cs",
               "RelativeToolTip": "ISP Project\\Game States\\Letters\\LetterOne.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAQwCUAAAAAAAAA",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAqwE4AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-20T19:28:16.007Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Envelope.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\Envelope.cs",
+              "RelativeDocumentMoniker": "ISP Project\\UI\\Buttons\\Envelope.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\Envelope.cs",
+              "RelativeToolTip": "ISP Project\\UI\\Buttons\\Envelope.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T13:23:26.446Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HubState.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\HubState.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Game States\\HubState.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\HubState.cs",
+              "RelativeToolTip": "ISP Project\\Game States\\HubState.cs",
+              "ViewState": "AQIAANMAAAAAAAAAAADgv90AAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T16:05:15.523Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HubButtons.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\HubButtons.cs",
+              "RelativeDocumentMoniker": "ISP Project\\UI\\Buttons\\HubButtons.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\HubButtons.cs",
+              "RelativeToolTip": "ISP Project\\UI\\Buttons\\HubButtons.cs",
+              "ViewState": "AQIAAI4AAAAAAAAAAAA1wJ0AAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T03:35:43.752Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -248,280 +298,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "HubButtons.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\HubButtons.cs",
-              "RelativeDocumentMoniker": "ISP Project\\UI\\Buttons\\HubButtons.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\HubButtons.cs",
-              "RelativeToolTip": "ISP Project\\UI\\Buttons\\HubButtons.cs",
-              "ViewState": "AQIAAFsAAAAAAAAAAAAjwH8AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-17T03:35:43.752Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "StateManager.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\StateManager.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Managers\\StateManager.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\StateManager.cs",
-              "RelativeToolTip": "ISP Project\\Managers\\StateManager.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAAAgwDoAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-01T13:51:18.055Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AudioSettingsState.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\AudioSettingsState.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Game States\\AudioSettingsState.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\AudioSettingsState.cs",
-              "RelativeToolTip": "ISP Project\\Game States\\AudioSettingsState.cs",
-              "ViewState": "AQIAAEMAAAAAAAAAAAAqwEkAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-13T17:59:33.705Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LevelTwoState.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\Levels\\LevelTwoState.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Game States\\Levels\\LevelTwoState.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\Levels\\LevelTwoState.cs*",
-              "RelativeToolTip": "ISP Project\\Game States\\Levels\\LevelTwoState.cs*",
-              "ViewState": "AQIAANcAAAAAAAAAAAAMwCgBAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T04:47:37.485Z",
+              "DocumentIndex": 1,
+              "Title": "read_envelopes.json",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\bin\\Debug\\net8.0\\read_envelopes.json",
+              "RelativeDocumentMoniker": "ISP Project\\bin\\Debug\\net8.0\\read_envelopes.json",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\bin\\Debug\\net8.0\\read_envelopes.json",
+              "RelativeToolTip": "ISP Project\\bin\\Debug\\net8.0\\read_envelopes.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-22T14:11:28.086Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "SettingsState.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\SettingsState.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Game States\\SettingsState.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\SettingsState.cs",
-              "RelativeToolTip": "ISP Project\\Game States\\SettingsState.cs",
-              "ViewState": "AQIAAD8AAAAAAAAAAAAYwE4AAAAuAAAA",
+              "Title": "SaveManager.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\SaveManager.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Managers\\SaveManager.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\SaveManager.cs",
+              "RelativeToolTip": "ISP Project\\Managers\\SaveManager.cs",
+              "ViewState": "AQIAADkAAAAAAAAAAAAkwFIAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T04:46:22.32Z",
+              "WhenOpened": "2024-05-19T00:58:27.074Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "SettingsButtons.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\SettingsButtons.cs",
-              "RelativeDocumentMoniker": "ISP Project\\UI\\Buttons\\SettingsButtons.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\SettingsButtons.cs",
-              "RelativeToolTip": "ISP Project\\UI\\Buttons\\SettingsButtons.cs",
-              "ViewState": "AQIAAH4AAAAAAAAAAAAswDwAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-13T21:28:49.946Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "HorizontalSlider.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Sliders\\HorizontalSlider.cs",
-              "RelativeDocumentMoniker": "ISP Project\\UI\\Sliders\\HorizontalSlider.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Sliders\\HorizontalSlider.cs",
-              "RelativeToolTip": "ISP Project\\UI\\Sliders\\HorizontalSlider.cs",
-              "ViewState": "AQIAAEcAAAAAAAAAAAAMwFwAAAA3AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-13T17:43:41.168Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "LevelSelectionState.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\LevelSelectionState.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Game States\\LevelSelectionState.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\LevelSelectionState.cs",
-              "RelativeToolTip": "ISP Project\\Game States\\LevelSelectionState.cs",
-              "ViewState": "AQIAAJkAAAAAAAAAAAAAwKoAAAAPAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T16:23:46.032Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "PauseButtons.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\PauseButtons.cs",
-              "RelativeDocumentMoniker": "ISP Project\\UI\\Buttons\\PauseButtons.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\PauseButtons.cs",
-              "RelativeToolTip": "ISP Project\\UI\\Buttons\\PauseButtons.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAQwCsAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T17:42:15.164Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
               "Title": "TitleButtons.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\TitleButtons.cs",
               "RelativeDocumentMoniker": "ISP Project\\UI\\Buttons\\TitleButtons.cs",
               "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\TitleButtons.cs",
               "RelativeToolTip": "ISP Project\\UI\\Buttons\\TitleButtons.cs",
-              "ViewState": "AQIAAEAAAAAAAAAAAAAUwCYAAAANAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAgwCMAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-16T17:44:30.981Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "PauseState.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\PauseState.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Game States\\PauseState.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\PauseState.cs",
-              "RelativeToolTip": "ISP Project\\Game States\\PauseState.cs",
-              "ViewState": "AQIAAEwAAAAAAAAAAAAewFQAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T16:07:09.598Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "TitleState.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\TitleState.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Game States\\TitleState.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\TitleState.cs",
-              "RelativeToolTip": "ISP Project\\Game States\\TitleState.cs",
-              "ViewState": "AQIAADcAAAAAAAAAAAAswEQAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T12:46:59.39Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "HubState.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\HubState.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Game States\\HubState.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\HubState.cs",
-              "RelativeToolTip": "ISP Project\\Game States\\HubState.cs",
-              "ViewState": "AQIAAGIAAAAAAAAAAAAmwHcAAAA4AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T16:05:15.523Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "save_file.json",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\bin\\Debug\\net8.0\\save_file.json",
-              "RelativeDocumentMoniker": "ISP Project\\bin\\Debug\\net8.0\\save_file.json",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\bin\\Debug\\net8.0\\save_file.json",
-              "RelativeToolTip": "ISP Project\\bin\\Debug\\net8.0\\save_file.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAABHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-19T01:09:09.387Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Snail.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Gameplay\\Snail.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Gameplay\\Snail.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Gameplay\\Snail.cs",
-              "RelativeToolTip": "ISP Project\\Gameplay\\Snail.cs",
-              "ViewState": "AQIAAPoAAAAAAAAAAAAjwAgBAABDAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-04T21:43:32.681Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Button.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\Button.cs",
-              "RelativeDocumentMoniker": "ISP Project\\UI\\Buttons\\Button.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\Button.cs",
-              "RelativeToolTip": "ISP Project\\UI\\Buttons\\Button.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFMAAABCAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-17T14:44:23.558Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "InputManager.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\InputManager.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Managers\\InputManager.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\InputManager.cs",
-              "RelativeToolTip": "ISP Project\\Managers\\InputManager.cs",
-              "ViewState": "AQIAAGEAAAAAAAAAAAAvwHYAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T16:02:25.726Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "QuitState.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\QuitState.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Game States\\QuitState.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\QuitState.cs",
-              "RelativeToolTip": "ISP Project\\Game States\\QuitState.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAowBsAAAAtAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T19:06:50.977Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "LevelOneState.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\Levels\\LevelOneState.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Game States\\Levels\\LevelOneState.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\Levels\\LevelOneState.cs",
-              "RelativeToolTip": "ISP Project\\Game States\\Levels\\LevelOneState.cs",
-              "ViewState": "AQIAAGYAAAAAAAAAAAAowGwAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T13:23:02.932Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Globals.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Globals.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Globals.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Globals.cs",
-              "RelativeToolTip": "ISP Project\\Globals.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAQwBQAAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-17T13:51:54.279Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "CollisionMap.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Tilemaps\\CollisionMap.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Tilemaps\\CollisionMap.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Tilemaps\\CollisionMap.cs",
-              "RelativeToolTip": "ISP Project\\Tilemaps\\CollisionMap.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAQwBkAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-06T13:15:19.076Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 8,
               "Title": "HubTileMap.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Tilemaps\\Maps\\Hub Map\\HubTileMap.cs",
               "RelativeDocumentMoniker": "ISP Project\\Tilemaps\\Maps\\Hub Map\\HubTileMap.cs",
@@ -534,7 +350,241 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Button.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\Button.cs",
+              "RelativeDocumentMoniker": "ISP Project\\UI\\Buttons\\Button.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\Button.cs",
+              "RelativeToolTip": "ISP Project\\UI\\Buttons\\Button.cs",
+              "ViewState": "AQIAAHEAAAAAAAAAAADwv38AAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T14:44:23.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LevelOneState.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\Levels\\LevelOneState.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Game States\\Levels\\LevelOneState.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\Levels\\LevelOneState.cs",
+              "RelativeToolTip": "ISP Project\\Game States\\Levels\\LevelOneState.cs",
+              "ViewState": "AQIAALkAAAAAAAAAAAAwwMkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T13:23:02.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LevelTwoState.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\Levels\\LevelTwoState.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Game States\\Levels\\LevelTwoState.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\Levels\\LevelTwoState.cs",
+              "RelativeToolTip": "ISP Project\\Game States\\Levels\\LevelTwoState.cs",
+              "ViewState": "AQIAAL8AAAAAAAAAAAAMwMsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-19T04:47:37.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AudioSettingsState.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\AudioSettingsState.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Game States\\AudioSettingsState.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\AudioSettingsState.cs",
+              "RelativeToolTip": "ISP Project\\Game States\\AudioSettingsState.cs",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAqwEkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T17:59:33.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "StateManager.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\StateManager.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Managers\\StateManager.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\StateManager.cs",
+              "RelativeToolTip": "ISP Project\\Managers\\StateManager.cs",
+              "ViewState": "AQIAACUAAAAAAAAAAAAgwDoAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-01T13:51:18.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SettingsState.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\SettingsState.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Game States\\SettingsState.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\SettingsState.cs",
+              "RelativeToolTip": "ISP Project\\Game States\\SettingsState.cs",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAYwE4AAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T04:46:22.32Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SettingsButtons.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\SettingsButtons.cs",
+              "RelativeDocumentMoniker": "ISP Project\\UI\\Buttons\\SettingsButtons.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\SettingsButtons.cs",
+              "RelativeToolTip": "ISP Project\\UI\\Buttons\\SettingsButtons.cs",
+              "ViewState": "AQIAAH4AAAAAAAAAAAAswDwAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T21:28:49.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "HorizontalSlider.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Sliders\\HorizontalSlider.cs",
+              "RelativeDocumentMoniker": "ISP Project\\UI\\Sliders\\HorizontalSlider.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Sliders\\HorizontalSlider.cs",
+              "RelativeToolTip": "ISP Project\\UI\\Sliders\\HorizontalSlider.cs",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAMwFwAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T17:43:41.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "LevelSelectionState.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\LevelSelectionState.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Game States\\LevelSelectionState.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\LevelSelectionState.cs",
+              "RelativeToolTip": "ISP Project\\Game States\\LevelSelectionState.cs",
+              "ViewState": "AQIAAJkAAAAAAAAAAAAAwKoAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-07T16:23:46.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "PauseButtons.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\PauseButtons.cs",
+              "RelativeDocumentMoniker": "ISP Project\\UI\\Buttons\\PauseButtons.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\PauseButtons.cs",
+              "RelativeToolTip": "ISP Project\\UI\\Buttons\\PauseButtons.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAQwCsAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T17:42:15.164Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "PauseState.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\PauseState.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Game States\\PauseState.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\PauseState.cs",
+              "RelativeToolTip": "ISP Project\\Game States\\PauseState.cs",
+              "ViewState": "AQIAAEwAAAAAAAAAAAAewFQAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T16:07:09.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "TitleState.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\TitleState.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Game States\\TitleState.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\TitleState.cs",
+              "RelativeToolTip": "ISP Project\\Game States\\TitleState.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAswEQAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-07T12:46:59.39Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "save_file.json",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\bin\\Debug\\net8.0\\save_file.json",
+              "RelativeDocumentMoniker": "ISP Project\\bin\\Debug\\net8.0\\save_file.json",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\bin\\Debug\\net8.0\\save_file.json",
+              "RelativeToolTip": "ISP Project\\bin\\Debug\\net8.0\\save_file.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAABHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-19T01:09:09.387Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Snail.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Gameplay\\Snail.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Gameplay\\Snail.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Gameplay\\Snail.cs",
+              "RelativeToolTip": "ISP Project\\Gameplay\\Snail.cs",
+              "ViewState": "AQIAAPoAAAAAAAAAAAAjwAgBAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-04T21:43:32.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "InputManager.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\InputManager.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Managers\\InputManager.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\InputManager.cs",
+              "RelativeToolTip": "ISP Project\\Managers\\InputManager.cs",
+              "ViewState": "AQIAAGEAAAAAAAAAAAAvwHYAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T16:02:25.726Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "QuitState.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\QuitState.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Game States\\QuitState.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\QuitState.cs",
+              "RelativeToolTip": "ISP Project\\Game States\\QuitState.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAowBsAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-02T19:06:50.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 25,
+              "Title": "Globals.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Globals.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Globals.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Globals.cs",
+              "RelativeToolTip": "ISP Project\\Globals.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAQwBQAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T13:51:54.279Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "CollisionMap.cs",
+              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Tilemaps\\CollisionMap.cs",
+              "RelativeDocumentMoniker": "ISP Project\\Tilemaps\\CollisionMap.cs",
+              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Tilemaps\\CollisionMap.cs",
+              "RelativeToolTip": "ISP Project\\Tilemaps\\CollisionMap.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAQwBkAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-06T13:15:19.076Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
               "Title": "Hub Tilemap_Collisions.csv",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Tilemaps\\Maps\\Hub Map\\Hub Tilemap_Collisions.csv",
               "RelativeDocumentMoniker": "ISP Project\\Tilemaps\\Maps\\Hub Map\\Hub Tilemap_Collisions.csv",
@@ -547,20 +597,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "SaveManager.cs",
-              "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\SaveManager.cs",
-              "RelativeDocumentMoniker": "ISP Project\\Managers\\SaveManager.cs",
-              "ToolTip": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\SaveManager.cs",
-              "RelativeToolTip": "ISP Project\\Managers\\SaveManager.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAWwDQAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-19T00:58:27.074Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 30,
               "Title": "Sprite.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Components\\Sprite.cs",
               "RelativeDocumentMoniker": "ISP Project\\Components\\Sprite.cs",
@@ -573,7 +610,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 29,
               "Title": "EnvelopeOpenTransition.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Screen Management\\Transitions\\EnvelopeOpenTransition.cs",
               "RelativeDocumentMoniker": "ISP Project\\Screen Management\\Transitions\\EnvelopeOpenTransition.cs",
@@ -586,7 +623,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 31,
               "Title": "PushTransition.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Screen Management\\Transitions\\PushTransition.cs",
               "RelativeDocumentMoniker": "ISP Project\\Screen Management\\Transitions\\PushTransition.cs",
@@ -599,7 +636,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 36,
               "Title": "Box.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Gameplay\\Box.cs",
               "RelativeDocumentMoniker": "ISP Project\\Gameplay\\Box.cs",
@@ -612,7 +649,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 32,
               "Title": "Transition.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Screen Management\\Transitions\\Transition.cs",
               "RelativeDocumentMoniker": "ISP Project\\Screen Management\\Transitions\\Transition.cs",
@@ -625,7 +662,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 33,
               "Title": "Transitions.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Screen Management\\Transitions\\Transitions.cs",
               "RelativeDocumentMoniker": "ISP Project\\Screen Management\\Transitions\\Transitions.cs",
@@ -638,7 +675,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 34,
               "Title": "State.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Game States\\State.cs",
               "RelativeDocumentMoniker": "ISP Project\\Game States\\State.cs",
@@ -651,7 +688,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 35,
               "Title": "LevelOneTileMap.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Tilemaps\\Maps\\Level 1\\LevelOneTileMap.cs",
               "RelativeDocumentMoniker": "ISP Project\\Tilemaps\\Maps\\Level 1\\LevelOneTileMap.cs",
@@ -664,7 +701,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 43,
               "Title": "WindowManager.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Managers\\WindowManager.cs",
               "RelativeDocumentMoniker": "ISP Project\\Managers\\WindowManager.cs",
@@ -677,7 +714,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 37,
               "Title": "Renderer.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Screen Management\\Renderer.cs",
               "RelativeDocumentMoniker": "ISP Project\\Screen Management\\Renderer.cs",
@@ -690,7 +727,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 41,
               "Title": "Window.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Screen Management\\Window.cs",
               "RelativeDocumentMoniker": "ISP Project\\Screen Management\\Window.cs",
@@ -703,7 +740,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 38,
               "Title": "LevelTwoTileMap.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Tilemaps\\Maps\\Level 2\\LevelTwoTileMap.cs",
               "RelativeDocumentMoniker": "ISP Project\\Tilemaps\\Maps\\Level 2\\LevelTwoTileMap.cs",
@@ -716,7 +753,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 40,
               "Title": "Level Two Tilemap_Level Map.csv",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Tilemaps\\Maps\\Level 2\\Level Two Tilemap_Level Map.csv",
               "RelativeDocumentMoniker": "ISP Project\\Tilemaps\\Maps\\Level 2\\Level Two Tilemap_Level Map.csv",
@@ -729,7 +766,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 39,
               "Title": "Level Two Tilemap_Decorations.csv",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Tilemaps\\Maps\\Level 2\\Level Two Tilemap_Decorations.csv",
               "RelativeDocumentMoniker": "ISP Project\\Tilemaps\\Maps\\Level 2\\Level Two Tilemap_Decorations.csv",
@@ -742,7 +779,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 42,
               "Title": "GameplayButtons.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\UI\\Buttons\\GameplayButtons.cs",
               "RelativeDocumentMoniker": "ISP Project\\UI\\Buttons\\GameplayButtons.cs",
@@ -755,7 +792,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 44,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Program.cs",
               "RelativeDocumentMoniker": "ISP Project\\Program.cs",
@@ -768,7 +805,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 45,
               "Title": "Actor.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Gameplay\\Actor.cs",
               "RelativeDocumentMoniker": "ISP Project\\Gameplay\\Actor.cs",
@@ -781,7 +818,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 46,
               "Title": "Transform.cs",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Components\\Transform.cs",
               "RelativeDocumentMoniker": "ISP Project\\Components\\Transform.cs",
@@ -793,7 +830,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 47,
               "Title": "Level One Tilemap_Collisions.csv",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\Tilemaps\\Maps\\Level 1\\Level One Tilemap_Collisions.csv",
               "RelativeDocumentMoniker": "ISP Project\\Tilemaps\\Maps\\Level 1\\Level One Tilemap_Collisions.csv",
@@ -805,7 +842,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 48,
               "Title": "ISP Project.csproj",
               "DocumentMoniker": "C:\\Users\\praya\\ISP Project 2024\\ISP Project\\ISP Project\\ISP Project.csproj",
               "RelativeDocumentMoniker": "ISP Project\\ISP Project.csproj",

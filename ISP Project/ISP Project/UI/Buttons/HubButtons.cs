@@ -1,4 +1,5 @@
-﻿using ISP_Project.Game_States;
+﻿using Autofac.Core.Activators;
+using ISP_Project.Game_States;
 using ISP_Project.Game_States.Letters;
 using ISP_Project.Game_States.Levels;
 using ISP_Project.Managers;
@@ -150,6 +151,12 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             AudioManager.PlaySoundEffect("Envelope");
+            var newSave = new ReadEnvelopesFile
+            {
+                ReadOne = true,
+                ReadTwo = SaveManager.LoadReadEnvelopes().ReadTwo
+            };
+            SaveManager.SaveReadEnvelopes(newSave);
             StateManager.ChangeState(new LetterOne(), Transitions.EnvelopeOpen, 1f);
         }
     }

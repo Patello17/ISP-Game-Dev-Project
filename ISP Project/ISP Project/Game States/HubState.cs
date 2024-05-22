@@ -26,13 +26,16 @@ namespace ISP_Project.Game_States
         private SpriteFont buttonFont;
         private Texture2D controlsUI;
         private Texture2D hubDisplay;
+        private Texture2D newLetterDisplay;
 
         // create shelf lists
         private List<Button> shelf1 = new List<Button>();
         private List<Button> shelf2 = new List<Button>();
         private List<Button> shelf3 = new List<Button>();
         private List<Button> shelf4 = new List<Button>();
-        public static bool NewEnvelopeFlag = false;
+
+
+        public static bool NewEnvelopeFlag { get; set; } = false;
 
         // create tile map instance
         private HubTileMap tileMap = new HubTileMap(WindowManager.GetMainWindowCenter());
@@ -67,6 +70,7 @@ namespace ISP_Project.Game_States
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Hub");
             hubDisplay = Globals.ContentManager.Load<Texture2D>("UI Elements/Hub Display");
+            newLetterDisplay = Globals.ContentManager.Load<Texture2D>("UI Elements/New Letter Display");
 
             tileMap.LoadContent();
             player.LoadContent();
@@ -211,7 +215,13 @@ namespace ISP_Project.Game_States
             if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
             {
                 mapButton.TriggerEvent();
-            } 
+            }
+
+            NewEnvelopeFlag = false;
+            if (!SaveManager.LoadReadEnvelopes().ReadOne && envelopes.Count >= 1)
+                NewEnvelopeFlag = true;
+            else if (!SaveManager.LoadReadEnvelopes().ReadTwo && envelopes.Count >= 2)
+                NewEnvelopeFlag = true;
 
             // update Actor positions
             player.UpdatePosition(tileMap.CollisionMap);
@@ -234,10 +244,11 @@ namespace ISP_Project.Game_States
             }
             mapButton.Draw();
 
-            var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
-            Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
-            var hubDisplayOrigin = new Vector2(hubDisplay.Width / 2, hubDisplay.Height / 2);
-            Globals.SpriteBatch.Draw(hubDisplay, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
+            // all of these textures are 640 x 360, so their origin is the center of the window
+            Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, WindowManager.GetMainWindowCenter(), 1f, SpriteEffects.None, 1f);
+            Globals.SpriteBatch.Draw(hubDisplay, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, WindowManager.GetMainWindowCenter(), 1f, SpriteEffects.None, 1f);
+            if (NewEnvelopeFlag)
+                Globals.SpriteBatch.Draw(newLetterDisplay, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, WindowManager.GetMainWindowCenter(), 1f, SpriteEffects.None, 1f);
         }
 
         public override void PlayStateSong()

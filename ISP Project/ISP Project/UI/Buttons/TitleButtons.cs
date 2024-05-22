@@ -33,6 +33,7 @@ namespace ISP_Project.UI.Buttons
             {
                 // create fresh save file
                 SaveManager.NewSave();
+                SaveManager.NewReadEnvelopesSave();
                 // change Game State here!
                 AudioManager.PlaySoundEffect("Door Opening");
                 StateManager.ChangeState(new HubState(), Transitions.BlackFade, 2f);
