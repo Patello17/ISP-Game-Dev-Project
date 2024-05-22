@@ -54,6 +54,7 @@ namespace ISP_Project.Managers
             songs.Add("Hub Theme 2", Globals.ContentManager.Load<Song>("Songs/Hub Theme 2"));
             songs.Add("Title Theme", Globals.ContentManager.Load<Song>("Songs/Title Theme"));
             songs.Add("Level 1 Theme", Globals.ContentManager.Load<Song>("Songs/Level 1"));
+            songs.Add("Level 2 Theme", Globals.ContentManager.Load<Song>("Songs/Level 2"));
 
             // add every sound effect
             soundEffects.Add("Envelope", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Envelope"));
@@ -295,7 +296,6 @@ namespace ISP_Project.Managers
         public static void SetSoundEffectVolume(float volume)
         {
             maximumSFXVolume = volume;
-            Debug.WriteLine(maximumSFXVolume);
             // SoundEffect.MasterVolume = (int)volume;
         }
         

@@ -15,6 +15,7 @@ namespace ISP_Project.Game_States.Letters
         private Sprite letter;
         private SpriteFont letterFont;
         private float letterFontSize = 0.5f;
+        private Texture2D controlsUI;
         private const string letterText = 
             "Dear Shelly,\n" +
             "Thank you! Your help\n" +
@@ -32,6 +33,7 @@ namespace ISP_Project.Game_States.Letters
             letter.Texture = Globals.ContentManager.Load<Texture2D>("Interactables/Blank Letter");
             letter.Color = Color.White;
             letterFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
+            controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Envelope");
         }
 
         public override void Update()
@@ -61,6 +63,9 @@ namespace ISP_Project.Game_States.Letters
             var movesY = WindowManager.GetMainWindowCenter().Y + 70 - (letterFont.MeasureString(movesText).Y * letterFontSize / 2);
             Globals.SpriteBatch.DrawString(letterFont, movesText, new Vector2(movesX, movesY),
                 Color.Black, 0f, Vector2.Zero, letterFontSize, SpriteEffects.None, 1f);
+
+            var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
+            Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
         }
 
         public override void PlayStateSong()

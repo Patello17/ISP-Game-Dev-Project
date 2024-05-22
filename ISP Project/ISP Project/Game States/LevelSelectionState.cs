@@ -46,7 +46,7 @@ namespace ISP_Project.Game_States
             var hubReturnButton = new HubReturnButton(whiteNoteTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(whiteNoteTexture, SpriteEffects.None, 0),
-                Position = new Vector2(WindowManager.GetMainWindowCenter().X + 114, WindowManager.GetMainWindowCenter().Y - 81),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X + 226, WindowManager.GetMainWindowCenter().Y + 75),
                 Text = "Back\nTo\nHub"
             };
 
@@ -59,7 +59,7 @@ namespace ISP_Project.Game_States
             var levelOneButton = new LevelOneSelectButton(pinTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(yellowNoteTexture, SpriteEffects.None, 0),
-                Position = new Vector2(WindowManager.GetMainWindowCenter().X + 170, WindowManager.GetMainWindowCenter().Y - 81),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X + 114, WindowManager.GetMainWindowCenter().Y - 81),
                 Text = "LVL.\n 1"
             };
 
@@ -72,30 +72,30 @@ namespace ISP_Project.Game_States
             var levelTwoButton = new LevelTwoSelectButton(pinTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(yellowNoteTexture, SpriteEffects.None, 0),
-                Position = new Vector2(WindowManager.GetMainWindowCenter().X + 226, WindowManager.GetMainWindowCenter().Y - 81),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X + 170, WindowManager.GetMainWindowCenter().Y - 81),
                 Text = "LVL.\n 2"
             };
 
-            buttons[0, 0] = hubReturnButton;
+            buttons[2, 3] = hubReturnButton;
 
             switch (SaveManager.Load().LevelsCompleted)
             {
                 case 1:
                     LevelOneSelectButton.isClickable = true;
                     LevelTwoSelectButton.isClickable = true;
-                    buttons[1, 0] = levelOneButton;
-                    buttons[2, 0] = levelTwoButton;
+                    buttons[0, 0] = levelOneButton;
+                    buttons[1, 0] = levelTwoButton;
                     // third level unlocked
                     break;
                 case 2:
                     LevelOneSelectButton.isClickable = true;
                     LevelTwoSelectButton.isClickable = true;
-                    buttons[1, 0] = levelOneButton;
-                    buttons[2, 0] = levelTwoButton;
+                    buttons[0, 0] = levelOneButton;
+                    buttons[1, 0] = levelTwoButton;
                     break;
                 default:
                     LevelOneSelectButton.isClickable = true;
-                    buttons[1, 0] = levelOneButton;
+                    buttons[0, 0] = levelOneButton;
                     break;
             }
 
@@ -122,6 +122,9 @@ namespace ISP_Project.Game_States
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Map");
+
+            selectedButtonCounterX = -2;
+            selectedButtonCounterY = -3;
         }
 
         public override void Update()
@@ -165,7 +168,7 @@ namespace ISP_Project.Game_States
             selectedButtonY = Math.Abs(selectedButtonCounterY % buttons.GetLength(1));
             selectedButtonX = Math.Abs(selectedButtonCounterX % buttons.GetLength(0));
 
-            // Debug.WriteLine(selectedButtonX + ", " + selectedButtonY);
+            // Debug.WriteLine(selectedButtonCounterX + ", " + selectedButtonCounterY);
             foreach (Button button in buttons)
             {
                 if (button != null)

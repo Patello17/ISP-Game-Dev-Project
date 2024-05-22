@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,13 +21,16 @@ namespace ISP_Project.Game_States
         private List<Sprite> buttons;
         private Button audioSettingsReturnButton;
         private int selectedButtonCounter = 0;
+        private int selectedButton;
         private Texture2D backgroundTexture;
         private Texture2D buttonTexture;
         private Texture2D sliderBarTexture;
         private Texture2D sliderTexture;
         private SpriteFont buttonFont;
+        private Texture2D controlsUI;
         private SongSlider songSlider;
         private SoundEffectsSlider sfxSlider;
+
 
         public AudioSettingsState()
         {
@@ -60,24 +64,34 @@ namespace ISP_Project.Game_States
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             sliderBarTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Horizontal Slider Bar");
-            sliderTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Horizontal Slider");
+            sliderTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Envelope");
+            controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Audio Setting");
 
-            selectedButtonCounter = 1;
+            selectedButtonCounter = 0;
         }
 
         public override void Update()
         {
-            audioSettingsReturnButton.Update();
+            if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
+            {
+                audioSettingsReturnButton.TriggerEvent();
+            }
 
             // keyboard only select
             if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
+            {
+                AudioManager.PlaySoundEffect("Scroll");
                 selectedButtonCounter++;
+            }
             if (InputManager.isKey(InputManager.Inputs.DOWN, InputManager.isTriggered))
+            {
+                AudioManager.PlaySoundEffect("Scroll");
                 selectedButtonCounter--;
+            }
             if (selectedButtonCounter >= 0)
                 selectedButtonCounter = -3;
 
-            var selectedButton = Math.Abs(selectedButtonCounter % 3);
+            selectedButton = Math.Abs(selectedButtonCounter % 3);
 
             // Debug.WriteLine("SELECTION: " + selectedButton);
             switch (selectedButton)
@@ -150,6 +164,17 @@ namespace ISP_Project.Game_States
             songSlider.Draw();
             sfxSlider.Draw();
             audioSettingsReturnButton.Draw();
+
+            if (selectedButton == 2)
+            {
+                var selectorOrigin = new Vector2(sliderTexture.Width / 2, sliderTexture.Height / 2);
+                Globals.SpriteBatch.Draw(sliderTexture,
+                    WindowManager.GetMainWindowCenter() + new Vector2(-56, 80),
+                    null, Color.White, 0f, selectorOrigin, 1f, SpriteEffects.None, 1f);
+            }
+
+            var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
+            Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
         }
 
         public override void PlayStateSong()

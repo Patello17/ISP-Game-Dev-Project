@@ -20,8 +20,10 @@ namespace ISP_Project.Game_States
         private int selectedButton;
         private Texture2D selectorTexture;
         private Texture2D backgroundTexture;
+        private Button settingsReturnButton;
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
+        private Texture2D controlsUI;
 
         public SettingsState()
         {
@@ -41,7 +43,7 @@ namespace ISP_Project.Game_States
                 Text = "Controls"
             };
 
-            var settingsReturnButton = new SettingsReturnButton(buttonTexture, buttonFont, 1, 0.5f)
+            settingsReturnButton = new SettingsReturnButton(buttonTexture, buttonFont, 1, 0.5f)
             {
                 Sprite = new Sprite(buttonTexture, SpriteEffects.None, 0),
                 Position = new Vector2(WindowManager.GetMainWindowCenter().X, WindowManager.GetMainWindowCenter().Y + 16),
@@ -57,14 +59,22 @@ namespace ISP_Project.Game_States
 
         public override void LoadState()
         {
-            selectorTexture = Globals.ContentManager.Load<Texture2D>("Snail/Snail");
+            selectorTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Envelope");
             backgroundTexture = Globals.ContentManager.Load<Texture2D>("Backgrounds/Title Background");
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
+            controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Settings");
+
+            selectedButtonCounter = 0;
         }
 
         public override void Update()
         {
+            if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
+            {
+                settingsReturnButton.TriggerEvent();
+            }
+
             // keyboard only select
             if (InputManager.isKey(InputManager.Inputs.UP, InputManager.isTriggered))
             {
@@ -124,6 +134,9 @@ namespace ISP_Project.Game_States
             Globals.SpriteBatch.Draw(selectorTexture,
                 WindowManager.GetMainWindowCenter() - new Vector2(56, 16) + (new Vector2(0, 16 * selectedButton)),
                 null, Color.White, 0f, selectorOrigin, 1f, SpriteEffects.None, 1f);
+
+            var controlsUIOrigin = new Vector2(controlsUI.Width / 2, controlsUI.Height / 2);
+            Globals.SpriteBatch.Draw(controlsUI, WindowManager.GetMainWindowCenter(), null, Color.White, 0f, controlsUIOrigin, 1f, SpriteEffects.None, 1f);
         }
 
         public override void PlayStateSong()

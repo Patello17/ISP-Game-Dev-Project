@@ -127,7 +127,7 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             AudioManager.PlaySoundEffect("Button Press");
-            StateManager.ChangeState(StateManager.GetRecentState(new HubState()), Transitions.BlackFade, 0f);
+            StateManager.ChangeState(StateManager.GetRecentState(new HubState()), Transitions.BlackFade, 0.1f);
         }
     }
 

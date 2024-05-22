@@ -35,9 +35,9 @@ namespace ISP_Project.UI.Buttons
             // change Game State here!
             AudioManager.PlaySoundEffect("Button Press");
             if (StateManager.GetRecentState(new AudioSettingsState()) == null)
-                StateManager.ChangeState(new AudioSettingsState(), Transitions.BlackFade, 0.1f);
+                StateManager.ChangeState(new AudioSettingsState(), Transitions.BlackFade, 0f);
             else
-                StateManager.ChangeState(StateManager.GetRecentState(new AudioSettingsState()), Transitions.BlackFade, 0.1f);
+                StateManager.ChangeState(StateManager.GetRecentState(new AudioSettingsState()), Transitions.BlackFade, 0f);
         }
     }
 
@@ -87,7 +87,7 @@ namespace ISP_Project.UI.Buttons
             {
                 new PauseState(), new TitleState()
             };
-            StateManager.ChangeState(StateManager.GetRecentState(StateManager.GetMostRecentState(states)), Transitions.BlackFade, 0.1f);
+            StateManager.ChangeState(StateManager.GetRecentState(StateManager.GetMostRecentState(states)), Transitions.BlackFade, 0f);
         }
     }
 
@@ -109,7 +109,7 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             AudioManager.PlaySoundEffect("Button Press");
-            StateManager.ChangeState(new SettingsState(), Transitions.BlackFade, 0.1f);
+            StateManager.ChangeState(new SettingsState(), Transitions.BlackFade, 0f);
         }
     }
 

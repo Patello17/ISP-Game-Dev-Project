@@ -83,12 +83,14 @@ namespace ISP_Project.UI.Sliders
             var slideIncrement = BarSprite.Texture.Width * buttonScale / (1 / volumeIncrement);
             if (InputManager.isKey(InputManager.Inputs.LEFT, InputManager.isTriggered) && Value > 0)
             {
+                AudioManager.PlaySoundEffect("Scroll");
                 SliderTransform.Position = new Vector2(SliderTransform.Position.X - slideIncrement, SliderTransform.Position.Y);
                 Value -= volumeIncrement;
                 SetVolume();
             }
             if (InputManager.isKey(InputManager.Inputs.RIGHT, InputManager.isTriggered) && Value < 1)
             {
+                AudioManager.PlaySoundEffect("Scroll");
                 SliderTransform.Position = new Vector2(SliderTransform.Position.X + slideIncrement, SliderTransform.Position.Y);
                 Value += volumeIncrement;
                 SetVolume();

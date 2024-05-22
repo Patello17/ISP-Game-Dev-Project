@@ -60,7 +60,7 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             AudioManager.PlaySoundEffect("Button Press");
-            StateManager.ChangeState(new SettingsState(), Transitions.BlackFade, 0.1f);
+            StateManager.ChangeState(new SettingsState(), Transitions.BlackFade, 0f);
         }
     }
 
@@ -82,7 +82,7 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             AudioManager.PlaySoundEffect("Button Press");
-            StateManager.ChangeState(new TitleState(), Transitions.BlackFade, 0.1f);
+            StateManager.ChangeState(new TitleState(), Transitions.BlackFade, 0f);
         }
     }
 }

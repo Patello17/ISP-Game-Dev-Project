@@ -66,14 +66,14 @@ namespace ISP_Project.Game_States
 
         public override void LoadState()
         {
-            selectorTexture = Globals.ContentManager.Load<Texture2D>("Snail/Snail");
+            selectorTexture = Globals.ContentManager.Load<Texture2D>("Interactables/Envelope");
             buttonTexture = Globals.ContentManager.Load<Texture2D>("UI Elements/Button");
             backgroundTexture = Globals.ContentManager.Load<Texture2D>("Backgrounds/Title Background");
             titleTexture = Globals.ContentManager.Load<Texture2D>("Backgrounds/Title");
             buttonFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
             controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Title");
 
-            selectedButton = 1;
+            selectedButtonCounter = 0;
         }
 
         public override void Update()

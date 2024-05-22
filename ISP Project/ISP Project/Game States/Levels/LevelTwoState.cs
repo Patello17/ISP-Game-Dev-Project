@@ -272,7 +272,7 @@ namespace ISP_Project.Game_States.Levels
         public override void PlayStateSong()
         {
             // play music
-            AudioManager.ForcePlaySong("Level 1 Theme");
+            AudioManager.ForcePlaySong("Level 2 Theme");
         }
 
         private Box GetBox(Vector2 tileMapPosition)

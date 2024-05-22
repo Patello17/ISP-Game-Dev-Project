@@ -99,3 +99,6 @@ C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Interactables\Hover Note.xnb
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Backgrounds\Title Background.xnb
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Backgrounds\Title.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Songs\Level 2.ogg
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Songs\Level 2.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\UI Elements\Selector.xnb
