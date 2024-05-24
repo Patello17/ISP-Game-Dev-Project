@@ -165,7 +165,7 @@ namespace ISP_Project.UI.Buttons
     }
 
     // create Envelope 1
-    public class EnvelopeOneButton : Button
+    public class EnvelopeOneButton : Envelope
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
@@ -183,10 +183,13 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             AudioManager.PlaySoundEffect("Envelope");
+            Opened = true;
             var newSave = new ReadEnvelopesFile
             {
                 ReadOne = true,
-                ReadTwo = SaveManager.LoadReadEnvelopes().ReadTwo
+                ReadTwo = SaveManager.LoadReadEnvelopes().ReadTwo,
+                ReadThree = SaveManager.LoadReadEnvelopes().ReadThree,
+                ReadFour = SaveManager.LoadReadEnvelopes().ReadFour
             };
             SaveManager.SaveReadEnvelopes(newSave);
             StateManager.ChangeState(new LetterOne(), Transitions.EnvelopeOpen, 1f);
@@ -194,7 +197,7 @@ namespace ISP_Project.UI.Buttons
     }
 
     // create Envelope 2
-    public class EnvelopeTwoButton : Button
+    public class EnvelopeTwoButton : Envelope
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
@@ -211,12 +214,22 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
-            AudioManager.PlaySoundEffect("Box Splash");
+            AudioManager.PlaySoundEffect("Envelope");
+            Opened = true;
+            var newSave = new ReadEnvelopesFile
+            {
+                ReadOne = SaveManager.LoadReadEnvelopes().ReadOne,
+                ReadTwo = true,
+                ReadThree = SaveManager.LoadReadEnvelopes().ReadThree,
+                ReadFour = SaveManager.LoadReadEnvelopes().ReadFour
+            };
+            SaveManager.SaveReadEnvelopes(newSave);
+            StateManager.ChangeState(new LetterTwo(), Transitions.EnvelopeOpen, 1f);
         }
     }
 
     // create Envelope 3
-    public class EnvelopeThreeButton : Button
+    public class EnvelopeThreeButton : Envelope
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
@@ -233,12 +246,22 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
-            AudioManager.PlaySoundEffect("Box Splash");
+            AudioManager.PlaySoundEffect("Envelope");
+            Opened = true;
+            var newSave = new ReadEnvelopesFile
+            {
+                ReadOne = SaveManager.LoadReadEnvelopes().ReadOne,
+                ReadTwo = SaveManager.LoadReadEnvelopes().ReadTwo,
+                ReadThree = true,
+                ReadFour = SaveManager.LoadReadEnvelopes().ReadFour
+            };
+            SaveManager.SaveReadEnvelopes(newSave);
+            StateManager.ChangeState(new LetterThree(), Transitions.EnvelopeOpen, 1f);
         }
     }
 
     // create Envelope 4
-    public class EnvelopeFourButton : Button
+    public class EnvelopeFourButton : Envelope
     {
         private Texture2D buttonTexture;
         private SpriteFont buttonFont;
@@ -255,7 +278,17 @@ namespace ISP_Project.UI.Buttons
 
         public override void TriggerEvent()
         {
-            AudioManager.PlaySoundEffect("Box Splash");
+            AudioManager.PlaySoundEffect("Envelope");
+            Opened = true;
+            var newSave = new ReadEnvelopesFile
+            {
+                ReadOne = SaveManager.LoadReadEnvelopes().ReadOne,
+                ReadTwo = SaveManager.LoadReadEnvelopes().ReadTwo,
+                ReadThree = SaveManager.LoadReadEnvelopes().ReadThree,
+                ReadFour = true
+            };
+            SaveManager.SaveReadEnvelopes(newSave);
+            StateManager.ChangeState(new LetterFour(), Transitions.EnvelopeOpen, 1f);
         }
     }
 }

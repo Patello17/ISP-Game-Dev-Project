@@ -116,3 +116,7 @@ C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Songs\Hub Theme 3.xnb
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Songs\Level 3.ogg
 C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Songs\Level 3.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Portraits\Bobcat Portrait.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Portraits\Duck Portrait.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Portraits\Toad Portrait.xnb
+C:\Users\praya\ISP Project 2024\ISP Project\ISP Project\bin\Debug\net8.0\Content\Portraits\Developer Portrait.xnb

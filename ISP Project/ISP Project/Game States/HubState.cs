@@ -17,7 +17,7 @@ namespace ISP_Project.Game_States
 {
     public class HubState : State
     {
-        private List<Button> envelopes = new List<Button>();
+        private List<Envelope> envelopes = new List<Envelope>();
         private Texture2D buttonTexture;
         private int selectedButtonCounter = 0;
         private Button mapButton;
@@ -29,10 +29,10 @@ namespace ISP_Project.Game_States
         private Texture2D newLetterDisplay;
 
         // create shelf lists
-        private List<Button> shelf1 = new List<Button>();
-        private List<Button> shelf2 = new List<Button>();
-        private List<Button> shelf3 = new List<Button>();
-        private List<Button> shelf4 = new List<Button>();
+        private List<Envelope> shelf1 = new List<Envelope>();
+        private List<Envelope> shelf2 = new List<Envelope>();
+        private List<Envelope> shelf3 = new List<Envelope>();
+        private List<Envelope> shelf4 = new List<Envelope>();
 
 
         public static bool NewEnvelopeFlag { get; set; } = false;
@@ -108,14 +108,40 @@ namespace ISP_Project.Game_States
             shelf2.Clear();
             shelf3.Clear();
             shelf4.Clear();
-            foreach (Button envelope in envelopes)
+            foreach (Envelope envelope in envelopes)
             {
-                if (envelope is EnvelopeOneButton || envelope is EnvelopeTwoButton)
+                if (envelope is EnvelopeOneButton || envelope is EnvelopeTwoButton || envelope is EnvelopeThreeButton)
                 {
                     shelf1.Add(envelope);
                 }
+                if (envelope is EnvelopeFourButton)
+                {
+                    shelf2.Add(envelope);
+                }
                 // Debug.Write(envelope + ", ");
             }
+
+            // check for new envelopes
+            NewEnvelopeFlag = false;
+            if (envelopes.Count == 0)
+                NewEnvelopeFlag = false;
+            else if (!SaveManager.LoadReadEnvelopes().ReadOne && envelopes.Count >= 1)
+                NewEnvelopeFlag = true;
+            else if (!SaveManager.LoadReadEnvelopes().ReadTwo && envelopes.Count >= 2)
+                NewEnvelopeFlag = true;
+            else if (!SaveManager.LoadReadEnvelopes().ReadThree && envelopes.Count >= 3)
+                NewEnvelopeFlag = true;
+            else if (!SaveManager.LoadReadEnvelopes().ReadFour && envelopes.Count >= 4)
+                NewEnvelopeFlag = true;
+
+            if (shelf1.Count > 0)
+                shelf1[0].Opened = SaveManager.LoadReadEnvelopes().ReadOne;
+            if (shelf1.Count > 1)
+                shelf1[1].Opened = SaveManager.LoadReadEnvelopes().ReadTwo;
+            if (shelf1.Count > 2)
+                shelf1[2].Opened = SaveManager.LoadReadEnvelopes().ReadThree;
+            if (shelf2.Count > 0)
+                shelf2[0].Opened = SaveManager.LoadReadEnvelopes().ReadFour;
         }
 
         public override void Update()
@@ -148,17 +174,26 @@ namespace ISP_Project.Game_States
                 MapButton.isClickable = false;
                 mapButton.ForceShade = false;
             }
-            var currentShelf = new List<Button>();
+
+            var currentShelf = new List<Envelope>();
             // these vectors represent the positions under the first inventory shelf
             if (player.TileMapPosition == new Vector2(22, 12) || player.TileMapPosition == new Vector2(23, 12))
             {
                 player.isSelectingEnvelope = true;
                 currentShelf = shelf1;
+                foreach (Envelope envelope in shelf2)
+                {
+                    envelope.ForceShade = false;
+                }
             }
             else if (player.TileMapPosition == new Vector2(24, 12) || player.TileMapPosition == new Vector2(25, 12))
             {
                 player.isSelectingEnvelope = true;
                 currentShelf = shelf2;
+                foreach (Envelope envelope in shelf1)
+                {
+                    envelope.ForceShade = false;
+                }
             }
             else if (player.TileMapPosition == new Vector2(26, 12) || player.TileMapPosition == new Vector2(27, 12))
             {
@@ -175,7 +210,7 @@ namespace ISP_Project.Game_States
             { 
                 player.isSelectingEnvelope = false;
 
-                foreach (Button envelope in envelopes)
+                foreach (Envelope envelope in envelopes)
                 {
                     envelope.ForceShade = false;
                 }
@@ -206,10 +241,11 @@ namespace ISP_Project.Game_States
                 if (currentShelf.Count == 1)
                     selectedEnvelope = 0;
 
-                foreach (Button envelope in currentShelf)
+                foreach (Envelope envelope in currentShelf)
                 {
                     // envelope.Update();
                     envelope.ForceShade = false;
+                    // envelope.Color = Color.White;
                 }
                 currentShelf[selectedEnvelope].ForceShade = true;
                 // Debug.WriteLine(currentShelf.Count);
@@ -221,19 +257,13 @@ namespace ISP_Project.Game_States
                 }
             }
 
+            
+
             // detect mapButton interaction
             if (InputManager.isKey(InputManager.Inputs.INTERACT, InputManager.isTriggered))
             {
                 mapButton.TriggerEvent();
             }
-
-            NewEnvelopeFlag = false;
-            if (envelopes.Count == 0)
-                NewEnvelopeFlag = false;
-            else if (!SaveManager.LoadReadEnvelopes().ReadOne && envelopes.Count >= 1)
-                NewEnvelopeFlag = true;
-            else if (!SaveManager.LoadReadEnvelopes().ReadTwo && envelopes.Count >= 2)
-                NewEnvelopeFlag = true;
 
             // update Actor positions
             player.UpdatePosition(tileMap.CollisionMap);
@@ -250,7 +280,7 @@ namespace ISP_Project.Game_States
 
             player.Draw();
 
-            foreach (Button envelope in envelopes)
+            foreach (Envelope envelope in envelopes)
             {
                 envelope.Draw();
             }

@@ -15,6 +15,7 @@ namespace ISP_Project.Game_States.Letters
         private Sprite letter;
         private SpriteFont letterFont;
         private float letterFontSize = 0.5f;
+        private Texture2D portraitTexture;
         private Texture2D controlsUI;
         public bool Opened { get; set; } = false;
         private const string letterText = 
@@ -25,7 +26,7 @@ namespace ISP_Project.Game_States.Letters
             "love the socks you\n" +
             "delivered to us.\n\n" +
             "With gratitude,\n" +
-            "Timmothy Toad";
+            "Timothy Tode";
 
         public LetterOne()
         {
@@ -39,6 +40,7 @@ namespace ISP_Project.Game_States.Letters
             letter.Texture = Globals.ContentManager.Load<Texture2D>("Interactables/Blank Letter");
             letter.Color = Color.White;
             letterFont = Globals.ContentManager.Load<SpriteFont>("Fonts/Button Font");
+            portraitTexture = Globals.ContentManager.Load<Texture2D>("Portraits/Toad Portrait");
             controlsUI = Globals.ContentManager.Load<Texture2D>("UI Elements/Controls Display Envelope");
         }
 
@@ -60,9 +62,12 @@ namespace ISP_Project.Game_States.Letters
             Globals.SpriteBatch.Draw(letter.Texture, WindowManager.GetMainWindowCenter(), null, letter.Color, 0f, 
                 letter.GetSpriteOrigin(), 1f, letter.SpriteEffects, letter.DrawLayer);
             var textX = WindowManager.GetMainWindowCenter().X - 105 - (letterFont.MeasureString(letterText).X * letterFontSize / 2);
-            var textY = WindowManager.GetMainWindowCenter().Y - 35 - (letterFont.MeasureString(letterText).Y * letterFontSize / 2);
+            var textY = WindowManager.GetMainWindowCenter().Y - 30 - (letterFont.MeasureString(letterText).Y * letterFontSize / 2);
             Globals.SpriteBatch.DrawString(letterFont, letterText, new Vector2(textX, textY), 
                 Color.Black, 0f, Vector2.Zero, letterFontSize, SpriteEffects.None, 0.8f);
+
+            var portraitOrigin = new Vector2(portraitTexture.Width / 2, portraitTexture.Height / 2);
+            Globals.SpriteBatch.Draw(portraitTexture, WindowManager.GetMainWindowCenter() + new Vector2(105, 0), null, Color.White, 0f, portraitOrigin, 1f, SpriteEffects.None, 1f);
 
             var movesText = "Level 1 Completed in\n" + SaveManager.Load().LevelOneFewestMoves + " moves.";
             var movesX = WindowManager.GetMainWindowCenter().X - 105 - (letterFont.MeasureString(movesText).X * letterFontSize / 2);

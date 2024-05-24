@@ -124,7 +124,7 @@ namespace ISP_Project.Game_States.Levels
             // reset level
             if (InputManager.isKey(InputManager.Inputs.RESTART, InputManager.isTriggered))
             {
-                StateManager.ChangeState(new LevelTwoState(), Transitions.Push, 0.5f);
+                StateManager.ChangeState(new LevelThreeState(), Transitions.Push, 0.5f);
             }
 
             // undo moves
@@ -205,7 +205,7 @@ namespace ISP_Project.Game_States.Levels
                         LevelsCompleted = SaveManager.Load().LevelsCompleted + 1,
                         LevelOneFewestMoves = SaveManager.Load().LevelOneFewestMoves,
                         LevelTwoFewestMoves = SaveManager.Load().LevelTwoFewestMoves,
-                        LevelThreeFewestMoves = player.PastPositions.Count - 1
+                        LevelThreeFewestMoves = SaveManager.Load().LevelsCompleted == 2 ? player.PastPositions.Count - 1 : SaveManager.Load().LevelThreeFewestMoves < player.PastPositions.Count - 1 ? SaveManager.Load().LevelThreeFewestMoves : player.PastPositions.Count - 1,
                     };
                     SaveManager.Save(saveFile);
                 }

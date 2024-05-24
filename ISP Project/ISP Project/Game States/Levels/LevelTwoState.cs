@@ -197,7 +197,7 @@ namespace ISP_Project.Game_States.Levels
                     {
                         LevelsCompleted = SaveManager.Load().LevelsCompleted + 1,
                         LevelOneFewestMoves = SaveManager.Load().LevelOneFewestMoves,
-                        LevelTwoFewestMoves = player.PastPositions.Count - 1,
+                        LevelTwoFewestMoves = SaveManager.Load().LevelsCompleted == 1 ? player.PastPositions.Count - 1 : SaveManager.Load().LevelTwoFewestMoves < player.PastPositions.Count - 1 ? SaveManager.Load().LevelTwoFewestMoves : player.PastPositions.Count - 1,
                         LevelThreeFewestMoves = SaveManager.Load().LevelThreeFewestMoves,
                     };
                     SaveManager.Save(saveFile);

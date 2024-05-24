@@ -59,7 +59,7 @@ namespace ISP_Project.UI.Buttons
         }
 
         // create shading variables
-        public bool ForceShade { get; set; } = false;
+        public virtual bool ForceShade { get; set; } = false;
         private bool isHovering;
 
         public Button(Texture2D texture, SpriteFont font, float buttonScale, float fontScale)
@@ -97,13 +97,18 @@ namespace ISP_Project.UI.Buttons
         /// <summary>
         /// Draws this Button.
         /// </summary>
-        public void Draw()
+        public virtual void Draw()
         {
             // draw button and change color on cursor hover
             var color = Color.White;
             if (isHovering || ForceShade)
+            {
                 color = Color.Gray;
-            else { ForceShade = false; }
+            }
+            else 
+            {
+                ForceShade = false; 
+            }
 
             // not relying on Rectangle data here because the Renderer will scale this
             Globals.SpriteBatch.Draw(Sprite.Texture, position, null, color, 0f, Sprite.GetSpriteOrigin(), buttonScale, SpriteEffects.None, 0.5f);

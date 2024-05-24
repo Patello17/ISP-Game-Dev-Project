@@ -30,6 +30,10 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Pin.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/White Note.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Yellow Note.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Portraits/Bobcat Portrait.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Portraits/Developer Portrait.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Portraits/Duck Portrait.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Portraits/Toad Portrait.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Snail/Snail Back.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Snail/Snail Front.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Snail/Snail.png</File>
@@ -73,6 +77,10 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Open Envelope Front.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
