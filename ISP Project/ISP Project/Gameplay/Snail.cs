@@ -295,7 +295,12 @@ namespace ISP_Project.Gameplay
                     TileMapPosition = nextTileMapPosition;
                 }*/
             }
-            
+
+            /*if (InputManager.isKey(InputManager.Inputs.PAUSE, InputManager.isTriggered))
+            {
+                collisionMap.DrawMap();
+            }*/
+
             // Debug.WriteLine(nextTileMapPosition);
         }
 

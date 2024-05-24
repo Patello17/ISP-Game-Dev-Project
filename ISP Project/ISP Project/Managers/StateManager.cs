@@ -1,6 +1,8 @@
 ﻿using ISP_Project.Game_States;
+using ISP_Project.Game_States.Levels;
 using ISP_Project.Gameplay;
 using ISP_Project.Screen_Management.Transitions;
+using ISP_Project.UI.Buttons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Sprites;
@@ -44,11 +46,11 @@ namespace ISP_Project.Managers
             if (stateStack.Count > 0)
             {
                 GetCurrentState().Update();
+                GetCurrentState().PlayStateSong();
 
                 if (previousState != GetCurrentState())
                 {
                     GetCurrentState().LoadState();
-                    GetCurrentState().PlayStateSong();
                     // Debug.WriteLine("STATE CHANGE!");
                 }
 

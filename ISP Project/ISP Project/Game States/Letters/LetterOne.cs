@@ -21,8 +21,9 @@ namespace ISP_Project.Game_States.Letters
             "Dear Shelly,\n" +
             "Thank you! Your help\n" +
             "is very appreciated.\n" +
-            "My little tadpoles will\n" +
-            "love the socks you delivered\n" +
+            "My tadpoles will\n" +
+            "love the socks you\n" +
+            "delivered to us.\n\n" +
             "With gratitude,\n" +
             "Timmothy Toad";
 
@@ -59,7 +60,7 @@ namespace ISP_Project.Game_States.Letters
             Globals.SpriteBatch.Draw(letter.Texture, WindowManager.GetMainWindowCenter(), null, letter.Color, 0f, 
                 letter.GetSpriteOrigin(), 1f, letter.SpriteEffects, letter.DrawLayer);
             var textX = WindowManager.GetMainWindowCenter().X - 105 - (letterFont.MeasureString(letterText).X * letterFontSize / 2);
-            var textY = WindowManager.GetMainWindowCenter().Y - 70 - (letterFont.MeasureString(letterText).Y * letterFontSize / 2);
+            var textY = WindowManager.GetMainWindowCenter().Y - 35 - (letterFont.MeasureString(letterText).Y * letterFontSize / 2);
             Globals.SpriteBatch.DrawString(letterFont, letterText, new Vector2(textX, textY), 
                 Color.Black, 0f, Vector2.Zero, letterFontSize, SpriteEffects.None, 0.8f);
 

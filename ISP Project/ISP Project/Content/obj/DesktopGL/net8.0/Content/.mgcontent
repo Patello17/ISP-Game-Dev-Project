@@ -8,11 +8,19 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Backgrounds/Title Background.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Backgrounds/Title.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Down Box.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/H Long Box Down.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/H Long Box Left.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/H Long Box Right.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/H Long Box Up.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Horizontal Box.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Left Box.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Right Box.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Star Box.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Up Box.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/V Long Box Down.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/V Long Box Left.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/V Long Box Right.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/V Long Box Up.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Box/Vertical Box.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Fonts/Button Font.spritefont</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Interactables/Blank Letter.png</File>
@@ -27,9 +35,11 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Snail/Snail.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Hub Theme 1.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Hub Theme 2.mp3</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Hub Theme 3.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Hub Theme.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Level 1.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Level 2.mp3</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Level 3.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Songs/Title Theme.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Sound Effects/Box Splash.mp3</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Sound Effects/Button Press.mp3</File>
@@ -44,6 +54,7 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Tilesets/Collisions Tileset.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Tilesets/Grassy Level Tileset.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Tilesets/Hub Tileset.png</File>
+    <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/Tilesets/Sandy Level Tileset.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Button.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Closed Envelope.png</File>
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Controls Display Audio Setting.png</File>
@@ -62,6 +73,17 @@
     <File>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Open Envelope Front.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

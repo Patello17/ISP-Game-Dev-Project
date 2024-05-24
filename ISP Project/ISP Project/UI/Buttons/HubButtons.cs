@@ -78,7 +78,7 @@ namespace ISP_Project.UI.Buttons
         }
     }
 
-    // create Level One Select Button
+    // create Level Two Select Button
     public class LevelTwoSelectButton : Button
     {
         private Texture2D buttonTexture;
@@ -102,6 +102,38 @@ namespace ISP_Project.UI.Buttons
             {
                 AudioManager.PlaySoundEffect("Button Press");
                 StateManager.ChangeState(new LevelTwoState(), Transitions.BlackFade, 0.1f);
+            }
+            else
+            {
+                isClickable = false;
+            }
+        }
+    }
+
+    // create Level Three Select Button
+    public class LevelThreeSelectButton : Button
+    {
+        private Texture2D buttonTexture;
+        private SpriteFont buttonFont;
+        private float buttonScale;
+        private float fontScale;
+        public static bool isClickable = false;
+
+        public LevelThreeSelectButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
+        {
+            buttonTexture = texture;
+            buttonFont = font;
+            this.buttonScale = buttonScale;
+            this.fontScale = buttonScale;
+        }
+
+        public override void TriggerEvent()
+        {
+            // change Game State here!
+            if (isClickable)
+            {
+                AudioManager.PlaySoundEffect("Button Press");
+                StateManager.ChangeState(new LevelThreeState(), Transitions.BlackFade, 0.1f);
             }
             else
             {
@@ -170,6 +202,50 @@ namespace ISP_Project.UI.Buttons
         private float fontScale;
 
         public EnvelopeTwoButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
+        {
+            buttonTexture = texture;
+            buttonFont = font;
+            this.buttonScale = buttonScale;
+            this.fontScale = buttonScale;
+        }
+
+        public override void TriggerEvent()
+        {
+            AudioManager.PlaySoundEffect("Box Splash");
+        }
+    }
+
+    // create Envelope 3
+    public class EnvelopeThreeButton : Button
+    {
+        private Texture2D buttonTexture;
+        private SpriteFont buttonFont;
+        private float buttonScale;
+        private float fontScale;
+
+        public EnvelopeThreeButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
+        {
+            buttonTexture = texture;
+            buttonFont = font;
+            this.buttonScale = buttonScale;
+            this.fontScale = buttonScale;
+        }
+
+        public override void TriggerEvent()
+        {
+            AudioManager.PlaySoundEffect("Box Splash");
+        }
+    }
+
+    // create Envelope 4
+    public class EnvelopeFourButton : Button
+    {
+        private Texture2D buttonTexture;
+        private SpriteFont buttonFont;
+        private float buttonScale;
+        private float fontScale;
+
+        public EnvelopeFourButton(Texture2D texture, SpriteFont font, float buttonScale, float fontScale) : base(texture, font, buttonScale, fontScale)
         {
             buttonTexture = texture;
             buttonFont = font;

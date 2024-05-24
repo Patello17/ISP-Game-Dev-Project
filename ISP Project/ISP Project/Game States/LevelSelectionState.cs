@@ -76,6 +76,19 @@ namespace ISP_Project.Game_States
                 Text = "LVL.\n 2"
             };
 
+            var levelThreePin = new LevelThreeSelectButton(pinTexture, buttonFont, 1, 0.5f)
+            {
+                Sprite = new Sprite(pinTexture, SpriteEffects.None, 0),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X - 170, WindowManager.GetMainWindowCenter().Y - 32),
+                Text = ""
+            };
+            var levelThreeButton = new LevelThreeSelectButton(pinTexture, buttonFont, 1, 0.5f)
+            {
+                Sprite = new Sprite(yellowNoteTexture, SpriteEffects.None, 0),
+                Position = new Vector2(WindowManager.GetMainWindowCenter().X + 226, WindowManager.GetMainWindowCenter().Y - 81),
+                Text = "LVL.\n 3"
+            };
+
             buttons[2, 3] = hubReturnButton;
 
             switch (SaveManager.Load().LevelsCompleted)
@@ -90,8 +103,18 @@ namespace ISP_Project.Game_States
                 case 2:
                     LevelOneSelectButton.isClickable = true;
                     LevelTwoSelectButton.isClickable = true;
+                    LevelThreeSelectButton.isClickable = true;
                     buttons[0, 0] = levelOneButton;
                     buttons[1, 0] = levelTwoButton;
+                    buttons[2, 0] = levelThreeButton;
+                    break;
+                case 3:
+                    LevelOneSelectButton.isClickable = true;
+                    LevelTwoSelectButton.isClickable = true;
+                    LevelThreeSelectButton.isClickable = true;
+                    buttons[0, 0] = levelOneButton;
+                    buttons[1, 0] = levelTwoButton;
+                    buttons[2, 0] = levelThreeButton;
                     break;
                 default:
                     LevelOneSelectButton.isClickable = true;

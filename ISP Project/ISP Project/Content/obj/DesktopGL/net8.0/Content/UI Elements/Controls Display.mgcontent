@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/UI Elements/Controls Display.png</SourceFile>
-  <SourceTime>2024-05-21T23:33:51.1274504-04:00</SourceTime>
+  <SourceTime>2024-05-24T10:15:00.9299557-04:00</SourceTime>
   <DestFile>C:/Users/praya/ISP Project 2024/ISP Project/ISP Project/Content/bin/DesktopGL/Content/UI Elements/Controls Display.xnb</DestFile>
-  <DestTime>2024-05-21T23:39:03.1455869-04:00</DestTime>
+  <DestTime>2024-05-24T11:02:46.0447304-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

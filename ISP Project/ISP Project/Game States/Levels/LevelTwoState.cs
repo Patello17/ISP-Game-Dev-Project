@@ -197,7 +197,8 @@ namespace ISP_Project.Game_States.Levels
                     {
                         LevelsCompleted = SaveManager.Load().LevelsCompleted + 1,
                         LevelOneFewestMoves = SaveManager.Load().LevelOneFewestMoves,
-                        LevelTwoFewestMoves = player.PastPositions.Count - 1
+                        LevelTwoFewestMoves = player.PastPositions.Count - 1,
+                        LevelThreeFewestMoves = SaveManager.Load().LevelThreeFewestMoves,
                     };
                     SaveManager.Save(saveFile);
                 }
@@ -264,7 +265,7 @@ namespace ISP_Project.Game_States.Levels
 
             string movesText = "Moves: " + (player.PastPositions.Count - 1);
             float movesTextSize = 0.5f;
-            var x = WindowManager.GetMainWindowCenter().X - (buttonFont.MeasureString(movesText).X * movesTextSize / 2);
+            var x = WindowManager.GetMainWindowCenter().X + 107 - (buttonFont.MeasureString(movesText).X * movesTextSize / 2);
             var y = WindowManager.GetMainWindowCenter().Y - 160 - (buttonFont.MeasureString(movesText).Y * movesTextSize / 2);
             Globals.SpriteBatch.DrawString(buttonFont, movesText, new Vector2(x, y), Color.White, 0f, Vector2.Zero, movesTextSize, SpriteEffects.None, 1f);
         }

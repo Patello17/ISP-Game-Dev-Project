@@ -15,6 +15,7 @@ namespace ISP_Project.Managers
         public int LevelsCompleted { get; set; }
         public int LevelOneFewestMoves { get; set; }
         public int LevelTwoFewestMoves { get; set; }
+        public int LevelThreeFewestMoves { get; set; }
     }
 
     // Code Reference: https://www.youtube.com/watch?v=gYksT0d_xLM
@@ -22,6 +23,8 @@ namespace ISP_Project.Managers
     {
         public bool ReadOne { get; set; }
         public bool ReadTwo { get; set; }
+        public bool ReadThree { get; set; }
+        public bool ReadFour { get; set; }
     }
 
     // Code Reference: https://www.youtube.com/watch?v=gYksT0d_xLM
@@ -57,6 +60,7 @@ namespace ISP_Project.Managers
                 LevelsCompleted = 0,
                 LevelOneFewestMoves = 0,
                 LevelTwoFewestMoves = 0,
+                LevelThreeFewestMoves = 0
             };
             Save(newSave);
         }
@@ -85,7 +89,9 @@ namespace ISP_Project.Managers
             ReadEnvelopesFile newSave = new ReadEnvelopesFile()
             {
                 ReadOne = false,
-                ReadTwo = false
+                ReadTwo = false,
+                ReadThree = false,
+                ReadFour = false
             };
             SaveReadEnvelopes(newSave);
         }

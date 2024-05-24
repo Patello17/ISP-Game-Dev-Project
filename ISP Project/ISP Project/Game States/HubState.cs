@@ -88,6 +88,16 @@ namespace ISP_Project.Game_States
                     envelopes.Add(new EnvelopeTwoButton(envelopeTexture, buttonFont, 1f, 0f)
                     { Position = WindowManager.GetMainWindowCenter() + new Vector2(48, -8) });
                     break;
+                case 3:
+                    envelopes.Add(new EnvelopeOneButton(envelopeTexture, buttonFont, 1f, 0f)
+                    { Position = WindowManager.GetMainWindowCenter() + new Vector2(48, -21) });
+                    envelopes.Add(new EnvelopeTwoButton(envelopeTexture, buttonFont, 1f, 0f)
+                    { Position = WindowManager.GetMainWindowCenter() + new Vector2(48, -8) });
+                    envelopes.Add(new EnvelopeThreeButton(envelopeTexture, buttonFont, 1f, 0f)
+                    { Position = WindowManager.GetMainWindowCenter() + new Vector2(48, 5) });
+                    envelopes.Add(new EnvelopeFourButton(envelopeTexture, buttonFont, 1f, 0f)
+                    { Position = WindowManager.GetMainWindowCenter() + new Vector2(80, -21) });
+                    break;
                 default:
                     // no envelopes
                     break;
@@ -218,7 +228,9 @@ namespace ISP_Project.Game_States
             }
 
             NewEnvelopeFlag = false;
-            if (!SaveManager.LoadReadEnvelopes().ReadOne && envelopes.Count >= 1)
+            if (envelopes.Count == 0)
+                NewEnvelopeFlag = false;
+            else if (!SaveManager.LoadReadEnvelopes().ReadOne && envelopes.Count >= 1)
                 NewEnvelopeFlag = true;
             else if (!SaveManager.LoadReadEnvelopes().ReadTwo && envelopes.Count >= 2)
                 NewEnvelopeFlag = true;
@@ -261,6 +273,9 @@ namespace ISP_Project.Game_States
                     break;
                 case 2:
                     AudioManager.ForcePlaySong("Hub Theme 2");
+                    break;
+                case 3:
+                    AudioManager.ForcePlaySong("Hub Theme 3");
                     break;
                 default:
                     AudioManager.ForcePlaySong("Hub Theme");

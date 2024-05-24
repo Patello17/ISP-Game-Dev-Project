@@ -28,6 +28,8 @@ namespace ISP_Project.Gameplay
         {
             HORIZONTAL, VERTICAL,
             UP, DOWN, LEFT, RIGHT,
+            HLONGUP, HLONGDOWN, HLONGLEFT, HLONGRIGHT,
+            VLONGUP, VLONGDOWN, VLONGLEFT, VLONGRIGHT,
             STAR
         }
         private BoxType boxType;
@@ -90,6 +92,30 @@ namespace ISP_Project.Gameplay
                 case BoxType.RIGHT:
                     Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/Right Box");
                     break;
+                case BoxType.HLONGUP:
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/H Long Box Up");
+                    break;
+                case BoxType.HLONGDOWN:
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/H Long Box Down");
+                    break;
+                case BoxType.HLONGLEFT:
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/H Long Box Left");
+                    break;
+                case BoxType.HLONGRIGHT:
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/H Long Box Right");
+                    break;
+                case BoxType.VLONGUP:
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/V Long Box Up");
+                    break;
+                case BoxType.VLONGDOWN:
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/V Long Box Down");
+                    break;
+                case BoxType.VLONGLEFT:
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/V Long Box Left");
+                    break;
+                case BoxType.VLONGRIGHT:
+                    Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/V Long Box Right");
+                    break;
                 case BoxType.STAR:
                     Sprite.Texture = Globals.ContentManager.Load<Texture2D>("Box/Star Box");
                     break;
@@ -108,9 +134,25 @@ namespace ISP_Project.Gameplay
 
         public override void Draw()
         {
-            Globals.SpriteBatch.Draw(Sprite.Texture, Transform.Position, null, Sprite.Color,
+            // draw the correct texture
+            if (boxType == BoxType.HLONGUP || boxType == BoxType.HLONGDOWN || boxType == BoxType.HLONGLEFT || boxType == BoxType.HLONGRIGHT)
+            {
+                Globals.SpriteBatch.Draw(Sprite.Texture, Transform.Position, null, Sprite.Color,
+                Transform.Rotation, Sprite.GetSpriteOrigin() - new Vector2(8, 0), Transform.Scale,
+                Sprite.SpriteEffects, Sprite.DrawLayer);
+            }
+            else if (boxType == BoxType.VLONGUP || boxType == BoxType.VLONGDOWN || boxType == BoxType.VLONGLEFT || boxType == BoxType.VLONGRIGHT)
+            {
+                Globals.SpriteBatch.Draw(Sprite.Texture, Transform.Position, null, Sprite.Color,
+                Transform.Rotation, Sprite.GetSpriteOrigin() - new Vector2(0, 8), Transform.Scale,
+                Sprite.SpriteEffects, Sprite.DrawLayer);
+            }
+            else
+            {
+                Globals.SpriteBatch.Draw(Sprite.Texture, Transform.Position, null, Sprite.Color,
                 Transform.Rotation, Sprite.GetSpriteOrigin(), Transform.Scale,
                 Sprite.SpriteEffects, Sprite.DrawLayer);
+            }
         }
         
         /// <summary>
@@ -182,6 +224,38 @@ namespace ISP_Project.Gameplay
                     if (movementVector == new Vector2(1, 0))
                         this.movementVector = movementVector;
                     break;
+                case BoxType.HLONGUP:
+                    if (movementVector == new Vector2(0, -1))
+                        this.movementVector = movementVector;
+                    break;
+                case BoxType.HLONGDOWN:
+                    if (movementVector == new Vector2(0, 1))
+                        this.movementVector = movementVector;
+                    break;
+                case BoxType.HLONGLEFT:
+                    if (movementVector == new Vector2(-1, 0))
+                        this.movementVector = movementVector;
+                    break;
+                case BoxType.HLONGRIGHT:
+                    if (movementVector == new Vector2(1, 0))
+                        this.movementVector = movementVector;
+                    break;
+                case BoxType.VLONGUP:
+                    if (movementVector == new Vector2(0, -1))
+                        this.movementVector = movementVector;
+                    break;
+                case BoxType.VLONGDOWN:
+                    if (movementVector == new Vector2(0, 1))
+                        this.movementVector = movementVector;
+                    break;
+                case BoxType.VLONGLEFT:
+                    if (movementVector == new Vector2(-1, 0))
+                        this.movementVector = movementVector;
+                    break;
+                case BoxType.VLONGRIGHT:
+                    if (movementVector == new Vector2(1, 0))
+                        this.movementVector = movementVector;
+                    break;
                 case BoxType.STAR:
                     this.movementVector = movementVector;
                     break;
@@ -214,63 +288,202 @@ namespace ISP_Project.Gameplay
         public override void UpdatePosition(CollisionMap collisionMap)
         {
             // check for collisions
-            switch (collisionMap.GetCollision(nextTileMapPosition))
+            /*if (boxType == BoxType.VLONGUP || boxType == BoxType.VLONGDOWN || boxType == BoxType.VLONGLEFT || boxType == BoxType.VLONGRIGHT)
             {
-                case 1: // solids
-                    IsColliding = true;
-                    collisionMap.SetCollision(TileMapPosition, 3);
-                    break;
-                case 2: // water
-                    IsColliding = false;
-                    IsSunken = true;
-                    collisionMap.SetCollision(TileMapPosition, 0);
-                    TileMapPosition = nextTileMapPosition;
-                    collisionMap.SetCollision(TileMapPosition, 0); // box acts as path when sunk!
-                    AudioManager.PlaySoundEffect("Box Splash");
-                    break;
-                case 3: // boxes
-                    IsColliding = true;
-                    collisionMap.SetCollision(TileMapPosition, 3);
-                    break;
-                case 5: // mailbox
-                    IsColliding = true;
-                    collisionMap.SetCollision(TileMapPosition, 0);
-                    TileMapPosition = nextTileMapPosition;
-                    collisionMap.SetCollision(TileMapPosition, 3);
-                    break;
-                default:
-                    if (!IsSunken) 
-                    {
+                switch (collisionMap.GetCollision(nextTileMapPosition) && collisionMap.GetCollision(nextTileMapPosition + new Vector2(0, 1)))
+                {
+                    case 1: // solids
+                        IsColliding = true;
+                        collisionMap.SetCollision(TileMapPosition, 3);
+                        collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 3);
+                        break;
+                    case 2: // water
                         IsColliding = false;
+                        IsSunken = true;
+                        collisionMap.SetCollision(TileMapPosition, 0);
+                        collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 0);
+                        TileMapPosition = nextTileMapPosition;
+                        collisionMap.SetCollision(TileMapPosition, 0); // box acts as path when sunk!
+                        collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 0);
+                        AudioManager.PlaySoundEffect("Box Splash");
+                        break;
+                    case 3: // boxes
+                        IsColliding = true;
+                        collisionMap.SetCollision(TileMapPosition, 3);
+                        collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 3);
+                        break;
+                    case 5: // mailbox
+                        IsColliding = true;
+                        collisionMap.SetCollision(TileMapPosition, 0);
+                        collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 0);
+                        TileMapPosition = nextTileMapPosition;
+                        collisionMap.SetCollision(TileMapPosition, 3);
+                        collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 3);
+                        break;
+                    default:
+                        if (!IsSunken)
+                        {
+                            IsColliding = false;
+                            collisionMap.SetCollision(TileMapPosition, 0);
+                            collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 0);
+                            TileMapPosition = nextTileMapPosition;
+                            collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 3);
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                switch (collisionMap.GetCollision(nextTileMapPosition))
+                {
+                    case 1: // solids
+                        IsColliding = true;
+                        collisionMap.SetCollision(TileMapPosition, 3);
+                        break;
+                    case 2: // water
+                        IsColliding = false;
+                        IsSunken = true;
+                        collisionMap.SetCollision(TileMapPosition, 0);
+                        TileMapPosition = nextTileMapPosition;
+                        collisionMap.SetCollision(TileMapPosition, 0); // box acts as path when sunk!
+                        AudioManager.PlaySoundEffect("Box Splash");
+                        break;
+                    case 3: // boxes
+                        IsColliding = true;
+                        collisionMap.SetCollision(TileMapPosition, 3);
+                        break;
+                    case 5: // mailbox
+                        IsColliding = true;
                         collisionMap.SetCollision(TileMapPosition, 0);
                         TileMapPosition = nextTileMapPosition;
                         collisionMap.SetCollision(TileMapPosition, 3);
-                    }
-                    
-                    break;
-            }
-            /*if (collisionMap.GetCollision(nextTileMapPosition) == 2) // water
-            {
-                // play sound effect
-                AudioManager.PlaySoundEffect("Box Splash");
+                        break;
+                    default:
+                        if (!IsSunken)
+                        {
+                            IsColliding = false;
+                            collisionMap.SetCollision(TileMapPosition, 0);
+                            TileMapPosition = nextTileMapPosition;
+                        }
+                        break;
+                }*/
 
-                // sink
-                IsSunken = true;
-
-                // update position
-                collisionMap.SetCollision(TileMapPosition, 0);
-                TileMapPosition = nextTileMapPosition;
-                collisionMap.SetCollision(TileMapPosition, 0); // box acts as a path when sunk!
-            }
-            else if (collisionMap.GetCollision(nextTileMapPosition) != 1 && // solids
-                collisionMap.GetCollision(nextTileMapPosition) != 3 && // other boxes
-                !IsSunken)
+            if (boxType == BoxType.VLONGUP || boxType == BoxType.VLONGDOWN || boxType == BoxType.VLONGLEFT || boxType == BoxType.VLONGRIGHT)
             {
-                // update position
-                collisionMap.SetCollision(TileMapPosition, 0);
-                TileMapPosition = nextTileMapPosition;
-                collisionMap.SetCollision(TileMapPosition, 3);
-            }*/
+                var otherHalfCanMove = true;
+                switch (collisionMap.GetCollision(nextTileMapPosition + new Vector2(0, 1)))
+                {
+                    case 1: // solids
+                        otherHalfCanMove = false;
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
+                }
+                switch (collisionMap.GetCollision(nextTileMapPosition))
+                {
+                    case 1: // solids
+                        if (otherHalfCanMove)
+                        {
+                            IsColliding = true;
+                            collisionMap.SetCollision(TileMapPosition, 3);
+                            collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 3);
+                        }
+                        break;
+                    case 2: // water
+                        if (otherHalfCanMove && collisionMap.GetCollision(nextTileMapPosition + new Vector2(0, 1)) != 0)
+                        {
+                            IsColliding = false;
+                            IsSunken = true;
+                            collisionMap.SetCollision(TileMapPosition, 0);
+                            collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 0);
+                            TileMapPosition = nextTileMapPosition;
+                            collisionMap.SetCollision(TileMapPosition, 0); // box acts as path when sunk!
+                            collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 0);
+                            AudioManager.PlaySoundEffect("Box Splash");
+                        }
+                        else
+                        {
+                            collisionMap.SetCollision(TileMapPosition, 0);
+                            collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 0);
+                            TileMapPosition = nextTileMapPosition;
+                            collisionMap.SetCollision(TileMapPosition, 3);
+                            collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 3);
+                        }
+                        
+                        break;
+                    case 3: // boxes
+                        if (otherHalfCanMove)
+                        {
+                            IsColliding = true;
+                            collisionMap.SetCollision(TileMapPosition, 3);
+                            collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 3);
+                        }
+                        break;
+                    case 5: // mailbox
+                        if (otherHalfCanMove)
+                        {
+                            IsColliding = true;
+                            collisionMap.SetCollision(TileMapPosition, 0);
+                            collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 0);
+                            TileMapPosition = nextTileMapPosition;
+                            collisionMap.SetCollision(TileMapPosition, 3);
+                            collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 3);
+                        }
+                        break;
+                    default:
+                        if (!IsSunken && otherHalfCanMove)
+                        {
+                            IsColliding = false;
+                            collisionMap.SetCollision(TileMapPosition, 0);
+                            collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 0);
+                            TileMapPosition = nextTileMapPosition;
+                            collisionMap.SetCollision(TileMapPosition, 3);
+                            collisionMap.SetCollision(TileMapPosition + new Vector2(0, 1), 3);
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                switch (collisionMap.GetCollision(nextTileMapPosition))
+                {
+                    case 1: // solids
+                        IsColliding = true;
+                        collisionMap.SetCollision(TileMapPosition, 3);
+                        break;
+                    case 2: // water
+                        IsColliding = false;
+                        IsSunken = true;
+                        collisionMap.SetCollision(TileMapPosition, 0);
+                        TileMapPosition = nextTileMapPosition;
+                        collisionMap.SetCollision(TileMapPosition, 0); // box acts as path when sunk!
+                        AudioManager.PlaySoundEffect("Box Splash");
+                        break;
+                    case 3: // boxes
+                        IsColliding = true;
+                        collisionMap.SetCollision(TileMapPosition, 3);
+                        break;
+                    case 5: // mailbox
+                        IsColliding = true;
+                        collisionMap.SetCollision(TileMapPosition, 0);
+                        TileMapPosition = nextTileMapPosition;
+                        collisionMap.SetCollision(TileMapPosition, 3);
+                        break;
+                    default:
+                        if (!IsSunken)
+                        {
+                            IsColliding = false;
+                            collisionMap.SetCollision(TileMapPosition, 0);
+                            TileMapPosition = nextTileMapPosition;
+                        }
+                        break;
+                }
+            }
+            
+
+
         }
 
         /// <summary>

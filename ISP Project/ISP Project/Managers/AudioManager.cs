@@ -40,7 +40,7 @@ namespace ISP_Project.Managers
         // create volume control variables
         private static float maximumSongVolume = 1f;
         private static float maximumSFXVolume = 1f;
-        private static float volumeLow = 0;
+        private static float volumeLow = 0f;
         private static float volumeHigh = maximumSongVolume;
 
         /// <summary>
@@ -52,9 +52,11 @@ namespace ISP_Project.Managers
             songs.Add("Hub Theme", Globals.ContentManager.Load<Song>("Songs/Hub Theme"));
             songs.Add("Hub Theme 1", Globals.ContentManager.Load<Song>("Songs/Hub Theme 1"));
             songs.Add("Hub Theme 2", Globals.ContentManager.Load<Song>("Songs/Hub Theme 2"));
+            songs.Add("Hub Theme 3", Globals.ContentManager.Load<Song>("Songs/Hub Theme 3"));
             songs.Add("Title Theme", Globals.ContentManager.Load<Song>("Songs/Title Theme"));
             songs.Add("Level 1 Theme", Globals.ContentManager.Load<Song>("Songs/Level 1"));
             songs.Add("Level 2 Theme", Globals.ContentManager.Load<Song>("Songs/Level 2"));
+            songs.Add("Level 3 Theme", Globals.ContentManager.Load<Song>("Songs/Level 3"));
 
             // add every sound effect
             soundEffects.Add("Envelope", Globals.ContentManager.Load<SoundEffect>("Sound Effects/Envelope"));
@@ -91,17 +93,26 @@ namespace ISP_Project.Managers
                 currentSongTime += Globals.Time;
 
                 // play new song
-                if (currentMediaState == MediaState.Stopped || currentSong != previousSong)
+                if (currentSong != previousSong || currentMediaState == MediaState.Stopped)
                 {
                     MediaPlayer.Play(currentSong);
                     currentSongTime = 0f;
+                    isFadingIn = true;
+                    isFadingOut = false;
                 }
-
                 // signal fade out when nearing the end of a song
-                if (Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime) <= fadeDuration && !isFadingOut)
+                if (Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime) <= fadeDuration)
                 {
                     volumeHigh = MediaPlayer.Volume;
+                    isFadingIn = false;
                     isFadingOut = true;
+                }
+                if (songStack.Count > 1)
+                {
+                    // prepare to fade in
+                    isFadingIn = false;
+                    isFadingOut = true;
+                    // MediaPlayer.Volume = volumeLow;
                 }
             }
 
@@ -110,15 +121,15 @@ namespace ISP_Project.Managers
                 // Debug.WriteLine("Fade IN");
                 Fade(volumeLow, maximumSongVolume); // fade in
             }
-            if (isFadingOut)
+            else if (isFadingOut)
             {
                 // Debug.WriteLine("Fade OUT");
-                Fade(volumeHigh, volumeLow); // fade out
+                Fade(maximumSongVolume, volumeLow); // fade out
             }
 
-            // Debug.WriteLine("IN: " + isFadingIn + " | " + "OUT: " + isFadingOut + " || " + "Current Time: " + currentSongTime + " | " + " Remaining Time: " + Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime));
+            /*Debug.WriteLine("IN: " + isFadingIn + " | " + "OUT: " + isFadingOut + " || " + "Current Time: " + currentSongTime + " | " + " Remaining Time: " + Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime));
 
-            /*Debug.WriteLine(songStack.Count);
+            Debug.WriteLine(songStack.Count);
             foreach (Song _song in songStack)
             {
                 Debug.WriteLine(_song.Name);
@@ -195,11 +206,17 @@ namespace ISP_Project.Managers
                 song = songs[songName];
                 if (songStack.Count > 0)
                 {
-                    if (currentSong != song)
+                    var isSongInStack = false;
+                    foreach (Song _song in songStack)
+                    {
+                        if (_song == song)
+                            isSongInStack = true;
+                    }
+
+                    if (!isSongInStack)
                     {
                         songStack.Insert(1, song);
                         // force a fade out
-                        volumeHigh = MediaPlayer.Volume;
                         isFadingOut = true;
                     }
                 }
@@ -254,12 +271,12 @@ namespace ISP_Project.Managers
         /// </summary>
         public static void PlayNextSong()
         {
+            // isFadingIn = true;
             if (songStack.Count > 1)
             {
                 // MediaPlayer.Stop();
                 songStack.RemoveAt(0);
                 // MediaPlayer.Play(songStack[0]);
-                MediaPlayer.Volume = 0f;
             }
 
         }
@@ -323,8 +340,11 @@ namespace ISP_Project.Managers
                 {
                     // Debug.WriteLine("ENDING FADE OUT");
                     isFadingOut = false;
-                    isFadingIn = true;
                     PlayNextSong();
+
+                    // prepare to fade back in
+                    isFadingIn = true;
+                    MediaPlayer.Volume = volumeLow;
                 }
             }
             else
