@@ -35,7 +35,7 @@ namespace ISP_Project.UI.Buttons
             List<State> states = new List<State>()
             {
                 new HubState(), new LevelSelectionState(),
-                new LevelOneState(), new LevelTwoState()
+                new LevelOneState(), new LevelTwoState(), new LevelThreeState()
             };
             StateManager.ChangeState(StateManager.GetRecentState(StateManager.GetMostRecentState(states)), Transitions.BlackFade, 0f);
         }

@@ -127,9 +127,10 @@ namespace ISP_Project.Managers
                 Fade(maximumSongVolume, volumeLow); // fade out
             }
 
-            /*Debug.WriteLine("IN: " + isFadingIn + " | " + "OUT: " + isFadingOut + " || " + "Current Time: " + currentSongTime + " | " + " Remaining Time: " + Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime));
+            // Debug.WriteLine(MediaPlayer.Volume);
+            // Debug.WriteLine("IN: " + isFadingIn + " | " + "OUT: " + isFadingOut + " || " + "Current Time: " + currentSongTime + " | " + " Remaining Time: " + Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime));
 
-            Debug.WriteLine(songStack.Count);
+            /*Debug.WriteLine(songStack.Count);
             foreach (Song _song in songStack)
             {
                 Debug.WriteLine(_song.Name);
@@ -334,17 +335,17 @@ namespace ISP_Project.Managers
                 {
                     // Debug.WriteLine("ENDING FADE IN");
                     isFadingIn = false;
-                    isFadingOut = false;
+                    MediaPlayer.Volume = maximumSFXVolume;
+                    // isFadingOut = false;
                 }
                 if (isFadingOut)
                 {
                     // Debug.WriteLine("ENDING FADE OUT");
                     isFadingOut = false;
-                    PlayNextSong();
-
                     // prepare to fade back in
                     isFadingIn = true;
                     MediaPlayer.Volume = volumeLow;
+                    PlayNextSong();
                 }
             }
             else

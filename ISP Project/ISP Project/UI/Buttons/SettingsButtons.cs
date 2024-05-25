@@ -60,7 +60,7 @@ namespace ISP_Project.UI.Buttons
         public override void TriggerEvent()
         {
             AudioManager.PlaySoundEffect("Button Press");
-            Debug.WriteLine("Entering Controls Settings...");
+            StateManager.ChangeState(new ControlsState(), Transitions.BlackFade, 0f);
         }
     }
 
