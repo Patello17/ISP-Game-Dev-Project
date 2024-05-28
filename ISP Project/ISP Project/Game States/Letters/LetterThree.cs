@@ -21,7 +21,7 @@ namespace ISP_Project.Game_States.Letters
         private const string letterText =
             "Dearest Shelly,\n" +
             "I am utterly elated\n" +
-            "to have recieved\n" +
+            "to have received\n" +
             "the laser pointer you\n" +
             "so graciously delivered.\n" +
             "I know I will be\n" +
