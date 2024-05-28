@@ -107,7 +107,6 @@ namespace ISP_Project.Game_States.Levels
             {
                 AudioManager.PlaySoundEffect("Button Press");
                 StateManager.ChangeState(new PauseState(), Transitions.BlackFade, 0.1f);
-                // tileMap.CollisionMap.DrawMap();
             }
 
             // reset level
