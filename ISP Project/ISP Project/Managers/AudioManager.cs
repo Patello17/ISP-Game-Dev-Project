@@ -91,31 +91,33 @@ namespace ISP_Project.Managers
 
                 currentSongTime += Globals.Time;
 
-                // play new song
-                if (currentSong != previousSong || currentMediaState == MediaState.Stopped)
-                {
-                    // MediaPlayer.Volume = maximumSongVolume;
-                    MediaPlayer.Play(currentSong);
-                    currentSongTime = 0f;
-                    isFadingIn = true;
-                    isFadingOut = false;
-                }
                 // signal fade out when nearing the end of a song
-                if (Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime) <= fadeDuration)
+                if (Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime) < fadeDuration)
                 {
                     // volumeHigh = MediaPlayer.Volume;
                     isFadingIn = false;
                     isFadingOut = true;
                 }
-                if (songStack.Count > 1)
+                // play new song
+                else if (currentSong != previousSong || currentMediaState == MediaState.Stopped)
                 {
-                    // prepare to fade in
+                    MediaPlayer.Play(currentSong);
+                    currentSongTime = 0f;
+                    fadeTimer = 0f;
+                    isFadingIn = true;
+                    isFadingOut = false;
+                }
+                // force fade out when there are multiple songs in the stack
+                else if (songStack.Count > 1)
+                {
                     isFadingIn = false;
                     isFadingOut = true;
                     // MediaPlayer.Volume = volumeLow;
                 }
             }
 
+            Debug.WriteLine("IN: " + isFadingIn + " | " + "OUT: " + isFadingOut + " || " + "Current Time: " + currentSongTime + " | " + " Remaining Time: " + Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime));
+            
             if (isFadingIn)
             {
                 // Debug.WriteLine("Fade IN");
@@ -127,8 +129,7 @@ namespace ISP_Project.Managers
                 Fade(maximumSongVolume, volumeLow); // fade out
             }
 
-            Debug.WriteLine(maximumSongVolume + " : " + MediaPlayer.Volume);
-            // Debug.WriteLine("IN: " + isFadingIn + " | " + "OUT: " + isFadingOut + " || " + "Current Time: " + currentSongTime + " | " + " Remaining Time: " + Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime));
+            // Debug.WriteLine(maximumSongVolume + " : " + MediaPlayer.Volume);
 
             /*Debug.WriteLine(songStack.Count);
             foreach (Song _song in songStack)
