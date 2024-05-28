@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Security.Cryptography.X509Certificates;
 using System.Diagnostics;
 using Microsoft.Win32.SafeHandles;
 
@@ -73,7 +72,7 @@ namespace ISP_Project.Managers
             // start from the lowest volume
             MediaPlayer.Volume = volumeLow;
 
-            // set soudne effect volume
+            // set sound effect volume
             // SetSoundEffectVolume(0.2f);
         }
 
@@ -95,6 +94,7 @@ namespace ISP_Project.Managers
                 // play new song
                 if (currentSong != previousSong || currentMediaState == MediaState.Stopped)
                 {
+                    // MediaPlayer.Volume = maximumSongVolume;
                     MediaPlayer.Play(currentSong);
                     currentSongTime = 0f;
                     isFadingIn = true;
@@ -103,7 +103,7 @@ namespace ISP_Project.Managers
                 // signal fade out when nearing the end of a song
                 if (Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime) <= fadeDuration)
                 {
-                    volumeHigh = MediaPlayer.Volume;
+                    // volumeHigh = MediaPlayer.Volume;
                     isFadingIn = false;
                     isFadingOut = true;
                 }
@@ -127,7 +127,7 @@ namespace ISP_Project.Managers
                 Fade(maximumSongVolume, volumeLow); // fade out
             }
 
-            // Debug.WriteLine(MediaPlayer.Volume);
+            Debug.WriteLine(maximumSongVolume + " : " + MediaPlayer.Volume);
             // Debug.WriteLine("IN: " + isFadingIn + " | " + "OUT: " + isFadingOut + " || " + "Current Time: " + currentSongTime + " | " + " Remaining Time: " + Math.Abs(currentSong.Duration.TotalSeconds - currentSongTime));
 
             /*Debug.WriteLine(songStack.Count);
@@ -333,14 +333,12 @@ namespace ISP_Project.Managers
 
                 if (isFadingIn)
                 {
-                    // Debug.WriteLine("ENDING FADE IN");
                     isFadingIn = false;
-                    MediaPlayer.Volume = maximumSFXVolume;
+                    MediaPlayer.Volume = maximumSongVolume;
                     // isFadingOut = false;
                 }
                 if (isFadingOut)
                 {
-                    // Debug.WriteLine("ENDING FADE OUT");
                     isFadingOut = false;
                     // prepare to fade back in
                     isFadingIn = true;
@@ -354,7 +352,7 @@ namespace ISP_Project.Managers
 
                 var fadeIncrement = ((targetVolume - initialVolume) / fadeDuration) * Globals.Time;
                 MediaPlayer.Volume += fadeIncrement;
-                // Debug.WriteLine(fadeTimer + " : " + fadeIncrement + " : " + MediaPlayer.Volume);
+                Debug.WriteLine(fadeTimer + " : " + fadeIncrement + " : " + MediaPlayer.Volume);
             }
         }
     }

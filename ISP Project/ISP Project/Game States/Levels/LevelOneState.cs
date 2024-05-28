@@ -63,8 +63,8 @@ namespace ISP_Project.Game_States.Levels
         {
             boxes = new List<Box>()
             {
-                starBox, 
-                leftBox2, 
+                starBox,
+                leftBox2,
                 leftBox3, upBox3,
                 leftBox4, downBox4, rightBox4,
                 leftBox5a, leftBox5b, leftBox5c, leftBox5d, upBox5a, upBox5b, upBox5c, downBox5a, downBox5b
